@@ -1,29 +1,25 @@
 # Specifications
 
-- [Comments](./comments.md)
-- [Modules](./modules.md)
+- [Comments](comments.md)
+- [Modules](modules.md)
 
 ### Functional core
 
-- [Data types](./functional/types.md)
-- [Statements](./functional/statements.md)
-- [Expressions](./functional/expressions.md)
-- [Macros](./functional/macros.md)
+- [Data types](functional/types.md)
+- [Statements](functional/statements.md)
+- [Expressions](functional/expressions.md)
+- [Macros](functional/macros.md)
 
 ### Descriptive core
 
-- [Expressions](./descriptive/expressions.md)
-- [Lexems](./descriptive/lexemes.md)
-- [Statements](./descriptive/statements.md)
+- [Expressions](descriptive/expressions.md)
+- [Lexems](descriptive/lexemes.md)
+- [Statements](descriptive/statements.md)
 
-## LASM
+## lasm
 
-The _Lexem assembler_, abbreviated as *LASM* is the intermediate representation of the lexem code used to accelerate the execution and to be able to perform the backtracking correctly.
+The _Lexem assembler_, abbreviated as *lasm* is the intermediate representation of the lexem code used to accelerate the execution and to perform the backtracking correctly.
 
-- List of available [Instructions](./lasm/instructions.md)
-- How to [serialize](lasm/file_serialization.md) a file in LASM
+It is defined as stack-based system, so it is composed by a set of instructions that emulate certain functionality of a processor but it also has complex instructions.
 
-The following documents show how to translate all Lexem's elements into LASM:
-
-- [Literals](./lasm/translation/literals.md)
-- [Functional expressions](./lasm/translation/functional_expressions.md)
+- [Instruction set](lasm/instructions.md)

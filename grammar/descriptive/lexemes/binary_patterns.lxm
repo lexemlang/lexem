@@ -14,7 +14,7 @@ pub! exp binpattern {
     |? "!" set_props![negated]
     |> value:bitlist
 
-    |? afirtmative_props:prop_abbreviation
+    |? afirmative_props:prop_abbreviation
     |? "-" {
         onback {
             log.error("A property abbreviation (r) is required after the '-'.")
