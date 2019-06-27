@@ -1,0 +1,49 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Group lexemes of the lexem's descriptive core.
+#------------------------#
+
+let {sml, ..gen} = import("generics")
+let {quantifier} = import("./quantifiers")
+let {pattern_content} = import("../patterns")
+
+pub! exp quantified_group {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    |> "@("
+	|? gen_modifier:modifier_quantifier
+
+    onback {
+        log.error("At least one pattern is required for the quantified group content.")
+    }
+    |> (pattern:pattern_content {
+        onback {
+            log.error("A semicolon ':' is required after the 'infix' token.")
+        }
+        |> sml* "|"
+        |? quantifier
+    })+
+
+	onback {
+		log.error("The close parenthesis ')' of the quantified group is required.")
+	}
+	|> sml* ")"
+}
+
+exp modifier_quantifier {
+    | "{"
+    |? sml* min:fn_exp.expression
+
+    set_props![- has_max]
+    |? sml* "," set_props![has_max] {
+        |? sml* max:fn_exp.expression
+    }
+
+    onback {
+        log.error("The close bracket '}' is required to close the quantifier.")
+    }
+    |> sml* "}"
+}

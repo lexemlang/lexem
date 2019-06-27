@@ -1,0 +1,50 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Control statements of the lexem's functional core.
+#------------------------#
+
+let {sml, eoll, ..gen} = import("generics")
+let fn_exp = import("./expressions")
+
+
+pub! exp control(props![- capture]) {
+    | control_with_expression("exit")
+    | control_without_expression("next")
+    | control_without_expression("redo")
+    | control_without_expression("restart")
+    | return
+
+    onback {
+        log.error("The control statement should end here.")
+    }
+    |> eoll
+}
+
+exp control_with_expression(token) {
+    set_props![:token(token)]
+    |> gen.keyword(token)
+    |? "'" tag:gen.identifier
+
+    onback {
+        log.error("An expression is required for the '\(token)' control statement.")
+    }
+    |> sml* expression:fn_exp.expression
+}
+
+exp control_without_expression(token) {
+    set_props![:token(token)]
+    |> gen.keyword(token)
+    |? "'" tag:gen.identifier
+}
+
+exp return {
+    |> gen.keyword("return")
+
+    onback {
+        log.error("An expression is required for the return control statement.")
+    }
+    |> sml* expression:fn_exp.expression
+}

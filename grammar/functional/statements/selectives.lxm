@@ -1,0 +1,73 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Selective statements of the lexem's functional core.
+#------------------------#
+
+let {sml, ..gen} = import("generics")
+let fn_exp = import("./expressions")
+let fn_stmt = import("../statements")
+let {destructuring as var_destructuring} = import("./var_declarations")
+
+pub! exp selective {
+    |> gen.keyword("match")
+
+    onback {
+        log.error("The selective statement requires an expression for its condition.")
+    }
+    |> sml* condition:fn_exp.expression
+
+    onback {
+        log.error("The selective statement requires here the open bracket '{'.")
+    }
+    |> sml* "{"
+    |? "'" tag:gen.identifier
+
+    for *+ {
+        |> sml* cases:selective_case
+    }
+    
+    onback {
+        log.error("The selective statement requires here the close bracket '}'.")
+    }
+    |> sml* "}"
+}
+
+exp case {
+    |> (patterns:pattern /infix: sml* "," sml*)+
+
+    onback {
+        log.error("The selective case requires a block statement ({}) for its body.")
+    }
+    |> sml* code:fn_stmt.block
+}
+
+exp pattern {
+    | "any!" set_props![any]
+    | {
+        | gen.keyword("var") set_props![- isConst]
+        | gen.keyword("let") set_props![isConst]
+
+        onback {
+            log.error("An identifier or destructuring is required for the var declaration pattern.")
+        }
+        | sml* name: gen.identifier
+        | sml* destructuring: destructuring
+    }
+    | value:fn_exp.expression
+
+    |? sml* conditional:pattern_conditional
+}
+
+exp pattern_conditional {
+    | gen.keyword("if") set_props![if]
+    | gen.keyword("unless") set_props![- if]
+
+    onback {
+        log.error("The conditional pattern requires an expression for its condition.")
+    }
+    |> sml* condition:fn_exp.expression
+}
+

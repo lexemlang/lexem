@@ -1,0 +1,23 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Entry point of the lexem's grammar.
+#------------------------#
+
+let {sml, eoll} = import("generics")
+let fn_stmt = import("functional/statements")
+
+pub! exp lexemFile {
+	|> ^^ (sml+ | eoll)*
+	for *+ do {
+		| fn_stmt.statement
+		|? (sml+ | eoll)+
+	}
+
+	onback {
+		log.error("Incorrect lexem file syntax. The end-of-file was expected.");
+	}
+	|> $$
+}

@@ -1,0 +1,15 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Access lexemes of the lexem's descriptive core.
+#------------------------#
+
+let fn_exp = import("functional/expressions")
+
+pub! exp access {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    |> expression:fn_exp.left_expression
+}

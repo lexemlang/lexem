@@ -1,0 +1,22 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Executer lexemes of the lexem's descriptive core.
+#------------------------#
+
+let {sml} = import("generics")
+let fn_exp = import("functional/expressions")
+
+pub! exp executer {
+    |> "\\(" set_props![- optional]
+    |? "?" set_props![optional]
+
+    |> sml* (expressions:fn_exp.expression /infix: sml* "," sml*)
+
+    onback {
+        log.error("The close parenthesis of the executer is required here.")
+    }
+    |> sml* ")"
+}

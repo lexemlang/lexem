@@ -1,0 +1,36 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Block lexemes of the lexem's descriptive core.
+#------------------------#
+
+let {..gen} = import("generics")
+let {interval, unicode_interval_abbr} = import("literals/intervals")
+
+pub! exp block {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    | value:unicode_interval_abbr
+    | value:interval
+
+    |? afirtmative_props:prop_abbreviation
+    |? "-" {
+        onback {
+            log.error("A property abbreviation (i or r) is required after the '-'.")
+        }
+        |> negative_props:prop_abbreviation
+    }
+    |? "!" {
+        onback {
+            log.error("A property abbreviation (i or r) is required after the '!'.")
+        }
+        |> reversed_props:prop_abbreviation
+    }
+}
+
+exp prop_abbreviation(props![- backtrack]) {
+    |> [ir]+
+    |! gen.identifier   #- ensures the properties are not part of another id.
+}

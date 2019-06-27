@@ -1,0 +1,48 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    The lexem's expression literals.
+#------------------------#
+s
+let {sml} = import("generics")
+let fn_exp = import("functional/expressions")
+let exp_stmt = import("descriptive/statements")
+let {property_style_object} = import("literal/objects")
+
+pub! exp expression {
+	|> "exp" args:function_arguments?
+
+	onback {
+		log.error("Incorrect literal expression. It is required a body block '{}'.")
+	}
+	|> body:exp_stmt.block
+}
+
+pub! exp expression_arguments {
+	|> "(" sml*
+	|? elements:expression_arguments_first_element {
+		|> (sml* "," sml* elements:function_arguments_element)*
+	}
+
+	onback {
+		log.error("Incorrect arguments. The close parenthesis ')' is required.")
+	}
+	|> sml* ("," sml*)? ")"	#- trailing comma
+}
+
+exp expression_arguments_first_element(props![- capture]) {
+	| property_style_object
+	| expression_arguments_element
+}
+
+exp expression_arguments_element {
+	|> key:identifier
+	|? sml* ":" {
+		onback {
+			log.error("Incorrect argument. After the relation symbol ':' it is require the default value of the argument.")
+		}
+		|> sml* value:fn_exp.expression
+	}
+}

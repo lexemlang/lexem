@@ -1,0 +1,89 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Anchor lexemes of the lexem's descriptive core.
+#------------------------#
+
+let {sml, ..gen} = import("generics")
+let fn_exp = import("functional/expressions")
+let {string} = import("literals/strings")
+let {interval} = import("literals/intervals")
+
+pub! exp anchor(props![- capture]) {
+    | relative_anchor
+    | absolute_anchor
+}
+
+exp relative_anchor {
+    set_props![- negated]
+    |? "!" set_props![negated]
+
+    | "^^" set_props![text start]
+    | "$$" set_props![text - start]
+    | "^" set_props![start]
+    | "$" set_props![- start]
+
+    onback {
+        log.error("The open parenthesis '(' of the anchor group or an abbreviation are required here.")
+    }
+    | "(" {
+        |> (sml* elements:relative_anchor_element)*+
+        
+        onback {
+            log.error("The close parenthesis ')' is required to close the anchor group.")
+        }
+        |> sml* ")"
+    }
+    | set_props![line]
+}
+
+exp relative_anchor_element {
+    |> (type[property]: {
+        | "text"
+        | "line"
+        | string
+        | interval
+    })
+}
+
+exp absolute_anchor {
+    set_props![- negated]
+    |? "!" set_props![negated]
+
+    |> "&"
+
+    onback {
+        log.error("The open parenthesis '(' of the anchor group is required.")
+    }
+    |> "(" (sml* elements:absolute_anchor_element)*+
+
+    onback {
+        log.error("The close parenthesis ')' is required to close the anchor group.")
+    }
+    |> sml* ")"
+}
+
+exp absolute_anchor_element {
+    |> (type[property]: {
+        | "from_start"
+        | "from_end"
+        | "analysis_beginning"
+    })
+
+    onback {
+        log.error("The open square bracket '[' of the anchor element is required.")
+    }
+    |> "["
+
+    onback {
+        log.error("An expression is required for the value of the anchor element.")
+    }
+    |> value:fn_exp.expression
+
+    onback {
+        log.error("The close square bracket ']' is required to close the anchor element.")
+    }
+    |> sml* "]"
+}

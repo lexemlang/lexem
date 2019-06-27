@@ -1,0 +1,35 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Literal binary pattern lexemes of the lexem's descriptive core.
+#------------------------#
+
+let {..gen} = import("generics")
+let {bitlist} = import("literals/bitlists")
+
+pub! exp binpattern {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    |> value:bitlist
+
+    |? afirtmative_props:prop_abbreviation
+    |? "-" {
+        onback {
+            log.error("A property abbreviation (r) is required after the '-'.")
+        }
+        |> negative_props:prop_abbreviation
+    }
+    |? "!" {
+        onback {
+            log.error("A property abbreviation (r) is required after the '!'.")
+        }
+        |> reversed_props:prop_abbreviation
+    }
+}
+
+exp prop_abbreviation(props![- backtrack]) {
+    |> "r"+
+    |! gen.identifier   #- ensures the properties are not part of another id.
+}

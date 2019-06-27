@@ -1,0 +1,94 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Statements of the lexem's functional core.
+#------------------------#
+
+let {sml, eoll, ..gen} = import("generics")
+let fn_exp = import("./expressions")
+let {function_arguments} = import("literals/functions")
+let {var_declaration} = import("./statements/var_declarations")
+let {conditional} = import("./statements/conditionals")
+let {selective} = import("./statements/selectives")
+let loops = import("./statements/loops")
+let controls = import("./statements/controls")
+let {property_style_object_block} = import("literals/objects")
+
+
+#----------------------#
+#-  Generic Elements  -#
+#----------------------#
+
+pub! exp statement(props![- capture backtrack]) {
+    | block
+    | set_props
+    | var_declaration
+    | macro_statement
+    | conditional
+    | selective
+    | loops.conditional
+    | loops.iterator
+    | loops.infinite  #- always after the other loops
+    | controls.control
+    | fn_exp.expression
+}
+
+pub! exp block(props![- backtrack]) {
+    |> "{"
+    |? "'" tag:gen.identifier
+
+    for *+ do {
+		|? (sml | eoll)+
+		| fn_stmt.statement
+	}
+    
+    onback {
+        log.error("Incorrect block. The close bracket '}' is required.")
+    }
+    |> sml* "}"
+}
+
+pub! exp set_props(props![- backtrack]) {
+    |> "set_props!"
+    
+    onback {
+        log.error("'set_props!' macro requires a block started with '['.")
+    }
+    |> block:property_style_object_block
+}
+
+exp function_statement {
+	|> "fun" sml+ name:gen.identifier args:function_arguments?
+
+	onback {
+		log.error("Incorrect function statement. It is required a body block '{}'.")
+	}
+	|> body:fn_stmt.block
+}
+
+exp expression_statement {
+	|> "fun" sml+ name:gen.identifier args:function_arguments?
+
+	onback {
+		log.error("Incorrect function statement. It is required a body block '{}'.")
+	}
+	|> body:fn_stmt.block
+}
+
+
+
+#----------------------#
+#-  Macro statements  -#
+#----------------------#
+
+exp macro_statement(props![- capture backtrack]) {
+    | macro_statement_public
+}
+
+exp macro_statement_public(props![- backtrack])
+    |> "pub!" sml*
+    | var_declaration
+    | function_statement
+    | expression_statement

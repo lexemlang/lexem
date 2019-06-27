@@ -1,0 +1,167 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    The lexem's number literals.
+#------------------------#
+
+let {identifier} = import("generics")
+
+
+pub! exp number(props![- capture]) {
+	| binary_number
+	| octal_number
+	| hexadecimal_number
+	| decimal_number
+	|! identifier {
+		log.error("Numbers can't be followed by an identifier.")
+	}
+}
+
+exp binary_number {
+	|> "0b"
+	onback {
+		log.error("Numbers require at least one digit for the integer part.")
+	}
+	|> integer:integer_binary_number
+	|? "." {
+		onback {
+			log.error("Numbers require at least one digit for the decimal part.")
+		}
+		|> decimal:integer_binary_number
+	}
+	|? [ep]i {
+		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+		onback {
+			log.error("Numbers require at least one digit for the exponent.")
+		}
+		|> exponent:integer_binary_number
+	}
+}
+
+exp octal_number {
+	|> "0o"
+	onback {
+		log.error("Numbers require at least one digit for the integer part.")
+	}
+	|> integer:integer_octal_number
+	|? "." {
+		onback {
+			log.error("Numbers require at least one digit for the decimal part.")
+		}
+		|> decimal:integer_octal_number
+	}
+	|? [ep]i {
+		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+		onback {
+			log.error("Numbers require at least one digit for the exponent.")
+		}
+		|> exponent:integer_octal_number
+	}
+}
+
+exp decimal_number {
+	|? "0d" {
+		onback {
+			log.error("Numbers require at least one digit for the integer part.")
+		}
+	}
+	|> integer:integer_decimal_number
+	|? "." {
+		onback {
+			log.error("Numbers require at least one digit for the decimal part.")
+		}
+		|> decimal:integer_decimal_number
+	}
+	|? [ep]i {
+		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+		onback {
+			log.error("Numbers require at least one digit for the exponent.")
+		}
+		|> exponent:integer_decimal_number
+	}
+}
+
+exp hexadecimal_number {
+	|> "0x"
+	onback {
+		log.error("Numbers require at least one digit for the integer part.")
+	}
+	|> integer:integer_hexadecimal_number
+	|? "." {
+		onback {
+			log.error("Numbers require at least one digit for the decimal part.")
+		}
+		|> decimal:integer_hexadecimal_number
+	}
+	|? [ep]i {
+		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+		onback {
+			log.error("Numbers require at least one digit for the exponent.")
+		}
+		|> exponent:integer_hexadecimal_number
+	}
+}
+
+pub! exp integer_number(props![- capture]) {
+	| "0b" {
+		onback {
+			log.error("Numbers require at least one digit for the integer part.")
+		}
+		|> integer_binary_number
+	}
+	| "0o" {
+		onback {
+			log.error("Numbers require at least one digit for the integer part.")
+		}
+		|> integer_octal_number
+	}
+	| "0x" {
+		onback {
+			log.error("Numbers require at least one digit for the integer part.")
+		}
+		|> integer_hexadecimal_number
+	}
+	| "0d"? decimal_number
+}
+
+pub! exp integer_binary_number {
+	|> [01]+
+	while("_") {
+		onback {
+			log.error("Numbers require at least one digit after the separator symbol '_'.")
+		}
+		|> [01]+
+	}
+}
+
+pub! exp integer_octal_number {
+	|> [0..7]+
+	while("_") {
+		onback {
+			log.error("Numbers require at least one digit after the separator symbol '_'.")
+		}
+		|> [0..7]+
+	}
+}
+
+pub! exp integer_decimal_number {
+	|> [0..9]+
+	while("_") {
+		onback {
+			log.error("Numbers require at least one digit after the separator symbol '_'.")
+		}
+		|> [0..9]+
+	}
+}
+
+pub! exp integer_hexadecimal_number {
+	|> [0..9a..fA..F]+
+	while("_") {
+		onback {
+			log.error("Numbers require at least one digit after the separator symbol '_'.")
+		}
+		|> [0..9a..fA..F]+
+	}
+}

@@ -1,0 +1,36 @@
+
+#------------------------#
+#- Lexem grammar v0.1.0 -#
+#------------------------#
+#- Description:
+#-    Quantifier lexemes of the lexem's descriptive core.
+#------------------------#
+
+let {sml} = import("generics")
+let fn_exp = import("functional/expressions")
+
+pub! exp quantifier {
+    | "{" {
+        onback {
+            log.error("An expression is required for the minimum of the quantifier.")
+        }
+        |> sml* min:fn_exp.expression
+
+        set_props![- has_max]
+        |? sml* "," set_props![has_max] {
+            |? sml* max:fn_exp.expression
+        }
+
+        onback {
+            log.error("The close bracket '}' is required to close the quantifier.")
+        }
+        |> sml* "}"
+    }
+    | value:quantifier_abbr
+
+    |? modifier:quantifier_abbr
+}
+
+pub! exp quantifier_abbr {
+    |> [?+*]
+}
