@@ -1,21 +1,19 @@
 
 # Index
 
-- [Index](#index)
-- [Functional expressions](#functional-expressions)
-  - [Indexers](#indexers)
-    - [Slices](#slices)
-    - [Optionality](#optionality)
-  - [Accesses](#accesses)
-    - [Optionality](#optionality-1)
-  - [Function calls](#function-calls)
-    - [Spread operator](#spread-operator)
-    - [Returned values](#returned-values)
-  - [Operators](#operators)
-    - [Unitary operators](#unitary-operators)
-    - [Binary operators](#binary-operators)
-    - [Chained binary operators](#chained-binary-operators)
-    - [Assignments](#assignments)
+- [Index](#Index)
+- [Functional expressions](#Functional-expressions)
+  - [Indexers](#Indexers)
+    - [Slices](#Slices)
+  - [Accesses](#Accesses)
+  - [Function calls](#Function-calls)
+    - [Spread operator](#Spread-operator)
+    - [Returned values](#Returned-values)
+  - [Operators](#Operators)
+    - [Unitary operators](#Unitary-operators)
+    - [Binary operators](#Binary-operators)
+    - [Chained binary operators](#Chained-binary-operators)
+    - [Assignments](#Assignments)
 
 # Functional expressions
 
@@ -80,10 +78,10 @@ Moreover, accesses let us to get the methods or properties of any type from thei
 
 ```lexem
 var string = "Hello, world!"
-string.replace("world", by: "Lexem")  #- replace one word by another
+string.replace("world", by: "Lexem") #- replace one word by another
 
 var num = 9
-num.sign    #- gets the sign of the number
+num.sign                             #- gets the sign of the number
 ```
 
 > **Note**: when an access does not exist, it returns a `null`.
@@ -123,7 +121,7 @@ let function = fun(){}
 function()  #- this == null
 
 let container = {function: function}
-container.function()    #- this == container
+container.function()  #- this == container
 ```
 
 The first call is `null` because there's no container while in the last one there's an object with a property that contains the function.
@@ -199,7 +197,7 @@ This operators have the maximum priority of all of the operators. Moreover, to c
 ||`/>`|`BitArray`| Rotates the bits n positions to right. |
 ||`</`|`BitArray`| Rotates the bits n positions to left. |
 |Logic|`&`|`BitArray`, `Logic`| Logic AND bit a bit. |
-||`|`|`BitArray`, `Logic`| Logic OR bit a bit. |
+||`\|`|`BitArray`, `Logic`| Logic OR bit a bit. |
 ||`^`|`BitArray`, `Logic`| Logic XOR bit a bit. |
 
 Categories are ordered from high to less priority. Moreover, operators in the same category have the same priority.

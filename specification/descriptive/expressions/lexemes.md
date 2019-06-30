@@ -1,28 +1,29 @@
 
 # Index
 
-- [Index](#index)
-- [Lexemes](#lexemes)
-    - [Literal texts](#literal-texts)
-    - [Literal binary patterns](#literal-binary-patterns)
-    - [Character blocks](#character-blocks)
-    - [Groups](#groups)
-        - [Header](#header)
-            - [alternation type](#alternation-type)
-            - [Properties](#properties)
-            - [Infix](#infix)
-    - [Quantifiers](#quantifiers)
-        - [Greedy quantifiers](#greedy-quantifiers)
-        - [Greedy quantifiers](#greedy-quantifiers-1)
-    - [Quantified groups](#quantified-groups)
-    - [Anchors](#anchors)
-        - [Relative anchors](#relative-anchors)
-        - [Absolute anchors](#absolute-anchors)
-    - [Property modifier](#property-modifier)
-    - [Accesses](#accesses)
-    - [Executer (Embed functional code)](#executer-embed-functional-code)
-    - [Continuer](#continuer)
-    - [Semantic namings](#semantic-namings)
+- [Index](#Index)
+- [Lexemes](#Lexemes)
+  - [Literal texts](#Literal-texts)
+  - [Literal binary patterns](#Literal-binary-patterns)
+  - [Character blocks](#Character-blocks)
+  - [Groups](#Groups)
+    - [Header](#Header)
+      - [Alternation type](#Alternation-type)
+      - [Properties](#Properties)
+  - [Quantifiers](#Quantifiers)
+    - [Greedy quantifiers](#Greedy-quantifiers)
+    - [Lazy quantifiers](#Lazy-quantifiers)
+  - [Quantified groups](#Quantified-groups)
+  - [Anchors](#Anchors)
+    - [Relative anchors](#Relative-anchors)
+    - [Absolute anchors](#Absolute-anchors)
+  - [Property modifier](#Property-modifier)
+  - [Accesses](#Accesses)
+    - [Re-parsing](#Re-parsing)
+    - [Filtering](#Filtering)
+  - [Executor (Embed functional code)](#Executor-Embed-functional-code)
+  - [Continuation](#Continuation)
+  - [Data capturing](#Data-capturing)
 
 # Lexemes
 
@@ -32,7 +33,7 @@ There are two types of lexemes, those that define what content should be capture
 
 ## Literal texts
 
-This type of lexem captures literal textual patterns.
+This type of lexeme captures literal textual patterns.
 
 ```lexem
 !"text"ir-ir!ir
@@ -40,7 +41,7 @@ This type of lexem captures literal textual patterns.
 
 The syntax is divided in:
 
-- **Negation**: tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow. It is used to know that a specific text is not present at the current position.
+- **Negation**: tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow. It is used to know that a specific text is not present at the current position.
 - **Text**: the content itself. It can be any of the string literals.
 - **Properties**: the `insensible` and `reverse` properties are inherit from the expression or group that contains this lexeme, but they can be manually set for each lexeme. With the abbreviation got activated, deactivated when is preceded with a minus (`-`) or negate the inherit value if they are preceded with a (`!`).
 
@@ -50,7 +51,7 @@ Strings are evaluated in short-circuit mode, therefore if a previous section doe
 
 ## Literal binary patterns
 
-This type of lexem captures literal binary patterns.
+This type of lexeme captures literal binary patterns.
 
 ```lexem
 !0b"content"r-r!r
@@ -58,7 +59,7 @@ This type of lexem captures literal binary patterns.
 
 The syntax is divided in:
 
-- **Negation**: tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow. It is used to know that a specific binary pattern is not present at the current position.
+- **Negation**: tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow. It is used to know that a specific binary pattern is not present at the current position.
 - **Text**: the content itself. It can be any of the `BitList` literals.
 - **Properties**: the `reverse` property is inherit from the expression or group that contains this lexeme, but it can be manually set for each lexeme. With the abbreviation got activated, deactivated when is preceded with a minus (`-`) or negate the inherit value if they are preceded with a (`!`).
 
@@ -75,7 +76,7 @@ This type of lexemes capture just only one character alternatively between those
 
 The syntax is divided in:
 
-- **Negation**: tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow. It is used to know that a specific character is not present at the current position.
+- **Negation**: tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow. It is used to know that a specific character is not present at the current position.
 - **Characters**: the content itself. It can be any of the interval literals. The `uitv![]` literal can be abbreviated removing `uitv!`.
 - **Properties**: the `insensible` and `reverse` properties are inherit from the expression or group that contains this lexeme, but they can be manually set for each lexeme. With the abbreviation got activated, deactivated when is preceded with a minus (`-`) or negate the inherit value if they are preceded with a (`!`).
 
@@ -89,7 +90,7 @@ Groups are containers that join other lexemes to work with them in an atomic way
 !(header: option | option)
 ```
 
-The negation tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow.
+The negation tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow.
 
 ### Header
 
@@ -183,7 +184,7 @@ In cases when the quantifier should be atomic use:
 | Zero or more | `*+` |
 | At least one | `++` |
 
-### Greedy quantifiers
+### Lazy quantifiers
 
 They will try to match the least times they can before continuing the analysis.
 
@@ -228,7 +229,7 @@ The search priority is from left to right, so it will try to find first the left
 !@(genericQuantifier modifier option1 |quantifier1 option2 |quantifier2)
 ```
 
-The negation tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow.
+The negation tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow.
 
 The quantified groups are by default greedy, so to change them to lazy (`?`), atomic greedy (`+`) or atomic lazy (`*`) it should be set the modifier at the beginning. For example:
 
@@ -267,7 +268,7 @@ This type detect a start or end regarding a relative element, for example, a cha
 !$(elements)    #- End of...
 ```
 
-The negation tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow.
+The negation tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow.
 
 The allowed elements are:
 
@@ -299,7 +300,7 @@ This type detect a fixed position over the input.
 !&(elements)
 ```
 
-The negation tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow.
+The negation tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow.
 
 The allowed elements are:
 
@@ -317,7 +318,7 @@ This node is really a macro so it can be used in functional code as well. Its fu
 set_props![...]
 ```
 
-It uses the same syntax of the *Property-style object definition*.
+It uses the same syntax of the _Property-style object definition_.
 
 > **Note**: it does not overwrite the whole properties object but only those properties that are modified.
 
@@ -326,15 +327,48 @@ It uses the same syntax of the *Property-style object definition*.
 These lexemes are very important because they offer the possibility to call other expressions to delegate the capture to them.
 
 ```lexem
-!leftExpression(props![], arg1: val1, arg2: val2)
+!expression(arg1: val1, arg2: val2, props: properties)
+!expression(arg1: val1, arg2: val2):[properties]
 ```
 
-The negation tells the analyzer it is required that the lexeme does *NOT* match to continue with the normal flow.
+The negation tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow.
 
 The two elements of the accesses are:
 
-- **Properties**: the properties that are passed to the calling expression.
-- **Arguments**: dynamic values passed to the calling expression. Unlike the functions, the first parameter name cannot be omitted.
+- **Arguments**: dynamic values passed to the calling expression.
+- **Properties**: the properties that are passed to the calling expression. This field (`:[properties]`) is optional.
+
+### Re-parsing
+
+There are situations in which it is necessary to capture a generic syntax and then re-parse it again to analyze in deep its meaning.
+To perform this task it is allowed to call another expression after parsing.
+
+```lexem
+access -> !expression(arg1: val1, arg2: val2, props: properties)
+access -> !expression(arg1: val1, arg2: val2):[properties]
+```
+
+The negation tells the analyzer it is required that the access does _NOT_ match to continue with the normal flow.
+
+> **Note**: you can chain any number of accesses but they cannot be set after a filter.
+
+### Filtering
+
+A filter allows to analyze in a higher level the structure of a node and allows to modify it.
+
+```lexem
+access -> !filter(arg1: val1, arg2: val2, props: properties)
+access -> !filter(arg1: val1, arg2: val2):[properties]
+```
+
+The negation tells the analyzer it is required that the filter does _NOT_ match to continue with the normal flow.
+
+The three elements of the accesses are:
+
+- **Arguments**: dynamic values passed to the calling expression.
+- **Properties**: the properties that are passed to the called expression. This field (`:[properties]`) is optional.
+
+> **Note**: you can chain any number of filters but always after all accesses.
 
 ## Executor (Embed functional code)
 
@@ -363,32 +397,22 @@ Allows to continue the current pattern on the next line. Really it is not a lexe
 a2
 ```
 
-## Semantic namings
+## Data capturing
 
 It consist of giving a name to a node associating it with a semantic meaning in the semantic tree.
 
 ```lexem
-name:lexeme
+name = lexeme
 ```
 
-It acts as a prefix for *accesses* and *groups* that capture.
-
-If the lexeme captures once, the node is store in a variable called `name`, but if it captures more, the variable will contain a list of nodes.
-
-Finally, if a group has a semantic meaning but does not capture, all of its children are marked with the semantic name given to it. For example, the following examples:
+It acts as a suffix for any lexeme implying that if the lexeme is captured, its content will be stored inside a variable called `name`.
+In case of any lexeme that creates a node (e.g. accesses, capturing groups, etc.), `name` has an object as value with the following structure:
 
 ```lexem
-|> name:(a b | c | {
-    | d
-    | e
-})
+{
+    content: STRING,    #- The content captured by the lexeme.
+    node: NODE,         #- The node generated by the lexeme.
+}
 ```
 
-are the same as:
-
-```lexem
-|> (name:a name:b | name:c | {
-    | name:d
-    | name:e
-})
-```
+Moreover, if the lexeme captures once, `name` holds the value but if it captures more, the variable will contain a list of values.

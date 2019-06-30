@@ -1,3 +1,8 @@
+# Index
+
+- [Index](#Index)
+- [Comments](#Comments)
+
 # Comments
 
 Comments are an useful utility that helps to document the code.

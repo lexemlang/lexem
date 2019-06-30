@@ -1,10 +1,10 @@
 
 # Index
 
-- [Index](#index)
-- [Instruction set](#instruction-set)
-  - [Simple](#simple)
-  - [With inline value](#with-inline-value)
+- [Index](#Index)
+- [Instruction set](#Instruction-set)
+  - [Simple](#Simple)
+  - [With inline value](#With-inline-value)
 
 # Instruction set
 

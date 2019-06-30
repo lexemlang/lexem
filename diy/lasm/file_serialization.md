@@ -1,12 +1,11 @@
-
 # Index
 
-- [Index](#index)
-- [File serialization](#file-serialization)
-  - [String](#string)
-  - [BitList](#bitlist)
-  - [Interval](#interval)
-  - [List](#list)
+- [Index](#Index)
+- [File serialization](#File-serialization)
+  - [String](#String)
+  - [BitList](#BitList)
+  - [Interval](#Interval)
+  - [List](#List)
 
 # File serialization
 

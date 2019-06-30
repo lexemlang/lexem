@@ -1,32 +1,32 @@
 
 # Index
 
-- [Index](#index)
-- [Types, prototypes and literals](#types-prototypes-and-literals)
-  - [Null type](#null-type)
-  - [Logic type](#logic-type)
-  - [Integer type](#integer-type)
-  - [Float type](#float-type)
-  - [String type](#string-type)
-    - [Escapes](#escapes)
-    - [Dynamic escape](#dynamic-escape)
-  - [Interval type](#interval-type)
-    - [Internal rules](#internal-rules)
-    - [Escapes](#escapes-1)
-    - [Dynamic escape](#dynamic-escape-1)
-      - [Sub-intervals](#sub-intervals)
-  - [BitList type](#bitlist-type)
-    - [Dynamic escape](#dynamic-escape-2)
-  - [List type](#list-type)
-  - [Set type](#set-type)
-  - [Object type](#object-type)
-    - [Complex property names](#complex-property-names)
-    - [Constant properties](#constant-properties)
-    - [Simplifications (syntactic sugar)](#simplifications-syntactic-sugar)
-    - [Property-style object definition](#property-style-object-definition)
-  - [Map types](#map-types)
-  - [Function type](#function-type)
-  - [Expression type](#expression-type)
+- [Index](#Index)
+- [Types, prototypes and literals](#Types-prototypes-and-literals)
+  - [Null type](#Null-type)
+  - [Logic type](#Logic-type)
+  - [Integer type](#Integer-type)
+  - [Float type](#Float-type)
+  - [String type](#String-type)
+    - [Escapes](#Escapes)
+    - [Dynamic escape](#Dynamic-escape)
+  - [Interval type](#Interval-type)
+    - [Internal rules](#Internal-rules)
+    - [Escapes](#Escapes-1)
+    - [Dynamic escape](#Dynamic-escape-1)
+      - [Sub-intervals](#Sub-intervals)
+  - [BitList type](#BitList-type)
+    - [Dynamic escape](#Dynamic-escape-2)
+  - [List type](#List-type)
+  - [Set type](#Set-type)
+  - [Object type](#Object-type)
+    - [Complex property names](#Complex-property-names)
+    - [Constant properties](#Constant-properties)
+    - [Simplifications (syntactic sugar)](#Simplifications-syntactic-sugar)
+    - [Property-style object definition](#Property-style-object-definition)
+  - [Map types](#Map-types)
+  - [Function type](#Function-type)
+  - [Expression type](#Expression-type)
 
 # Types, prototypes and literals
 
@@ -47,6 +47,7 @@ Represents undefined values and error or void states. It has only just one possi
 - Type: `Null`
 - Prototype: `Null.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`null`|The unique possible value of the type.|
@@ -60,6 +61,7 @@ Represents logical states, like truth and falsity.
 - Type: `Logic`
 - Prototype: `Logic.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`false`|False logic value.|
@@ -72,6 +74,7 @@ Represents integer numbers.
 - Type: `Integer`
 - Prototype: `Integer.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`0b01`|Integer number represented in binary base.|
@@ -88,6 +91,7 @@ Represents real numbers.
 - Type: `Float`
 - Prototype: `Float.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`0b01.01e-01`|Real number represented in binary base. The exponent symbol can be either `e` or `p`.|
@@ -104,6 +108,7 @@ Represents textual data.
 - Type: `String`
 - Prototype: `String.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`$"text with " inside"$`|Char string that accepts escapes. The `$` are optional and are used to embed any type of content, so it can be used any number of them.|
@@ -203,6 +208,7 @@ Represents serialized binary data.
 - Type: `BitList`
 - Prototype: `BitList.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`0b"1010 0101"`|Data sequence encoded as a binary list.|
@@ -230,6 +236,7 @@ Represents an ordered sequence of elements. They can be indexed starting from 0.
 - Type: `List`
 - Prototype: `List.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`[]`|An empty list.|
@@ -245,6 +252,7 @@ Represents a no-ordered group of elements. They can't be indexed.
 - Type: `Set`
 - Prototype: `Set.prototype`
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`set![]`|An empty set.|
@@ -260,6 +268,7 @@ Represents a no-ordered group of elements, each one with a name (`String`) that 
 - Type: `Object`
 - Prototype: `Object.prototype`. it is the root prototype of every value in its prototype chain.
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`{}`|An empty object.|
@@ -349,13 +358,13 @@ let obj = {
 
 ### Property-style object definition
 
-There is another way to define an object called *property-style* because it is generally used to create *properties* in nodes.
+There is another way to define an object called _property-style_ because it is generally used to create _properties_ in nodes.
 
 In this mode, objects are defined with the following syntax:
 
 ```lexem
-props![active - deactive : set(value)]  #- normal
-props!#[active - deactive : set(value)] #- constant  
+@[active - deactive : set(value)]  #- normal
+@#[active - deactive : set(value)] #- constant  
 ```
 
 Which is translated to:
@@ -386,6 +395,7 @@ Represents a no-ordered group of key-value pairs, with the ability to index by k
 - Type: `Map`
 - Prototype: `Map.prototype`.
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`map!{}`|An empty object.|
@@ -401,6 +411,7 @@ Represents an object with the ability to execute *functional* code.
 - Type: `Function`
 - Prototype: `Function.prototype`.
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`fun{body}`|Anonymous function definition without arguments.|
@@ -421,6 +432,7 @@ Represents an object with the ability to execute *functional* and *descriptive* 
 - Type: `Expression`
 - Prototype: `Expression.prototype`.
 - Literals:
+
   | Literal | Meaning |
   |:-------:|:--------|
   |`exp{body}`|Anonymous expression definition without arguments.|

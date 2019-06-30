@@ -1,30 +1,29 @@
 
 # Index
 
-- [Index](#index)
-- [Statements](#statements)
-    - [Blocks of code](#blocks-of-code)
-        - [Inside expressions](#inside-expressions)
-        - [Control statements](#control-statements)
-    - [Variable declaration](#variable-declaration)
-        - [Re-declarations](#re-declarations)
-        - [Assigns](#assigns)
-        - [Destructuring](#destructuring)
-            - [Lists](#lists)
-            - [Objects](#objects)
-            - [Mixing variables and constants](#mixing-variables-and-constants)
-    - [Truth and falsity](#truth-and-falsity)
-    - [Conditional statements](#conditional-statements)
-        - [Conditional expressions](#conditional-expressions)
-    - [Selective statements](#selective-statements)
-        - [Control statements](#control-statements-1)
-    - [Loop statements](#loop-statements)
-        - [Infinite loops](#infinite-loops)
-        - [Conditional loops](#conditional-loops)
-        - [Iterator loops](#iterator-loops)
-        - [Control statements](#control-statements-2)
-        - [Infix blocks](#infix-blocks)
-        - [Finalization](#finalization)
+- [Index](#Index)
+- [Statements](#Statements)
+  - [Blocks of code](#Blocks-of-code)
+    - [Inside expressions](#Inside-expressions)
+    - [Control statements](#Control-statements)
+  - [Variable declaration](#Variable-declaration)
+    - [Re-declarations](#Re-declarations)
+    - [Assigns](#Assigns)
+    - [Destructuring](#Destructuring)
+      - [Lists](#Lists)
+      - [Objects](#Objects)
+      - [Mixing variables and constants](#Mixing-variables-and-constants)
+  - [Truth and falsity](#Truth-and-falsity)
+  - [Conditional statements](#Conditional-statements)
+    - [Conditional expressions](#Conditional-expressions)
+  - [Selective statements](#Selective-statements)
+    - [Control statements](#Control-statements-1)
+  - [Loop statements](#Loop-statements)
+    - [Infinite loops](#Infinite-loops)
+    - [Conditional loops](#Conditional-loops)
+    - [Iterator loops](#Iterator-loops)
+    - [Control statements](#Control-statements-2)
+    - [Finalization](#Finalization)
 
 # Statements
 
@@ -159,7 +158,7 @@ var (el1, ..#rest) = list   #- el1 is a variable and rest is a constant
 And this for objects:
 
 ```lexem
-let object = [1, 2, 3, 4]       #- list to be destructured
+let object = [1, 2, 3, 4]  #- list to be destructured
 
 var (a, #b) = object       #- a is a variable and b is a constant
 let (b, ..#rest) = object  #- b is a variable and rest is a constant
@@ -172,7 +171,7 @@ Every value can be checked in the statement's conditions for its truthfulness. T
 
 ## Conditional statements
 
-As in any other language, conditional statements, also known as *if* statements, are used with the following syntax:
+As in any other language, conditional statements, also known as _if_ statements, are used with the following syntax:
 
 ```lexem
 if condition {body}
@@ -200,7 +199,7 @@ If the conditional expression has no `else` clause and the condition does not ma
 
 ## Selective statements
 
-The selective statements, also known as *switch*/*match*/*when* statements, are used with the following syntax:
+The selective statements, also known as _switch_/_match_/_when_ statements, are used with the following syntax:
 
 ```lexem
 when condition {'tag
@@ -218,7 +217,7 @@ The option is optional, so in case it is omitted the value used for the patterns
 
 The allowed patterns are:
 
-- `expression conditional {body}`: compares the `when`'s condition against the result of the expression. If they match, the conditional is executed and if it also matches then the body is executed. The conditional is optional.
+- `expression conditional {body}`: compares `when`'s condition with the result of the expression. If they match, the conditional is executed and if it also matches then the body is executed. The conditional is optional.
 
     ```lexem
     let num = 4
@@ -235,8 +234,8 @@ The allowed patterns are:
     ```lexem
     let num = 4
     when num {
-        any! if num > 4 {}   #- pure conditional
-        any! {}              #- default case
+        if num > 4 {}      #- pure conditional
+        unless num > 4 {}  #- pure conditional
     }
     ```
 
@@ -245,12 +244,14 @@ The allowed patterns are:
     ```lexem
     let num = 4
     when num {
-        any! if num > 4 {}   #- pure conditional
-        any! {}              #- default case
+        3 {}
+        if num > 5 {}
+        else {}        #- default case
     }
     ```
 
     > **Note**: set it at the end or those patterns after this one will be ignored.
+    
 - `var name conditional {body}`: defines a variable whose value is the `when`'s condition value; then executes the conditional. The `let` declaration can also be used. The variable can be used inside its condition and body.
 
     ```lexem
@@ -262,6 +263,8 @@ The allowed patterns are:
     }
     ```
 
+    > **Note**: if condition is omitted, the pattern matches always.
+
 - `var (...) conditional {body}`: same as above but destructuring the value of the `when`'s condition.
 
     ```lexem
@@ -272,6 +275,8 @@ The allowed patterns are:
         let (b) {}
     }
     ```
+
+    > **Note**: if condition is omitted, the pattern matches always.
 
 ### Control statements
 
@@ -297,7 +302,7 @@ repeat {'tag body}
 repeat name {'tag body}
 ```
 
-Using the *indexed* pattern (`repeat name`), each iteration of the loop increases the variable by one.
+Using the _indexed_ pattern (`repeat name`), each iteration of the loop increases the variable by one.
 
 ### Conditional loops
 
@@ -314,7 +319,7 @@ repeat name while condition {'tag body}
 repeat name until condition {'tag body}
 ```
 
-Using the *indexed* pattern (`repeat name`) each iteration of the loop increase the variable by one.
+Using the _indexed_ pattern (`repeat name`) each iteration of the loop increase the variable by one.
 
 The pattern known as `do-while` loops are not supported directly, but can be easily implemented like:
 

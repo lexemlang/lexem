@@ -1,3 +1,12 @@
+# Index
+
+- [Index](#Index)
+- [Lexem modules](#Lexem-modules)
+  - [Contexts](#Contexts)
+  - [Imports](#Imports)
+  - [Exports](#Exports)
+    - [`pub` modifier](#pub-modifier)
+
 # Lexem modules
 
 Lexem modules work like Javascript's. Each Lexem file (`.lxm`) define a module which is isolated from the others and has their own dependencies.
@@ -17,7 +26,7 @@ Local contexts have a set of pre-defined **constants** that allow you to access 
 - `module`: the module context.
 - `context`: the current context. In this case is the same as `module` but is shadowed when another element creates its own component, e.g. when inside function.
 - `parent`: the parent of the current context. In this case is the same as `global` but is shadowed when another element creates its own component, e.g. when inside function.
-- `export`: the object that is returned when an import is made over this module.
+- `exports`: the object that is returned when an import is made over this module.
 
 > **Note**: `global` is equivalent to JavaScript's `window`, while `module` means the same and `exports` corresponds to `module.exports`.
 
@@ -75,19 +84,22 @@ export.funName = funName
 
 The `export` variable initialization can be omitted due to Lexem creates it with a default plain object (`{}`).
 
-### `pub` macro statement
+### `pub` modifier
 
-The latter is a common and useful pattern, so there is a macro statement that allows to simplify its writing:
+The latter is a common and useful pattern, so there is a modifier for statements that allows to simplify its writing:
 
 ```lexem
-#- The export (can be omitted)
-var exports = {}
-
 #- A variable
-pub! let x = 3
+pub var x = 3
+
+#- A constant
+pub let y = "value"
 
 #- A function
-pub! fun funName() {}
+pub fun funName() {}
+
+#- An expression
+pub exp expName() {}
 ```
 
-This code is interpreted like the previous section and can be used with a variable (`var`), a constant(`let`), a function (`fun`) or an expression (`exp`) declaration.
+This code is interpreted like the previous section and can be used with a variable (`var`), a constant(`let`), a function (`fun`) or an expression (`exp`) statement declaration.

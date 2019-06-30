@@ -1,23 +1,19 @@
-
 # Index
 
-- [Index](#index)
-- [Functional expressions' translation to instructions](#functional-expressions-translation-to-instructions)
-  - [Indexers](#indexers)
-    - [Optionality](#optionality)
-  - [Accesses](#accesses)
-    - [Optionality](#optionality-1)
-  - [Function calls](#function-calls)
-    - [Spread operator](#spread-operator)
-  - [Operators](#operators)
-    - [Unitary operators](#unitary-operators)
-    - [Binary operators](#binary-operators)
-    - [Chained binary operators (relationals)](#chained-binary-operators-relationals)
-    - [Chained binary operators (and, or)](#chained-binary-operators-and-or)
-    - [Chained binary operators (xor)](#chained-binary-operators-xor)
-    - [Assigments](#assigments)
+- [Index](#Index)
+- [Functional expressions](#Functional-expressions)
+  - [Indexers](#Indexers)
+  - [Accesses](#Accesses)
+  - [Function calls](#Function-calls)
+  - [Operators](#Operators)
+    - [Unitary operators](#Unitary-operators)
+    - [Binary operators](#Binary-operators)
+    - [Chained binary operators (relational)](#Chained-binary-operators-relational)
+    - [Chained binary operators (and, or)](#Chained-binary-operators-and-or)
+    - [Chained binary operators (xor)](#Chained-binary-operators-xor)
+    - [Assignments](#Assignments)
 
-# Functional expressions' translation to instructions
+# Functional expressions
 
 ## Indexers
 
