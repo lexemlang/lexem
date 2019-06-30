@@ -2,9 +2,9 @@
 
 All Lexem files (`.lxm`) under this folder shows the grammar of the Lexem language written in itself.
 
-## Table of contents
+### Index
 
-### Commons
+#### Commons
 
 - [lexem](lexem.lxm): entry point of the grammar with the syntax to parse a whole Lexem file (`.lxm`).
 - [generics](generics.lxm): all common elements of the grammar, like comments, whitespaces, identifiers, etc.
@@ -20,7 +20,7 @@ All Lexem files (`.lxm`) under this folder shows the grammar of the Lexem langua
   - [functions](literals/functions.lxm): the grammar for `Function` literals.
   - [expressions](literals/expressions.lxm): the grammar for `Expression` literals.
 
-### Functional core
+#### Functional core
 
 - [expressions](functional/expressions.lxm): the grammar for a complex functional expression.
 - [statements](functional/statements.lxm): a file to gather all Lexem's functional statements, also with the grammar of some statements.
@@ -30,7 +30,7 @@ All Lexem files (`.lxm`) under this folder shows the grammar of the Lexem langua
   - [loops](functional/statements/loops.lxm): the grammar for the functional loop statements.
   - [controls](functional/statements/controls.lxm): the grammar for the control statements.
 
-### Descriptive core
+#### Descriptive core
 
 - [patterns](descriptive/patterns.lxm): a file to gather all Lexem's descriptive lexemes, also with the grammar for a descriptive pattern.
 - [statements](descriptive/statements.lxm): a file to gather all Lexem's descriptive statements, also with the grammar of some statements.

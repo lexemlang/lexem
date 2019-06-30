@@ -1,3 +1,19 @@
+# Index
+
+- [Index](#Index)
+- [Do it yourself](#Do-it-yourself)
+  - [Lexem compiler](#Lexem-compiler)
+    - [Parser](#Parser)
+    - [Lexem to lasm translation](#Lexem-to-lasm-translation)
+    - [Serialize into lasm file](#Serialize-into-lasm-file)
+  - [lasm interpreter](#lasm-interpreter)
+    - [Instructions functionality](#Instructions-functionality)
+    - [Memory definition](#Memory-definition)
+    - [Garbage collector definition](#Garbage-collector-definition)
+    - [Backtracking system](#Backtracking-system)
+    - [Deserialize from a lasm file](#Deserialize-from-a-lasm-file)
+    - [Analysis](#Analysis)
+
 # Do it yourself
 
 This series of documents explain how to implement a compiler for the Lexem language and also how to implement just only a valid interpreter for _lasm_.
