@@ -14,26 +14,6 @@
 
 # Functional macros
 
-## pattern!
-
-| As functional expression | As statement | As lexeme |
-|:------------------------:|:------------:|:---------:|
-| Yes                      | No           | No        |
-
-Allows to easily create an expression with only one static pattern.
-
-For example:
-
-```lexem
-let x = pattern!(lexemes)
-```
-
-Is equivalent to:
-
-```lexem
-let x = exp() { |> lexemes }
-```
-
 ## check_props!
 
 | As functional expression | As statement | As lexeme |
