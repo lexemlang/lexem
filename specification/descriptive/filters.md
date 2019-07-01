@@ -79,7 +79,7 @@ There are a group of built-in properties that filters use to change their behavi
 The properties are automatically set to the following values if they are not overwritten in the call or by an explicit default value:
 
 ```lexem
-[capture children backtrack consume - error reverse]
+[capture children consume - backtrack error reverse]
 ```
 
 ## Body

@@ -93,7 +93,7 @@ There are a group of built-in properties that expressions use to change their be
 The properties are automatically set to the following values if they are not overwritten in the call or by an explicit default value:
 
 ```lexem
-[capture children backtrack consume - property insensible error reverse]
+[capture children consume - property insensible backtrack error reverse]
 ```
 
 There is also another property that makes the expression to be executed over the content already captured by a node called `over`.
