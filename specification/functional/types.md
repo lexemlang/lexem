@@ -112,7 +112,7 @@ Represents textual data.
   | Literal | Meaning |
   |:-------:|:--------|
   |`$"text with " inside"$`|Char string that accepts escapes. The `$` are optional and are used to embed any type of content, so it can be used any number of them.|
-  |`lit!$"text with " inside"$`|Char string that doesn't accept escapes. You can use any number of `$` (or none at all) to embed any type of content avoiding annoying escapes.|
+  |`lit!$"text with " inside"$`|Char string that does not accept escapes. You can use any number of `$` (or none at all) to embed any type of content avoiding annoying escapes.|
 
 ### Escapes
 
@@ -121,12 +121,14 @@ Escapes are used to represent characters that don't have a visual representation
 | Escape | Meaning |
 |:------:|:--------|
 | `\u{<num>}` | Specifies an Unicode point using an integer literal. Default is hexadecimal so its prefix is optional but decimal numbers require it. |
-| `\uHHHHHHHH` | Specifies an Unicode point using eight hexadecimal characters. |
+| `\uHHHHHH` | Specifies an Unicode point using six hexadecimal characters. |
+| `\p{<num>}` | Specifies a 32-bit point using an integer literal. Default is hexadecimal so its prefix is optional but decimal numbers require it. |
+| `\pHHHHHHHH` | Specifies a 32-bit point using eight hexadecimal characters. |
 | `\t` | Horizontal Tab (`HT`): Unicode(`00000009`) |
 | `\n` | Line Feed(`LF`): Unicode(`0000000A`) |
 | `\r` | Carriage Return (`CR`): Unicode(`0000000D`) |
 
-> **Note**: if any other character is escaped, it is interepreted as a no-escape e.g. `\a = a`.
+> **Note**: if any other character is escaped, it is interpreted as a no-escape e.g. `\a = a`.
 
 ### Dynamic escape
 
