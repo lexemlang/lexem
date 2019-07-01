@@ -24,6 +24,7 @@
   - [Executor (Embed functional code)](#Executor-Embed-functional-code)
   - [Continuation](#Continuation)
   - [Data capturing](#Data-capturing)
+  - [Semantic re-naming](#Semantic-re-naming)
 
 # Lexemes
 
@@ -416,3 +417,13 @@ In case of any lexeme that creates a node (e.g. accesses, capturing groups, etc.
 ```
 
 Moreover, if the lexeme captures once, `name` holds the value but if it captures more, the variable will contain a list of values.
+
+## Semantic re-naming
+
+It consist of giving a new name to a node to improve the semantic meaning of the result tree of nodes.
+
+```lexem
+name:lexeme
+```
+
+It acts as a prefix for the _access_ and _group_ lexemes that capture a node.

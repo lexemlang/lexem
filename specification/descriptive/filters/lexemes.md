@@ -17,6 +17,7 @@
   - [Executor (Embed functional code)](#Executor-Embed-functional-code)
   - [Continuation](#Continuation)
   - [Data-capturing](#Data-capturing)
+  - [Semantic re-naming](#Semantic-re-naming)
 
 # Lexemes
 
@@ -171,3 +172,7 @@ This lexeme is the same as in expressions. See [Continuation](../expressions/lex
 ## Data-capturing
 
 This lexeme is the same as in expressions. See [Data capturing](../expressions/lexemes.md#Data-capturing) for more details.
+
+## Semantic re-naming
+
+This lexeme is the same as in expressions. See [Semantic re-naming](../expressions/lexemes.md#Semantic-re-naming) for more details.
