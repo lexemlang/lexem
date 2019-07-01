@@ -43,15 +43,7 @@ exp expressionName[properties](parameters) {
 }
 ```
 
-While if it is used inside a functional expression, it does not allow the name:
-
-```lexem
-#- Header
-exp[properties](parameters) {
-    #- Body
-    |> "Hello world"
-}
-```
+If it is used inside a functional expression, it requires a name to generate a node but does not generate a variable as the statement do.
 
 ## Parameters
 
