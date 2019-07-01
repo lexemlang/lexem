@@ -1,15 +1,15 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    The lexem's number literals.
+#-    Number literals.
 #------------------------#
 
-let {identifier} = import("generics")
+let (identifier) = import("../commons")
 
 
-pub! exp number(props![- capture]) {
+pub! exp number {
 	| binary_number
 	| octal_number
 	| hexadecimal_number
@@ -32,7 +32,8 @@ exp binary_number {
 		|> decimal:integer_binary_number
 	}
 	|? [ep]i {
-		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+	    | "-" set_props![- exponent_sign]
+		| "+"? set_props![exponent_sign]
 		onback {
 			log.error("Numbers require at least one digit for the exponent.")
 		}
@@ -53,7 +54,8 @@ exp octal_number {
 		|> decimal:integer_octal_number
 	}
 	|? [ep]i {
-		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+	    | "-" set_props![- exponent_sign]
+		| "+"? set_props![exponent_sign]
 		onback {
 			log.error("Numbers require at least one digit for the exponent.")
 		}
@@ -75,7 +77,8 @@ exp decimal_number {
 		|> decimal:integer_decimal_number
 	}
 	|? [ep]i {
-		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+	    | "-" set_props![- exponent_sign]
+		| "+"? set_props![exponent_sign]
 		onback {
 			log.error("Numbers require at least one digit for the exponent.")
 		}
@@ -96,7 +99,8 @@ exp hexadecimal_number {
 		|> decimal:integer_hexadecimal_number
 	}
 	|? [ep]i {
-		|> set_props![exponent_sign] ("+" | "-" set_props![- exponent_sign])?
+	    | "-" set_props![- exponent_sign]
+		| "+"? set_props![exponent_sign]
 		onback {
 			log.error("Numbers require at least one digit for the exponent.")
 		}
@@ -104,7 +108,7 @@ exp hexadecimal_number {
 	}
 }
 
-pub! exp integer_number(props![- capture]) {
+pub! exp integer_number_dec_default {
 	| "0b" {
 		onback {
 			log.error("Numbers require at least one digit for the integer part.")
@@ -123,7 +127,29 @@ pub! exp integer_number(props![- capture]) {
 		}
 		|> integer_hexadecimal_number
 	}
-	| "0d"? decimal_number
+	| "0d"? integer_decimal_number
+}
+
+pub! exp integer_number_hex_default {
+	| "0b" {
+		onback {
+			log.error("Numbers require at least one digit for the integer part.")
+		}
+		|> integer_binary_number
+	}
+	| "0o" {
+		onback {
+			log.error("Numbers require at least one digit for the integer part.")
+		}
+		|> integer_octal_number
+	}
+	| "0d" {
+		onback {
+			log.error("Numbers require at least one digit for the integer part.")
+		}
+		|> integer_decimal_number
+	}
+	| "0x"? integer_hexadecimal_number
 }
 
 pub! exp integer_binary_number {

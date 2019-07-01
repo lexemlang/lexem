@@ -1,35 +1,40 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    The lexem's object literals.
+#-    Object literals.
 #------------------------#
 
-let {s, sml} = import("generics")
-let fn_exp = import("functional/expressions")
-let fn_stmt = import("functional/statement")
-let {function_arguments} = import("./functions")
+let (ws) = import("../commons")
+let fn_exp = import("../functional/expressions")
+let fn_stmt = import("../functional/statements")
+let (function_arguments) = import("function")
 
-pub! exp object(props![- capture backtrack]) {
+pub! exp object[- capture] {
 	| normal_object
 	| property_style_object
 }
 
 exp normal_object {
 	set_props![- isConstant]
-	| "#{" set_props![isConstant] {
-		onback {
-			log.error("Incorrect object literal. The open bracket '{' is required.")
-		}
-	}
-	| "{" sml*
-	|? (elements:object_simplification | elements:object_element /infix: sml* "," sml*)+
-    
+	|? "#" set_props![isConstant]
+	|> "{" ws?
+
+	repeat i for *+ {
+        if i > 0 {
+            |> ws? "," ws?
+        }
+
+        | object_simplification
+        | object_element
+    }
+
 	onback {
 		log.error("Incorrect object literal. The close bracket '}' is required.")
 	}
-	|> sml* ("," sml*)? "}"	#- trailing comma
+
+	|> ws? ("," ws?)? "}"	#- trailing comma
 }
 
 exp object_element {
@@ -39,70 +44,77 @@ exp object_element {
 			log.error("Incorrect object property. After the static modifier '#' it is required a key-value pair.")
 		}
 	}
-	|> key:(identifier | string | escaped_expression)
+	| identifier
+	| string
+	| escaped_expression
 
 	onback {
 		log.error("Incorrect object property. After the keyword it is required the relation symbol ':'.")
 	}
-	|> sml* ":"
+
+	|> ws? ":"
 
 	onback {
 		log.error("Incorrect object property. After the relation symbol ':' it is require the value of the property.")
 	}
-	|> sml* value:fn_exp.expression
+
+	|> ws? fn_exp.expression
 }
 
 exp object_simplification {
-	|> key:identifier
+	set_props![- isConstant]
+	|? "#" set_props![isConstant]
+	|> identifier
 	| {
-		if |> args:function_arguments {
+		|> args:function_arguments {
 			onback {
 				log.error("Incorrect object property. The inline function definition requires a body block '{}'.")
 			}
 		}
 		|> body:fn_stmt.block
 	}
-	| ([fixed - children]: sml* "," | sml* "}")
+	| ([- children consume]: ws? "," | ws? "}")
 }
 
 pub! exp property_style_object {
-	|> "props!"
+	|> "@" set_props![- isConstant]
+	|? "#" set_props![isConstant]
 
 	onback {
-		log.error("Incorrect object literal. The open square bracket '[' is required.")
+		log.error("Incorrect property-style literal. The open square bracket '[' is required.")
 	}
-	|> block:property_style_object_block
+
+	|> property_style_object_block
 }
 
 pub! exp property_style_object_block {
-	set_props![- isConstant]
-	|? "#" set_props![isConstant]
 	|> "["
-	|? (sml* active:identifier)*
-	|? sml* "-" (sml* deactive:identifier)*
-	|? sml* ":" (sml* set:property_style_object_element)*
+	|? (ws? activated:identifier)*
+	|? ws? "-" (ws? deactivated:identifier)*
+	|? ws? ":" (ws? set:property_style_object_element)*
 
 	onback {
-		log.error("Incorrect object literal. The close square bracket ']' is required.")
+		log.error("Incorrect property-style object literal. The close square bracket ']' is required.")
 	}
-	|> sml* ("," sml*)? "]"	#- trailing comma
+
+	|> ws? ]"
 }
 
 exp property_style_object_element {
 	|> name:identifier
 
 	onback {
-		log.error("Incorrect object property. The open parenthesis '(' is required.")
+		log.error("Incorrect property-style object property. The open parenthesis '(' is required.")
 	}
 	|> "("
 
 	onback {
-		log.error("Incorrect object property. An expression is required after the open parenthesis '('.")
+		log.error("Incorrect property-style object property. An expression is required after the open parenthesis '('.")
 	}
-	|> sml* fn_exp.expression
+	|> ws? fn_exp.expression
 
 	onback {
-		log.error("Incorrect object property. The close parenthesis ')' is required.")
+		log.error("Incorrect property-style object property. The close parenthesis ')' is required.")
 	}
-	|> sml* ")"
+	|> ws? ")"
 }

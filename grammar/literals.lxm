@@ -1,27 +1,27 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    The lexem's literals.
+#-    All literals gathered.
 #------------------------#
 
-pub! let {number, integer_number} = import("literals/numbers")
-pub! let {string} = import("literals/string")
-pub! let {interval} = import("literals/intervals")
-pub! let {bitlist} = import("literals/bitlists")
-pub! let {list} = import("literals/lists")
-pub! let {set} = import("literals/sets")
-pub! let {object} = import("literals/objects")
-pub! let {map} = import("literals/maps")
-pub! let {function} = import("literals/functions")
-pub! let {expression} = import("literals/expressions")
+pub! let (check_keyword) = import("commons")
+pub! let (number, integer_number) = import("literals/numbers")
+pub! let (string) = import("literals/string")
+pub! let (interval) = import("literals/intervals")
+pub! let (bitlist) = import("literals/bitlists")
+pub! let (list) = import("literals/lists")
+pub! let (set) = import("literals/sets")
+pub! let (object) = import("literals/objects")
+pub! let (map) = import("literals/maps")
+pub! let (function) = import("literals/functions")
 
 pub! exp null {
-	|> "null"
+	|> check_keyword("null")
 }
 
 pub! exp logic {
-	| "true" set_props![positive]
-	| "false" set_props![-positive]
+	| check_keyword("true") set_props![positive]
+	| check_keyword(false") set_props![- positive]
 }

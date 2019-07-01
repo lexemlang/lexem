@@ -1,9 +1,9 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    The lexem's expression literals.
+#-    Expression literals.
 #------------------------#
 s
 let {sml} = import("generics")

@@ -1,20 +1,32 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    The lexem's bit list literals.
+#-    Bit list literals.
 #------------------------#
 
-let {s, eol, ..gen} = import("generics")
-let nums = import("./numbers")
+let commons(ws_simple) = import("../commons")
+let numbers = import("number")
 
 pub! exp bitlist {
-	| "0b" bitlist_content(nums.integer_binary_number)
-	| "0o" bitlist_content(nums.integer_octal_number)
-	| "0x" bitlist_content(nums.integer_hexadecimal_number)
+	| "0b" bitlist_content(numbers.integer_binary_number)
+	| "0o" bitlist_content(numbers.integer_octal_number)
+	| "0x" bitlist_content(numbers.integer_hexadecimal_number)
 }
 
 exp bitlist_content(expression) {
-	|> "\"" ((s*|eol*)* (expression | gen.escaped_expression))*+ (s*|eol*)* "\""
+	|> "\""
+
+	for *+ {
+	    |? ws_simple
+	    | expression
+	    | commons.escaped_expression
+	}
+
+    onback {
+        log.error("Incorrect bitlist literal. The close quotation mark '"' is required.")
+    }
+
+	|> ws_simple? "\""
 }

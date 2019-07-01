@@ -1,0 +1,49 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    String literals.
+#------------------------#
+
+let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lasm")
+let commons = import("../commons")
+
+pub! exp string[- capture] {
+	| normal_string
+	| string_without_escapes
+}
+
+exp normal_string {
+	|> (delimiter[property]: "$"*) "\""
+
+	onback {
+		log.error("Incorrect string literal. The close sequence of symbols '"\(node.properties.delimiter)' was expected.")
+	}
+
+	|? string_item+?
+	|> "\"\(node.properties.delimiter)"
+}
+
+exp string_item[- capture] {
+	| commons.escaped_expression
+	| commons.escape
+	|> (content[capture]: [! \\ " \(ucd_categories.Cn) \(commons.line_break_block)]++)
+}
+
+exp string_without_escapes {
+	|> "lit!"
+
+	onback {
+		log.error("Incorrect string literal. A string pattern was expected after the 'lit!' macro.")
+	}
+
+	|> (delimiter[property]: "$"*) "\""
+
+	onback {
+		log.error("Incorrect string literal. The close sequence of symbols '"\(node.properties.delimiter)' was expected.")
+	}
+
+	|? (content[property]: [! \(ucd_categories.Cn) \(commons.line_break_block)]+*)
+	|> "\"\(node.properties.delimiter)"
+}

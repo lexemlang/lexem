@@ -1,0 +1,216 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Generic elements used through the whole grammar.
+#------------------------#
+
+let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lasm")
+let fn_exp = import("functional/expressions")
+let (string) = import("literals/string")
+let (integer_number_hex_default) = import("literals/number")
+
+
+
+#----------------------#
+#-  Generic Elements  -#
+#----------------------#
+
+let ucd_character = ucd_categories.Cn.reverse()
+
+
+
+#-----------------#
+#-  Whitespaces  -#
+#-----------------#
+
+pub! let whitespace_block = itv![9 20 1A \(ucd_categories.Zs)]
+pub! exp whitespace {
+	for ++ {
+        | line_break
+        | comment
+        | multiline_comment
+        | simple_inline_whitespace
+    }
+}
+pub! let ws = whitespace
+
+pub! exp simple_whitespace {
+    |> [\(whitespace_block)\(line_break_block)]++
+}
+pub! let ws_simple = simple_whitespace
+
+pub let line_break_block = itv![A D 85 2028 2029]
+pub! exp line_break {
+	| "\u{D}\u{A}"
+	| [\(line_break_block)]
+	| $$
+}
+
+pub! exp whitespace_without_eol {
+	for + {
+	    | multiline_comment
+		| [\(whitespace_block)]+
+    }
+}
+pub! let ws_no_eol = whitespace_without_eol
+
+pub! exp whitespace_eol {
+	|? ws_no_eol
+    | comment
+    | line_break
+}
+pub! let ws_eol = whitespace_eol
+
+
+
+
+#--------------#
+#-  Comments  -#
+#--------------#
+
+exp comment {
+	|> "#-"
+
+	onback {
+        log.error("Incorrect line comment. The end-of-line symbol was expected.")
+    }
+
+	|> (text[property]: [\(ucd_character)]*?) line_break
+}
+
+exp comment_multiline(props![capture - children]) {
+	|> "#" (delimiter[property]: "+"+)
+
+	onback {
+		log.error("Incorrect multiline comment. The close symbol '\(node.properties.delimiter)#' was expected.")
+	}
+
+	|> text[property]: [\(ucd_character)]*?
+	|> "\(node.properties.delimiter)" "#"
+}
+
+
+
+#-----------------#
+#-  Identifiers  -#
+#-----------------#
+
+pub! exp identifier {
+	|> simple_identifier ("-" simple_identifier)*
+	|> "`" {
+		onback {
+			log.error("Stringified identifiers require at least one character")
+		}
+
+		for + {
+			| escape
+			| [! ` \\ line_break_block]+
+		}
+
+		onback {
+			log.error("Stringified identifiers require the closing token (`)")
+		}
+
+		|> "`"
+	}
+}
+
+pub! exp simple_identifier {
+	|> [\(identifier_head_block)] [\(identifier_end_block)]*
+}
+
+let identifier_head_block = itv![41..5A 5F 61..7A A8 AA AD AF B2..B5 B7..BA BC..BE C0..D6 D8..F6
+    F8..FF 100..2FF 370..167F 1681..180D 180F..1DBF 1E00..1FFF 200B..200D 202A..202E 203F..2040
+    2054 2060..206F 2070..20CF 2100..218F 2460..24FF 2776..2793 2C00..2DFF 2E80..2FFF 3004..3007
+    3021..302F 3031..303F 3040..D7FF F900..FD3D FD40..FDCF FDF0..FDFF FE10..FE1F FE30..FE44 FE47..FFFD
+    10000..1FFFD 20000..2FFFD 30000..3FFFD 40000..4FFFD 50000..5FFFD 60000..6FFFD 70000..7FFFD
+    80000..8FFFD 90000..9FFFD A0000..AFFFD B0000..BFFFD C0000..CFFFD D0000..DFFFD E0000..EFFFD]
+
+let identifier_end_block = itv![30..39 300..36F 1DC0..1DFF 20D0..20FF FE20..FE2F \(identifier_head_block)]
+
+pub! exp identifier_dynamic[- capture] {
+	| escaped_expression
+	| string
+	| identifier
+}
+
+
+
+#-------------#
+#-  Escapes  -#
+#-------------#
+
+pub! exp escape[- capture] {
+	| escape_point
+	| escaped_expression
+	| escape_character
+}
+
+exp escape_character {
+	|> "\\"
+
+	onback {
+		log.error("An escape requires a character after the \\ which indicates the type of escape.")
+	}
+
+	|> character[property]: [\(ucd_character)]
+}
+
+
+exp escape_point {
+	| "\\u" set_props![isUnicode]
+	| "\\p" set_props![- isUnicode]
+
+	let name = if node.properties.isUnicode {"Unicode"} else {"Point"}
+
+	| {
+		|> "{" ws_no_eol?
+
+        onback {
+            log.error("The \(name) escape requires the value of the point.")
+        }
+
+        |> value:integer_number_hex_default
+
+        onback {
+            log.error("The \(name) escape requires the close bracket.")
+        }
+
+        |> ws_no_eol? "}"
+	}
+	| {
+		onback {
+			log.error("The \(name) escape requires the value of the point.")
+		}
+
+		|> value:integer_number_hex_default
+	}
+}
+
+pub! exp escaped_expression {
+	|> "\\{" ws_no_eol?
+
+	onback {
+		log.error("The expression escape requires an expression after the open bracket ({).")
+	}
+
+	|> fn_exp.expression
+
+	onback {
+		log.error("The expression escape requires the close bracket (}).")
+	}
+
+	|> ws_no_eol? "}"
+}
+
+
+
+#------------#
+#-  Others  -#
+#------------#
+
+pub! exp check_keyword[- capture children](keyword) {
+	|> "\(keyword)" ![\(identifier_end_block)]
+}

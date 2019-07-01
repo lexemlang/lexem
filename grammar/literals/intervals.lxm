@@ -1,86 +1,125 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    The lexem's interval literals.
+#-    Interval literals.
 #------------------------#
 
-let {s, eol, ..gen} = import("generics")
+let commons(ws_simple) = import("../commons")
 
-pub! exp interval(props![- capture backtrack]) {
+pub! exp interval[- capture] {
 	| normal_interval
 	| unicode_interval
 }
 
 exp normal_interval {
 	|> "itv!" set_props![- isConstant]
+
 	onback {
 		log.error("Incorrect interval literal. The open square bracket '[' is required.")
 	}
-	|> "[" set_props![- reversed] ("!" set_props![reversed])?
-	| 
-	|> ((s*|eol*)* (elements:normal_interval_sub_interval | elements:normal_interval_element))*
+
+	|> "[" set_props![- reversed]
+	|? "!" set_props![reversed]
+
+    for * {
+        |? ws_simple
+        | normal_interval_sub_interval
+        | normal_interval_element
+    }
+
 	onback {
 		log.error("Incorrect interval literal. The close square bracket ']' is required.")
 	}
-	|> (s*|eol*)* "]"
+
+	|> ws_simple? "]"
 }
 
 exp normal_interval_element {
-	|> left:(left[capture]:gen.escape | number_integer)
+	| left:commons.escape
+	| left:number_integer
 	|? ".." {
 		onback {
 			log.error("Incorrect interval literal. Another character is required after the range symbol '..'.")
 		}
-		|> right:(right[capture]:gen.escape | number_integer)
+
+        | right:commons.escape
+        | right:number_integer
 	}
 }
 
 exp normal_interval_sub_interval {
-	|> "["
-	|? (operator[property]: [+-&^]) set_props![- reversed] ("!" set_props![reversed])?
-	|> ((s*|eol*)* (elements:normal_interval_sub_interval | elements:normal_interval_element))*
+	|> "[" set_props![- reversed : operator("+")]
+	|? (operator[property]: [+-&^]) ("!" set_props![reversed])?
+
+	for * {
+        |? ws_simple
+        | normal_interval_sub_interval
+        | normal_interval_element
+    }
+
 	onback {
 		log.error("Incorrect sub-interval literal. The close square bracket ']' is required.")
 	}
-	|> (s*|eol*)* "]"
+
+	|> ws_simple? "]"
 }
+
 
 exp unicode_interval {
 	|> "uitv!" set_props![- isConstant]
+
 	onback {
 		log.error("Incorrect interval literal. The open square bracket '[' is required.")
 	}
+
 	|> unicode_interval_abbr
 }
 
 pub! exp unicode_interval_abbr {
-	|> "[" set_props![- reversed] ("!" set_props![reversed])?
-	| 
-	|> ((s*|eol*)* (elements:unicode_interval_sub_interval | elements:unicode_interval_element))*
-	onback {
-		log.error("Incorrect interval literal. The close square bracket ']' is required.")
-	}
-	|> (s*|eol*)* "]"
+    |> "[" set_props![- reversed]
+    |? "!" set_props![reversed]
+
+    for * {
+        |? ws_simple
+        | unicode_interval_sub_interval
+        | unicode_interval_element
+    }
+
+    onback {
+        log.error("Incorrect interval literal. The close square bracket ']' is required.")
+    }
+
+    |> ws_simple? "]"
 }
 
 exp unicode_interval_element {
-	|> left:(left[capture]:gen.escape | [! \{gen.whitespace_block} \{gen.whitespace_endOfLine_block}])
+	| left:commons.escape
+	| (left[capture]: [! \{commons.whitespace_block} \{commons.line_break_block}])
 	|? ".." {
 		onback {
 			log.error("Incorrect interval literal. Another character is required after the range symbol '..'.")
 		}
-		|> right:(right[capture]:gen.escape | [! \{gen.whitespace_block} \{gen.whitespace_endOfLine_block}])
+
+        | right:commons.escape
+	    | (right[capture]: [! \{commons.whitespace_block} \{commons.line_break_block}])
 	}
 }
 
 exp unicode_interval_sub_interval {
-	|> "["
-	|? (operator[property]: [+-&^]) set_props![- reversed] ("!" set_props![reversed])?
-	|> ((s*|eol*)* (elements:unicode_interval_sub_interval | elements:unicode_interval_element))*
+	|> "[" set_props![- reversed : operator("+")]
+	|? (operator[property]: [+-&^]) ("!" set_props![reversed])?
+
+	for * {
+        |? ws_simple
+        | unicode_interval_sub_interval
+        | unicode_interval_element
+    }
+
 	onback {
 		log.error("Incorrect sub-interval literal. The close square bracket ']' is required.")
 	}
-	|> (s*|eol*)* "]"
+
+	|> ws_simple? "]"
 }

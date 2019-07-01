@@ -1,36 +1,51 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    The lexem's map literals.
+#-    Map literals.
 #------------------------#
 
-let {sml} = import("generics")
-let fn_exp = import("functional/expressions")
+let (ws) = import("../commons")
+let fn_exp = import("../functional/expressions")
 
 pub! exp map {
 	|> "map!" set_props![- isConstant]
+
 	onback {
-		log.error("Incorrect map literal. The open bracket '{' is required.")
+		log.error("Incorrect map literal. The open bracket '{' is required after the map macro (map!).")
 	}
+
 	|? "#" set_props![isConstant]
-	| "{" sml*
-	|> elements:(map_element /infix: sml* "," sml*)+
+	| "{" ws?
+
+	repeat i for *+ {
+         if i > 0 {
+            |> ws? "," ws?
+         }
+
+         |> map_element
+    }
+
 	onback {
 		log.error("Incorrect map literal. The close bracket '}' is required.")
 	}
-	|> sml* ("," sml*)? "}"	#- trailing comma
+
+	|> ws? ("," ws?)? "}"	#- trailing comma
 }
 
 exp map_element {
 	|> key:fn_exp.expression
+
 	onback {
 		log.error("Incorrect map property. After the keyword it is required the relation symbol ':'.")
 	}
-	|> sml* ":"
+
+	|> ws? ":"
+
 	onback {
 		log.error("Incorrect map property. After the relation symbol ':' it is require the value of the property.")
 	}
-	|> sml* value:fn_exp.expression
+
+	|> ws? value:fn_exp.expression
 }
