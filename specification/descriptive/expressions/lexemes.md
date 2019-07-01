@@ -159,7 +159,7 @@ There are a few simplifications to write quantifiers:
 - If the maximum is omitted but the comma is still written (`{min,}`), the quantifier will match at least `min` times.
 - If everything is written (`{min, max}`), the quantifier will match between `min` and `max` times. Both included.
 
-Moreover, there are two kind of behaviours for quantifiers, *greedy* and *lazy* and a modification of both called *atomic* in which the backtracking can't enter to them once the flow has exit.
+Moreover, there are two kind of behaviours for quantifiers, _greedy_ and _lazy_ and a modification of both called _atomic_ in which the backtracking can't enter to them once the flow has exit.
 
 ### Greedy quantifiers
 

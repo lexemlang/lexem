@@ -382,7 +382,7 @@ repeat name for index, value in expression {'tag body}  #- normal
 repeat name for index, (...) in expression {'tag body}  #- destructuring
 ```
 
-Using the *indexed* pattern (`repeat name`) each iteration of the loop increase the variable by one. On the other hand, the `index` section is optionally.
+Using the _indexed_ pattern (`repeat name`) each iteration of the loop increase the variable by one. On the other hand, the `index` section is optionally.
 
 In each iteration, the variable of the `for` loop is filled with the current value of the collection and the `index` is filled with the index or key used to get the value inside the collection. The index variable can be omitted if it is not necessary.
 

@@ -22,7 +22,7 @@
 
 ## lasm
 
-The _Lexem assembler_, abbreviated as *lasm* is the intermediate representation of the lexem code used to accelerate the execution and to perform the backtracking correctly.
+The _Lexem assembler_, abbreviated as _lasm_ is the intermediate representation of the lexem code used to accelerate the execution and to perform the backtracking correctly.
 
 It is defined as stack-based system, so it is composed by a set of instructions that emulate certain functionality of a processor but it also has complex instructions.
 

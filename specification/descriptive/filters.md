@@ -18,7 +18,7 @@ A filter is composed by:
 
 1. **Filter**: the whole block of descriptive and functional code. It is similar to expressions.
 2. **Patterns**: sets of lexemes that are executed atomically and that follow a specific behaviour.
-3. **Filter lexemes**: the minimum executing unit of the descriptive core of *Lexem* that filter nodes. Each of them has its own syntax and meaning.
+3. **Filter lexemes**: the minimum executing unit of the descriptive core of _Lexem_ that filter nodes. Each of them has its own syntax and meaning.
 
 Like functions in the functional core, filters have two sections:
 

@@ -20,7 +20,7 @@ for quantifier {'tag body}
 repeat name for quantifier {'tag body}
 ```
 
-Using the *indexer* pattern (`repeat name`) each iteration of the loop increase the variable by one.
+Using the _indexer_ pattern (`repeat name`) each iteration of the loop increase the variable by one.
 
 ## `onback` block
 

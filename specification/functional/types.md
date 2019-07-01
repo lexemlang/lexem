@@ -193,7 +193,7 @@ var itv = [a\(x) \(num)..t]
 
 Intervals are complex sets of values inside a full range `[0, FFFFFFFF]`. Due to that, intervals are able to perform set operations with them using sub-intervals.
 
-The *sub-interval patten* `[... [op body] ...]` contains an operator, which defines how to join the sub-interval with its parent, and a body to define its content. The body accepts the same rules of the main one, even another sub-intervals.
+The _sub-interval patten_ `[... [op body] ...]` contains an operator, which defines how to join the sub-interval with its parent, and a body to define its content. The body accepts the same rules of the main one, even another sub-intervals.
 
 | Operator | Syntax | Meaning |
 |:--------:|:------:|:--------|
@@ -411,7 +411,7 @@ Represents a no-ordered group of key-value pairs, with the ability to index by k
 
 ## Function type
 
-Represents an object with the ability to execute *functional* code.
+Represents an object with the ability to execute _functional_ code.
 
 - Type: `Function`
 - Prototype: `Function.prototype`.
