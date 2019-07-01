@@ -66,7 +66,7 @@ exp() { }
 There is a default property called `props` that reference to the properties, so if you want more control over how to define a property,
 use `exp(parameters, props: properties)` instead of `exp[properties](parameters)`.
 
-> **Note**: the parenthesis of the parameters are always required.
+> **Note**: if there is no parameters, the whole block can be omitted, including the parenthesis `()`.
 
 ## Properties
 

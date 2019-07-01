@@ -55,7 +55,7 @@ filter(param1: true, param2: "x") { }
 filter() { }
 ```
 
-> **Note**: the parenthesis of the parameters are always required.
+> **Note**: if there is no parameters, the whole block can be omitted, including the parenthesis `()`.
 
 ## Properties
 
