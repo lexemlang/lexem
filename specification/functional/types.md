@@ -27,6 +27,7 @@
   - [Map types](#Map-types)
   - [Function type](#Function-type)
   - [Expression type](#Expression-type)
+  - [Filter type](#Filter-type)
 
 # Types, prototypes and literals
 
@@ -419,10 +420,8 @@ Represents an object with the ability to execute _functional_ code.
 
   | Literal | Meaning |
   |:-------:|:--------|
-  |`fun{body}`|Anonymous function definition without arguments.|
   |`fun(args){body}`|Anonymous function definition.|
-  |`fun name{body}`|Named function definition without arguments. It can only be used as an statement.|
-  |`fun name(args){body}`|Named function definition. It can only be used as an statement.|
+  |`fun name(args){body}`|Named function definition. It can only be used as a statement.|
 
 ```lexem
 let function = fun(arg0: value0, arg1: value1) {}
@@ -432,7 +431,7 @@ Arguments are a list of key-value pairs separated with commas (`,`).
 
 ## Expression type
 
-Represents an object with the ability to execute *functional* and *descriptive* code that analyze the textual or binary input.
+Represents an object with the ability to execute _functional_ and _descriptive_ code that analyze the textual or binary input.
 
 - Type: `Expression`
 - Prototype: `Expression.prototype`.
@@ -440,9 +439,20 @@ Represents an object with the ability to execute *functional* and *descriptive* 
 
   | Literal | Meaning |
   |:-------:|:--------|
-  |`exp{body}`|Anonymous expression definition without arguments.|
-  |`exp(args){body}`|Anonymous expression definition.|
-  |`exp name{body}`|Named expression definition without arguments. It can be only used as an statement.|
-  |`exp name(args){body}`|Named expression definition. It can be only used as an statement.|
+  |`exp name[props](args){body}`|Named expression definition. It can be only used as a statement.|
 
-> **Note**: see 'descriptive expressions' section to know more information about expressions.
+> **Note**: see [descriptive expressions](../descriptive/expressions.md) section to know more information about expressions.
+
+## Filter type
+
+Represents an object with the ability to execute _functional_ and _descriptive_ code that analyze the textual or binary input.
+
+- Type: `Expression`
+- Prototype: `Expression.prototype`.
+- Literals:
+
+  | Literal | Meaning |
+  |:-------:|:--------|
+  |`filter name[props](args){body}`|Named filter definition. It can be only used as a statement.|
+
+> **Note**: see [filter](../descriptive/filters.md) section to know more information about expressions.
