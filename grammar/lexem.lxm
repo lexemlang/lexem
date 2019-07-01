@@ -14,14 +14,14 @@ pub! exp main {
 	for *+ do {
 		| fn_stmt.statement
 
-        onback {
+        onBack {
             log.error("An statement must end at the end of the file or at the end of a line.");
         }
 
 		|> ws_eol
 	}
 
-	onback {
+	onBack {
 		log.error("Incorrect lexem file syntax. The end-of-file was expected.");
 	}
 

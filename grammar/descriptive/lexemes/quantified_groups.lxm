@@ -16,18 +16,18 @@ pub! exp quantified_group {
     |> "@("
 	|? gen_modifier:modifier_quantifier
 
-    onback {
+    onBack {
         log.error("At least one pattern is required for the quantified group content.")
     }
     |> (pattern:pattern_content {
-        onback {
+        onBack {
             log.error("A semicolon ':' is required after the 'infix' token.")
         }
         |> sml* "|"
         |? quantifier
     })+
 
-	onback {
+	onBack {
 		log.error("The close parenthesis ')' of the quantified group is required.")
 	}
 	|> sml* ")"
@@ -42,7 +42,7 @@ exp modifier_quantifier {
         |? sml* max:fn_exp.expression
     }
 
-    onback {
+    onBack {
         log.error("The close bracket '}' is required to close the quantifier.")
     }
     |> sml* "}"

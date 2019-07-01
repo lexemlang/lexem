@@ -22,7 +22,7 @@ pub! exp list {
 	     |> fn_exp.expression
 	}
 
-	onback {
+	onBack {
 		log.error("Incorrect list literal. The close square bracket ']' is required.")
 	}
 

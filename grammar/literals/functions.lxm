@@ -13,7 +13,7 @@ let fn_stmt = import("../functional/statement")
 pub! exp function {
 	|> "fun" ws? args:function_arguments?
 
-	onback {
+	onBack {
 		log.error("Incorrect literal function. It is required a body block '{}'.")
 	}
 
@@ -34,7 +34,7 @@ pub! exp function_arguments {
 	    }
 	}
 
-	onback {
+	onBack {
 		log.error("Incorrect arguments. The close parenthesis ')' is required.")
 	}
 
@@ -44,7 +44,7 @@ pub! exp function_arguments {
 exp function_arguments_element {
 	|> key:identifier
 	|? ws? ":" {
-		onback {
+		onBack {
 			log.error("Incorrect argument. After the relation symbol ':' it is require the default value of the argument.")
 		}
 

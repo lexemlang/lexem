@@ -16,13 +16,13 @@ pub! exp binpattern {
 
     |? afirmative_props:prop_abbreviation
     |? "-" {
-        onback {
+        onBack {
             log.error("A property abbreviation (r) is required after the '-'.")
         }
         |> negative_props:prop_abbreviation
     }
     |? "!" {
-        onback {
+        onBack {
             log.error("A property abbreviation (r) is required after the '!'.")
         }
         |> reversed_props:prop_abbreviation

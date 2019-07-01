@@ -15,7 +15,7 @@ pub! exp var_declaration {
 
     let key = if is_constant {"let"} else {"var"}
 
-    onback {
+    onBack {
         log.error("An identifier or destructuring are required after the \(key) token.")
     }
 
@@ -24,19 +24,19 @@ pub! exp var_declaration {
     | name:identifier (ws? destructuring)?
     | destructuring
 
-    onback {
+    onBack {
         log.error("The \(key) declaration statement requires an initial value.")
     }
     
     |> ws? "="
 
-    onback {
+    onBack {
         log.error("An expression is required after the '=' symbol.")
     }
 
     |> ws? fn_exp.expression
     
-    onback {
+    onBack {
         log.error("The \(key) declaration statement should end here.")
     }
 }
@@ -45,7 +45,7 @@ pub! exp destructuring {
     |? alias:identifier ws?
     |> "(" ws?
 
-    onback {
+    onBack {
         log.error("Incorrect destructuring. It is required at least one element.")
     }
 
@@ -61,7 +61,7 @@ pub! exp destructuring {
     |? ws? "," ws? destructuring_spread_element     #- Spread element
     |? ws? ","                                      #- trailing comma
     
-    onback {
+    onBack {
         log.error("Incorrect destructuring. The close parenthesis ')' is required.")
     }
 
@@ -71,7 +71,7 @@ pub! exp destructuring {
 exp destructuring_element {
     set_props![- constant]
     | original:identifier ws? "as" {
-        onback {
+        onBack {
             log.error("An identifier is required after the rename symbol ('as').")
         }
 
@@ -87,7 +87,7 @@ exp destructuring_element {
 exp destructuring_spread_element {
     |> ".."
 
-    onback {
+    onBack {
         log.error("Incorrect destructuring. An identifier was expected after the spread operator (..)")
     }
 

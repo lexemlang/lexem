@@ -16,13 +16,13 @@ pub! exp text {
 
     |? afirtmative_props:prop_abbreviation
     |? "-" {
-        onback {
+        onBack {
             log.error("A property abbreviation (i or r) is required after the '-'.")
         }
         |> negative_props:prop_abbreviation
     }
     |? "!" {
-        onback {
+        onBack {
             log.error("A property abbreviation (i or r) is required after the '!'.")
         }
         |> reversed_props:prop_abbreviation

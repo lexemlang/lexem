@@ -20,7 +20,7 @@ pub! exp infinite {
     |> gen.keyword("repeat")
     |? sml* name:gen.identifier
 
-    onback {
+    onBack {
         log.error("The infinite loop statement requires a block statement ({}) for its 'then' block.")
     }
     |> sml* then:exp_stmt.block
@@ -39,12 +39,12 @@ pub! exp conditional {
     | gen.keyword("while") set_props![while]
     | gen.keyword("until") set_props![- while]
 
-    onback {
+    onBack {
         log.error("The conditional loop statement requires an expression for its condition.")
     }
     |> sml* condition:fn_exp.expression
 
-    onback {
+    onBack {
         log.error("The conditional loop statement requires a block statement ({}) for its 'then' block.")
     }
     |> sml* then:exp_stmt.block
@@ -58,30 +58,30 @@ pub! exp iterator {
     |? gen.keyword("repeat") sml* repeater:gen.identifier sml*
     |> gen.keyword("for")
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires at least a variable name for the current value of the iteration.")
     }
     |> sml* first:gen.identifier {
         |> sml* "," sml*
 
-        onback {
+        onBack {
             log.error("The iterator loop statement requires another name or a destructuring after the comma.")
         }
         | second:gen.identifier
         | second:var_destructuring
     }
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires the 'in' symbol after the variable names.")
     }
     |> sml* gen.keyword("in")
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires an expression to get the iterator.")
     }
     |> sml* condition:fn_exp.expression
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires a block statement ({}) for its body.")
     }
     |> sml* then:exp_stmt.block
@@ -95,12 +95,12 @@ pub! exp quantified {
     |? gen.keyword("repeat") sml* repeater:gen.identifier sml*
     |> gen.keyword("for")
 
-    onback {
+    onBack {
         log.error("The quantified loop statement requires a quantifier.")
     }
     |> sml* quantifier:quantifiers.quantifier 
 
-    onback {
+    onBack {
         log.error("The quantified loop statement requires a block statement ({}) for its body.")
     }
     |> sml* then:exp_stmt.block
@@ -119,7 +119,7 @@ pub! exp quantified {
 exp last_clause(keyword) {
     |> gen.keyword(keyword)
 
-    onback {
+    onBack {
         log.error("The \(keyword) clause of the loop statement requires a block statement ({}) for its body.")
     }
     |> sml* body:exp_stmt.block

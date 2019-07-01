@@ -73,7 +73,7 @@ pub! let ws_eol = whitespace_eol
 exp comment {
 	|> "#-"
 
-	onback {
+	onBack {
         log.error("Incorrect line comment. The end-of-line symbol was expected.")
     }
 
@@ -83,7 +83,7 @@ exp comment {
 exp comment_multiline(props![capture - children]) {
 	|> "#" (delimiter[property]: "+"+)
 
-	onback {
+	onBack {
 		log.error("Incorrect multiline comment. The close symbol '\(node.properties.delimiter)#' was expected.")
 	}
 
@@ -100,7 +100,7 @@ exp comment_multiline(props![capture - children]) {
 pub! exp identifier {
 	|> simple_identifier ("-" simple_identifier)*
 	|> "`" {
-		onback {
+		onBack {
 			log.error("Stringified identifiers require at least one character")
 		}
 
@@ -109,7 +109,7 @@ pub! exp identifier {
 			| [! ` \\ line_break_block]+
 		}
 
-		onback {
+		onBack {
 			log.error("Stringified identifiers require the closing token (`)")
 		}
 
@@ -151,7 +151,7 @@ pub! exp escape[- capture] {
 exp escape_character {
 	|> "\\"
 
-	onback {
+	onBack {
 		log.error("An escape requires a character after the \\ which indicates the type of escape.")
 	}
 
@@ -168,20 +168,20 @@ exp escape_point {
 	| {
 		|> "{" ws_no_eol?
 
-        onback {
+        onBack {
             log.error("The \(name) escape requires the value of the point.")
         }
 
         |> value:integer_number_hex_default
 
-        onback {
+        onBack {
             log.error("The \(name) escape requires the close bracket.")
         }
 
         |> ws_no_eol? "}"
 	}
 	| {
-		onback {
+		onBack {
 			log.error("The \(name) escape requires the value of the point.")
 		}
 
@@ -192,13 +192,13 @@ exp escape_point {
 pub! exp escaped_expression {
 	|> "\\{" ws_no_eol?
 
-	onback {
+	onBack {
 		log.error("The expression escape requires an expression after the open bracket ({).")
 	}
 
 	|> fn_exp.expression
 
-	onback {
+	onBack {
 		log.error("The expression escape requires the close bracket (}).")
 	}
 

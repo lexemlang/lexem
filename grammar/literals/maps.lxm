@@ -12,7 +12,7 @@ let fn_exp = import("../functional/expressions")
 pub! exp map {
 	|> "map!" set_props![- isConstant]
 
-	onback {
+	onBack {
 		log.error("Incorrect map literal. The open bracket '{' is required after the map macro (map!).")
 	}
 
@@ -27,7 +27,7 @@ pub! exp map {
          |> map_element
     }
 
-	onback {
+	onBack {
 		log.error("Incorrect map literal. The close bracket '}' is required.")
 	}
 
@@ -37,13 +37,13 @@ pub! exp map {
 exp map_element {
 	|> key:fn_exp.expression
 
-	onback {
+	onBack {
 		log.error("Incorrect map property. After the keyword it is required the relation symbol ':'.")
 	}
 
 	|> ws? ":"
 
-	onback {
+	onBack {
 		log.error("Incorrect map property. After the relation symbol ':' it is require the value of the property.")
 	}
 

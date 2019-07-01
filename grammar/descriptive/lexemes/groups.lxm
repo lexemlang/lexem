@@ -17,24 +17,24 @@ pub! exp group {
     |> "("
     |? header:header sml* ":"
 
-    onback {
+    onBack {
         log.error("At least one pattern is required for the group content.")
     }
     |> (pattern:pattern_content /infix: sml* "|" sml*)+
 
     |? sml* "/infix" {
-        onback {
+        onBack {
             log.error("A semicolon ':' is required after the 'infix' token.")
         }
         |> sml* ":"
 
-        onback {
+        onBack {
             log.error("At least one pattern is required for the group's 'infix' section.")
         }
         |> (pattern:pattern_content /infix: sml* "|" sml*)+
     }
 
-	onback {
+	onBack {
 		log.error("The close parenthesis ')' of the group is required.")
 	}
 	|> sml* ")"

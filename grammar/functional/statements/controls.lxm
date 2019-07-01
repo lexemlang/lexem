@@ -17,7 +17,7 @@ pub! exp control(props![- capture]) {
     | restart:control_without_expression("restart")
     | return:return_stmt
 
-    onback {
+    onBack {
         log.error("The control statement should end here.")
     }
 }
@@ -26,7 +26,7 @@ exp control_with_expression(token) {
     |> check_keyword(token)
     |? "'" tag:identifier
 
-    onback {
+    onBack {
         log.error("An expression is required for the '\(token)' control statement.")
     }
     
@@ -41,7 +41,7 @@ exp control_without_expression(token) {
 exp return_stmt {
     |> check_keyword("return")
 
-    onback {
+    onBack {
         log.error("An expression is required for the return control statement.")
     }
 

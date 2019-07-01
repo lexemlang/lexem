@@ -18,7 +18,7 @@ pub! exp infinite {
     |> check_keyword("repeat")
     |? ws? index:identifier
 
-    onback {
+    onBack {
         log.error("The infinite loop statement requires a block statement ({}) for its 'then' block.")
     }
 
@@ -33,13 +33,13 @@ pub! exp conditional {
     | check_keyword("while") set_props![while]
     | check_keyword("until") set_props![- while]
 
-    onback {
+    onBack {
         log.error("The conditional loop statement requires an expression for its condition.")
     }
 
     |> ws? condition:fn_exp.expression
 
-    onback {
+    onBack {
         log.error("The conditional loop statement requires a block statement ({}) for its 'then' block.")
     }
 
@@ -53,33 +53,33 @@ pub! exp iterator {
     |? check_keyword("repeat") ws? index:identifier ws?
     |> check_keyword("for")
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires at least a variable name for the current value of the iteration.")
     }
 
     |> ws? first:identifier {
         |> ws? "," ws?
 
-        onback {
+        onBack {
             log.error("The iterator loop statement requires another name or a destructuring after the comma.")
         }
         | second:identifier
         | destructuring
     }
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires the 'in' symbol after the variable names.")
     }
 
     |> ws? check_keyword("in")
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires an expression to get the iterator.")
     }
 
     |> ws? condition:fn_exp.expression
 
-    onback {
+    onBack {
         log.error("The iterator loop statement requires a block statement ({}) for its body.")
     }
 
@@ -98,7 +98,7 @@ pub! exp iterator {
 exp last_clause(keyword) {
     |> check_keyword(keyword)
 
-    onback {
+    onBack {
         log.error("The \(keyword) clause of the loop statement requires a block statement ({}) for its body.")
     }
 

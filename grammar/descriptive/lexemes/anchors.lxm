@@ -25,13 +25,13 @@ exp relative_anchor {
     | "^" set_props![start]
     | "$" set_props![- start]
 
-    onback {
+    onBack {
         log.error("The open parenthesis '(' of the anchor group or an abbreviation are required here.")
     }
     | "(" {
         |> (sml* elements:relative_anchor_element)*+
         
-        onback {
+        onBack {
             log.error("The close parenthesis ')' is required to close the anchor group.")
         }
         |> sml* ")"
@@ -54,12 +54,12 @@ exp absolute_anchor {
 
     |> "&"
 
-    onback {
+    onBack {
         log.error("The open parenthesis '(' of the anchor group is required.")
     }
     |> "(" (sml* elements:absolute_anchor_element)*+
 
-    onback {
+    onBack {
         log.error("The close parenthesis ')' is required to close the anchor group.")
     }
     |> sml* ")"
@@ -72,17 +72,17 @@ exp absolute_anchor_element {
         | "analysis_beginning"
     })
 
-    onback {
+    onBack {
         log.error("The open square bracket '[' of the anchor element is required.")
     }
     |> "["
 
-    onback {
+    onBack {
         log.error("An expression is required for the value of the anchor element.")
     }
     |> value:fn_exp.expression
 
-    onback {
+    onBack {
         log.error("The close square bracket ']' is required to close the anchor element.")
     }
     |> sml* "]"

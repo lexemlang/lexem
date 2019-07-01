@@ -30,7 +30,7 @@ exp normal_object {
         | object_element
     }
 
-	onback {
+	onBack {
 		log.error("Incorrect object literal. The close bracket '}' is required.")
 	}
 
@@ -40,7 +40,7 @@ exp normal_object {
 exp object_element {
 	set_props![- isConstant]
 	|? "#" set_props![isConstant] {
-		onback {
+		onBack {
 			log.error("Incorrect object property. After the static modifier '#' it is required a key-value pair.")
 		}
 	}
@@ -48,13 +48,13 @@ exp object_element {
 	| string
 	| escaped_expression
 
-	onback {
+	onBack {
 		log.error("Incorrect object property. After the keyword it is required the relation symbol ':'.")
 	}
 
 	|> ws? ":"
 
-	onback {
+	onBack {
 		log.error("Incorrect object property. After the relation symbol ':' it is require the value of the property.")
 	}
 
@@ -67,7 +67,7 @@ exp object_simplification {
 	|> identifier
 	| {
 		|> args:function_arguments {
-			onback {
+			onBack {
 				log.error("Incorrect object property. The inline function definition requires a body block '{}'.")
 			}
 		}
@@ -80,7 +80,7 @@ pub! exp property_style_object {
 	|> "@" set_props![- isConstant]
 	|? "#" set_props![isConstant]
 
-	onback {
+	onBack {
 		log.error("Incorrect property-style literal. The open square bracket '[' is required.")
 	}
 
@@ -93,7 +93,7 @@ pub! exp property_style_object_block {
 	|? ws? "-" (ws? deactivated:identifier)*
 	|? ws? ":" (ws? set:property_style_object_element)*
 
-	onback {
+	onBack {
 		log.error("Incorrect property-style object literal. The close square bracket ']' is required.")
 	}
 
@@ -103,17 +103,17 @@ pub! exp property_style_object_block {
 exp property_style_object_element {
 	|> name:identifier
 
-	onback {
+	onBack {
 		log.error("Incorrect property-style object property. The open parenthesis '(' is required.")
 	}
 	|> "("
 
-	onback {
+	onBack {
 		log.error("Incorrect property-style object property. An expression is required after the open parenthesis '('.")
 	}
 	|> ws? fn_exp.expression
 
-	onback {
+	onBack {
 		log.error("Incorrect property-style object property. The close parenthesis ')' is required.")
 	}
 	|> ws? ")"

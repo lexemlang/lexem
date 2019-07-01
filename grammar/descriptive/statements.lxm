@@ -24,7 +24,7 @@ let controls = import("functional/statements/controls")
 pub! exp statement(props![- capture backtrack]) {
     | pattern
     | block
-    | onback_block
+    | onBack_block
     | set_props
     | var_declaration
     | macro_statement
@@ -38,8 +38,8 @@ pub! exp statement(props![- capture backtrack]) {
     | fn_exp.expression
 }
 
-pub! exp onback_block(props![- backtrack]) {
-    |> gen.keyword("onback") sml* block
+pub! exp onBack_block(props![- backtrack]) {
+    |> gen.keyword("onBack") sml* block
 }
 
 pub! exp block(props![- backtrack]) {
@@ -52,7 +52,7 @@ pub! exp block(props![- backtrack]) {
         | expression.pattern
 	}
     
-    onback {
+    onBack {
         log.error("Incorrect block. The close bracket '}' is required.")
     }
     |> sml* "}"
@@ -61,7 +61,7 @@ pub! exp block(props![- backtrack]) {
 pub! exp set_props(props![- backtrack]) {
     |> "set_props!"
     
-    onback {
+    onBack {
         log.error("'set_props!' macro requires a block started with '['.")
     }
     |> block:property_style_object_block
@@ -70,7 +70,7 @@ pub! exp set_props(props![- backtrack]) {
 exp function_statement {
 	|> "fun" sml+ name:gen.identifier args:function_arguments?
 
-	onback {
+	onBack {
 		log.error("Incorrect function statement. It is required a body block '{}'.")
 	}
 	|> body:exp_stmt.block
@@ -79,7 +79,7 @@ exp function_statement {
 exp expression_statement {
 	|> "fun" sml+ name:gen.identifier args:function_arguments?
 
-	onback {
+	onBack {
 		log.error("Incorrect function statement. It is required a body block '{}'.")
 	}
 	|> body:exp_stmt.block

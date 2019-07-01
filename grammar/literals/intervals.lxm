@@ -16,7 +16,7 @@ pub! exp interval[- capture] {
 exp normal_interval {
 	|> "itv!" set_props![- isConstant]
 
-	onback {
+	onBack {
 		log.error("Incorrect interval literal. The open square bracket '[' is required.")
 	}
 
@@ -29,7 +29,7 @@ exp normal_interval {
         | normal_interval_element
     }
 
-	onback {
+	onBack {
 		log.error("Incorrect interval literal. The close square bracket ']' is required.")
 	}
 
@@ -40,7 +40,7 @@ exp normal_interval_element {
 	| left:commons.escape
 	| left:number_integer
 	|? ".." {
-		onback {
+		onBack {
 			log.error("Incorrect interval literal. Another character is required after the range symbol '..'.")
 		}
 
@@ -59,7 +59,7 @@ exp normal_interval_sub_interval {
         | normal_interval_element
     }
 
-	onback {
+	onBack {
 		log.error("Incorrect sub-interval literal. The close square bracket ']' is required.")
 	}
 
@@ -70,7 +70,7 @@ exp normal_interval_sub_interval {
 exp unicode_interval {
 	|> "uitv!" set_props![- isConstant]
 
-	onback {
+	onBack {
 		log.error("Incorrect interval literal. The open square bracket '[' is required.")
 	}
 
@@ -87,7 +87,7 @@ pub! exp unicode_interval_abbr {
         | unicode_interval_element
     }
 
-    onback {
+    onBack {
         log.error("Incorrect interval literal. The close square bracket ']' is required.")
     }
 
@@ -98,7 +98,7 @@ exp unicode_interval_element {
 	| left:commons.escape
 	| (left[capture]: [! \{commons.whitespace_block} \{commons.line_break_block}])
 	|? ".." {
-		onback {
+		onBack {
 			log.error("Incorrect interval literal. Another character is required after the range symbol '..'.")
 		}
 
@@ -117,7 +117,7 @@ exp unicode_interval_sub_interval {
         | unicode_interval_element
     }
 
-	onback {
+	onBack {
 		log.error("Incorrect sub-interval literal. The close square bracket ']' is required.")
 	}
 

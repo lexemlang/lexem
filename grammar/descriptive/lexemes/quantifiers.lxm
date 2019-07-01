@@ -11,7 +11,7 @@ let fn_exp = import("functional/expressions")
 
 pub! exp quantifier {
     | "{" {
-        onback {
+        onBack {
             log.error("An expression is required for the minimum of the quantifier.")
         }
         |> sml* min:fn_exp.expression
@@ -21,7 +21,7 @@ pub! exp quantifier {
             |? sml* max:fn_exp.expression
         }
 
-        onback {
+        onBack {
             log.error("The close bracket '}' is required to close the quantifier.")
         }
         |> sml* "}"

@@ -17,7 +17,7 @@ pub! exp string[- capture] {
 exp normal_string {
 	|> (delimiter[property]: "$"*) "\""
 
-	onback {
+	onBack {
 		log.error("Incorrect string literal. The close sequence of symbols '"\(node.properties.delimiter)' was expected.")
 	}
 
@@ -34,13 +34,13 @@ exp string_item[- capture] {
 exp string_without_escapes {
 	|> "lit!"
 
-	onback {
+	onBack {
 		log.error("Incorrect string literal. A string pattern was expected after the 'lit!' macro.")
 	}
 
 	|> (delimiter[property]: "$"*) "\""
 
-	onback {
+	onBack {
 		log.error("Incorrect string literal. The close sequence of symbols '"\(node.properties.delimiter)' was expected.")
 	}
 

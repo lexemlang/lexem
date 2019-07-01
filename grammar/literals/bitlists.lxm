@@ -24,7 +24,7 @@ exp bitlist_content(expression) {
 	    | commons.escaped_expression
 	}
 
-    onback {
+    onBack {
         log.error("Incorrect bitlist literal. The close quotation mark '"' is required.")
     }
 
