@@ -125,9 +125,21 @@ var (el1, el2) = list       #- gets first and second elements
 let (el1, _, el3) = list    #- gets first and third elements
 let (el1, _2, el4) = list   #- gets first and fourth elements
 var (el1, ..rest) = list    #- gets first element and the rest are stored in rest
+var name(...) = list        #- destructures 'list' using one of the above rules but also creates a new variable called 'name' with the value of list.
 ```
 
 As it is shown above, the skip operator (`_`) allows to skip a certain number of elements of the list, setting a number after the underscore, while the spread operator (`..`) allows to store the rest elements inside a new list.
+
+Moreover, there is another type that destructures a value using the above rules but also creates a new variable called for that value:
+
+```lexem
+var name(...) = list
+
+# is equivalent to
+
+var (...) = list
+var name = list
+```
 
 #### Objects
 
@@ -144,6 +156,17 @@ var (a as new) = object   #- gets the a element but renames it to new
 
 As it is shown above, the spread operator (`..`) allows to store the rest elements inside a new object while the rename operator (`as`) allows to rename the element got from the object with a new name.
 
+Moreover, there is another type that destructures a value using the above rules but also creates a new variable called for that value:
+
+```lexem
+var name(...) = object
+
+# equivalente to
+
+var (...) = object
+var name = object
+```
+
 #### Mixing variables and constants
 
 The `var` destructuring allows to define variables and constants at the same time, using this for lists:
@@ -153,6 +176,8 @@ let list = [1, 2, 3, 4]     #- list to be destructured
 
 var (el1, #el2) = list      #- el1 is a variable and el2 is a constant
 var (el1, ..#rest) = list   #- el1 is a variable and rest is a constant
+
+var #name(...) = list       #- name is a constant but the inner rules are not affected
 ```
 
 And this for objects:
@@ -163,6 +188,8 @@ let object = [1, 2, 3, 4]  #- list to be destructured
 var (a, #b) = object       #- a is a variable and b is a constant
 let (b, ..#rest) = object  #- b is a variable and rest is a constant
 var (#a as new) = object   #- new is a constant
+
+var #name(...) = object    #- name is a constant but the inner rules are not affected
 ```
 
 ## Truth and falsity
