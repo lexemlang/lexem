@@ -3,7 +3,6 @@
 
 - [Index](#Index)
 - [Functional macros](#Functional-macros)
-  - [pattern!](#pattern)
   - [check_props!](#check_props)
   - [logic_line!](#logic_line)
   - [line!](#line)

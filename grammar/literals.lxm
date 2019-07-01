@@ -6,7 +6,8 @@
 #-    All literals gathered.
 #------------------------#
 
-pub! let (check_keyword) = import("commons")
+let (check_keyword) = import("commons")
+
 pub! let (number, integer_number) = import("literals/numbers")
 pub! let (string) = import("literals/string")
 pub! let (interval) = import("literals/intervals")

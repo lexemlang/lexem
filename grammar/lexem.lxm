@@ -17,8 +17,6 @@ pub! exp main {
         onBack {
             log.error("An statement must end at the end of the file or at the end of a line.");
         }
-
-		|> ws_eol
 	}
 
 	onBack {

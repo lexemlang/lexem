@@ -1,16 +1,16 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Expressions of the lexem's functional core.
+#-    Expressions of the functional core.
 #------------------------#
 
-let {s, ssl, sml, ..gen} = import("generics")
-let literals = import("literals")
-let fn_stmt = import("./statements")
-let {pattern} = import("descriptive/expression")
-let {property_style_object} = import("literals/objects")
+let (ws, identifier_dynamic, check_keyword, identifier) = import("../commons")
+let literals = import("../literals")
+let fn_stmt = import("statements")
+let (pattern) = import("descriptive/expression")
+let (property_style_object_block) = import("../literals/objects")
 
 
 #----------------------#
@@ -19,51 +19,49 @@ let {property_style_object} = import("literals/objects")
 
 pub! exp expression {
     | {
-        |> left:left_expression sml* operator:assign_operator sml*
-        
+        |> left_expression ws? assign_operator ws?
+
         onBack {
             log.error("A right expression was expected after the assign operator.")
         }
-        | right:expression
-        | right:right_expression
+
+        | expression
+        | right_expression
     }
-    | right:right_expression
+    | right_expression
 }
 
 pub! exp assign {
-    |> left:left_expression
-    
-    onBack {
-        log.error("An assign operator was expected after the left expression.")
-    }
-    |> sml* operator:assign_operator
+    |> left_expression ws? assign_operator
 
 	onBack {
         log.error("A right expression was expected after the assign operator.")
     }
-    |> sml* right:right_expression
+
+    |> ws? expression
 }
 
-pub! exp left_expression(props![- capture]) {
+pub! exp left_expression[- capture] {
     | access
 }
 
-pub! exp right_expression(props![- capture]) {
+pub! exp right_expression[- capture] {
     |> logic_expression
 }
 
-exp prefix_expression(props![- capture]) {
-    |? prefix_operator operator_end props![capture]
+exp prefix_expression[- capture] {
+    |? prefix_operator set_props![capture] {
         onBack {
             log.error("An infix expression was expected after the prefix operator.")
         }
+    }
     | access
     | literal
     | macro
     | fn_stmt.block
 }
 
-exp literal(props![- capture]) {
+exp literal[- capture] {
     | literals.null
     | literals.logic
     | literals.number
@@ -75,123 +73,101 @@ exp literal(props![- capture]) {
     | literals.object
     | literals.map
     | literals.function
-    | literals.expression
 }
 
 exp access {
-    |> variable:gen.identifier
+    |> identifier
 
     for *+ {
-        | modifiers:access_explicit_member
-        | modifiers:access_indexer
-        | modifiers:function_call
+        | access_explicit_member
+        | access_indexer
+        | function_call
     }
 }
 
 exp access_explicit_member {
-    set_props![- isOptional]
-    |> ("?" set_props![isOptional])? "."
+    |> "."
 
 	onBack {
-        log.error("An explicit member expression requires an indentifier after the '.' symbol.")
+        log.error("An explicit member expression requires an identifier after the '.' symbol.")
     }
 
-    | gen.identifier
-    | gen.escaped_expression
-    | literals.string
+    |> identifier_dynamic
 }
 
 exp access_indexer {
-    set_props![- isOptional]
-    |> ("?" set_props![isOptional])? "["
+    |> "["
 
 	onBack {
-        log.error("An explicit member expression requires an indentifier after the '.' symbol.")
+        log.error("An index requires an expression after the open square bracket '[' symbol.")
     }
-    |> sml* value:expression
+
+    |> ws? expression
 
     onBack {
         log.error("Incorrect indexer. The close square bracket ']' is require.")
     }
-    |> sml* "]"
+
+    |> ws? "]"
 }
 
 exp function_call {
-	|> "(" sml*
-    
-    |? elements:function_call_first_element {
-        for + {
-            |> sml* "," sml*
-            | elements:function_call_simplification
-            | elements:function_call_middle_element
+	|> "(" ws?
+
+    |? function_call_first_element {
+        for *+ {
+            |> ws? "," ws?
+            | function_call_middle_element
         }
     }
 
     #- Spread element
-    |? sml* "," sml* ".." spreaded:fn_exp.expression
-    |? sml* "," #- trailing comma
+    |? ws? "," ws? ".." spread:fn_exp.expression
+    |? ws? ","  #- trailing comma
 
 	onBack {
 		log.error("Incorrect function call. The close parenthesis ')' is required.")
 	}
-	|> sml* ")"
+
+	|> ws? ")"
 }
 
-exp function_call_first_element(props![- capture]) {
-	| key:function_call_element
-    | key:fn_exp.expression
+exp function_call_first_element {
+	| function_call_element
+    | fn_exp.expression
 }
 
 exp function_call_middle_element {
-	| key:gen.identifier
-    | key:gen.escaped_expression
-    | key:literals.string
-	|> sml* ":"
+	|> identifier_dynamic ws? ":"
 
     onBack {
         log.error("Incorrect function call. After the relation symbol ':' it is require the value of the argument.")
     }
-    |> sml* value:fn_exp.expression
+
+    |> ws? fn_exp.expression
 }
 
-exp function_call_simplification {
-	|> key:identifier ([fixed - children]: sml* "," | sml* ")")
-}
-
-exp macro(props![- capture]) {
+exp macro[- capture] {
     | "logic_line!"
     | "line!"
     | "file!"
     | "directory!"
-    | macro_pattern
+    | "backtrack!"
     | macro_check_props
     | macro_file_content
 }
 
-exp macro_pattern {
-	|> "pattern!"
-
-	onBack {
-		log.error("Incorrect pattern! macro. The open parenthesis '(' is required.")
-	}
-	|> "(" sml* pattern? sml*
-
-	onBack {
-		log.error("Incorrect pattern! macro. The close parenthesis ')' is required.")
-	}
-	|>  ")"
-}
-
 exp macro_check_props {
-	|> "check_" object:property_style_object
+	|> "check_props!" object:property_style_object_block
 }
 
 exp macro_file_content {
 	|> "file_content!"
-    
+
     onBack {
 		log.error("Incorrect file_content! macro. A function call is required after the macro.")
 	}
+
 	|> function_call
 }
 
@@ -199,75 +175,75 @@ exp macro_file_content {
 #-  Binary expressions  -#
 #------------------------#
 
-exp multiplicative_expression(props![- capture]) {
-    for * do {
+exp multiplicative_expression[- capture] {
+    repeat i for *+ do {
+        if i > 0 {
+           |? ws?
+           |> (operator[capture]: "//" | [*/%]) operator_end
+           |? ws?
+           set_props![capture]
+        }
         |> values:prefix_expression
     }
-    infix {
-        |? ssl*
-        |> operators:(operator[capture]: "//" | [*/%]) operator_end
-        |? sml*
-        set_props![capture]
-    }
 }
 
-exp additive_expression(props![- capture]) {
-    for * do {
+exp additive_expression[- capture] {
+    repeat i for *+ do {
+        if i > 0 {
+           |? ws?
+           |> (operator[capture]: [+-]) operator_end
+           |? ws?
+           set_props![capture]
+        }
         |> values:multiplicative_expression
     }
-    infix {
-        |? ssl*
-        |> operators:(operator[capture]: [+-]) operator_end
-        |? sml*
-        set_props![capture]
-    }
 }
 
-exp shift_expression(props![- capture]) {
-    for * do {
+exp shift_expression[- capture] {
+    repeat i for *+ do {
+        if i > 0 {
+           |? ws?
+           |> (operator[capture]: "<" [</] | [/>] ">") operator_end
+           |? ws?
+           set_props![capture]
+        }
         |> values:additive_expression
     }
-    infix {
-        |? ssl*
-        |> operators:(operator[capture]: "<" [</] | [/>] ">") operator_end
-        |? sml*
-        set_props![capture]
-    }
 }
 
-exp logic_expression(props![- capture]) {
-    for * do {
+exp logic_expression[- capture] {
+    repeat i for *+ do {
+        if i > 0 {
+           |? ws?
+           |> (operator[capture]: [&|^]) operator_end
+           |? ws?
+           set_props![capture]
+        }
         |> values:shift_expression
     }
-    infix {
-        |? ssl*
-        |> operators:(operator[capture]: [&|^]) operator_end
-        |? sml*
-        set_props![capture]
-    }
 }
 
-exp relational_expression(props![- capture]) {
-    for * do {
+exp relational_expression[- capture] {
+    repeat i for *+ do {
+        if i > 0 {
+           |? ws?
+           |> (operator[capture]: "==""="? | "!=""="? | "<""="? | ">""="?) operator_end
+           |? ws?
+           set_props![capture]
+        }
         |> values:logic_expression
     }
-    infix {
-        |? ssl*
-        |> operators:(operator[capture]: "==""="? | "!=""="? | "<""="? | ">""="?) operator_end
-        |? sml*
-        set_props![capture]
-    }
 }
 
-exp conditional_expression(props![- capture]) {
-    for * do {
+exp conditional_expression[- capture] {
+    repeat i for *+ do {
+        if i > 0 {
+           |? ws?
+           |> (operator[capture]: gen.keyword("and") | gen.keyword("or") | gen.keyword("xor"))
+           |? ws?
+           set_props![capture]
+        }
         |> values:relational_expression
-    }
-    infix {
-        |? ssl*
-        |> operators:(operator[capture]: gen.keyword("and") | gen.keyword("or") | gen.keyword("xor"))
-        |? sml*
-        set_props![capture]
     }
 }
 
@@ -279,18 +255,19 @@ exp conditional_expression(props![- capture]) {
 
 exp prefix_operator {
     |> [-+~!]
+    |> operator_end
 }
 
 exp assign_operator {
-    |> operator[property]: {
+    |? (operator[property]: {
         | "//"
         | "<" [</]
         | [/>] ">"
         | [*/%+-&|^]
-        | gen.keyword("and")
-        | gen.keyword("or")
-        | gen.keyword("xor")
-    }
+        | "and"
+        | "or"
+        | "xor"
+    })
     |> "=" operator_end
 }
 
@@ -300,7 +277,7 @@ exp assign_operator {
 #-  Others  -#
 #------------#
 
-exp operator_end(props![fixed - capture children]) {
+exp operator_end[- capture children consume] {
     |> ![~!*/%+-&|^<>=]
 }
 

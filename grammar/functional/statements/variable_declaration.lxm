@@ -9,7 +9,7 @@
 let (ws, identifier) = import("../../commons")
 let fn_exp = import("../expressions")
 
-pub! exp var_declaration {
+pub! exp variable_declaration {
     | check_keyword("var") set_props![- isConst]
     | check_keyword("let") set_props![isConst]
 

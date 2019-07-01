@@ -10,16 +10,12 @@ let (ws, check_keyword, identifier) = import("../../commons")
 let fn_exp = import("../expressions")
 
 
-pub! exp control(props![- capture]) {
+pub! exp control[- capture] {
     | exit:control_with_expression("exit")
     | next:control_without_expression("next")
     | redo:control_without_expression("redo")
     | restart:control_without_expression("restart")
     | return:return_stmt
-
-    onBack {
-        log.error("The control statement should end here.")
-    }
 }
 
 exp control_with_expression(token) {
@@ -29,7 +25,7 @@ exp control_with_expression(token) {
     onBack {
         log.error("An expression is required for the '\(token)' control statement.")
     }
-    
+
     |> ws? expression:fn_exp.expression
 }
 

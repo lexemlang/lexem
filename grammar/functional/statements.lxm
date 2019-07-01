@@ -1,80 +1,80 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Statements of the lexem's functional core.
+#-    Statements of the functional core.
 #------------------------#
 
-let {sml, eoll, ..gen} = import("generics")
-let fn_exp = import("./expressions")
-let {function_arguments} = import("literals/functions")
-let {var_declaration} = import("./statements/var_declarations")
-let {conditional} = import("./statements/conditionals")
-let {selective} = import("./statements/selectives")
-let loops = import("./statements/loops")
-let controls = import("./statements/controls")
-let {property_style_object_block} = import("literals/objects")
+let (ws, identifier) = import("../commons")
+let fn_exp = import("expressions")
+let (function_arguments) = import("../literals/functions")
+let (variable_declaration) = import("statements/variable_declarations")
+let (conditional) = import("statements/conditionals")
+let (selective) = import("statements/selective")
+let loops = import("statements/loops")
+let (control) = import("statements/controls")
+let (property_style_object_block) = import("../literals/objects")
 
 
 #----------------------#
 #-  Generic Elements  -#
 #----------------------#
 
-pub! exp statement(props![- capture backtrack]) {
+pub! exp statement[- capture] {
     | block
-    | set_props
-    | var_declaration
-    | macro_statement
+    | variable_declaration
     | conditional
     | selective
     | loops.conditional
     | loops.iterator
-    | loops.infinite  #- always after the other loops
-    | controls.control
+    | loops.infinite    #- always after the other loops
+    | macro_statement
+    | control
     | fn_exp.expression
+
+    onBack {
+        log.error("Incorrect block. After a statement an end of line was expected.")
+    }
+
+    |> ws_eol
 }
 
-pub! exp block(props![- backtrack]) {
+pub! exp block {
     |> "{"
-    |? "'" tag:gen.identifier
+    |? "'" tag:identifier
 
     for *+ do {
-		|? (sml | eoll)+
-		| fn_stmt.statement
+		|? ws?
+		|> statement
 	}
-    
+
     onBack {
         log.error("Incorrect block. The close bracket '}' is required.")
     }
-    |> sml* "}"
-}
 
-pub! exp set_props(props![- backtrack]) {
-    |> "set_props!"
-    
-    onBack {
-        log.error("'set_props!' macro requires a block started with '['.")
-    }
-    |> block:property_style_object_block
+    |> ws? "}"
 }
 
 exp function_statement {
-	|> "fun" sml+ name:gen.identifier args:function_arguments?
+	|> "fun" ws name:identifier
+	|? args:function_arguments
 
 	onBack {
 		log.error("Incorrect function statement. It is required a body block '{}'.")
 	}
-	|> body:fn_stmt.block
+
+	|> body:block
 }
 
 exp expression_statement {
-	|> "fun" sml+ name:gen.identifier args:function_arguments?
+	|> "fun" ws? name:identifier args:function_arguments?
 
 	onBack {
 		log.error("Incorrect function statement. It is required a body block '{}'.")
 	}
-	|> body:fn_stmt.block
+
+	|> body:block
 }
 
 
@@ -83,12 +83,31 @@ exp expression_statement {
 #-  Macro statements  -#
 #----------------------#
 
-exp macro_statement(props![- capture backtrack]) {
+exp macro_statement[- capture] {
     | macro_statement_public
+    | set_props_macro
 }
 
-exp macro_statement_public(props![- backtrack])
-    |> "pub!" sml*
-    | var_declaration
+exp macro_statement_public {
+    |> "pub!" ws?
+
+	onBack {
+		log.error("Incorrect pub! macro statement. It is required a variable declaration, a function, an expression or a filter statement.")
+	}
+
+    | variable_declaration
     | function_statement
     | expression_statement
+    | TODO add filter
+}
+
+
+pub! exp set_props_macro {
+    |> "set_props!"
+
+    onBack {
+        log.error("'set_props!' macro requires a block started with '['.")
+    }
+
+    |> block:property_style_object_block
+}

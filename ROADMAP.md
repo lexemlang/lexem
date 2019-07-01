@@ -13,7 +13,7 @@ This is the plan to work towards a 1.0.0 release. This is a "living document" an
 - Review grammar:
   - [x] lexem
   - [x] commons
-  - [ ] literals
+  - [x] literals
     - [x] bitlists
     - [x] functions
     - [x] intervals
@@ -24,8 +24,8 @@ This is the plan to work towards a 1.0.0 release. This is a "living document" an
     - [x] sets
     - [x] strings
   - functional
-    - [ ] expressions
-    - [ ] statements
+    - [x] expressions
+    - [x] statements
       - [x] conditionals
       - [x] controls
       - [x] loops
