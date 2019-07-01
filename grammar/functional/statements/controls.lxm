@@ -1,50 +1,49 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Control statements of the lexem's functional core.
+#-    Control statements of the functional core.
 #------------------------#
 
-let {sml, eoll, ..gen} = import("generics")
-let fn_exp = import("./expressions")
+let (ws, check_keyword, identifier) = import("../../commons")
+let fn_exp = import("../expressions")
 
 
 pub! exp control(props![- capture]) {
-    | control_with_expression("exit")
-    | control_without_expression("next")
-    | control_without_expression("redo")
-    | control_without_expression("restart")
-    | return
+    | exit:control_with_expression("exit")
+    | next:control_without_expression("next")
+    | redo:control_without_expression("redo")
+    | restart:control_without_expression("restart")
+    | return:return_stmt
 
     onback {
         log.error("The control statement should end here.")
     }
-    |> eoll
 }
 
 exp control_with_expression(token) {
-    set_props![:token(token)]
-    |> gen.keyword(token)
-    |? "'" tag:gen.identifier
+    |> check_keyword(token)
+    |? "'" tag:identifier
 
     onback {
         log.error("An expression is required for the '\(token)' control statement.")
     }
-    |> sml* expression:fn_exp.expression
+    
+    |> ws? expression:fn_exp.expression
 }
 
 exp control_without_expression(token) {
-    set_props![:token(token)]
-    |> gen.keyword(token)
-    |? "'" tag:gen.identifier
+    |> check_keyword(token)
+    |? "'" tag:identifier
 }
 
-exp return {
-    |> gen.keyword("return")
+exp return_stmt {
+    |> check_keyword("return")
 
     onback {
         log.error("An expression is required for the return control statement.")
     }
-    |> sml* expression:fn_exp.expression
+
+    |> ws? expression:fn_exp.expression
 }

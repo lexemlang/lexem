@@ -26,11 +26,11 @@ This is the plan to work towards a 1.0.0 release. This is a "living document" an
   - functional
     - [ ] expressions
     - [ ] statements
-      - [ ] conditionals
-      - [ ] controls
-      - [ ] loops
-      - [ ] selective
-      - [ ] var_declarations
+      - [x] conditionals
+      - [x] controls
+      - [x] loops
+      - [x] selective
+      - [x] var_declarations
   - descriptive
     - [ ] patterns
     - [ ] statements

@@ -1,35 +1,38 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Conditional statements of the lexem's functional core.
+#-    Conditional statements for the functional core.
 #------------------------#
 
-let {sml, ..gen} = import("generics")
-let fn_exp = import("./expressions")
+let (ws, ws_simple, check_keyword) = import("../../commons")
+let fn_exp = import("../expressions")
 let fn_stmt = import("../statements")
 
 
 pub! exp conditional {
-    | gen.keyword("if") set_props![if]
-    | gen.keyword("unless") set_props![- if]
+    | check_keyword("if") set_props![if]
+    | check_keyword("unless") set_props![- if]
 
     onback {
         log.error("The conditional statement requires an expression for its condition.")
     }
-    |> sml* condition:fn_exp.expression
+    
+    |> ws? condition:fn_exp.expression
 
     onback {
         log.error("The conditional statement requires a block statement ({}) for its 'then' block.")
     }
-    |> sml* then:fn_stmt.block
 
-    |? sml* "else" {
+    |> ws? then:fn_stmt.block
+
+    |? ws? "else" {
         onback {
             log.error("The else clause of a conditional statement requires a block statement ({}) for its 'else' block.")
         }
-        | sml* else:conditional
-        | sml* else:fn_stmt.block
+
+        | ws_simple else_if:conditional
+        | ws? else:fn_stmt.block
     }
 }

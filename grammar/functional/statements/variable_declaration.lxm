@@ -1,0 +1,97 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Variable declaration statements.
+#------------------------#
+
+let (ws, identifier) = import("../../commons")
+let fn_exp = import("../expressions")
+
+pub! exp var_declaration {
+    | check_keyword("var") set_props![- isConst]
+    | check_keyword("let") set_props![isConst]
+
+    let key = if is_constant {"let"} else {"var"}
+
+    onback {
+        log.error("An identifier or destructuring are required after the \(key) token.")
+    }
+
+    |? ws
+
+    | name:identifier (ws? destructuring)?
+    | destructuring
+
+    onback {
+        log.error("The \(key) declaration statement requires an initial value.")
+    }
+    
+    |> ws? "="
+
+    onback {
+        log.error("An expression is required after the '=' symbol.")
+    }
+
+    |> ws? fn_exp.expression
+    
+    onback {
+        log.error("The \(key) declaration statement should end here.")
+    }
+}
+
+pub! exp destructuring {
+    |? alias:identifier ws?
+    |> "(" ws?
+
+    onback {
+        log.error("Incorrect destructuring. It is required at least one element.")
+    }
+
+    repeat i for ++ {
+        if i > 0 {
+            |> ws? "," ws?
+        }
+
+        |> destructuring_element
+    }
+
+
+    |? ws? "," ws? destructuring_spread_element     #- Spread element
+    |? ws? ","                                      #- trailing comma
+    
+    onback {
+        log.error("Incorrect destructuring. The close parenthesis ')' is required.")
+    }
+
+    |> ws? ")"
+}
+
+exp destructuring_element {
+    set_props![- constant]
+    | original:identifier ws? "as" {
+        onback {
+            log.error("An identifier is required after the rename symbol ('as').")
+        }
+
+        |? "#" set_props![constant]
+        |> ws? alias:identifier
+    }
+    | {
+        |? "#" set_props![constant]
+        |> original:identifier
+    }
+}
+
+exp destructuring_spread_element {
+    |> ".."
+
+    onback {
+        log.error("Incorrect destructuring. An identifier was expected after the spread operator (..)")
+    }
+
+    set_props![- constant]
+    |? "#" set_props![constant]
+    |> identifier
+}

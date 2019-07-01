@@ -141,6 +141,8 @@ var (...) = list
 var name = list
 ```
 
+> **Note**: the rest operator `..name` can only be set once at the end of the parenthesis.
+
 #### Objects
 
 To destructure an object it is necessary to use the following syntax:
@@ -167,6 +169,8 @@ var (...) = object
 var name = object
 ```
 
+> **Note**: the rest operator `..name` can only be set once at the end of the parenthesis.
+
 #### Mixing variables and constants
 
 The `var` destructuring allows to define variables and constants at the same time, using this for lists:
@@ -187,7 +191,7 @@ let object = [1, 2, 3, 4]  #- list to be destructured
 
 var (a, #b) = object       #- a is a variable and b is a constant
 let (b, ..#rest) = object  #- b is a variable and rest is a constant
-var (#a as new) = object   #- new is a constant
+var (a as #new) = object   #- new is a constant
 
 var #name(...) = object    #- name is a constant but the inner rules are not affected
 ```
@@ -220,7 +224,7 @@ else {body}
 
 ### Conditional expressions
 
-The conditional statements can also be used inside an expression. In these cases it is always required that the condition returns a value, so the value of the last statement executed is returned.
+The conditional statements can also be used inside an expression. In these cases it is always required that the conditional returns a value, so the value of the last statement executed is returned as a result.
 
 If the conditional expression has no `else` clause and the condition does not match, a `null` value is returned.
 
@@ -236,11 +240,9 @@ when condition {'tag
 }
 ```
 
-The tag is optional and defines a name for the whole `when` statement to identify it.
+The tag is optional and defines a name for the whole `when` statement to identify it. The condition is also optional, so in case it is omitted the value used for the patterns of the `when` statement is `null`.
 
 The `when` statements works evaluating the condition against each of the options until one of them matches and executes its body. Each option can have one or more patterns acting as its conditions.
-
-The option is optional, so in case it is omitted the value used for the patterns of the `when` statement is `null`.
 
 The allowed patterns are:
 
@@ -288,13 +290,7 @@ The allowed patterns are:
             value     #- 8
         }
     }
-    ```
-
-    > **Note**: if condition is omitted, the pattern matches always.
-
-- `var (...) conditional {body}`: same as above but destructuring the value of the `when`'s condition.
-
-    ```lexem
+    
     when {a: 2, b: 3} {
         var (a) if a > 4 {
             a     #- 2
@@ -302,7 +298,8 @@ The allowed patterns are:
         let (b) {}
     }
     ```
-
+    
+    It can also be used with destructuring. 
     > **Note**: if condition is omitted, the pattern matches always.
 
 ### Control statements

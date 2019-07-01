@@ -1,87 +1,90 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Loop statements of the lexem's functional core.
+#-    Loop statements of the functional core.
 #------------------------#
 
-let {sml, ..gen} = import("generics")
-let fn_exp = import("./expressions")
+let (ws, ws_simple, check_keyword, identifier) = import("../../commons")
+let fn_exp = import("../expressions")
 let fn_stmt = import("../statements")
-let {destructuring as var_destructuring} = import("./var_declarations")
+let (destructuring) = import("variable_declarations")
 
-let infix_keyword = "infix"
 let end_keyword = "end"
 let else_keyword = "else"
 
 pub! exp infinite {
-    |> gen.keyword("repeat")
-    |? sml* name:gen.identifier
+    |> check_keyword("repeat")
+    |? ws? index:identifier
 
     onback {
         log.error("The infinite loop statement requires a block statement ({}) for its 'then' block.")
     }
-    |> sml* then:fn_stmt.block
 
-    |? infix:last_clause(infix_keyword)
+    |> ws? then:fn_stmt.block
+
     |? end:last_clause(end_keyword)
     |? else:last_clause(else_keyword)
 }
 
 pub! exp conditional {
-    |? gen.keyword("repeat") sml* repeater:gen.identifier sml*
-    | gen.keyword("while") set_props![while]
-    | gen.keyword("until") set_props![- while]
+    |? check_keyword("repeat") ws? index:identifier ws?
+    | check_keyword("while") set_props![while]
+    | check_keyword("until") set_props![- while]
 
     onback {
         log.error("The conditional loop statement requires an expression for its condition.")
     }
-    |> sml* condition:fn_exp.expression
+
+    |> ws? condition:fn_exp.expression
 
     onback {
         log.error("The conditional loop statement requires a block statement ({}) for its 'then' block.")
     }
-    |> sml* then:fn_stmt.block
 
-    |? infix:last_clause(infix_keyword)
+    |> ws? then:fn_stmt.block
+
     |? end:last_clause(end_keyword)
     |? else:last_clause(else_keyword)
 }
 
 pub! exp iterator {
-    |? gen.keyword("repeat") sml* repeater:gen.identifier sml*
-    |> gen.keyword("for")
+    |? check_keyword("repeat") ws? index:identifier ws?
+    |> check_keyword("for")
 
     onback {
         log.error("The iterator loop statement requires at least a variable name for the current value of the iteration.")
     }
-    |> sml* first:gen.identifier {
-        |> sml* "," sml*
+
+    |> ws? first:identifier {
+        |> ws? "," ws?
 
         onback {
             log.error("The iterator loop statement requires another name or a destructuring after the comma.")
         }
-        | second:gen.identifier
-        | second:var_destructuring
+        | second:identifier
+        | destructuring
     }
 
     onback {
         log.error("The iterator loop statement requires the 'in' symbol after the variable names.")
     }
-    |> sml* gen.keyword("in")
+
+    |> ws? check_keyword("in")
 
     onback {
         log.error("The iterator loop statement requires an expression to get the iterator.")
     }
-    |> sml* condition:fn_exp.expression
+
+    |> ws? condition:fn_exp.expression
 
     onback {
         log.error("The iterator loop statement requires a block statement ({}) for its body.")
     }
-    |> sml* then:fn_stmt.block
 
-    |? infix:last_clause(infix_keyword)
+    |> ws? then:fn_stmt.block
+
     |? end:last_clause(end_keyword)
     |? else:last_clause(else_keyword)
 }
@@ -93,10 +96,11 @@ pub! exp iterator {
 #------------#
 
 exp last_clause(keyword) {
-    |> gen.keyword(keyword)
+    |> check_keyword(keyword)
 
     onback {
         log.error("The \(keyword) clause of the loop statement requires a block statement ({}) for its body.")
     }
-    |> sml* body:fn_stmt.block
+
+    |> ws? body:fn_stmt.block
 }
