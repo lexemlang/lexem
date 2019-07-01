@@ -305,7 +305,7 @@ This means the same as:
 
 ```lexem
 var obj = {name: 3}
-Object.freeze(property: "name", for: obj)
+Object.freeze("name", for: obj)
 ```
 
 ### Simplifications (syntactic sugar)
@@ -315,7 +315,10 @@ In addition to the previous patterns, objects allow other types of syntax to sim
 | Rule | Simplifies | When to replace |
 |:----:|:----------:|:----------------|
 |`value`|`value: value`|Whenever the property's name match with the variable's name used as the value.|
+|`#value`|`#value: value`|Same as above but constant.|
 |`name() {}`|`name: fun() {}`|Whenever the expression is a function definition. Names can also be replaced by a string literal or escaped expression.|
+|`#name() {}`|`#name: fun() {}`|Same as above but constant.|
+
 
 Finally, the last pattern makes a property to have a getter (i.e. a function that is executed when retrieving its value) and/or a setter (i.e. a function that is executed when changing its value) instead of a plain value.
 
