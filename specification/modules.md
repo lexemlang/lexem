@@ -34,20 +34,34 @@ Local contexts have a set of pre-defined **constants** that allow you to access 
 
 To import a module just call the `import` function, which is a built-in of the standard library, passing the name of the module context.
 
-Imports can be local or remote, just specify the protocols `http` or `https` at the beginning.
+Imports can be local or remote if you specify the protocols `http` or `https` at the beginning.
 
 ```lexem
 #- Relative
-import("utils/extensions")
+import("path/to/file")
 
 #- Absolute
-import("/extensions")
-import("c:/extensions")
+import("/path/to/file")     #- mac / linux
+import("c:/path/to/file")   #- windows
 
 #- Remote
 import("http://github.com/lexemlang/")
 import("https://github.com/lexemlang/")
 ```
+
+> **Note**: it is not necessary to write the extension of the file, due to if it is not present, the compiler will try to get first a `.lasm` and then a `.lxm` file if the previous is not present.
+
+### Github files imports
+
+Due to Github is one of the biggest open-source community, Lexem has implemented in its core the ability to get a file from github easily using the following sintax:
+
+```lexem
+import("github:user/repo/path/to/file")         #- from master
+import("github@branch:user/repo/path/to/file")  #- from another branch or commit
+```
+
+But if the previous syntax does not satisfy your requirements, you can always use the remote pattern.
+Just remember to use the url to get the raw value of the file, not the web, i.e. like `https://raw.githubusercontent.com/user/repo/branch/path/to/file`
 
 ## Exports
 
