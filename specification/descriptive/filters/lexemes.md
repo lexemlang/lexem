@@ -102,7 +102,6 @@ Finally, the methods provide a way to define complex checks over different eleme
 - `:parent(selector)`:  #- it has a parent and match the selector.
 - `:all-children(selector)`: all children of the node must match the selector.
 - `:any-child(selector)`: at least one child of the node must match the selector.
-- `:qtf-children({min, max}: selector)`: the number of children specified by the quantifier must match the selector.
 - `:node(it: condition)`: allow to perform complex checks over the node.
 
 There is also a negated version of each one, just put a `!` between `:` and the name, e.g. `:!root()`
@@ -127,26 +126,20 @@ The selector is composed by different sections. For example, a fully defined sel
 
 ### Name
 
-Sets the name of the section evaluates the name of the node and try to match it using one of the following rules:
+Sets the name of the node.
 
 ```lexem
-*               #- any name
-name            #- the specific name
-!name           #- not the specific name
-(name, name2)   #- any of these names
-!(name, name2)  #- none of these names
+name
 ```
 
 ### Properties
 
-On the other hand, to check a property use one of the following rules:
+Sets a property of the node.
 
 ```lexem
-.property                    #- the property must exist
-.!property                   #- the property must not exist
-.property[condition]         #- the property must exist and the condition must match using the 'it' alias
-.property[alias: condition]  #- the property must exist and the condition must match using the specified alias
-.(prop1, prop2)              #- any of the prperties
+.property         #- sets the 'property' property to true
+.!property        #- sets the 'property' property to false
+.property[value]  #- sets the 'property' property to the specified value
 ```
 
 ## Accesses
