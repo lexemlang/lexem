@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Number literals.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Number literals.
+--------------------------
 
 let (identifier) = import("root:commons")
 

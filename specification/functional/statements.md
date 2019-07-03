@@ -76,17 +76,17 @@ Re-declare a variable is the same as assigning a new value to it but only if bot
 
 ```lexem
 var x = 3
-#- x == 3
+-- x == 3
 
 var x = 6
-#- x == 6
+-- x == 6
 
 {
     var x = "alfa"
-    #- x == "alfa"
+    -- x == "alfa"
 }
 
-#- x == 6
+-- x == 6
 ```
 
 > **Note**: constants can't be re-declared because... well, they are constants!
@@ -96,17 +96,17 @@ var x = 6
 Assign expressions can declare a new mutable variable if it does not exist before, but it must be bared in mind that if the variable exists in the current context or any of its parents, it will be replaced with all of its side effects, like throwing an error if it is a constant.
 
 ```lexem
-#- x == null
+-- x == null
 
 x = 3
-#- x == 3
+-- x == 3
 
 {
     x = "alfa"
-    #- x == "alfa"
+    -- x == "alfa"
 }
 
-#- x == "alfa"
+-- x == "alfa"
 ```
 
 ### Destructuring
@@ -118,14 +118,14 @@ Destructuring is an useful utility that help to decompose complex objects and li
 To destructure a list it is necessary to use the following syntax:
 
 ```lexem
-let list = [1, 2, 3, 4]     #- list to be destructured
+let list = [1, 2, 3, 4]     -- list to be destructured
 
-let (el1) = list            #- gets first element
-var (el1, el2) = list       #- gets first and second elements
-let (el1, _, el3) = list    #- gets first and third elements
-let (el1, _2, el4) = list   #- gets first and fourth elements
-var (el1, ..rest) = list    #- gets first element and the rest are stored in rest
-var name(...) = list        #- destructures 'list' using one of the above rules but also creates a new variable called 'name' with the value of list.
+let (el1) = list            -- gets first element
+var (el1, el2) = list       -- gets first and second elements
+let (el1, _, el3) = list    -- gets first and third elements
+let (el1, _2, el4) = list   -- gets first and fourth elements
+var (el1, ..rest) = list    -- gets first element and the rest are stored in rest
+var name(...) = list        -- destructures 'list' using one of the above rules but also creates a new variable called 'name' with the value of list.
 ```
 
 As it is shown above, the skip operator (`_`) allows to skip a certain number of elements of the list, setting a number after the underscore, while the spread operator (`..`) allows to store the rest elements inside a new list.
@@ -148,12 +148,12 @@ var name = list
 To destructure an object it is necessary to use the following syntax:
 
 ```lexem
-let object = {a: 1, b: 2, c: 3} #- object to be destructured
+let object = {a: 1, b: 2, c: 3} -- object to be destructured
 
-let (a) = object          #- gets the a element
-var (a, b) = object       #- gets the a and b elements
-let (b, ..rest) = object  #- gets the b element and the rest are stored in rest
-var (a as new) = object   #- gets the a element but renames it to new
+let (a) = object          -- gets the a element
+var (a, b) = object       -- gets the a and b elements
+let (b, ..rest) = object  -- gets the b element and the rest are stored in rest
+var (a as new) = object   -- gets the a element but renames it to new
 ```
 
 As it is shown above, the spread operator (`..`) allows to store the rest elements inside a new object while the rename operator (`as`) allows to rename the element got from the object with a new name.
@@ -176,24 +176,24 @@ var name = object
 The `var` destructuring allows to define variables and constants at the same time, using this for lists:
 
 ```lexem
-let list = [1, 2, 3, 4]     #- list to be destructured
+let list = [1, 2, 3, 4]     -- list to be destructured
 
-var (el1, #el2) = list      #- el1 is a variable and el2 is a constant
-var (el1, ..#rest) = list   #- el1 is a variable and rest is a constant
+var (el1, #el2) = list      -- el1 is a variable and el2 is a constant
+var (el1, ..#rest) = list   -- el1 is a variable and rest is a constant
 
-var #name(...) = list       #- name is a constant but the inner rules are not affected
+var #name(...) = list       -- name is a constant but the inner rules are not affected
 ```
 
 And this for objects:
 
 ```lexem
-let object = [1, 2, 3, 4]  #- list to be destructured
+let object = [1, 2, 3, 4]  -- list to be destructured
 
-var (a, #b) = object       #- a is a variable and b is a constant
-let (b, ..#rest) = object  #- b is a variable and rest is a constant
-var (a as #new) = object   #- new is a constant
+var (a, #b) = object       -- a is a variable and b is a constant
+let (b, ..#rest) = object  -- b is a variable and rest is a constant
+var (a as #new) = object   -- new is a constant
 
-var #name(...) = object    #- name is a constant but the inner rules are not affected
+var #name(...) = object    -- name is a constant but the inner rules are not affected
 ```
 
 ## Truth and falsity
@@ -263,8 +263,8 @@ The allowed patterns are:
     ```lexem
     let num = 4
     when num {
-        if num > 4 {}      #- pure conditional
-        unless num > 4 {}  #- pure conditional
+        if num > 4 {}      -- pure conditional
+        unless num > 4 {}  -- pure conditional
     }
     ```
 
@@ -275,7 +275,7 @@ The allowed patterns are:
     when num {
         3 {}
         if num > 5 {}
-        else {}        #- default case
+        else {}        -- default case
     }
     ```
 
@@ -287,13 +287,13 @@ The allowed patterns are:
     let num = 4
     when num + 40 / 10 {
         let value if value < 4 {
-            value     #- 8
+            value     -- 8
         }
     }
     
     when {a: 2, b: 3} {
         var (a) if a > 4 {
-            a     #- 2
+            a     -- 2
         }
         let (b) {}
     }
@@ -348,7 +348,7 @@ Using the _indexed_ pattern (`repeat name`) each iteration of the loop increase 
 The pattern known as `do-while` loops are not supported directly, but can be easily implemented like:
 
 ```lexem
-#- do-while
+-- do-while
 repeat {
     body
 
@@ -357,7 +357,7 @@ repeat {
     }
 }
 
-#- do-until
+-- do-until
 repeat {
     body
 
@@ -372,11 +372,11 @@ repeat {
 Loops that are repeated once for each element of a collection.
 
 ```lexem
-for index, value in expression {'tag body}  #- normal
-for index, (...) in expression {'tag body}  #- destructuring
+for index, value in expression {'tag body}  -- normal
+for index, (...) in expression {'tag body}  -- destructuring
 
-repeat name for index, value in expression {'tag body}  #- normal
-repeat name for index, (...) in expression {'tag body}  #- destructuring
+repeat name for index, value in expression {'tag body}  -- normal
+repeat name for index, (...) in expression {'tag body}  -- destructuring
 ```
 
 Using the _indexed_ pattern (`repeat name`) each iteration of the loop increase the variable by one. On the other hand, the `index` section is optionally.
@@ -414,7 +414,7 @@ while cond {
     body
 }
 else {
-    body    #- Only executes if cond is false.
+    body    -- Only executes if cond is false.
 }
 
 
@@ -422,7 +422,7 @@ for num in [1, 2, 3] {
     body
 }
 end {
-    body    #- Only executes when the iterator finish not by an exit.
+    body    -- Only executes when the iterator finish not by an exit.
 }
 
 
@@ -430,10 +430,10 @@ for key, value in obj {
     body
 }
 else {
-    body    #- Only executes if obj is empty.
+    body    -- Only executes if obj is empty.
 }
 end {
-    body    #- Only executes when the iterator finish not by an exit.
+    body    -- Only executes when the iterator finish not by an exit.
 }
 
 
@@ -441,7 +441,7 @@ repeat {
     body
 }
 end {
-    body    #- Never executes because the loop will always be finished by an exit.
+    body    -- Never executes because the loop will always be finished by an exit.
 }
 ```
 

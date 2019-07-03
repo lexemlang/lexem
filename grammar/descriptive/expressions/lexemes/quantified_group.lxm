@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Group lexemes of the descriptive core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Group lexemes of the descriptive core.
+--------------------------
 
 let (ws) = import("root:commons")
 let (quantifier) = import("quantifiers")

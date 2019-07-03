@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Loop statements of the functional core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Loop statements of the functional core.
+--------------------------
 
 let (ws, ws_simple, check_keyword, identifier) = import("root:commons")
 let fn_exp = import("../expressions")
@@ -90,9 +90,9 @@ pub! last_clauses {
 
 
 
-#------------#
-#-  Others  -#
-#------------#
+--------------
+--  Others  --
+--------------
 
 exp last_clause(keyword) {
     |> check_keyword(keyword)

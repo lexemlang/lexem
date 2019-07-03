@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Literal text lexemes of the descriptive core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Literal text lexemes of the descriptive core.
+--------------------------
 
 let (identifier, check_keyword) = import("root:commons")
 let (string) = import("root:literals/string")

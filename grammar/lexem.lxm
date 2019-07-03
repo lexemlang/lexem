@@ -1,16 +1,16 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Entry point of the lexem's grammar.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Entry point of the lexem's grammar.
+--------------------------
 
 let (ws, ws_eol) = import("commons")
 let fn_stmt = import("functional/statements")
 let (exp_pattern) = import("descriptive/expressions/patterns")
 
-#- Constants initialization.
+-- Constants initialization.
 global.lexem = {
     block: fn_stmt.block,
     pattern: exp_pattern

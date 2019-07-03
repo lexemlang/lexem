@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Object literals.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Object literals.
+--------------------------
 
 let (ws) = import("root:commons")
 let fn_exp = import("root:functional/expressions")
@@ -34,7 +34,7 @@ exp normal_object {
 		log.error("Incorrect object literal. The close bracket '}' is required.")
 	}
 
-	|> ws? ("," ws?)? "}"	#- trailing comma
+	|> ws? ("," ws?)? "}"	-- trailing comma
 }
 
 exp object_element {

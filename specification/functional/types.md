@@ -140,7 +140,7 @@ The patten is `"...\( expression )..."`:
 ```lexem
 var num = 3
 var str = "buy \(num) things"
-#- str == "buy 3 things"
+-- str == "buy 3 things"
 ```
 
 ## Interval type
@@ -187,7 +187,7 @@ The patten is `[...\( expression )...]` and can be used also as one of the bound
 var x = "b"
 var y = "p"
 var itv = [a\(x) \(num)..t]
-#- itv == [ab p..t]
+-- itv == [ab p..t]
 ```
 
 #### Sub-intervals
@@ -229,7 +229,7 @@ The patten is `0b"...\( expression )..."` and for example:
 ```lexem
 var num = 6
 var res = 0b"0101 \(num) 0111"
-#- res == 0b"0101 0110 0111"
+-- res == 0b"0101 0110 0111"
 ```
 
 ## List type
@@ -326,8 +326,8 @@ Finally, the last pattern makes a property to have a getter (i.e. a function tha
 To do this it is necessary to use the following code:
 
 ```lexem
-let obj = {}        #- an empty object.
-let descriptor = {  #- the object descriptor.
+let obj = {}        -- an empty object.
+let descriptor = {  -- the object descriptor.
     value: "Jhon",
     get() {
         return value
@@ -339,7 +339,7 @@ let descriptor = {  #- the object descriptor.
 
 Object.define(property: "name", by: descriptor)
 
-#- obj.name == "Jhon"
+-- obj.name == "Jhon"
 ```
 
 But a simplification is offered to implement this in an easier way:
@@ -357,7 +357,7 @@ let obj = {
     }
 }
 
-#- obj.name == "Jhon"
+-- obj.name == "Jhon"
 ```
 
 > **Note**: descriptors only allow three properties, all of them optional: `value`, `get` and `set`, being the former of any type and the lasts of `function` type.
@@ -369,8 +369,8 @@ There is another way to define an object called _property-style_ because it is g
 In this mode, objects are defined with the following syntax:
 
 ```lexem
-@[active - deactive : set(value)]  #- normal
-@#[active - deactive : set(value)] #- constant  
+@[active - deactive : set(value)]  -- normal
+@#[active - deactive : set(value)] -- constant  
 ```
 
 Which is translated to:

@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Variable declaration statements.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Variable declaration statements.
+--------------------------
 
 let (ws, identifier) = import("root:commons")
 let fn_exp = import("../expressions")
@@ -58,8 +58,8 @@ pub! exp destructuring {
     }
 
 
-    |? ws? "," ws? destructuring_spread_element     #- Spread element
-    |? ws? ","                                      #- trailing comma
+    |? ws? "," ws? destructuring_spread_element     -- Spread element
+    |? ws? ","                                      -- trailing comma
 
     onBack {
         log.error("Incorrect destructuring. The close parenthesis ')' is required.")

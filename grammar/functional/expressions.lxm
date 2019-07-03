@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Expressions of the functional core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Expressions of the functional core.
+--------------------------
 
 let (ws, identifier_dynamic, check_keyword, identifier) = import("root:commons")
 let literals = import("root:literals")
@@ -13,9 +13,9 @@ let (pattern) = import("descriptive/expression")
 let (property_style_object_block) = import("root:literals/objects")
 
 
-#----------------------#
-#-  Generic Elements  -#
-#----------------------#
+------------------------
+--  Generic Elements  --
+------------------------
 
 pub! exp expression {
     | {
@@ -121,9 +121,9 @@ exp function_call {
         }
     }
 
-    #- Spread element
+    -- Spread element
     |? ws? "," ws? ".." spread:fn_exp.expression
-    |? ws? ","  #- trailing comma
+    |? ws? ","  -- trailing comma
 
 	onBack {
 		log.error("Incorrect function call. The close parenthesis ')' is required.")
@@ -182,9 +182,9 @@ exp macro_file_content {
 	|> function_call
 }
 
-#------------------------#
-#-  Binary expressions  -#
-#------------------------#
+--------------------------
+--  Binary expressions  --
+--------------------------
 
 exp multiplicative_expression[- capture] {
     repeat i for *+ do {
@@ -260,9 +260,9 @@ exp conditional_expression[- capture] {
 
 
 
-#---------------#
-#-  Operators  -#
-#---------------#
+-----------------
+--  Operators  --
+-----------------
 
 exp prefix_operator {
     |> [-+~!]
@@ -284,9 +284,9 @@ exp assign_operator {
 
 
 
-#------------#
-#-  Others  -#
-#------------#
+--------------
+--  Others  --
+--------------
 
 exp operator_end[- capture children consume] {
     |> ![~!*/%+-&|^<>=]

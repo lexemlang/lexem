@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Loop statements of the descriptive core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Loop statements of the descriptive core.
+--------------------------
 
 let (ws, identifier, check_keyword) = import("root:commons")
 let (last_clauses) = import("root:functional/statements/loops")

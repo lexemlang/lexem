@@ -36,9 +36,9 @@ Like functions in the functional core, expressions have two sections:
 An example of fully defined descriptive expression statement is the following:
 
 ```lexem
-#- Header
+-- Header
 exp expressionName[properties](parameters) {
-    #- Body
+    -- Body
     |> "Hello world"
 }
 ```
@@ -50,16 +50,16 @@ If it is used inside a functional expression, it requires a name to generate a n
 The parameters are a list of identifiers separated with commas (`,`), optionally with a default value:
 
 ```lexem
-#- no params
+-- no params
 exp() { }
 
-#- no defaults
+-- no defaults
 exp(param1, param2, param3) { }
 
-#- with defaults
+-- with defaults
 exp(param1: true, param2: "x") { }
 
-#- mixed
+-- mixed
 exp() { }
 ```
 
@@ -123,10 +123,10 @@ This is a single pattern which requires that all of its lexemes must be always c
 It is used to capture static grammar sections, for example:
 
 ```lexem
-#- a number
+-- a number
 |> [0..9]
 
-#- a letter
+-- a letter
 |> [a..z A..Z]
 ```
 
@@ -141,7 +141,7 @@ Like _Static patterns_, this is a single pattern that imposes that all of its le
 It is used to optionally capture static grammar sections, for example:
 
 ```lexem
-#- a word and a number with optionally a dash (-) between them
+-- a word and a number with optionally a dash (-) between them
 |> [a..z A..Z]+
 |? "-"
 |> [0..9]
@@ -158,7 +158,7 @@ It is a single pattern that requires that any of the inner lexemes must fail, so
 It is used to prevent an specific pattern in a certain position, for example:
 
 ```lexem
-#- a number not followed by a letter
+-- a number not followed by a letter
 |> [0..9]+
 |! [a..z A..Z]
 ```
@@ -176,7 +176,7 @@ The union section in optional (`unionName >`).
 It is used to capture two or more options alternatively, i.e. choosing just one of them, for example:
 
 ```lexem
-#- two words separated by a dash (-) or a whitespace
+-- two words separated by a dash (-) or a whitespace
 |> [a..z A..Z]+
 |  "-"
 |  " "
@@ -190,32 +190,32 @@ The first pattern acts like master generating the union and the rest of them wor
 - An anonymous pattern (master) followed by one or more slave patterns forming an anonymous union.
 
     ```lexem
-    |   #- Master 1
-    |   #- Slave  1.1
-    |   #- Slave  1.2
-    |>  #- Interruption
-    |   #- Master 2
+    |   -- Master 1
+    |   -- Slave  1.1
+    |   -- Slave  1.2
+    |>  -- Interruption
+    |   -- Master 2
     ```
 
 - A master pattern with union followed by one or more patterns, at any position of the code, with the same union name belong to the same union.
 
     ```lexem
-    |a>     #- Master a
+    |a>     -- Master a
     |> {
-        |a> #- Slave  a.1
+        |a> -- Slave  a.1
     }
-    |a>     #- Slave  a.2
+    |a>     -- Slave  a.2
     ```
 
 - Take into account that patterns with named unions can't be joined to anonymous patterns:
 
     ```lexem
-    |a> #- Master a
-    |   #- Master 1
-    |   #- Slave  1.1
-    |a> #- Slave  a.1
-    |a> #- Slave  a.2
-    |   #- Master 2
+    |a> -- Master a
+    |   -- Master 1
+    |   -- Slave  1.1
+    |a> -- Slave  a.1
+    |a> -- Slave  a.2
+    |   -- Master 2
     ```
 
 ### Additive pattern
@@ -231,7 +231,7 @@ The union section in optional (`unionName >`).
 It is used to capture optionally a set of options but ensuring that at least one of them is capture, for example:
 
 ```lexem
-#- capture an integer (5), an integer and a decimal part (5.4), or just the decimal part (.4)
+-- capture an integer (5), an integer and a decimal part (5.4), or just the decimal part (.4)
 |+ [0..9]+
 |+ "." [0..9]+
 ```
@@ -243,32 +243,32 @@ The first pattern acts like master generating the union and the rest of them wor
 - An anonymous pattern (master) followed by one or more slave patterns forming an anonymous union.
 
     ```lexem
-    |+  #- Master 1
-    |+  #- Slave  1.1
-    |+  #- Slave  1.2
-    |>  #- Interruption
-    |+  #- Master 2
+    |+  -- Master 1
+    |+  -- Slave  1.1
+    |+  -- Slave  1.2
+    |>  -- Interruption
+    |+  -- Master 2
     ```
 
 - A master pattern with union followed by one or more patterns, at any position of the code, with the same union name belong to the same union.
 
     ```lexem
-    |+a>        #- Master a
+    |+a>        -- Master a
     |> {
-        |+a>    #- Slave  a.1
+        |+a>    -- Slave  a.1
     }
-    |+a>        #- Slave  a.2
+    |+a>        -- Slave  a.2
     ```
 
 - Take into account that patterns with named unions can't be joined to anonymous patterns:
 
     ```lexem
-    |+a>    #- Master a
-    |+      #- Master 1
-    |+      #- Slave  1.1
-    |+a>    #- Slave  a.1
-    |+a>    #- Slave  a.2
-    |+      #- Master 2
+    |+a>    -- Master a
+    |+      -- Master 1
+    |+      -- Slave  1.1
+    |+a>    -- Slave  a.1
+    |+a>    -- Slave  a.2
+    |+      -- Master 2
     ```
 
 ### Selective pattern
@@ -284,7 +284,7 @@ The union section in optional (`unionName >`).
 It is used to capture optionally just one of the patterns of the union, for example:
 
 ```lexem
-#- capture an "a", a "b" or nothing.
+-- capture an "a", a "b" or nothing.
 |* "a"
 |* "b"
 ```
@@ -296,32 +296,32 @@ The first pattern acts like master generating the union and the rest of them wor
 - An anonymous pattern (master) followed by one or more slave patterns forming an anonymous union.
 
     ```lexem
-    |*  #- Master 1
-    |*  #- Slave  1.1
-    |*  #- Slave  1.2
-    |>  #- Interruption
-    |*  #- Master 2
+    |*  -- Master 1
+    |*  -- Slave  1.1
+    |*  -- Slave  1.2
+    |>  -- Interruption
+    |*  -- Master 2
     ```
 
 - A master pattern with union followed by one or more patterns, at any position of the code, with the same union name belong to the same union.
 
     ```lexem
-    |*a>        #- Master a
+    |*a>        -- Master a
     |> {
-        |*a>    #- Slave  a.1
+        |*a>    -- Slave  a.1
     }
-    |*a>        #- Slave  a.2
+    |*a>        -- Slave  a.2
     ```
 
 - Take into account that patterns with named unions can't be joined to anonymous patterns:
 
     ```lexem
-    |*a>    #- Master a
-    |*      #- Master 1
-    |*      #- Slave  1.1
-    |*a>    #- Slave  a.1
-    |*a>    #- Slave  a.2
-    |*      #- Master 2
+    |*a>    -- Master a
+    |*      -- Master 1
+    |*      -- Slave  1.1
+    |*a>    -- Slave  a.1
+    |*a>    -- Slave  a.2
+    |*      -- Master 2
     ```
 
 ### Quantified pattern
@@ -338,7 +338,7 @@ The union section in optional (`unionName >`).
 It is used to explicitly set the minimum and maximum number of patterns of the union, for example:
 
 ```lexem
-#- capture one of: "a", "b", "c", "ab", "bc", "ac"
+-- capture one of: "a", "b", "c", "ab", "bc", "ac"
 |{1,2} "a"
 |{} "b"
 |{} "c"
@@ -349,33 +349,33 @@ Moreover, the fist syntax is masters while the second is the for slaves, so ther
 - An anonymous pattern (master) followed by one or more slave patterns forming an anonymous union.
 
     ```lexem
-    |{x,y}  #- Master 1
-    |{}     #- Slave  1.1
-    |{}     #- Slave  1.2
-    |>      #- Interruption
-    #- |{}  #- Error because it has no master.
-    |{x,y}  #- Master 2
+    |{x,y}  -- Master 1
+    |{}     -- Slave  1.1
+    |{}     -- Slave  1.2
+    |>      -- Interruption
+    -- |{}  -- Error because it has no master.
+    |{x,y}  -- Master 2
     ```
 
 - A master pattern with union followed by one or more patterns, at any position of the code, with the same union name belong to the same union.
 
     ```lexem
-    |{x,y}a>    #- Master a
+    |{x,y}a>    -- Master a
     |> {
-        |{}a>   #- Slave  a.1
+        |{}a>   -- Slave  a.1
     }
-    |{}a>       #- Slave  a.2
+    |{}a>       -- Slave  a.2
     ```
 
 - Take into account that patterns with named unions can't be joined to anonymous patterns:
 
     ```lexem
-    |{x,y}a>    #- Master a
-    |{}         #- Master 1
-    |{}         #- Slave  1.1
-    |{x,y}a>    #- Slave  a.1
-    |{x,y}a>    #- Slave  a.2
-    |{}         #- Master 2
+    |{x,y}a>    -- Master a
+    |{}         -- Master 1
+    |{}         -- Slave  1.1
+    |{x,y}a>    -- Slave  a.1
+    |{x,y}a>    -- Slave  a.2
+    |{}         -- Master 2
     ```
 
 ## Nodes

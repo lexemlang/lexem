@@ -58,10 +58,10 @@ The selector is composed by different sections. For example, a fully defined sel
 The name section evaluates the name of the node and try to match it using one of the following rules:
 
 ```lexem
-name            #- the specific name
-!name           #- not the specific name
-(name, name2)   #- any of these names
-!(name, name2)  #- none of these names
+name            -- the specific name
+!name           -- not the specific name
+(name, name2)   -- any of these names
+!(name, name2)  -- none of these names
 ```
 
 > **Note**: if this section is omitted, the selector does not filter by the name of the node.
@@ -71,11 +71,11 @@ name            #- the specific name
 On the other hand, to check a property use one of the following rules:
 
 ```lexem
-.property                    #- the property must exist
-.!property                   #- the property must not exist
-.property[condition]         #- the property must exist and the condition must match using the 'it' alias
-.property[alias: condition]  #- the property must exist and the condition must match using the specified alias
-.(prop1, prop2)              #- any of the properties
+.property                    -- the property must exist
+.!property                   -- the property must not exist
+.property[condition]         -- the property must exist and the condition must match using the 'it' alias
+.property[alias: condition]  -- the property must exist and the condition must match using the specified alias
+.(prop1, prop2)              -- any of the properties
 ```
 
 Also, there is a set of reserved property keys:
@@ -99,7 +99,7 @@ Finally, the methods provide a way to define complex checks over different eleme
 - `:last-child`: the node position inside the child list of its parent must be the last.
 - `:nth-child(nth: condition)`: the node position inside the child list of its parent must match the condition.
 - `:nth-last-child(nth: condition)`: the node position inside the child list of its parent must match the condition.
-- `:parent(selector)`:  #- it has a parent and match the selector.
+- `:parent(selector)`:  it has a parent and match the selector.
 - `:all-children(selector)`: all children of the node must match the selector.
 - `:any-child(selector)`: at least one child of the node must match the selector.
 - `:node(it: condition)`: allow to perform complex checks over the node.
@@ -137,9 +137,9 @@ name
 Sets a property of the node.
 
 ```lexem
-.property         #- sets the 'property' property to true
-.!property        #- sets the 'property' property to false
-.property[value]  #- sets the 'property' property to the specified value
+.property         -- sets the 'property' property to true
+.!property        -- sets the 'property' property to false
+.property[value]  -- sets the 'property' property to the specified value
 ```
 
 ## Accesses

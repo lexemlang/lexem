@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Function literals.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Function literals.
+--------------------------
 
 let (ws) = import("root:commons")
 let fn_exp = import("root:functional/expressions")
@@ -43,7 +43,7 @@ pub! exp function_arguments {
 		log.error("Incorrect arguments. The close parenthesis ')' is required.")
 	}
 
-	|> ws? ("," ws?)? ")"	#- trailing comma
+	|> ws? ("," ws?)? ")"	-- trailing comma
 }
 
 exp function_arguments_element {

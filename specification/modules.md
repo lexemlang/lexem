@@ -38,15 +38,15 @@ To import a module just call the `import` function, which is a built-in of the s
 Imports can be local or remote if you specify the protocols `http` or `https` at the beginning.
 
 ```lexem
-#- Relative
-import("path/to/file")      #- to current file
-import("root:path/to/file") #- to project root
+-- Relative
+import("path/to/file")      -- to current file
+import("root:path/to/file") -- to project root
 
-#- Absolute
-import("/path/to/file")     #- mac / linux
-import("c:/path/to/file")   #- windows
+-- Absolute
+import("/path/to/file")     -- mac / linux
+import("c:/path/to/file")   -- windows
 
-#- Remote
+-- Remote
 import("http://github.com/lexemlang/")
 import("https://github.com/lexemlang/")
 ```
@@ -58,8 +58,8 @@ import("https://github.com/lexemlang/")
 Due to Github is one of the biggest open-source community, Lexem has implemented in its core the ability to get a file from github easily using the following sintax:
 
 ```lexem
-import("github:user/repo/path/to/file")         #- from master
-import("github@branch:user/repo/path/to/file")  #- from another branch or commit
+import("github:user/repo/path/to/file")         -- from master
+import("github@branch:user/repo/path/to/file")  -- from another branch or commit
 ```
 
 But if the previous syntax does not satisfy your requirements, you can always use the remote pattern.
@@ -70,13 +70,13 @@ Just remember to use the url to get the raw value of the file, not the web, i.e.
 To import a module it is necessary that the module has previously exported its public components. The `exports` object must be filled with all elements that are public. For example:
 
 ```lexem
-#- A variable
+-- A variable
 let x = 3
 
-#- A function
+-- A function
 fun funName() {}
 
-#- The export
+-- The export
 var exports = {
     x,
     funName,
@@ -86,14 +86,14 @@ var exports = {
 But also it can be created at the beginning and progressively filled during the initialization of each element:
 
 ```lexem
-#- The export (can be omitted)
+-- The export (can be omitted)
 var exports = {}
 
-#- A variable
+-- A variable
 let x = 3
 export.x = x
 
-#- A function
+-- A function
 fun funName() {}
 export.funName = funName
 ```
@@ -105,16 +105,16 @@ The `export` variable initialization can be omitted due to Lexem creates it with
 The latter is a common and useful pattern, so there is a modifier for statements that allows to simplify its writing:
 
 ```lexem
-#- A variable
+-- A variable
 pub var x = 3
 
-#- A constant
+-- A constant
 pub let y = "value"
 
-#- A function
+-- A function
 pub fun funName() {}
 
-#- An expression
+-- An expression
 pub exp expName() {}
 ```
 

@@ -57,7 +57,7 @@ Some indexers can use intervals as indexes instead of just `Integer`s to obtain 
 var string = "Hello"
 var string3 = string[itv![1..3]]
 
-#- string2 == "ell"
+-- string2 == "ell"
 ```
 
 ## Accesses
@@ -69,19 +69,19 @@ An identifier, any type of string literal or an escaped expression, must be used
 ```lexem
 var object = {a: 1, b: 2, c: 3}
 
-var x = object.a        #- x == 1
-var y = object."b"      #- y == 2
-var z = object.\("c")   #- z == 3
+var x = object.a        -- x == 1
+var y = object."b"      -- y == 2
+var z = object.\("c")   -- z == 3
 ```
 
 Moreover, accesses let us to get the methods or properties of any type from their prototypes. For example:
 
 ```lexem
 var string = "Hello, world!"
-string.replace("world", by: "Lexem") #- replace one word by another
+string.replace("world", by: "Lexem") -- replace one word by another
 
 var num = 9
-num.sign                             #- gets the sign of the number
+num.sign                             -- gets the sign of the number
 ```
 
 > **Note**: when an access does not exist, it returns a `null`.
@@ -93,14 +93,14 @@ When the code of a function has to be executed, the function must be called. To 
 ```lexem
 let function = fun(arg0, arg1: value1) {}
 
-#- a call with all the arguments.
+-- a call with all the arguments.
 function(arg0: 3, arg1: 4)
 ```
 
 The first argument's name can be omitted when doing the calling:
 
 ```lexem
-#- a call without the first argument's name.
+-- a call without the first argument's name.
 function(3, arg1: 4)
 ```
 
@@ -109,7 +109,7 @@ And also exists a simplification when only a variable is introduced and its name
 ```lexem
 let function = fun(arg0, arg1: value1) {}
 
-#- a call with all the simplifications.
+-- a call with all the simplifications.
 var arg1 = 4
 function(3, arg1)
 ```
@@ -118,10 +118,10 @@ Finally, it is necessary to take into account that when a function contained ins
 
 ```lexem
 let function = fun(){}
-function()  #- this == null
+function()  -- this == null
 
 let container = {function: function}
-container.function()  #- this == container
+container.function()  -- this == container
 ```
 
 The first call is `null` because there's no container while in the last one there's an object with a property that contains the function.
@@ -136,7 +136,7 @@ The spread operator (`..`) allows to deconstruct an object matching its properti
 let function = fun(arg0, arg1: value1) {}
 let arguments = {arg0: 3, arg1: 4}
 
-#- both are equivalent
+-- both are equivalent
 function(arg0: arguments.arg0, arg1: arguments.arg1)
 function(arguments.arg0, arg1: arguments.arg1)
 function(..arguments)
@@ -148,7 +148,7 @@ Moreover, spread operator can be combined with normal arguments:
 let function = fun(arg0, arg1: value1) {}
 let arguments = {arg1: 4}
 
-#- both are equivalent
+-- both are equivalent
 function(arg0: 3, arg1: arguments.arg1)
 function(3, ..arguments)
 ```
@@ -284,7 +284,7 @@ Every assigment with an operator is equivalent to:
 ```lexem
 left op= right
 
-#- equivalent to -#
+-- equivalent to --
 
 left = (left op right)
 ```

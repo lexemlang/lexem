@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Continuation lexemes of the descriptive core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Continuation lexemes of the descriptive core.
+--------------------------
 
 let (line_break) = import("root:commons")
 

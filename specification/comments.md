@@ -7,10 +7,10 @@
 
 Comments are an useful utility that helps to document the code.
 
-There are two types of comments. A single-line comment started with `#-` and any text until an end-of-line character:
+There are two types of comments. A single-line comment started with `--` and any text until an end-of-line character:
 
 ```lexem
-#- this is a single-line comment
+-- this is a single-line comment
 ```
 
 And a multiline version enclosed between `#+` and  `+#`:

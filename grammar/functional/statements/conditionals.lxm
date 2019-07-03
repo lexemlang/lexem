@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Conditional statements for the functional core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Conditional statements for the functional core.
+--------------------------
 
 let (ws, ws_simple, check_keyword) = import("root:commons")
 let fn_exp = import("../expressions")

@@ -24,20 +24,20 @@ Using the same syntax of the _Property-style object definition_, checks whether 
 For example:
 
 ```lexem
-#- As functional expression or statement.
+-- As functional expression or statement.
 check_props![active - deactive : with(value)]
 
-#- As lexeme.
+-- As lexeme.
 |> check_props![active]
 ```
 
 Is equivalent to:
 
 ```lexem
-#- As functional expression or statement.
+-- As functional expression or statement.
 (node.properties.active == true and node.properties.deactive == false and node.properties.with == value)
 
-#- As lexeme.
+-- As lexeme.
 |> \(? node.properties.active == true)
 ```
 
@@ -164,19 +164,19 @@ Initiates the backtracking.
 For example:
 
 ```lexem
-#- As functional expression or statement.
+-- As functional expression or statement.
 var x = argument || backtrack!
 
-#- As lexeme.
+-- As lexeme.
 |> "abc" backtrack!
 ```
 
 Is equivalent to:
 
 ```lexem
-#- As functional expression or statement.
+-- As functional expression or statement.
 var x = argument || Analyzer.initBacktrack()
 
-#- As lexeme.
+-- As lexeme.
 |> "abc" !""
 ```

@@ -28,9 +28,9 @@ Like functions in the functional core, filters have two sections:
 An example of fully defined filter statement is the following:
 
 ```lexem
-#- Header
+-- Header
 filter filterName[properties](parameters) {
-    #- Body
+    -- Body
     |> @(*)
 }
 ```
@@ -42,16 +42,16 @@ If it is used inside a functional expression, it requires a name to generate a n
 The parameters are a list of identifiers separated with commas (`,`), optionally with a default value:
 
 ```lexem
-#- no params
+-- no params
 filter() { }
 
-#- no defaults
+-- no defaults
 filter(param1, param2, param3) { }
 
-#- with defaults
+-- with defaults
 filter(param1: true, param2: "x") { }
 
-#- mixed
+-- mixed
 filter() { }
 ```
 

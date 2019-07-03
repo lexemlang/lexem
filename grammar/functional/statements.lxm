@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Statements of the functional core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Statements of the functional core.
+--------------------------
 
 let (ws, identifier) = import("root:commons")
 let fn_exp = import("expressions")
@@ -20,9 +20,9 @@ let (pattern as exp_pattern) = import("root:descriptive/expressions/patterns")
 let (pattern as filter_pattern) = import("root:descriptive/filters/patterns")
 
 
-#----------------------#
-#-  Generic Elements  -#
-#----------------------#
+------------------------
+--  Generic Elements  --
+------------------------
 
 pub! exp statement[- capture] {
     | global.lexem.block
@@ -31,7 +31,7 @@ pub! exp statement[- capture] {
     | selective
     | loops.conditional
     | loops.iterator
-    | loops.infinite    #- always after the other loops
+    | loops.infinite    -- always after the other loops
     | macro_statement
     | control
     | fn_exp.expression
@@ -117,9 +117,9 @@ exp filter_statement {
 
 
 
-#----------------------#
-#-  Macro statements  -#
-#----------------------#
+------------------------
+--  Macro statements  --
+------------------------
 
 exp macro_statement[- capture] {
     | macro_statement_public

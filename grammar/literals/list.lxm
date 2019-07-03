@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    List literals.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    List literals.
+--------------------------
 
 let (ws) = import("root:commons")
 let fn_exp = import("root:functional/expressions")
@@ -26,5 +26,5 @@ pub! exp list {
 		log.error("Incorrect list literal. The close square bracket ']' is required.")
 	}
 
-	|> ws? ("," ws?)? "]"	#- trailing comma
+	|> ws? ("," ws?)? "]"	-- trailing comma
 }

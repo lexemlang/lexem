@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Addition lexemes of the filter section of the descriptive core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Addition lexemes of the filter section of the descriptive core.
+--------------------------
 
 let (ws) = import("root:commons")
 let fn_exp = import("root:functional/expressions")

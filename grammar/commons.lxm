@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Generic elements used through the whole grammar.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Generic elements used through the whole grammar.
+--------------------------
 
 let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lasm")
 let fn_exp = import("functional/expressions")
@@ -13,17 +13,17 @@ let (integer_number_hex_default) = import("literals/number")
 
 
 
-#----------------------#
-#-  Generic Elements  -#
-#----------------------#
+------------------------
+--  Generic Elements  --
+------------------------
 
 let ucd_character = ucd_categories.Cn.reverse()
 
 
 
-#-----------------#
-#-  Whitespaces  -#
-#-----------------#
+-------------------
+--  Whitespaces  --
+-------------------
 
 pub! let whitespace_block = itv![9 20 1A \(ucd_categories.Zs)]
 pub! exp whitespace {
@@ -66,12 +66,12 @@ pub! let ws_eol = whitespace_eol
 
 
 
-#--------------#
-#-  Comments  -#
-#--------------#
+----------------
+--  Comments  --
+----------------
 
 exp comment {
-	|> "#-"
+	|> "--"
 
 	onBack {
         log.error("Incorrect line comment. The end-of-line symbol was expected.")
@@ -81,21 +81,24 @@ exp comment {
 }
 
 exp comment_multiline(props![capture - children]) {
-	|> "#" (delimiter[property]: "+"+)
+	|> "#" (delimiter[property]: "-"+)
 
-	onBack {
-		log.error("Incorrect multiline comment. The close symbol '\(node.properties.delimiter)#' was expected.")
+	| "#"
+	| {
+        onBack {
+            log.error("Incorrect multiline comment. The close symbol '\(node.properties.delimiter)#' was expected.")
+        }
+
+        |> text[property]: [\(ucd_character)]*?
+        |> "\(node.properties.delimiter)" "#"
 	}
-
-	|> text[property]: [\(ucd_character)]*?
-	|> "\(node.properties.delimiter)" "#"
 }
 
 
 
-#-----------------#
-#-  Identifiers  -#
-#-----------------#
+-------------------
+--  Identifiers  --
+-------------------
 
 pub! exp identifier {
 	|> simple_identifier ("-" simple_identifier)*
@@ -138,9 +141,9 @@ pub! exp identifier_dynamic[- capture] {
 
 
 
-#-------------#
-#-  Escapes  -#
-#-------------#
+---------------
+--  Escapes  --
+---------------
 
 pub! exp escape[- capture] {
 	| escape_point
@@ -207,9 +210,9 @@ pub! exp escaped_expression {
 
 
 
-#------------#
-#-  Others  -#
-#------------#
+--------------
+--  Others  --
+--------------
 
 pub! exp check_keyword[- capture children](keyword) {
 	|> "\(keyword)" ![\(identifier_end_block)]

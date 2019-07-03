@@ -1,10 +1,10 @@
 
-#------------------------#
-#- Lexem grammar v0.1.1 -#
-#------------------------#
-#- Description:
-#-    Statements of the descriptive core.
-#------------------------#
+--------------------------
+-- Lexem grammar v0.1.1 --
+--------------------------
+-- Description:
+--    Statements of the descriptive core.
+--------------------------
 
 let (ws, identifier) = import("root:commons")
 let fn_exp = import("functional/expressions")
@@ -13,9 +13,9 @@ let loops = import("statements/loops")
 let (block as stmt_block) = import("root:functional/statements")
 
 
-#----------------------#
-#-  Generic Elements  -#
-#----------------------#
+------------------------
+--  Generic Elements  --
+------------------------
 
 pub! exp statement[- capture] {
     | global.lexem.pattern
