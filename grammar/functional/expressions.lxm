@@ -163,23 +163,17 @@ exp macro[- capture] {
     | "line!"
     | "file!"
     | "directory!"
-    | "backtrack!"
+    | "file_content!"
     | macro_check_props
     | macro_file_content
 }
 
-exp macro_check_props {
+pub! exp macro_check_props {
 	|> "check_props!" object:property_style_object_block
 }
 
-exp macro_file_content {
-	|> "file_content!"
-
-    onBack {
-		log.error("Incorrect file_content! macro. A function call is required after the macro.")
-	}
-
-	|> function_call
+pub! exp macro_backtrack {
+	|> "backtrack!" function_call?
 }
 
 --------------------------

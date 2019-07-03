@@ -2,7 +2,7 @@
 # Index
 
 - [Index](#Index)
-- [Functional macros](#Functional-macros)
+- [Macros](#Macros)
   - [check_props!](#check_props)
   - [logic_line!](#logic_line)
   - [line!](#line)
@@ -11,7 +11,7 @@
   - [file_content!](#file_content)
   - [backtrack!](#backtrack)
 
-# Functional macros
+# Macros
 
 ## check_props!
 
@@ -135,22 +135,20 @@ let file = "path/to/"
 |:------------------------:|:------------:|:---------:|
 | Yes                      | No           | No        |
 
-Returns a `String` with the content of the indicated lines of the current file.
+Returns a `String` with the content of the current file.
 
 For example:
 
 ```lexem
-1. let x = line_content!(from: 1, to: 2)
-2. let y = line_content!(..logic_line!) +
-3. x *
-4. y
+let x = file_content!
+var y = 3
 ```
 
 Is equivalent to:
 
 ```lexem
-let x = "let x = line_content!(from: 1, to: 2)\nvar! y = line_content!(line!) +"
-let y = "let y = line_content!(line!) +\nx *\ny"
+let x = "let x = file_content!\nvar y = 3"
+var y = 3
 ```
 
 ## backtrack!
@@ -159,15 +157,17 @@ let y = "let y = line_content!(line!) +\nx *\ny"
 |:------------------------:|:------------:|:---------:|
 | Yes                      | Yes          | Yes       |
 
-Initiates the backtracking.
+Initiates the backtracking, optionally sending a value to indicate why the error was thrown.
 
 For example:
 
 ```lexem
 -- As functional expression or statement.
+var x = argument || backtrack!(expression)
 var x = argument || backtrack!
 
 -- As lexeme.
+|> "abc" backtrack!(expression)
 |> "abc" backtrack!
 ```
 
@@ -175,8 +175,12 @@ Is equivalent to:
 
 ```lexem
 -- As functional expression or statement.
-var x = argument || Analyzer.initBacktrack()
+var x = argument || Analyzer.initBacktrack(expression)
+var x = argument || Analyzer.initBacktrack(null)
 
 -- As lexeme.
-|> "abc" !""
+|> "abc" \(Analyzer.initBacktrack(expression))
+|> "abc" \(Analyzer.initBacktrack(null))
 ```
+
+|> **Note**: if the value is not specified a `null` is thrown.
