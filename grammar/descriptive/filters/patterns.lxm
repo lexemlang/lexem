@@ -46,6 +46,8 @@ pub! exp pattern_content {
 }
 
 exp lexem {
+    | fn_exp.macro_check_props
+    | fn_exp.macro_backtrack
     | {
         |? data_capturing ws_no_eol?
         | addition
