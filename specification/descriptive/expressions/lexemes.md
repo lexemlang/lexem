@@ -4,7 +4,7 @@
 - [Index](#Index)
 - [Lexemes](#Lexemes)
   - [Literal texts](#Literal-texts)
-  - [Literal binary patterns](#Literal-binary-patterns)
+  - [Literal binary sequence](#Literal-binary-sequence)
   - [Character blocks](#Character-blocks)
   - [Groups](#Groups)
     - [Header](#Header)
@@ -50,7 +50,7 @@ Strings are evaluated in short-circuit mode, therefore if a previous section doe
 
 > **Note**: the `insensible` and `reverse` properties are applied after evaluate an escaped expression.
 
-## Literal binary patterns
+## Literal binary sequence
 
 This type of lexeme captures literal binary patterns.
 
@@ -242,8 +242,6 @@ The quantified groups are by default greedy, so to change them to lazy (`?`), at
 ```
 
 Each of the options must be suffixed with (`|`) followed by a quantifier that specifies the number of captures required for that option. If it is omitted the default quantifier is `{1}`.
-
-> **Note**: if the last option has no quantifier, the (`|`) can also be omitted.
 
 For example, for `@("x"| "y"|? "z"|{1,2})` its calculated global quantifier would be `{2,4}` and will capture the following patterns ordered by priority from left to right and top to bottom, considering the modifier is greedy:
 

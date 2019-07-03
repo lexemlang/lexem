@@ -4,6 +4,7 @@
 - [Lexem modules](#Lexem-modules)
   - [Contexts](#Contexts)
   - [Imports](#Imports)
+    - [Github files imports](#Github-files-imports)
   - [Exports](#Exports)
     - [`pub` modifier](#pub-modifier)
 
@@ -38,7 +39,8 @@ Imports can be local or remote if you specify the protocols `http` or `https` at
 
 ```lexem
 #- Relative
-import("path/to/file")
+import("path/to/file")      #- to current file
+import("root:path/to/file") #- to project root
 
 #- Absolute
 import("/path/to/file")     #- mac / linux
