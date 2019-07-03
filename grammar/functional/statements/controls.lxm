@@ -6,7 +6,7 @@
 #-    Control statements of the functional core.
 #------------------------#
 
-let (ws, check_keyword, identifier) = import("../../commons")
+let (ws, check_keyword, identifier) = import("root:commons")
 let fn_exp = import("../expressions")
 
 

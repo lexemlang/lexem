@@ -6,11 +6,11 @@
 #-    Expressions of the functional core.
 #------------------------#
 
-let (ws, identifier_dynamic, check_keyword, identifier) = import("../commons")
-let literals = import("../literals")
+let (ws, identifier_dynamic, check_keyword, identifier) = import("root:commons")
+let literals = import("root:literals")
 let fn_stmt = import("statements")
 let (pattern) = import("descriptive/expression")
-let (property_style_object_block) = import("../literals/objects")
+let (property_style_object_block) = import("root:literals/objects")
 
 
 #----------------------#
@@ -58,7 +58,7 @@ exp prefix_expression[- capture] {
     | access
     | literal
     | macro
-    | fn_stmt.block
+    | global.lexem.block
 }
 
 exp literal[- capture] {
@@ -130,6 +130,7 @@ exp function_call {
 	}
 
 	|> ws? ")"
+	|? function_call_expression_properties
 }
 
 exp function_call_first_element {
@@ -145,6 +146,16 @@ exp function_call_middle_element {
     }
 
     |> ws? fn_exp.expression
+}
+
+exp function_call_expression_properties {
+    |> ":"
+
+    onBack {
+        log.error("An open square bracket was expected after the token ':'.")
+    }
+
+    |> property_style_object_block
 }
 
 exp macro[- capture] {

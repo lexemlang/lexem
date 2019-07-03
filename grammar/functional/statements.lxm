@@ -6,15 +6,18 @@
 #-    Statements of the functional core.
 #------------------------#
 
-let (ws, identifier) = import("../commons")
+let (ws, identifier) = import("root:commons")
 let fn_exp = import("expressions")
-let (function_arguments) = import("../literals/functions")
+let (function_arguments) = import("root:literals/functions")
 let (variable_declaration) = import("statements/variable_declarations")
 let (conditional) = import("statements/conditionals")
 let (selective) = import("statements/selective")
 let loops = import("statements/loops")
 let (control) = import("statements/controls")
-let (property_style_object_block) = import("../literals/objects")
+let (property_style_object_block) = import("root:literals/objects")
+let (block as exp_stmt_block) = import("root:descriptive/statements")
+let (pattern as exp_pattern) = import("root:descriptive/expressions/patterns")
+let (pattern as filter_pattern) = import("root:descriptive/filters/patterns")
 
 
 #----------------------#
@@ -22,7 +25,7 @@ let (property_style_object_block) = import("../literals/objects")
 #----------------------#
 
 pub! exp statement[- capture] {
-    | block
+    | global.lexem.block
     | variable_declaration
     | conditional
     | selective
@@ -58,23 +61,58 @@ pub! exp block {
 
 exp function_statement {
 	|> "fun" ws name:identifier
-	|? args:function_arguments
+	|? ws? args:function_arguments
 
 	onBack {
 		log.error("Incorrect function statement. It is required a body block '{}'.")
 	}
 
-	|> body:block
+    let keep = global.lexem.block
+    global.lexem.block = block
+
+	|> body:global.lexem.block
+
+    global.lexem.block = keep
 }
 
 exp expression_statement {
-	|> "fun" ws? name:identifier args:function_arguments?
+	|> "exp" ws name:identifier
+	|? ws? props:property_style_object_block
+	|? ws? args:function_arguments
 
 	onBack {
-		log.error("Incorrect function statement. It is required a body block '{}'.")
+		log.error("Incorrect expression statement. It is required a body block '{}'.")
 	}
 
-	|> body:block
+    let keep = global.lexem.block
+    let keep_pattern = global.lexem.pattern
+    global.lexem.block = exp_stmt_block
+    global.lexem.pattern = exp_pattern
+
+	|> body:global.lexem.block
+
+    global.lexem.block = keep
+    global.lexem.pattern = keep_pattern
+}
+
+exp filter_statement {
+	|> "filter" ws name:identifier
+	|? ws? props:property_style_object_block
+	|? ws? args:function_arguments
+
+	onBack {
+		log.error("Incorrect filter statement. It is required a body block '{}'.")
+	}
+
+    let keep = global.lexem.block
+    let keep_pattern = global.lexem.pattern
+    global.lexem.block = exp_stmt_block
+    global.lexem.pattern = filter_pattern
+
+	|> body:global.lexem.block
+
+    global.lexem.block = keep
+    global.lexem.pattern = keep_pattern
 }
 
 
@@ -98,7 +136,7 @@ exp macro_statement_public {
     | variable_declaration
     | function_statement
     | expression_statement
-    | TODO add filter
+    | filter_statement
 }
 
 

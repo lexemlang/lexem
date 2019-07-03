@@ -6,9 +6,9 @@
 #-    Function literals.
 #------------------------#
 
-let (ws) = import("../commons")
-let fn_exp = import("../functional/expressions")
-let fn_stmt = import("../functional/statement")
+let (ws) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
+let fn_stmt = import("root:functional/statement")
 
 pub! exp function {
 	|> "fun" ws? args:function_arguments?
@@ -17,7 +17,12 @@ pub! exp function {
 		log.error("Incorrect literal function. It is required a body block '{}'.")
 	}
 
-	|> body:fn_stmt.block
+    let keep = global.lexem.block
+    global.lexem.block = fn_stmt.block
+
+	|> body:global.lexem.block
+
+    global.lexem.block = keep
 }
 
 pub! exp function_arguments {

@@ -8,6 +8,14 @@
 
 let (ws, ws_eol) = import("commons")
 let fn_stmt = import("functional/statements")
+let (exp_pattern) = import("descriptive/expressions/patterns")
+
+#- Constants initialization.
+global.lexem = {
+    block: fn_stmt.block,
+    pattern: exp_pattern
+}
+
 
 pub! exp main {
 	|> ^^ ws?

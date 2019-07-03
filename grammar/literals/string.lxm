@@ -7,7 +7,7 @@
 #------------------------#
 
 let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lasm")
-let commons = import("../commons")
+let commons = import("root:commons")
 
 pub! exp string[- capture] {
 	| normal_string

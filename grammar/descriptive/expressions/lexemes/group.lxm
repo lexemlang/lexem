@@ -1,0 +1,43 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Group lexemes of the descriptive core.
+#------------------------#
+
+let (ws, identifier) = import("root:commons")
+let (quantifier) = import("quantifiers")
+let (property_style_object_block) = import("root:literals/objects")
+let (pattern_content) = import("../patterns")
+
+pub! exp group {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    |> "("
+    |? header ws? ":"
+
+    onBack {
+        log.error("At least one pattern is required for the group content.")
+    }
+
+    repeat i for ++ {
+        if i > 0 {
+            |> ws? "|" ws?
+        }
+
+        |> pattern_content
+    }
+
+	onBack {
+		log.error("The close parenthesis ')' of the group is required.")
+	}
+
+	|> ws? ")"
+}
+
+exp header {
+	|+ quantifier
+    |+ identifier
+    |+ property_style_object_block
+}

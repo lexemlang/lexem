@@ -6,7 +6,7 @@
 #-    Selective statements of the functional core.
 #------------------------#
 
-let (ws, ws_eol, check_keyword, identifier) = import("../../commons")
+let (ws, ws_eol, check_keyword, identifier) = import("root:commons")
 let fn_exp = import("./expressions")
 let fn_stmt = import("../statements")
 let (destructuring) = import("variable_declarations")
@@ -25,7 +25,7 @@ pub! exp selective {
     for *+ {
         |> ws? case
     }
-    
+
     onBack {
         log.error("The selective statement requires here the close bracket '}'.")
     }
@@ -49,7 +49,7 @@ exp case {
         log.error("The selective case requires a block statement ({}) for its body.")
     }
 
-    |> ws? code:fn_stmt.block ws_eol
+    |> ws? code:global.lexem.block ws_eol
 }
 
 exp pattern_variable {

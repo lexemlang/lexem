@@ -6,7 +6,7 @@
 #-    Variable declaration statements.
 #------------------------#
 
-let (ws, identifier) = import("../../commons")
+let (ws, identifier) = import("root:commons")
 let fn_exp = import("../expressions")
 
 pub! exp variable_declaration {
@@ -27,7 +27,7 @@ pub! exp variable_declaration {
     onBack {
         log.error("The \(key) declaration statement requires an initial value.")
     }
-    
+
     |> ws? "="
 
     onBack {
@@ -35,7 +35,7 @@ pub! exp variable_declaration {
     }
 
     |> ws? fn_exp.expression
-    
+
     onBack {
         log.error("The \(key) declaration statement should end here.")
     }
@@ -60,7 +60,7 @@ pub! exp destructuring {
 
     |? ws? "," ws? destructuring_spread_element     #- Spread element
     |? ws? ","                                      #- trailing comma
-    
+
     onBack {
         log.error("Incorrect destructuring. The close parenthesis ')' is required.")
     }

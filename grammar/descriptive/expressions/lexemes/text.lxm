@@ -1,35 +1,41 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Literal text lexemes of the lexem's descriptive core.
+#-    Literal text lexemes of the descriptive core.
 #------------------------#
 
-let {..gen} = import("generics")
-let {string} = import("literals/strings")
+let (identifier, check_keyword) = import("root:commons")
+let (string) = import("root:literals/string")
 
 pub! exp text {
     set_props![- negated]
     |? "!" set_props![negated]
     |> value:string
 
-    |? afirtmative_props:prop_abbreviation
-    |? "-" {
+    |? property_postfix
+}
+
+pub! exp property_postfix {
+    |+ affirmative_props:prop_abbreviation
+    |+ "-" {
         onBack {
             log.error("A property abbreviation (i or r) is required after the '-'.")
         }
+
         |> negative_props:prop_abbreviation
     }
-    |? "!" {
+    |+ "!" {
         onBack {
             log.error("A property abbreviation (i or r) is required after the '!'.")
         }
+
         |> reversed_props:prop_abbreviation
     }
 }
 
-exp prop_abbreviation(props![- backtrack]) {
-    |> [ir]+
-    |! gen.identifier   #- ensures the properties are not part of another id.
+exp prop_abbreviation {
+    | check_keyword("i")
+    | check_keyword("r")
 }

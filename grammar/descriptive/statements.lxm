@@ -1,102 +1,45 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Statements of the lexem's descriptive core.
+#-    Statements of the descriptive core.
 #------------------------#
 
-let {sml, eoll, ..gen} = import("generics")
+let (ws, identifier) = import("root:commons")
 let fn_exp = import("functional/expressions")
-let expression = import("./expressions")
-let {function_arguments} = import("literals/functions")
-let {var_declaration} = import("functional/statements/var_declarations")
-let {conditional} = import("./statements/conditionals")
-let {selective} = import("./statements/selectives")
-let loops = import("./statements/loops")
-let controls = import("functional/statements/controls")
+let (pattern) = import("pattern")
+let loops = import("statements/loops")
+let (block as stmt_block) = import("root:functional/statements")
 
 
 #----------------------#
 #-  Generic Elements  -#
 #----------------------#
 
-pub! exp statement(props![- capture backtrack]) {
-    | pattern
-    | block
+pub! exp statement[- capture] {
+    | global.lexem.pattern
     | onBack_block
-    | set_props
-    | var_declaration
-    | macro_statement
-    | conditional
-    | selective
-    | loops.conditional
-    | loops.iterator
     | loops.quantified
-    | loops.infinite    #- always after the other loops
-    | controls.control
-    | fn_exp.expression
+    | stmt_block
 }
 
-pub! exp onBack_block(props![- backtrack]) {
-    |> gen.keyword("onBack") sml* block
+exp onBack_block {
+    |> gen.keyword("onBack") ws? block
 }
 
 pub! exp block(props![- backtrack]) {
     |> "{"
-    |? "'" tag:gen.identifier
+    |? "'" tag:identifier
 
     for *+ do {
-		|? (sml | eoll)+
-		| exp_stmt.statement
-        | expression.pattern
-	}
-    
+        |? ws?
+        |> statement
+    }
+
     onBack {
         log.error("Incorrect block. The close bracket '}' is required.")
     }
-    |> sml* "}"
+
+    |> ws? "}"
 }
-
-pub! exp set_props(props![- backtrack]) {
-    |> "set_props!"
-    
-    onBack {
-        log.error("'set_props!' macro requires a block started with '['.")
-    }
-    |> block:property_style_object_block
-}
-
-exp function_statement {
-	|> "fun" sml+ name:gen.identifier args:function_arguments?
-
-	onBack {
-		log.error("Incorrect function statement. It is required a body block '{}'.")
-	}
-	|> body:exp_stmt.block
-}
-
-exp expression_statement {
-	|> "fun" sml+ name:gen.identifier args:function_arguments?
-
-	onBack {
-		log.error("Incorrect function statement. It is required a body block '{}'.")
-	}
-	|> body:exp_stmt.block
-}
-
-
-
-#----------------------#
-#-  Macro statements  -#
-#----------------------#
-
-exp macro_statement(props![- capture backtrack]) {
-    | macro_statement_public
-}
-
-exp macro_statement_public(props![- backtrack])
-    |> "pub!" sml*
-    | var_declaration
-    | function_statement
-    | expression_statement

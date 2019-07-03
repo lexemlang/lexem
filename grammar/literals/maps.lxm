@@ -6,8 +6,8 @@
 #-    Map literals.
 #------------------------#
 
-let (ws) = import("../commons")
-let fn_exp = import("../functional/expressions")
+let (ws) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
 
 pub! exp map {
 	|> "map!" set_props![- isConstant]

@@ -6,7 +6,7 @@
 #-    Interval literals.
 #------------------------#
 
-let commons(ws_simple) = import("../commons")
+let commons(ws_simple) = import("root:commons")
 
 pub! exp interval[- capture] {
 	| normal_interval

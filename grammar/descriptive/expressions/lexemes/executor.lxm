@@ -1,0 +1,29 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Executor lexemes of the descriptive core.
+#------------------------#
+
+let (ws) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
+
+pub! exp executor {
+    |> "\\(" set_props![- optional]
+    |? "?" set_props![optional]
+
+    repeat i for ++ {
+        if i > 0 {
+            |> ws? ","
+        }
+
+        |> ws? fn_exp.expression
+    }
+
+    onBack {
+        log.error("The close parenthesis of the executor is required here.")
+    }
+
+    |> ws? ")"
+}

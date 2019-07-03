@@ -1,0 +1,72 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Patterns of the descriptive core.
+#------------------------#
+
+let (ws_no_eol, identifier) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
+pub! let (access) = import("lexemes/access")
+let (anchor) = import("lexemes/anchors")
+let (bin_sequence) = import("lexemes/binary_sequence")
+let (block) = import("lexemes/block")
+pub! let (continuation) = import("lexemes/continuation")
+pub! let (executor) = import("lexemes/executor")
+pub! let (group) = import("lexemes/group")
+pub! let (quantified_group) = import("lexemes/quantified_group")
+pub! let (quantifier) = import("lexemes/quantifier")
+let (text) = import("lexemes/text")
+
+pub! exp pattern {
+    |> "|"
+    | ">" set_props![:type("static")]
+    | "?" set_props![:type("optional")]
+    | "!" set_props![:type("negative")]
+    | {
+        | "+" set_props![:type("additive")]
+        | "*" set_props![:type("selective")]
+        | quantifier set_props![:type("quantified")]
+        | set_props![:type("alternative")]
+
+        |? union_name:identifier ">"
+    }
+
+    |? ws_no_eol? pattern_content
+}
+
+pub! exp pattern_content {
+    repeat i for ++ {
+        if i > 0 {
+            |> ws_no_eol?
+        }
+
+        |> lexem
+    }
+}
+
+exp lexem {
+    | {
+        |? data_capturing ws_no_eol?
+        | block
+        | text
+        | bin_sequence
+        | anchor
+        | semantic_re_naming? group
+        | quantified_group
+        | executor
+        | semantic_re_naming? access
+        | global.lexem.block
+        |? quantifier
+    }
+    | continuation
+}
+
+pub! exp data_capturing {
+    |> identifier ws_no_eol? "="
+}
+
+exp semantic_re_naming {
+    |> identifier ":"
+}

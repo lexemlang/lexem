@@ -1,0 +1,163 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Filter lexemes of the filter section of the descriptive core.
+#------------------------#
+
+let (ws) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
+
+pub! exp filter {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    |> "@(" ws?
+
+    onBack {
+        log.error("A selector was expected after the opening parenthesis '('.")
+    }
+
+    |> selector
+
+    onBack {
+        log.error("The close parenthesis ')' of the group is required.")
+    }
+
+    |> ws? ")"
+}
+
+exp selector {
+    let prev = false
+
+    |+ name \(prev = true)
+    |+ {
+        for ++ {
+            if prev {
+                |? ws
+            }
+
+            |> property \(prev = true)
+        }
+    }
+    |+ {
+        for ++ {
+            if prev {
+                |? ws
+            }
+
+            |> method \(prev = true)
+        }
+    }
+}
+
+exp name {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    | "(" ws? {
+        onBack {
+            log.error("At least one name was expected after the open parenthesis '('.")
+        }
+
+        repeat i for ++ {
+            if i > 0 {
+                |> ws? "," ws?
+            }
+
+            |> identifier
+        }
+
+        onBack {
+            log.error("The close parenthesis ')' of the group is required.")
+        }
+
+        |> ")"
+    }
+    | identifier
+}
+
+exp property {
+    |> "."
+
+    onBack {
+        log.error("A property was expected after the dot token '.'.")
+    }
+
+    |> property_no_dot
+}
+
+exp property_no_dot {
+    set_props![- negated]
+    | "!" set_props![negated] "@"? identifier
+    | "(" ws? {
+        onBack {
+            log.error("At least one name was expected after the open parenthesis '('.")
+        }
+
+        repeat i for ++ {
+            if i > 0 {
+                |> ws? "," ws?
+            }
+
+            |> property_no_dot
+        }
+
+        onBack {
+            log.error("The close parenthesis ')' of the group is required.")
+        }
+
+        |> ")"
+    }
+    | "@"? identifier
+    |? property_alias_block
+}
+
+exp property_alias_block {
+    |> "[" ws?
+
+    |? identifier ws? ":" ws?
+
+    onBack {
+        log.error("The condition of the property was expected.")
+    }
+
+    |> fn_exp
+
+    onBack {
+        log.error("The close square bracket ']' of the property is required.")
+    }
+
+    |> ws? "]"
+}
+
+exp method {
+    |> ":"
+
+    set_props![- negated]
+    |? "!" set_props![negated]
+
+    onBack {
+        log.error("A method name was expected after the colon token ':'.")
+    }
+
+    |> identifier
+    |? method_alias_block
+}
+
+exp method_alias_block {
+    |> "(" ws?
+
+    |? identifier ws? ":" ws?
+
+    onBack {
+        log.error("The condition of the property was expected.")
+    }
+
+    |> fn_exp
+
+    onBack {
+        log.error("The close parenthesis ')' of the property is required.")
+    }
+
+    |> ws? ")"
+}

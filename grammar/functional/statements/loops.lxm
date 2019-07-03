@@ -6,13 +6,10 @@
 #-    Loop statements of the functional core.
 #------------------------#
 
-let (ws, ws_simple, check_keyword, identifier) = import("../../commons")
+let (ws, ws_simple, check_keyword, identifier) = import("root:commons")
 let fn_exp = import("../expressions")
 let fn_stmt = import("../statements")
 let (destructuring) = import("variable_declarations")
-
-let end_keyword = "end"
-let else_keyword = "else"
 
 pub! exp infinite {
     |> check_keyword("repeat")
@@ -22,10 +19,9 @@ pub! exp infinite {
         log.error("The infinite loop statement requires a block statement ({}) for its 'then' block.")
     }
 
-    |> ws? then:fn_stmt.block
+    |> ws? then:global.lexem.block
 
-    |? end:last_clause(end_keyword)
-    |? else:last_clause(else_keyword)
+    |? clauses:last_clauses
 }
 
 pub! exp conditional {
@@ -43,10 +39,9 @@ pub! exp conditional {
         log.error("The conditional loop statement requires a block statement ({}) for its 'then' block.")
     }
 
-    |> ws? then:fn_stmt.block
+    |> ws? then:global.lexem.block
 
-    |? end:last_clause(end_keyword)
-    |? else:last_clause(else_keyword)
+    |? clauses:last_clauses
 }
 
 pub! exp iterator {
@@ -83,10 +78,14 @@ pub! exp iterator {
         log.error("The iterator loop statement requires a block statement ({}) for its body.")
     }
 
-    |> ws? then:fn_stmt.block
+    |> ws? then:global.lexem.block
 
-    |? end:last_clause(end_keyword)
-    |? else:last_clause(else_keyword)
+    |? clauses:last_clauses
+}
+
+pub! last_clauses {
+    |+ end:last_clause("end")
+    |+ end:last_clause("else")
 }
 
 
@@ -102,5 +101,5 @@ exp last_clause(keyword) {
         log.error("The \(keyword) clause of the loop statement requires a block statement ({}) for its body.")
     }
 
-    |> ws? body:fn_stmt.block
+    |> ws? body:global.lexem.block
 }

@@ -1,0 +1,71 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Patterns of the descriptive core.
+#------------------------#
+
+let (ws_no_eol, identifier) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
+let (addition) = import("lexemes/addition")
+let (filter) = import("lexemes/filter")
+let (access,
+    continuation,
+    executor,
+    group,
+    quantified_group,
+    quantifier,
+    data_capturing) = import("root:descriptive/expressions/patterns")
+
+pub! exp pattern {
+    |> "|"
+    | ">" set_props![:type("static")]
+    | "?" set_props![:type("optional")]
+    | "!" set_props![:type("negative")]
+    | {
+        | "+" set_props![:type("additive")]
+        | "*" set_props![:type("selective")]
+        | quantifier set_props![:type("quantified")]
+        | set_props![:type("alternative")]
+
+        |? union_name:identifier ">"
+    }
+
+    |? ws_no_eol? pattern_content
+}
+
+pub! exp pattern_content {
+    repeat i for ++ {
+        if i > 0 {
+            |> ws_no_eol?
+        }
+
+        |> lexem
+    }
+}
+
+exp lexem {
+    | {
+        |? data_capturing ws_no_eol?
+        | addition
+        | filter
+        | semantic_re_naming? group
+        | quantified_group
+        | executor
+        | semantic_re_naming? access
+        | global.lexem.block
+        |? quantifier
+    }
+    | continuation
+}
+
+exp access {
+    |> ws_no_eol? "->" ws_no_eol?
+
+    onBack {
+        log.error("An access was expected after the next token '->'.")
+    }
+
+    |> access
+}

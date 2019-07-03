@@ -6,7 +6,7 @@
 #-    Conditional statements for the functional core.
 #------------------------#
 
-let (ws, ws_simple, check_keyword) = import("../../commons")
+let (ws, ws_simple, check_keyword) = import("root:commons")
 let fn_exp = import("../expressions")
 let fn_stmt = import("../statements")
 
@@ -18,14 +18,14 @@ pub! exp conditional {
     onBack {
         log.error("The conditional statement requires an expression for its condition.")
     }
-    
+
     |> ws? condition:fn_exp.expression
 
     onBack {
         log.error("The conditional statement requires a block statement ({}) for its 'then' block.")
     }
 
-    |> ws? then:fn_stmt.block
+    |> ws? then:global.lexem.block
 
     |? ws? "else" {
         onBack {
@@ -33,6 +33,6 @@ pub! exp conditional {
         }
 
         | ws_simple else_if:conditional
-        | ws? else:fn_stmt.block
+        | ws? else:global.lexem.block
     }
 }

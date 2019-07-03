@@ -6,9 +6,9 @@
 #-    Object literals.
 #------------------------#
 
-let (ws) = import("../commons")
-let fn_exp = import("../functional/expressions")
-let fn_stmt = import("../functional/statements")
+let (ws) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
+let fn_stmt = import("root:functional/statements")
 let (function_arguments) = import("function")
 
 pub! exp object[- capture] {
@@ -71,7 +71,7 @@ exp object_simplification {
 				log.error("Incorrect object property. The inline function definition requires a body block '{}'.")
 			}
 		}
-		|> body:fn_stmt.block
+		|> body:global.lexem.block
 	}
 	| ([- children consume]: ws? "," | ws? "}")
 }

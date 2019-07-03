@@ -1,0 +1,19 @@
+
+#------------------------#
+#- Lexem grammar v0.1.1 -#
+#------------------------#
+#- Description:
+#-    Block lexemes of the descriptive core.
+#------------------------#
+
+let (ws_simple) = import("root:commons")
+let (interval) = import("root:literals/intervals"
+let (property_postfix) = import("text"))
+
+pub! exp block {
+    set_props![- negated]
+    |? "!" set_props![negated]
+    | interval
+
+    |? property_postfix
+}

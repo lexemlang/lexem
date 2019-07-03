@@ -6,7 +6,7 @@
 #-    Bit list literals.
 #------------------------#
 
-let commons(ws_simple) = import("../commons")
+let commons(ws_simple) = import("root:commons")
 let numbers = import("number")
 
 pub! exp bitlist {

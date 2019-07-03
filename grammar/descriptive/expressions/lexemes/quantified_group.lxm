@@ -1,14 +1,14 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Group lexemes of the lexem's descriptive core.
+#-    Group lexemes of the descriptive core.
 #------------------------#
 
-let {sml, ..gen} = import("generics")
-let {quantifier} = import("./quantifiers")
-let {pattern_content} = import("../patterns")
+let (ws) = import("root:commons")
+let (quantifier) = import("quantifiers")
+let (pattern_content) = import("../patterns")
 
 pub! exp quantified_group {
     set_props![- negated]
@@ -19,31 +19,37 @@ pub! exp quantified_group {
     onBack {
         log.error("At least one pattern is required for the quantified group content.")
     }
-    |> (pattern:pattern_content {
+
+    for ++ {
+        |> pattern_content
+
         onBack {
-            log.error("A semicolon ':' is required after the 'infix' token.")
+            log.error("An alternate token '|' is required after each pattern.")
         }
-        |> sml* "|"
-        |? quantifier
-    })+
+
+        |> ws? "|"
+        |? modifier_quantifier
+    }
 
 	onBack {
 		log.error("The close parenthesis ')' of the quantified group is required.")
 	}
-	|> sml* ")"
+
+	|> ws? ")"
 }
 
 exp modifier_quantifier {
     | "{"
-    |? sml* min:fn_exp.expression
+    |? ws? min:fn_exp.expression
 
     set_props![- has_max]
-    |? sml* "," set_props![has_max] {
-        |? sml* max:fn_exp.expression
+    |? ws? "," set_props![has_max] {
+        |? ws? max:fn_exp.expression
     }
 
     onBack {
         log.error("The close bracket '}' is required to close the quantifier.")
     }
-    |> sml* "}"
+
+    |> ws? "}"
 }

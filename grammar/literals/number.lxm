@@ -6,7 +6,7 @@
 #-    Number literals.
 #------------------------#
 
-let (identifier) = import("../commons")
+let (identifier) = import("root:commons")
 
 
 pub! exp number {

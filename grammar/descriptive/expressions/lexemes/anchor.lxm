@@ -1,17 +1,17 @@
 
 #------------------------#
-#- Lexem grammar v0.1.0 -#
+#- Lexem grammar v0.1.1 -#
 #------------------------#
 #- Description:
-#-    Anchor lexemes of the lexem's descriptive core.
+#-    Anchor lexemes of the descriptive core.
 #------------------------#
 
-let {sml, ..gen} = import("generics")
-let fn_exp = import("functional/expressions")
-let {string} = import("literals/strings")
-let {interval} = import("literals/intervals")
+let (ws_simple) = import("root:commons")
+let fn_exp = import("root:functional/expressions")
+let (string) = import("root:literals/string")
+let (interval) = import("root:literals/interval")
 
-pub! exp anchor(props![- capture]) {
+pub! exp anchor[- capture] {
     | relative_anchor
     | absolute_anchor
 }
@@ -26,26 +26,29 @@ exp relative_anchor {
     | "$" set_props![- start]
 
     onBack {
-        log.error("The open parenthesis '(' of the anchor group or an abbreviation are required here.")
+        log.error("The open parenthesis '(' of the anchor group or an abbreviation is required here.")
     }
+
     | "(" {
-        |> (sml* elements:relative_anchor_element)*+
-        
+        for *+ {
+            |? ws_simple?
+            |> relative_anchor_element
+        }
+
         onBack {
             log.error("The close parenthesis ')' is required to close the anchor group.")
         }
-        |> sml* ")"
+
+        |> ws_simple? ")"
     }
     | set_props![line]
 }
 
 exp relative_anchor_element {
-    |> (type[property]: {
-        | "text"
-        | "line"
-        | string
-        | interval
-    })
+    | "text" set_props![: type("text")]
+    | "line" set_props![: type("line")]
+    | string set_props![: type("string")]
+    | interval set_props![: type("interval")]
 }
 
 exp absolute_anchor {
@@ -57,33 +60,41 @@ exp absolute_anchor {
     onBack {
         log.error("The open parenthesis '(' of the anchor group is required.")
     }
-    |> "(" (sml* elements:absolute_anchor_element)*+
+
+    |> "("
+
+    for *+ {
+        |? ws_simple?
+        |> absolute_anchor_element
+    }
 
     onBack {
         log.error("The close parenthesis ')' is required to close the anchor group.")
     }
-    |> sml* ")"
+
+    |> ws? ")"
 }
 
 exp absolute_anchor_element {
-    |> (type[property]: {
-        | "from_start"
-        | "from_end"
-        | "analysis_beginning"
-    })
+    | "from_start" set_props![: type("from_start")]
+    | "from_end" set_props![: type("from_end")]
+    | "analysis_beginning" set_props![: type("analysis_beginning")]
 
     onBack {
         log.error("The open square bracket '[' of the anchor element is required.")
     }
+
     |> "["
 
     onBack {
         log.error("An expression is required for the value of the anchor element.")
     }
-    |> value:fn_exp.expression
+
+    |> fn_exp.expression
 
     onBack {
         log.error("The close square bracket ']' is required to close the anchor element.")
     }
-    |> sml* "]"
+
+    |> ws? "]"
 }
