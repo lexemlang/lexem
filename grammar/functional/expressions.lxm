@@ -56,8 +56,6 @@ exp prefix_expression[- capture] {
         }
     }
     | access
-    | literal
-    | macro
     | global.lexem.block
 }
 
@@ -76,7 +74,9 @@ exp literal[- capture] {
 }
 
 exp access {
-    |> identifier
+    | literal
+    | macro
+    | identifier
 
     for *+ {
         | access_explicit_member
