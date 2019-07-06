@@ -117,7 +117,9 @@ Thus, for spatial garbage we recommend to use a _reference counting collector_ t
 
 ### Backtracking system
 
-`WIP`
+The backtracking system must be implemented using the memory model of snapshots i.e. when the path bifurcates and creates two possible paths, the memory model must create a snapshot for both of them leaving the current one to the past.
+
+With this system the program can return to any previous state to continue with its execution in another path. When this occurs, the memory must mark the past snapshots to be collected, due to every of its paths (but one) has been already tried.
 
 ### Deserialize from a lasm file
 
