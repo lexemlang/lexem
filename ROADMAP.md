@@ -10,5 +10,6 @@ This is the plan to work towards a 1.0.0 release. This is a "living document" an
   - [x] Add addition lexeme.
 - [x] Change inline comment syntax from #- to --
 - [x] Change multiline comment syntax from #+ +# to #- -#
+- [ ] Documentate how to translate every Lexem's element into LASM.
 
 ## TODOs

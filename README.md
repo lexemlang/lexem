@@ -1,7 +1,6 @@
 # Lexem language
 
-> THIS IS A WORK IN PROGRESS, STAY TUNED!!
-
+> THIS IS A WORK IN PROGRESS!! DON'T USE LEXEM IN PRODUCTION!!
 
 Lexem is a script language which has the ability to parse textual inputs based on custom grammars. Like [Regular Expressions](https://www.regular-expressions.info/), Lexem allows the developer to define specific sequences of tokens that define the grammar Lexem must follow to parse the inputs.
 
