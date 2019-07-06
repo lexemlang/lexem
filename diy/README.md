@@ -10,6 +10,8 @@
     - [Instructions functionality](#Instructions-functionality)
     - [Memory definition](#Memory-definition)
     - [Garbage collector](#Garbage-collector)
+      - [Temporal garbage](#Temporal-garbage)
+      - [Spatial garbage](#Spatial-garbage)
     - [Backtracking system](#Backtracking-system)
     - [Deserialize from a lasm file](#Deserialize-from-a-lasm-file)
     - [Analysis](#Analysis)
@@ -132,4 +134,3 @@ Instructions to serialize a lasm file into a binary format to save it into a `.l
 Some parts of the interpreter are not opinionated to let developers to research and invent new ways to do them in order to improve Angmar itself and other implementations.
 
 Because of that, the analysis itself is not ruled and you can implement it the way you want.
-
