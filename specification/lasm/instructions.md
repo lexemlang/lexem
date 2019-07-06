@@ -30,16 +30,12 @@
 | `LIT:ITV:AND` | Creates one interval with the common content of `S0` and `S1` |
 | `LIT:ITV:XOR` | Creates one interval with the not-common content of `S0` and `S1` |
 | `LIT:LST:NEW` | Adds a new empty list to the stack |
-| `LIT:LST:SNEW` | Adds a new empty constant list to the stack |
 | `LIT:LST:ADD` | Adds the computed value (`S0`) to the list (`S1`) |
 | `LIT:SET:NEW` | Adds a new empty set to the stack |
-| `LIT:SET:SNEW` | Adds a new empty constant set to the stack |
 | `LIT:SET:ADD` | Adds the computed value (`S0`) to the set (`S1`) |
 | `LIT:OBJ:NEW` | Adds a new empty object to the stack |
-| `LIT:OBJ:SNEW` | Adds a new empty constant object to the stack |
 | `LIT:OBJ:ADD` | Adds the computed value (`S0`) to the object (`S1`) |
 | `LIT:MAP:NEW` | Adds a new empty map to the stack |
-| `LIT:MAP:SNEW` | Adds a new empty constant map to the stack |
 | `LIT:MAP:ADD` | Adds the computed value (`S0`) to the map (`S1`) |
 | `IDX` | Calls the indexer function over `S1` with `S0` as its index |
 | `ACC` | Adds the value of the property of `S1` indicated by `S0` into the stack |
@@ -61,6 +57,7 @@
 | `OP:OR` | Logic OR over `S0` and `S1` |
 | `OP:XOR` | Logic XOR over `S0` and `S1` |
 | `OP:ASG` | Assigns `S0` to `S1` |
+| `OP:MK:CNST` | Make `S0` constant |
 
 ## With inline value
 
@@ -72,6 +69,7 @@
 | `LIT:INT` | `integer` | Adds the inline `Integer` value to the stack |
 | `LIT:FLT` | `float` | Adds the inline `Float` value to the stack |
 | `LIT:STR` | `#string` | Adds the specified `String` value to the stack |
+| `LIT:ITV` | `#itv` | Adds the specified `Interval` value to the stack |
 | `LIT:BLST` | `#bitlist` | Adds the specified `Bitlist` value to the stack |
 | `LIT:FUN` | `#function` | Adds the specified `Function` to the stack |
 | `LIT:EXP` | `#expression` | Adds the specified `Expression` to the stack |
@@ -86,3 +84,5 @@
 | `OP:CND:AND` | `@end` | Checks if `S0` is `falsy` to keep it in the stack and jump to `@end`. In other case it removes `S0` and continues |
 | `OP:CND:OR` | `@end` | Checks if `S0` is `truthy` to keep it in the stack and jump to `@end`. In other case it removes `S0` and continues |
 | `OP:CND:XOR` | `@end` | If `S1` is `falsy` removes it from the stack, keeping `S0`. If `S0` is `falsy` removes it from the stack, keeping `S1`. Finally, if both are `truthy` adds a `false` to the stack and jumps to `@end`.
+
+Every inline value, including the references are 64-bit length and they are written in big endian.
