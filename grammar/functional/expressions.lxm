@@ -134,7 +134,7 @@ exp function_call {
 }
 
 exp function_call_first_element {
-	| function_call_element
+	| function_call_middle_element
     | fn_exp.expression
 }
 
