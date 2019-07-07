@@ -35,6 +35,7 @@
 | `LIT:SET:ADD` | Adds the computed value (`S0`) to the set (`S1`) |
 | `LIT:OBJ:NEW` | Adds a new empty object to the stack |
 | `LIT:OBJ:ADD` | Adds the computed value (`S0`) to the object (`S1`) |
+| `LIT:OBJ:SPRD` | Adds the object or list value (`S0`) to the object (`S1`) |
 | `LIT:MAP:NEW` | Adds a new empty map to the stack |
 | `LIT:MAP:ADD` | Adds the computed value (`S0`) to the map (`S1`) |
 | `IDX` | Calls the indexer function over `S1` with `S0` as its index |
