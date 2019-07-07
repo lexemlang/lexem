@@ -27,7 +27,7 @@
 ## Null type
 
 ```lasm 
-LIT:NULL    # Adds a null value to the stack
+LIT:NIL     # Adds a null value to the stack
 ```
 
 ## Logic type

@@ -18,7 +18,7 @@
 | `DEL` | Removes `S0` |
 | `CLONE` | Clones `S0` |
 | `CTX` | Adds the current context to the stack |
-| `LIT:NULL` | Adds a `null` value to the stack |
+| `LIT:NIL` | Adds a `nil` value to the stack |
 | `LIT:TRUE` | Adds a `true` value to the stack |
 | `LIT:FALSE` | Adds a `false` value to the stack |
 | `LIT:ITV:NEW` | Adds a new empty interval to the stack |
