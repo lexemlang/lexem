@@ -20,7 +20,7 @@
 ```lasm
 # expression (element)
 # expression (index)
-IDX     # Calls the indexer function of the second last element of the stack with the last element as its index
+IDX     # Calls the indexer function of element with index as value
 ```
 
 ## Accesses
@@ -28,7 +28,7 @@ IDX     # Calls the indexer function of the second last element of the stack wit
 To variables:
 
 ```lasm
-CTX     # Adds to the stack the current context
+CTX     # Adds the current context to the stack
 # expression (variable name)
 ACC     # Adds the value of the property called as the last value of the stack indicates from the second last value of the stack
 ```
@@ -43,7 +43,10 @@ ACC     # Adds the value of the property called as the last value of the stack i
 
 ## Function calls
 
+### Global calls
+
 ```lasm
+# expression (value of this)
 # expression (function)
 LIT:OBJ:NEW     # Adds a new empty object to the stack
 # Expression (key)
@@ -53,10 +56,32 @@ LIT:OBJ:ADD     # Adds the computed value to the object with the specified key a
 # Expression (key)
 # Expression (value)
 LIT:OBJ:ADD
+# Expression (spread value)
+LIT:OBJ:SPRD
 FUN:CALL        # Calls a function changing the module and code, creating a new context, etc.
 ```
 
-> **Note**: if the first argument has no name, it uses `firstArg`.
+> **Note**: if the first argument has no name, it is named `first_argument`.
+
+### Specific calls
+
+```lasm
+LIT:NIL         # The value of this
+# expression (function)
+LIT:OBJ:NEW     # Adds a new empty object to the stack
+# Expression (key)
+# Expression (value)
+LIT:OBJ:ADD     # Adds the computed value to the object with the specified key and push it back to the stack
+...
+# Expression (key)
+# Expression (value)
+LIT:OBJ:ADD
+# Expression (spread value)
+LIT:OBJ:SPRD
+FUN:CALL        # Calls a function changing the module and code, creating a new context, etc.
+```
+
+> **Note**: if the first argument has no name, it is named `first_argument`.
 
 ## Operators
 
@@ -64,7 +89,7 @@ FUN:CALL        # Calls a function changing the module and code, creating a new 
 
 ```lasm
 # operand
-OP:*       # Performs the (*) operation with the last value of the stack
+OP:*       # Performs the (*) operation over operand.
 OP:*
 ...
 ```
@@ -83,7 +108,7 @@ The binary operator instructions available are:
 ```lasm
 # operand 1
 # operand 2
-OP:*       # Performs the (*) operation with the last 2 values of the stack
+OP:*       # Performs the (*) operation between operand 1 and 2
 # operand 3
 OP:*
 ...
@@ -112,7 +137,7 @@ The binary operator instructions available are:
 ```lasm
 # operand 1
 # operand 2
-OP:* @end   # Performs the (*) operation with the last value of the stack
+OP:* @end   # Performs the (*) operation between operand 1 and 2
 ...
 # operand 3
 OP:* @end
@@ -140,7 +165,7 @@ Every of these operators check their condition against the last two values of th
 
 ```lasm
 # operand 1
-OP:CND:* @end     # Performs the (*) operation with the last value of the stack
+OP:CND:* @end     # Performs the (*) over operand 1.
 # operand 2
 OP:CND:* @end
 ...
@@ -160,7 +185,7 @@ The chained binary operator instructions available are:
 ```lasm
 # operand 1
 # operand 2
-OP:CND:XOR @end   # Performs the (*) operation with the last value of the stack
+OP:CND:XOR @end   # Performs the (*) operation between operand 1 and 2
 ...
 # operand 3
 OP:CND:XOR @end
@@ -178,7 +203,7 @@ Without operator:
 ```lasm
 # left expression
 # right expression
-OP:ASG      # Assigns the last value of the stack in the previous one
+OP:ASG      # Assigns the last value of the stack to the previous one
 ```
 
 With operator:
@@ -188,5 +213,5 @@ With operator:
 CLONE       # Clones the last element of the stack
 # right expression
 OP:*
-OP:ASG      # Assigns the last value of the stack in the previous one
+OP:ASG      # Assigns the last value of the stack to the previous one
 ```
