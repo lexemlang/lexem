@@ -25,28 +25,27 @@ let ucd_character = ucd_categories.Cn.reverse()
 --  Whitespaces  --
 -------------------
 
-pub! let whitespace_block = itv![9 20 1A \(ucd_categories.Zs)]
-pub! exp whitespace {
-	for ++ {
-        | line_break
-        | comment
-        | multiline_comment
-        | simple_inline_whitespace
-    }
-}
-pub! let ws = whitespace
-
-pub! exp simple_whitespace {
-    |> [\(whitespace_block)\(line_break_block)]++
-}
-pub! let ws_simple = simple_whitespace
-
 pub let line_break_block = itv![A D 85 2028 2029]
 pub! exp line_break {
 	| "\u{D}\u{A}"
 	| [\(line_break_block)]
 	| $$
 }
+
+pub! let whitespace_block = itv![9 20 1A \(ucd_categories.Zs)]
+pub! exp simple_whitespace {
+    |> [\(whitespace_block)\(line_break_block)]++
+}
+pub! let ws_simple = simple_whitespace
+
+pub! exp whitespace {
+	for ++ {
+        | comment
+        | multiline_comment
+        | simple_whitespace
+    }
+}
+pub! let ws = whitespace
 
 pub! exp whitespace_without_eol {
 	for + {

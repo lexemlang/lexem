@@ -60,7 +60,7 @@ exp prefix_expression[- capture] {
 }
 
 exp literal[- capture] {
-    | literals.null
+    | literals.nil
     | literals.logic
     | literals.number
     | literals.string

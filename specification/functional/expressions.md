@@ -40,7 +40,7 @@ TIndexers can access to different values depending on the element over it is use
 | `Object` | `String` | Gets or sets the value associated to the specified key. |
 | `Map` | `Any` | Gets or sets the value associated to the specified key. |
 
-> **Note**: when an index does not exist, it returns a `null`.
+> **Note**: when an index does not exist, it returns a `nil`.
 
 ### Slices
 
@@ -84,7 +84,7 @@ var num = 9
 num.sign                             -- gets the sign of the number
 ```
 
-> **Note**: when an access does not exist, it returns a `null`.
+> **Note**: when an access does not exist, it returns a `nil`.
 
 ## Function calls
 
@@ -118,13 +118,13 @@ Finally, it is necessary to take into account that when a function contained ins
 
 ```lexem
 let function = fun(){}
-function()  -- this == null
+function()  -- this == nil
 
 let container = {function: function}
 container.function()  -- this == container
 ```
 
-The first call is `null` because there's no container while in the last one there's an object with a property that contains the function.
+The first call is `nil` because there's no container while in the last one there's an object with a property that contains the function.
 
 > **Note**: if an argument's name is set more than once, the last takes priority over the rest.
 
@@ -157,7 +157,7 @@ function(3, ..arguments)
 
 ### Returned values
 
-By default all functions return `null`, but if it is required to return another value, use the following statement:
+By default all functions return `nil`, but if it is required to return another value, use the following statement:
 
 ```lexem
 return value
@@ -218,7 +218,7 @@ This operators are binary operators that works differently whether they are alon
 ||`!==`|`any`| No-identity. Check that both operands are different objects comparing the reference. For primitives it is the same as `!=`. |
 |Conditional|`and`|`any`| Evaluates the left operand and returns it if it is `falsity`, otherwise returns the right operand. |
 ||`or`|`any`| Evaluates the left operand and returns it if it is `truthy`, otherwise returns the right operand. |
-||`xor`|`any`| Evaluates the left operand and if it is `truthy` returns the right operand, otherwise if left is `falsity`, evaluates the right operand returning the left value if right is `falsity` or `null` if both are `truthy`. |
+||`xor`|`any`| Evaluates the left operand and if it is `truthy` returns the right operand, otherwise if left is `falsity`, evaluates the right operand returning the left value if right is `falsity` or `nil` if both are `truthy`. |
 
 Categories are ordered from high to less priority and operators in the same category have the same priority. All of these categories have less priority than normal binary operators.
 

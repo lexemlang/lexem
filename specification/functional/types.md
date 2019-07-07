@@ -3,7 +3,7 @@
 
 - [Index](#Index)
 - [Types, prototypes and literals](#Types-prototypes-and-literals)
-  - [Null type](#Null-type)
+  - [Nil type](#Nil-type)
   - [Logic type](#Logic-type)
   - [Integer type](#Integer-type)
   - [Float type](#Float-type)
@@ -41,17 +41,17 @@ Every type has three elements:
 
 All objects have a prototype and inherit directly or indirectly from the `Object` prototype, creating a hierarchy of inherited functionality.
 
-## Null type
+## Nil type
 
 Represents undefined values and error or void states. It has only just one possible value.
 
-- Type: `Null`
-- Prototype: `Null.prototype`
+- Type: `Nil`
+- Prototype: `Nil.prototype`
 - Literals:
 
   | Literal | Meaning |
   |:-------:|:--------|
-  |`null`|The unique possible value of the type.|
+  |`nil`|The unique possible value of the type.|
 
 > **Note**: it is interpreted as false when a truthiness check is required.
 

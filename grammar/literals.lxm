@@ -18,8 +18,8 @@ pub! let (object) = import("literals/objects")
 pub! let (map) = import("literals/maps")
 pub! let (function) = import("literals/functions")
 
-pub! exp null {
-	|> check_keyword("null")
+pub! exp nil {
+	|> check_keyword("nil")
 }
 
 pub! exp logic {

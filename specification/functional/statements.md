@@ -96,7 +96,7 @@ var x = 6
 Assign expressions can declare a new mutable variable if it does not exist before, but it must be bared in mind that if the variable exists in the current context or any of its parents, it will be replaced with all of its side effects, like throwing an error if it is a constant.
 
 ```lexem
--- x == null
+-- x == nil
 
 x = 3
 -- x == 3
@@ -198,7 +198,7 @@ var #name(...) = object    -- name is a constant but the inner rules are not aff
 
 ## Truth and falsity
 
-Every value can be checked in the statement's conditions for its truthfulness. The conversion rule is that all values are `true` less `false` and `null`.
+Every value can be checked in the statement's conditions for its truthfulness. The conversion rule is that all values are `true` less `false` and `nil`.
 
 ## Conditional statements
 
@@ -226,7 +226,7 @@ else {body}
 
 The conditional statements can also be used inside an expression. In these cases it is always required that the conditional returns a value, so the value of the last statement executed is returned as a result.
 
-If the conditional expression has no `else` clause and the condition does not match, a `null` value is returned.
+If the conditional expression has no `else` clause and the condition does not match, a `nil` value is returned.
 
 ## Selective statements
 
@@ -240,7 +240,7 @@ when condition {'tag
 }
 ```
 
-The tag is optional and defines a name for the whole `when` statement to identify it. The condition is also optional, so in case it is omitted the value used for the patterns of the `when` statement is `null`.
+The tag is optional and defines a name for the whole `when` statement to identify it. The condition is also optional, so in case it is omitted the value used for the patterns of the `when` statement is `nil`.
 
 The `when` statements works evaluating the condition against each of the options until one of them matches and executes its body. Each option can have one or more patterns acting as its conditions.
 

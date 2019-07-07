@@ -2,7 +2,7 @@
 
 - [Index](#Index)
 - [LASM translation: Literals](#LASM-translation-Literals)
-  - [Null type](#Null-type)
+  - [Nil type](#Nil-type)
   - [Logic type](#Logic-type)
   - [Integer type](#Integer-type)
   - [Float type](#Float-type)
@@ -24,10 +24,10 @@
 
 # LASM translation: Literals
 
-## Null type
+## Nil type
 
-```lasm 
-LIT:NIL     # Adds a null value to the stack
+```lasm
+LIT:NIL     # Adds a nil value to the stack
 ```
 
 ## Logic type

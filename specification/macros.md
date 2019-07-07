@@ -176,11 +176,11 @@ Is equivalent to:
 ```lexem
 -- As functional expression or statement.
 var x = argument || Analyzer.initBacktrack(expression)
-var x = argument || Analyzer.initBacktrack(null)
+var x = argument || Analyzer.initBacktrack(nil)
 
 -- As lexeme.
 |> "abc" \(Analyzer.initBacktrack(expression))
-|> "abc" \(Analyzer.initBacktrack(null))
+|> "abc" \(Analyzer.initBacktrack(nil))
 ```
 
-|> **Note**: if the value is not specified a `null` is thrown.
+|> **Note**: if the value is not specified a `nil` is thrown.

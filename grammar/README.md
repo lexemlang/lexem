@@ -8,7 +8,7 @@ All Lexem files (`.lxm`) under this folder shows the grammar of the Lexem langua
 
 - [Lexem](lexem.lxm): entry point of the grammar with the syntax to parse a whole Lexem file (`.lxm`).
 - [Commons](commons.lxm): all common elements of the grammar, like comments, whitespaces, identifiers, etc.
-- [Literals](literals.lxm): a file to gather all Lexem's literals, also with the grammar of `Null` and `Logic` literals.
+- [Literals](literals.lxm): a file to gather all Lexem's literals, also with the grammar of `Nil` and `Logic` literals.
     - [Number](literals/number.lxm): the grammar for `Number` literals.
     - [String](literals/string.lxm): the grammar for `String` literals.
     - [Bitlist](literals/bitlist.lxm): the grammar for `Bitlist` literals.
