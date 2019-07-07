@@ -130,7 +130,7 @@ The first call is `null` because there's no container while in the last one ther
 
 ### Spread operator
 
-The spread operator (`..`) allows to deconstruct an object matching its properties with the arguments of the called function:
+The spread operator (`..`) allows to deconstruct an object matching its properties with the arguments of the called function. It can only be set at the end.
 
 ```lexem
 let function = fun(arg0, arg1: value1) {}

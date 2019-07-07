@@ -22,7 +22,7 @@ This series of documents explain how to implement a compiler for the Lexem langu
 
 ## Lexem compiler
 
-A Lexem compiler generates lasm code as a result. You can implement your own Lexem compiler if you need to embed it in your project, but if you have internet connection or you want to manually compile, you can use the REPL and API of [https://lexemlang.org]().
+A Lexem compiler generates lasm code as a result. You can implement your own Lexem compiler if you need to embed it in your project, but if you have internet connection or you want to manually compile, you can use the REPL and API of [lexemlang.org](https://lexemlang.org).
 
 If you still require to embed a compiler, you can implement your own Lexem compiler following these steps:
 
@@ -35,20 +35,20 @@ If you still require to embed a compiler, you can implement your own Lexem compi
 
 ### Parser
 
-The implementation of the parser is not opinionated, create it in whatever way you want but bear in mind to follow the official [grammar](.grammar/README.md) to parse exactly the same code.
+The implementation of the parser is not opinionated, create it in whatever way you want but bear in mind to follow the official [grammar](../grammar/README.md) to parse exactly the same code.
 
 ### Lexem to lasm translation
 
 To know how to translate each element of Lexem to the instruction set os lasm see the following sections:
 
-- [Literals](lasm/translation/literals.md)
-- [Functional expressions](lasm/translation/functional_expressions.md)
+- [Literals](compiler/translation/literals.md)
+- [Functional expressions](compiler/translation/functional/expressions.md)
 
 ### Serialize into lasm file
 
 Instructions to serialize a Lexem project into a binary format to save it into a `.lasm` file.
 
-- [File serialization](lasm/file_serialization.md)
+- [File serialization](compiler/file_serialization.md)
 
 ## lasm interpreter
 
@@ -115,7 +115,6 @@ Apart from the Lexem-specific temporal garbage, as any other programming languag
 You should not use any of the temporal methods described above with the current snapshot because in this case, they implied a _stop-the-world_ collector.
 
 Thus, for spatial garbage we recommend to use a _reference counting collector_ to immediately remove acyclic objects and implement a _cyclic collector_ for cycles or leave them to the temporal collector.
-
 
 ### Backtracking system
 
