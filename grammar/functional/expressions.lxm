@@ -6,7 +6,7 @@
 --    Expressions of the functional core.
 --------------------------
 
-let (ws, identifier_dynamic, check_keyword, identifier) = import("root:commons")
+let (ws, ws_no_eol, identifier_dynamic, check_keyword, identifier) = import("root:commons")
 let literals = import("root:literals")
 let fn_stmt = import("statements")
 let (pattern) = import("descriptive/expression")
@@ -17,17 +17,8 @@ let (property_style_object_block) = import("root:literals/objects")
 --  Generic Elements  --
 ------------------------
 
-pub! exp expression {
-    | {
-        |> left_expression ws? assign_operator ws?
-
-        onBack {
-            log.error("A right expression was expected after the assign operator.")
-        }
-
-        | expression
-        | right_expression
-    }
+pub! exp expression[- capture] {
+    | assign
     | right_expression
 }
 
@@ -46,7 +37,7 @@ pub! exp left_expression[- capture] {
 }
 
 pub! exp right_expression[- capture] {
-    |> logic_expression
+    |> conditional_expression
 }
 
 exp prefix_expression[- capture] {
@@ -76,6 +67,7 @@ exp literal[- capture] {
 exp access {
     | literal
     | macro
+    | parenthesis_expression
     | identifier
 
     for *+ {
@@ -83,6 +75,22 @@ exp access {
         | access_indexer
         | function_call
     }
+}
+
+exp parenthesis_expression {
+     |> "("
+
+	onBack {
+        log.error("A parenthesis expression requires an expression after the open parenthesis '(' symbol.")
+    }
+
+    |> ws? expression
+
+    onBack {
+        log.error("Incorrect parenthesis expression. The close parenthesis ')' is require.")
+    }
+
+    |> ws? ")"
 }
 
 exp access_explicit_member {
@@ -117,7 +125,7 @@ exp function_call {
     |? function_call_first_element {
         for *+ {
             |> ws? "," ws?
-            | function_call_middle_element
+            |> function_call_middle_element
         }
     }
 
@@ -159,13 +167,17 @@ exp function_call_expression_properties {
 }
 
 exp macro[- capture] {
-    | "logic_line!"
-    | "line!"
-    | "file!"
-    | "directory!"
-    | "file_content!"
+    | {
+        set_props![capture]
+        
+        | "logic_line!"
+        | "line!"
+        | "file!"
+        | "directory!"
+        | "file_content!"
+    }
     | macro_check_props
-    | macro_file_content
+    | macro_backtrack
 }
 
 pub! exp macro_check_props {
@@ -176,6 +188,8 @@ pub! exp macro_backtrack {
 	|> "backtrack!" function_call?
 }
 
+
+
 --------------------------
 --  Binary expressions  --
 --------------------------
@@ -183,7 +197,7 @@ pub! exp macro_backtrack {
 exp multiplicative_expression[- capture] {
     repeat i for *+ do {
         if i > 0 {
-           |? ws?
+           |? ws_no_eol?
            |> (operator[capture]: "//" | [*/%]) operator_end
            |? ws?
            set_props![capture]
@@ -195,7 +209,7 @@ exp multiplicative_expression[- capture] {
 exp additive_expression[- capture] {
     repeat i for *+ do {
         if i > 0 {
-           |? ws?
+           |? ws_no_eol?
            |> (operator[capture]: [+-]) operator_end
            |? ws?
            set_props![capture]
@@ -207,7 +221,7 @@ exp additive_expression[- capture] {
 exp shift_expression[- capture] {
     repeat i for *+ do {
         if i > 0 {
-           |? ws?
+           |? ws_no_eol?
            |> (operator[capture]: "<" [</] | [/>] ">") operator_end
            |? ws?
            set_props![capture]
@@ -219,7 +233,7 @@ exp shift_expression[- capture] {
 exp logic_expression[- capture] {
     repeat i for *+ do {
         if i > 0 {
-           |? ws?
+           |? ws_no_eol?
            |> (operator[capture]: [&|^]) operator_end
            |? ws?
            set_props![capture]
@@ -231,7 +245,7 @@ exp logic_expression[- capture] {
 exp relational_expression[- capture] {
     repeat i for *+ do {
         if i > 0 {
-           |? ws?
+           |? ws_no_eol?
            |> (operator[capture]: "==""="? | "!=""="? | "<""="? | ">""="?) operator_end
            |? ws?
            set_props![capture]
@@ -243,7 +257,7 @@ exp relational_expression[- capture] {
 exp conditional_expression[- capture] {
     repeat i for *+ do {
         if i > 0 {
-           |? ws?
+           |? ws_no_eol?
            |> (operator[capture]: gen.keyword("and") | gen.keyword("or") | gen.keyword("xor"))
            |? ws?
            set_props![capture]
@@ -273,7 +287,7 @@ exp assign_operator {
         | "or"
         | "xor"
     })
-    |> "=" operator_end
+    |> "=" assign_operator_end
 }
 
 
@@ -286,3 +300,6 @@ exp operator_end[- capture children consume] {
     |> ![~!*/%+-&|^<>=]
 }
 
+exp assign_operator_end[- capture children consume] {
+    |> ![*/%&|^<>=]
+}
