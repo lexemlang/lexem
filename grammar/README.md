@@ -16,7 +16,7 @@ All Lexem files (`.lxm`) under this folder shows the grammar of the Lexem langua
     - [List](literals/list.lxm): the grammar for `List` literals.
     - [Set](literals/set.lxm): the grammar for `Set` literals.
     - [Object](literals/object.lxm): the grammar for `Object` literals.
-    - [Map](literals/maps.lxm): the grammar for `Map` literals.
+    - [Map](literals/map.lxm): the grammar for `Map` literals.
     - [Function](literals/function.lxm): the grammar for `Function` literals.
 
 #### Functional core
