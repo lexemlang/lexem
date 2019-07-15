@@ -77,7 +77,7 @@ exp access {
     }
 }
 
-exp parenthesis_expression {
+pub! exp parenthesis_expression {
      |> "("
 
 	onBack {

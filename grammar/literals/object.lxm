@@ -6,9 +6,8 @@
 --    Object literals.
 --------------------------
 
-let (ws) = import("root:commons")
+let (ws, identifier_dynamic) = import("root:commons")
 let fn_exp = import("root:functional/expressions")
-let fn_stmt = import("root:functional/statements")
 let (function_arguments) = import("function")
 
 pub! exp object[- capture] {
@@ -44,9 +43,7 @@ exp object_element {
 			log.error("Incorrect object property. After the static modifier '#' it is required a key-value pair.")
 		}
 	}
-	| identifier
-	| string
-	| escaped_expression
+	|> identifier_dynamic
 
 	onBack {
 		log.error("Incorrect object property. After the keyword it is required the relation symbol ':'.")
@@ -64,7 +61,7 @@ exp object_element {
 exp object_simplification {
 	set_props![- isConstant]
 	|? "#" set_props![isConstant]
-	|> identifier
+	|> identifier_dynamic
 	| {
 		|> args:function_arguments {
 			onBack {
@@ -89,8 +86,8 @@ pub! exp property_style_object {
 
 pub! exp property_style_object_block {
 	|> "["
-	|? (ws? activated:identifier)*
-	|? ws? "-" (ws? deactivated:identifier)*
+	|? (ws? activated:identifier_dynamic)*
+	|? ws? "-" (ws? deactivated:identifier_dynamic)*
 	|? ws? ":" (ws? set:property_style_object_element)*
 
 	onBack {
@@ -101,20 +98,10 @@ pub! exp property_style_object_block {
 }
 
 exp property_style_object_element {
-	|> name:identifier
+	|> name:identifier_dynamic
 
 	onBack {
 		log.error("Incorrect property-style object property. The open parenthesis '(' is required.")
 	}
-	|> "("
-
-	onBack {
-		log.error("Incorrect property-style object property. An expression is required after the open parenthesis '('.")
-	}
-	|> ws? fn_exp.expression
-
-	onBack {
-		log.error("Incorrect property-style object property. The close parenthesis ')' is required.")
-	}
-	|> ws? ")"
+	|> fn_exp.parenthesis_expression
 }
