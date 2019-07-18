@@ -63,11 +63,12 @@ exp object_simplification {
 	|? "#" set_props![isConstant]
 	|> identifier_dynamic
 	| {
-		|> args:function_arguments {
-			onBack {
-				log.error("Incorrect object property. The inline function definition requires a body block '{}'.")
-			}
+		|> args:function_arguments
+		
+		onBack {
+			log.error("Incorrect object property. The inline function definition requires a body block '{}'.")
 		}
+		
 		|> body:global.lexem.block
 	}
 	| ([- children consume]: ws? "," | ws? "}")

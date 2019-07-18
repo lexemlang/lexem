@@ -32,7 +32,7 @@ pub! exp conditional {
             log.error("The else clause of a conditional statement requires a block statement ({}) for its 'else' block.")
         }
 
-        | ws_simple else_if:conditional
+        | ws? else:conditional
         | ws? else:global.lexem.block
     }
 }

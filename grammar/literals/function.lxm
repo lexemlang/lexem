@@ -11,7 +11,8 @@ let fn_exp = import("root:functional/expressions")
 let fn_stmt = import("root:functional/statement")
 
 pub! exp function {
-	|> "fun" ws? args:function_arguments?
+	|> "fun" ws?
+	|? args:function_arguments ws?
 
 	onBack {
 		log.error("Incorrect literal function. It is required a body block '{}'.")

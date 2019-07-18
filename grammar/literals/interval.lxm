@@ -14,7 +14,7 @@ pub! exp interval[- capture] {
 }
 
 exp normal_interval {
-	|> "itv!" set_props![- isConstant]
+	|> "itv!"
 
 	onBack {
 		log.error("Incorrect interval literal. The open square bracket '[' is required.")
@@ -68,7 +68,7 @@ exp normal_interval_sub_interval {
 
 
 exp unicode_interval {
-	|> "uitv!" set_props![- isConstant]
+	|> "uitv!"
 
 	onBack {
 		log.error("Incorrect interval literal. The open square bracket '[' is required.")
