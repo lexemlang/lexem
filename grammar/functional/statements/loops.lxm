@@ -6,14 +6,14 @@
 --    Loop statements of the functional core.
 --------------------------
 
-let (ws, ws_simple, check_keyword, identifier) = import("root:commons")
+let (ws, ws_simple, check_keyword, identifier_dynamic) = import("root:commons")
 let fn_exp = import("../expressions")
 let fn_stmt = import("../statements")
 let (destructuring) = import("variable_declarations")
 
 pub! exp infinite {
     |> check_keyword("repeat")
-    |? ws? index:identifier
+    |? ws? index:identifier_dynamic
 
     onBack {
         log.error("The infinite loop statement requires a block statement ({}) for its 'then' block.")
@@ -21,11 +21,11 @@ pub! exp infinite {
 
     |> ws? then:global.lexem.block
 
-    |? clauses:last_clauses
+    |? ws? clauses:last_clauses
 }
 
 pub! exp conditional {
-    |? check_keyword("repeat") ws? index:identifier ws?
+    |? check_keyword("repeat") ws? index:identifier_dynamic ws?
     | check_keyword("while") set_props![while]
     | check_keyword("until") set_props![- while]
 
@@ -41,26 +41,20 @@ pub! exp conditional {
 
     |> ws? then:global.lexem.block
 
-    |? clauses:last_clauses
+    |? ws? clauses:last_clauses
 }
 
 pub! exp iterator {
-    |? check_keyword("repeat") ws? index:identifier ws?
+    |? check_keyword("repeat") ws? index:identifier_dynamic ws?
     |> check_keyword("for")
 
     onBack {
         log.error("The iterator loop statement requires at least a variable name for the current value of the iteration.")
     }
 
-    |> ws? first:identifier {
-        |> ws? "," ws?
-
-        onBack {
-            log.error("The iterator loop statement requires another name or a destructuring after the comma.")
-        }
-        | second:identifier
-        | destructuring
-    }
+    |> ws?
+    | variable:destructuring
+    | variable:identifier_dynamic
 
     onBack {
         log.error("The iterator loop statement requires the 'in' symbol after the variable names.")
