@@ -107,7 +107,7 @@ pub! exp identifier {
 		}
 
 		for + {
-			| escape
+			| simple_escape
 			| [! ` \\ line_break_block]+
 		}
 
@@ -134,7 +134,6 @@ let identifier_end_block = itv![30..39 300..36F 1DC0..1DFF 20D0..20FF FE20..FE2F
 
 pub! exp identifier_dynamic[- capture] {
 	| escaped_expression
-	| string
 	| identifier
 }
 
@@ -147,6 +146,11 @@ pub! exp identifier_dynamic[- capture] {
 pub! exp escape[- capture] {
 	| escape_point
 	| escaped_expression
+	| escape_character
+}
+
+pub! exp simple_escape[- capture] {
+	| escape_point
 	| escape_character
 }
 
