@@ -404,8 +404,8 @@ Every loop accepts a tag to identify it with the objective of control its execut
 
 All loops can have finalization blocks that are executed only if its condition is satisfied:
 
+- `last` block: it is executed as the last iteratior only if the loop exits normally i.e. without using an `exit` statement but only after executing at least one time.
 - `else` block: it is executed only if the loop fails before executing once its body.
-- `end` block: it is executed only if the loop exits normally i.e. without using an `exit` statement but only after executing at least one time.
 
 For example:
 
@@ -421,7 +421,7 @@ else {
 for num in [1, 2, 3] {
     body
 }
-end {
+last {
     body    -- Only executes when the iterator finish not by an exit.
 }
 
@@ -429,20 +429,20 @@ end {
 for key, value in obj {
     body
 }
+last {
+    body    -- Only executes when the iterator finish not by an exit.
+}
 else {
     body    -- Only executes if obj is empty.
-}
-end {
-    body    -- Only executes when the iterator finish not by an exit.
 }
 
 
 repeat {
     body
 }
-end {
+last {
     body    -- Never executes because the loop will always be finished by an exit.
 }
 ```
 
-> **Note**: the order must be always `else` block and finally the `end` block.
+> **Note**: the order must be always the `last` block and finally the `else` block.

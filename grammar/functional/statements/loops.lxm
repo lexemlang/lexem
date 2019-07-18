@@ -80,12 +80,13 @@ pub! exp iterator {
 
     |> ws? then:global.lexem.block
 
-    |? clauses:last_clauses
+    |? ws? clauses:last_clauses
 }
 
 pub! last_clauses {
-    |+ end:last_clause("end")
-    |+ end:last_clause("else")
+    var preValue = false
+    |+ end:last_clause("last") \(preValue = true)
+    |+ (\(? preValue) ws?)? end:last_clause("else")
 }
 
 
