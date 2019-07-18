@@ -24,6 +24,7 @@
     - [Iterator loops](#Iterator-loops)
     - [Control statements](#Control-statements-2)
     - [Finalization](#Finalization)
+  - [Return values](#Return-values)
 
 # Statements
 
@@ -446,3 +447,12 @@ last {
 ```
 
 > **Note**: the order must be always the `last` block and finally the `else` block.
+
+## Return values
+
+By default all functions/expressions/filters return `nil`, but if it is required to return another value or just finish them, use the following statement:
+
+| Statement | Meaning |
+|:---------:|:--------|
+|`return`|Finish the current context.|
+|`return expression`|Finish the current context returning a value.|

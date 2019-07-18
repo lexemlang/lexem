@@ -8,7 +8,6 @@
   - [Accesses](#Accesses)
   - [Function calls](#Function-calls)
     - [Spread operator](#Spread-operator)
-    - [Returned values](#Returned-values)
   - [Operators](#Operators)
     - [Unitary operators](#Unitary-operators)
     - [Binary operators](#Binary-operators)
@@ -154,14 +153,6 @@ function(3, ..arguments)
 ```
 
 > **Note**: if an argument's name is set like a normal argument and in the spread operator, the last takes priority over the rest.
-
-### Returned values
-
-By default all functions return `nil`, but if it is required to return another value, use the following statement:
-
-```lexem
-return value
-```
 
 ## Operators
 
