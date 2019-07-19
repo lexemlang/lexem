@@ -6,7 +6,7 @@
 --    Selective statements of the functional core.
 --------------------------
 
-let (ws, ws_eol, check_keyword, identifier) = import("root:commons")
+let (ws, check_keyword, identifier) = import("root:commons")
 let fn_exp = import("./expressions")
 let fn_stmt = import("../statements")
 let (destructuring) = import("variable_declarations")
@@ -22,7 +22,11 @@ pub! exp selective {
     |> ws? "{"
     |? "'" tag:identifier
 
-    for *+ {
+    onBack {
+        log.error("The selective statement requires at least one case.")
+    }
+
+    for ++ {
         |> ws? case
     }
 
@@ -37,6 +41,10 @@ exp case {
     repeat i for ++ {
         if i > 0 {
             |> ws? "," ws?
+
+            onBack {
+                log.error("The selective case requires a pattern after the ','.")
+            }
         }
 
         | pattern_conditional
@@ -49,7 +57,7 @@ exp case {
         log.error("The selective case requires a block statement ({}) for its body.")
     }
 
-    |> ws? code:global.lexem.block ws_eol
+    |> ws? code:global.lexem.block
 }
 
 exp pattern_variable {
@@ -60,14 +68,14 @@ exp pattern_variable {
         log.error("An identifier or destructuring is required for the var declaration pattern.")
     }
 
-    | ws? name:identifier
-    | ws? destructuring
+    | ws? name:destructuring
+    | ws? name:identifier_dynamic
 
     |? ws? conditional:pattern_conditional
 }
 
 exp pattern_expression {
-    |> value:fn_exp.expression
+    |> expression:fn_exp.expression
     |? ws? conditional:pattern_conditional
 }
 
@@ -85,4 +93,3 @@ exp pattern_conditional {
 exp pattern_else {
     |> check_keyword("else")
 }
-
