@@ -35,10 +35,6 @@ pub! exp variable_declaration {
     }
 
     |> ws? fn_exp.expression
-
-    onBack {
-        log.error("The \(key) declaration statement should end here.")
-    }
 }
 
 pub! exp destructuring {
