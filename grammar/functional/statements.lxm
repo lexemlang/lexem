@@ -6,7 +6,7 @@
 --    Statements of the functional core.
 --------------------------
 
-let (ws, identifier) = import("root:commons")
+let (ws, identifier, check_keyword) = import("root:commons")
 let fn_exp = import("expressions")
 let (function_arguments) = import("root:literals/functions")
 let (variable_declaration) = import("statements/variable_declarations")
@@ -26,21 +26,15 @@ let (pattern as filter_pattern) = import("root:descriptive/filters/patterns")
 
 pub! exp statement[- capture] {
     | global.lexem.block
-    | variable_declaration
     | conditional
     | selective
     | loops.conditional
     | loops.iterator
     | loops.infinite    -- always after the other loops
+    | macro_statement_public_options
     | macro_statement
     | control
     | fn_exp.expression
-
-    onBack {
-        log.error("Incorrect block. After a statement an end of line was expected.")
-    }
-
-    |> ws_eol
 }
 
 pub! exp block {
@@ -60,7 +54,7 @@ pub! exp block {
 }
 
 exp function_statement {
-	|> "fun" ws name:identifier
+	|> check_keyword("fun") ws? name:identifier
 	|? ws? args:function_arguments
 
 	onBack {
@@ -76,7 +70,7 @@ exp function_statement {
 }
 
 exp expression_statement {
-	|> "exp" ws name:identifier
+	|> check_keyword("exp") ws? name:identifier
 	|? ws? props:property_style_object_block
 	|? ws? args:function_arguments
 
@@ -96,7 +90,7 @@ exp expression_statement {
 }
 
 exp filter_statement {
-	|> "filter" ws name:identifier
+	|> check_keyword("filter") ws? name:identifier
 	|? ws? props:property_style_object_block
 	|? ws? args:function_arguments
 
@@ -126,19 +120,24 @@ exp macro_statement[- capture] {
     | set_props_macro
 }
 
-exp macro_statement_public {
+exp macro_statement_public[- capture] {
     |> "pub!" ws?
+        
+    set_props![capture]
+    
+    onBack {
+        log.error("Incorrect pub! macro statement. It is required a variable declaration, a function, an expression or a filter statement.")
+    }
 
-	onBack {
-		log.error("Incorrect pub! macro statement. It is required a variable declaration, a function, an expression or a filter statement.")
-	}
+    |> macro_statement_public_options
+}
 
+exp macro_statement_public_options[- capture] {
     | variable_declaration
     | function_statement
     | expression_statement
     | filter_statement
 }
-
 
 pub! exp set_props_macro {
     |> "set_props!"
