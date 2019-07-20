@@ -64,7 +64,7 @@ exp literal[- capture] {
     | literals.function
 }
 
-exp access {
+exp access[- capture]  {
     | literal
     | macro
     | parenthesis_expression
@@ -74,6 +74,8 @@ exp access {
         | access_explicit_member
         | access_indexer
         | function_call
+        
+        set_props[capture]
     }
 }
 
