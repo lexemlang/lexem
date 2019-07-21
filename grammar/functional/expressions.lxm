@@ -124,7 +124,9 @@ exp access_indexer {
 exp function_call {
 	|> "(" ws?
 
-    |? function_call_first_element {
+    var prev = false
+
+    |? function_call_first_element \(prev = true) {
         for *+ {
             |> ws? "," ws?
             |> function_call_middle_element
@@ -132,8 +134,21 @@ exp function_call {
     }
 
     -- Spread element
-    |? ws? "," ws? ".." spread:fn_exp.expression
-    |? ws? ","  -- trailing comma
+	|? {
+		if(prev) {
+			|> ws? "," ws?
+		}
+		|> ".."
+		
+		onBack {
+			log.error("Incorrect arguments. An expression was expected after the spread operator '..'.")
+		}
+        
+        |> spread:fn_exp.expression
+	}
+    
+    -- trailing comma
+    |? ws? ","
 
 	onBack {
 		log.error("Incorrect function call. The close parenthesis ')' is required.")

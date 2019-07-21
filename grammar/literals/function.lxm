@@ -29,15 +29,30 @@ pub! exp function {
 pub! exp function_arguments {
 	|> "(" ws?
 
+	var prev = false
+
 	repeat i for *+ {
 	    if i > 0 {
             |> ws? "," ws?
-            |> function_arguments_element
 	    }
-	    else {
-            | function_arguments_element
-	        | fn_exp.expression
-	    }
+
+	    |> function_arguments_element
+
+		prev = true
+	}
+
+    -- Spread element
+	|? {
+		if(prev) {
+			|> ws? "," ws?
+		}
+		|> ".."
+		
+		onBack {
+			log.error("Incorrect arguments. An identifier was expected after the spread operator '..'.")
+		}
+
+		|> spread:identifier
 	}
 
 	onBack {
@@ -49,9 +64,9 @@ pub! exp function_arguments {
 
 exp function_arguments_element {
 	|> key:identifier
-	|? ws? ":" {
+	|? ws? "=" {
 		onBack {
-			log.error("Incorrect argument. After the relation symbol ':' it is require the default value of the argument.")
+			log.error("Incorrect argument. After the assign operator '=' it is require the default value of the argument.")
 		}
 
 		|> ws? value:fn_exp.expression

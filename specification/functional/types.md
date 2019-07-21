@@ -424,7 +424,7 @@ Represents an object with the ability to execute _functional_ code.
   |`fun name(args){body}`|Named function definition. It can only be used as a statement.|
 
 ```lexem
-let function = fun(arg0: value0, arg1: value1) {}
+let function = fun(arg0: value0, arg1: value1, ..rest) {}
 ```
 
 Arguments are a list of key-value pairs separated with commas (`,`).
