@@ -196,19 +196,19 @@ exp escape_point {
 }
 
 pub! exp escaped_expression {
-	|> "\\{" ws_no_eol?
+	|> "\\(" ws_no_eol?
 
 	onBack {
-		log.error("The expression escape requires an expression after the open bracket ({).")
+		log.error("The expression escape requires an expression after the open parenthesis '('.")
 	}
 
 	|> fn_exp.expression
 
 	onBack {
-		log.error("The expression escape requires the close bracket (}).")
+		log.error("The expression escape requires the close parenthesis ')'.")
 	}
 
-	|> ws_no_eol? "}"
+	|> ws_no_eol? ")"
 }
 
 
