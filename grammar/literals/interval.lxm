@@ -6,7 +6,8 @@
 --    Interval literals.
 --------------------------
 
-let commons(ws_simple) = import("root:commons")
+let commons(ws_simple, escape, escaped_expression) = import("root:commons")
+let (integer_decimal_number) = import("number")
 
 pub! exp interval[- capture] {
 	| normal_interval
@@ -37,15 +38,15 @@ exp normal_interval {
 }
 
 exp normal_interval_element {
-	| left:commons.escape
-	| left:number_integer
+	| left:commons.escaped_expression
+	| left:integer_number_dec_default
 	|? ".." {
 		onBack {
 			log.error("Incorrect interval literal. Another character is required after the range symbol '..'.")
 		}
 
-        | right:commons.escape
-        | right:number_integer
+        | right:commons.escaped_expression
+        | right:integer_number_dec_default
 	}
 }
 
