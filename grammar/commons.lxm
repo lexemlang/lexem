@@ -144,9 +144,8 @@ pub! exp identifier_dynamic[- capture] {
 ---------------
 
 pub! exp escape[- capture] {
-	| escape_point
 	| escaped_expression
-	| escape_character
+	| simple_escape
 }
 
 pub! exp simple_escape[- capture] {
