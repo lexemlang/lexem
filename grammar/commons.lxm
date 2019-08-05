@@ -100,7 +100,9 @@ exp comment_multiline(props![capture - children]) {
 -------------------
 
 pub! exp identifier {
-	|> simple_identifier ("-" simple_identifier)*
+	|> simple_identifier ("-" simple_identifier)* {
+		|> !("!" !"=") -- to not confuse it with a macro but avoiding the != operators
+	}
 	|> "`" {
 		onBack {
 			log.error("Stringified identifiers require at least one character")
