@@ -53,10 +53,10 @@ exp prefix_expression[- capture] {
 exp literal[- capture] {
     | literals.nil
     | literals.logic
-    | literals.number
     | literals.string
     | literals.interval
     | literals.bitlist
+    | literals.number   -- must be below the bitlist to not collide.
     | literals.list
     | literals.set
     | literals.object
