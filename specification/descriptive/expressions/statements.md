@@ -1,10 +1,11 @@
 
 # Index
 
-- [Index](#Index)
-- [Descriptive statements](#Descriptive-statements)
-  - [Quantified loop](#Quantified-loop)
-  - [`onBack` block](#onBack-block)
+- [Index](#index)
+- [Descriptive statements](#descriptive-statements)
+  - [Quantified loop](#quantified-loop)
+  - [`onBack` block](#onback-block)
+      - [Abbreviation](#abbreviation)
 
 # Descriptive statements
 
@@ -38,4 +39,52 @@ onBack {'tag
 
 Info message is shown only if `"abc"` has matched and `"def"` not. When it is reached during backtracking, all its functional code is executed normally but the backtracking continues.
 
-> **Note**: if you have made changes to repair the flow and you want to continue normally, use the `exit` control flow statement over the `onBack` block.
+### Recovering
+
+If you make changes to repair the flow and you want to continue normally, use the `exit` control flow statement over the `onBack` block.
+
+In these cases, the next time the flow go back to the `onBack` block it will recover seeing the changes made the last time. For example:
+
+```lxm
+var test = 0
+
+onBack {
+    if(test < 3) {
+        test += 1
+        exit
+    }
+}
+```
+
+In this example, the flow will recover whenever the backtracking reaches this `onBack` block until the `test`'s value is greater or equal than 3. In this case the backtracking continues.  
+
+> **Note**: make sure you don't cause an infinite loop.
+
+#### Abbreviation
+
+Because this pattern is very common, there is a syntactic sugar to write it easily.
+
+```lxm
+-- original
+
+onBack {
+    if -+ condition +- {
+        -- modifications to recover the flow
+        exit
+    }
+
+    -- code when it cannot recover the flow
+}
+
+-- syntactic sugar
+
+onBack if -+ condition +- {
+    -- modifications to recover the flow
+    -- the 'exit' is not necessary
+}
+else {
+    -- code when it cannot recover the flow
+}
+```
+
+> **Note**: you can use any of the following statements, conditional (`if` and `unless`) and selective (`when`).
