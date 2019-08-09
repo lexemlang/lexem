@@ -13,7 +13,9 @@ let (destructuring) = import("variable_declarations")
 
 pub! exp selective {
     |> check_keyword("when")
-    |? ws? condition:fn_exp.expression
+
+    -- Parenthesis because object definition collide with the block of the selective statement.
+    |? ws? condition:fn_exp.parenthesis_expression
 
     onBack {
         log.error("The selective statement requires here the open bracket '{'.")

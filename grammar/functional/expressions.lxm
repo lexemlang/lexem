@@ -47,7 +47,6 @@ exp prefix_expression[- capture] {
         }
     }
     | access
-    | global.lexem.block
 }
 
 exp literal[- capture] {

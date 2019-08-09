@@ -38,19 +38,34 @@ pub! exp variable_declaration {
 }
 
 pub! exp destructuring {
-    |? alias:identifier
+    |? alias:identifier {
+        |> ws? "," ws?
+    }
     |> "(" ws?
 
-    repeat i for *+ {
-        if i > 0 {
+    var prev = false
+
+	repeat i for *+ {
+	    if i > 0 {
             |> ws? "," ws?
-        }
+	    }
 
-        |> destructuring_element
-    }
+	    |> destructuring_element
 
-    |? ws? "," ws? destructuring_spread_element     -- Spread element
-    |? ws? ","                                      -- trailing comma
+		prev = true
+	}
+
+    -- Spread element
+	|? {
+		if(prev) {
+			|> ws? "," ws?
+		}
+
+		|> destructuring_spread_element
+	}
+
+    -- trailing comma
+    |? ws? ","
 
     onBack {
         log.error("Incorrect destructuring. The close parenthesis ')' is required.")
