@@ -1,7 +1,7 @@
 # Index
 
-- [Index](#Index)
-- [Comments](#Comments)
+- [Index](#index)
+- [Comments](#comments)
 
 # Comments
 

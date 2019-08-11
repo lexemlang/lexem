@@ -1,12 +1,12 @@
 
 --------------------------
--- Lexem grammar v0.1.1 --
+-- Lexem grammar v0.2.0 --
 --------------------------
 -- Description:
 --    String literals.
 --------------------------
 
-let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lasm")
+let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lxm")
 let commons = import("root:commons")
 
 pub! exp string[- capture] {

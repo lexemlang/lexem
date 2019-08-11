@@ -1,13 +1,13 @@
 
 # Index
 
-- [Index](#Index)
-- [Filters](#Filters)
-  - [Parameters](#Parameters)
-  - [Properties](#Properties)
-    - [Built-in properties](#Built-in-properties)
-  - [Body](#Body)
-  - [Nodes](#Nodes)
+- [Index](#index)
+- [Filters](#filters)
+  - [Parameters](#parameters)
+  - [Properties](#properties)
+    - [Built-in properties](#built-in-properties)
+  - [Body](#body)
+  - [Nodes](#nodes)
 
 # Filters
 

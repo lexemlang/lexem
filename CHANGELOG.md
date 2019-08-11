@@ -5,6 +5,50 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2019-08-11
+
+### Add
+
+- Backtracking system specification.
+- Parenthesized expression.
+- Rest element in parameters.
+
+### Change
+
+- The `null` keyword now is now `nil`.
+- The `end` loop clause is now `last`.
+- Iterator loops now use only destructuring.
+- Move the explanation of the `return` statement.
+- Destructuring definition.
+- Escape grammar.
+- Escaped expression bounds.
+- Spread element in arguments.
+- Variable declaration.
+- Selective statement.
+
+### Improve
+
+- Garbage collector definition for DIY section.
+- Object literal definition.
+- Simplify the conditional definition.
+- Remove useless code.
+- Selective statement grammar.
+- Statement declarations and macros grammar.
+- onBack definition.
+
+### Fix
+
+- Bad documentation references in TOCs.
+- False literal grammar.
+- Capturing of access expression.
+- Escape and normal interval element definitions.
+- Analysis order in functional expressions.
+- Identifier terminations to not collide with macros.
+
+### Remove
+
+- It is never required to compile the code to the intermediate representation called `lasm`.
+
 ## [0.1.1] - 2019-07-04
 
 ### Add

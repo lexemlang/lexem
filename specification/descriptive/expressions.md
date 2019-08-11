@@ -1,20 +1,20 @@
 
 # Index
 
-- [Index](#Index)
-- [Descriptive expressions](#Descriptive-expressions)
-  - [Parameters](#Parameters)
-  - [Properties](#Properties)
-    - [Built-in properties](#Built-in-properties)
-  - [Body](#Body)
-    - [Static pattern](#Static-pattern)
-    - [Optional pattern](#Optional-pattern)
-    - [Negative pattern](#Negative-pattern)
-    - [Alternative pattern](#Alternative-pattern)
-    - [Additive pattern](#Additive-pattern)
-    - [Selective pattern](#Selective-pattern)
-    - [Quantified pattern](#Quantified-pattern)
-  - [Nodes](#Nodes)
+- [Index](#index)
+- [Descriptive expressions](#descriptive-expressions)
+  - [Parameters](#parameters)
+  - [Properties](#properties)
+    - [Built-in properties](#built-in-properties)
+  - [Body](#body)
+    - [Static pattern](#static-pattern)
+    - [Optional pattern](#optional-pattern)
+    - [Negative pattern](#negative-pattern)
+    - [Alternative pattern](#alternative-pattern)
+    - [Additive pattern](#additive-pattern)
+    - [Selective pattern](#selective-pattern)
+    - [Quantified pattern](#quantified-pattern)
+  - [Nodes](#nodes)
 
 # Descriptive expressions
 

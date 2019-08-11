@@ -1,11 +1,11 @@
 # Index
 
-- [Index](#Index)
-- [Lexem modules](#Lexem-modules)
-  - [Contexts](#Contexts)
-  - [Imports](#Imports)
-    - [Github files imports](#Github-files-imports)
-  - [Exports](#Exports)
+- [Index](#index)
+- [Lexem modules](#lexem-modules)
+  - [Contexts](#contexts)
+  - [Imports](#imports)
+    - [Github files imports](#github-files-imports)
+  - [Exports](#exports)
     - [`pub` modifier](#pub-modifier)
 
 # Lexem modules
@@ -51,7 +51,7 @@ import("http://github.com/lexemlang/")
 import("https://github.com/lexemlang/")
 ```
 
-> **Note**: it is not necessary to write the extension of the file, due to if it is not present, the compiler will try to get first a `.lasm` and then a `.lxm` file if the previous is not present.
+> **Note**: it is not necessary to write the extension of the file because if it is not present, the compiler will try to get a `.lxm` file for that name.
 
 ### Github files imports
 

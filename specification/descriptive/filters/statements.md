@@ -1,8 +1,8 @@
 
 # Index
 
-- [Index](#Index)
-- [Filter statements](#Filter-statements)
+- [Index](#index)
+- [Filter statements](#filter-statements)
 
 # Filter statements
 

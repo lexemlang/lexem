@@ -1,12 +1,12 @@
 
 --------------------------
--- Lexem grammar v0.1.1 --
+-- Lexem grammar v0.2.0 --
 --------------------------
 -- Description:
 --    Generic elements used through the whole grammar.
 --------------------------
 
-let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lasm")
+let ucd_categories = import("https://raw.githubusercontent.com/lexemlang/univer/master/v12/categories.lxm")
 let fn_exp = import("functional/expressions")
 let (string) = import("literals/string")
 let (integer_number_hex_default) = import("literals/number")

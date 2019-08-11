@@ -1,18 +1,18 @@
 
 # Index
 
-- [Index](#Index)
-- [Functional expressions](#Functional-expressions)
-  - [Indexers](#Indexers)
-    - [Slices](#Slices)
-  - [Accesses](#Accesses)
-  - [Function calls](#Function-calls)
-    - [Spread operator](#Spread-operator)
-  - [Operators](#Operators)
-    - [Unitary operators](#Unitary-operators)
-    - [Binary operators](#Binary-operators)
-    - [Chained binary operators](#Chained-binary-operators)
-    - [Assignments](#Assignments)
+- [Index](#index)
+- [Functional expressions](#functional-expressions)
+  - [Indexers](#indexers)
+    - [Slices](#slices)
+  - [Accesses](#accesses)
+  - [Function calls](#function-calls)
+    - [Spread operator](#spread-operator)
+  - [Operators](#operators)
+    - [Unitary operators](#unitary-operators)
+    - [Binary operators](#binary-operators)
+    - [Chained binary operators](#chained-binary-operators)
+    - [Assignments](#assignments)
 
 # Functional expressions
 

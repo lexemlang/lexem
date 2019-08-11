@@ -1,8 +1,8 @@
 
 # Index
 
-- [Index](#Index)
-- [Macros](#Macros)
+- [Index](#index)
+- [Macros](#macros)
   - [check_props!](#check_props)
   - [logic_line!](#logic_line)
   - [line!](#line)
