@@ -18,14 +18,12 @@ global.lexem = {
 
 
 pub! exp main {
-	|> ^^ ws?
-	for *+ do {
-		| fn_stmt.statement
+	|> ^^
 
-        onBack {
-            log.error("An statement must end at the end of the file or at the end of a line.");
-        }
-	}
+	for *+ do {
+        |? ws?
+        |> statement
+    }
 
 	onBack {
 		log.error("Incorrect lexem file syntax. The end-of-file was expected.");
