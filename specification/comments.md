@@ -1,4 +1,4 @@
-# Index
+# Table of contents
 
 - [Index](#index)
 - [Comments](#comments)

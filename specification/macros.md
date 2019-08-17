@@ -1,5 +1,5 @@
 
-# Index
+# Table of contents
 
 - [Index](#index)
 - [Macros](#macros)

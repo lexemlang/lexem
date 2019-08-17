@@ -1,7 +1,7 @@
 
-# Index
+# Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Types, prototypes and literals](#types-prototypes-and-literals)
   - [Nil type](#nil-type)
   - [Logic type](#logic-type)

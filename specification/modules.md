@@ -1,4 +1,4 @@
-# Index
+# Table of contents
 
 - [Index](#index)
 - [Lexem modules](#lexem-modules)
