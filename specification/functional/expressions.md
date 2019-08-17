@@ -1,13 +1,12 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Functional expressions](#functional-expressions)
   - [Indexers](#indexers)
     - [Slices](#slices)
   - [Accesses](#accesses)
   - [Function calls](#function-calls)
-    - [Spread operator](#spread-operator)
   - [Operators](#operators)
     - [Unitary operators](#unitary-operators)
     - [Binary operators](#binary-operators)
@@ -87,72 +86,67 @@ num.sign                             -- gets the sign of the number
 
 ## Function calls
 
-When the code of a function has to be executed, the function must be called. To perform the call, it is necessary to use the following pattern:
+When the code of a function has to be executed, the function must be called. To perform the call, it is necessary to write the arguments following this order:
+
+1. Positional arguments.
+2. Named arguments specifying key-value pairs.
+3. Spread arguments to deconstruct them into a positional or named, depending on the type of the value.
+   - Lists are deconstructed into positional arguments.
+   - Objects and maps are deconstructed into named arguments.
 
 ```lexem
-let function = fun(arg0, arg1: value1) {}
-
--- a call with all the arguments.
-function(arg0: 3, arg1: 4)
+funtion(positionalArguments, namedArguments, spreadArguments) {}
 ```
 
-The first argument's name can be omitted when doing the calling:
+For example, a full call is like:
 
 ```lexem
--- a call without the first argument's name.
-function(3, arg1: 4)
+function(positional1, positional2, named1: value1, named2:value2, ...{spread_object: as_named}, ...[spread, list, as, positional])
 ```
 
-And also exists a simplification when only a variable is introduced and its name match the argument of the function. It can't be used at the first argument because it is interpreted as omitting the first argument.
+Finally, it is necessary to mention two variables that are set by default inside every function.
 
-```lexem
-let function = fun(arg0, arg1: value1) {}
+1. When the called function belongs to an object, that object is passed as another argument called `this`.
 
--- a call with all the simplifications.
-var arg1 = 4
-function(3, arg1)
-```
+  ```lexem
+  let function = fun(){
+    log(this)
+  }
+  function()  -- this == nil
 
-Finally, it is necessary to take into account that when a function contained inside an object is called, the container object is past as the variable `this` inside the function:
+  let container = {function}
+  container.function()  -- this == container
+
+  -- equivalent to --
+
+  function(this: nil)
+
+  container.function(this: container)
+  ```
+
+  The first call is `nil` because there's no container while in the last one the function is called from inside an object which is its container.
+  The container has priority over an argument called `this`, so it will not be overwritten, in cases like:
+
+  ```lexem
+  let container = {function(){ }}
+  container.function(this:3)  -- this == container
+
+  -- equivalent to --
+  
+  container.function(this: 3, this: container)
+  ```
+
+2. All arguments are accesible inside the function throught the variable `arguments`.
 
 ```lexem
 let function = fun(){}
-function()  -- this == nil
-
-let container = {function: function}
-container.function()  -- this == container
+function()                            -- arguments == {positional: [], named: {}}
+function(1, 2)                        -- arguments == {positional: [1, 2], named: {}}
+function(a: 5, b: 6)                  -- arguments == {positional: [], named: {a: 5, b: 6}}
+function(1, a: 5, ..[2, 3], ..{b: 6}) -- arguments == {positional: [1, 2], named: {a: 5, b: 6}}
 ```
-
-The first call is `nil` because there's no container while in the last one there's an object with a property that contains the function.
 
 > **Note**: if an argument's name is set more than once, the last takes priority over the rest.
-
-### Spread operator
-
-The spread operator (`..`) allows to deconstruct an object matching its properties with the arguments of the called function. It can only be set at the end.
-
-```lexem
-let function = fun(arg0, arg1: value1) {}
-let arguments = {arg0: 3, arg1: 4}
-
--- both are equivalent
-function(arg0: arguments.arg0, arg1: arguments.arg1)
-function(arguments.arg0, arg1: arguments.arg1)
-function(..arguments)
-```
-
-Moreover, spread operator can be combined with normal arguments:
-
-```lexem
-let function = fun(arg0, arg1: value1) {}
-let arguments = {arg1: 4}
-
--- both are equivalent
-function(arg0: 3, arg1: arguments.arg1)
-function(3, ..arguments)
-```
-
-> **Note**: if an argument's name is set like a normal argument and in the spread operator, the last takes priority over the rest.
 
 ## Operators
 

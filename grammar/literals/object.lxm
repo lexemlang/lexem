@@ -8,7 +8,7 @@
 
 let (ws, identifier_dynamic) = import("root:commons")
 let fn_exp = import("root:functional/expressions")
-let (function_arguments) = import("function")
+let (function_parameters) = import("function")
 
 pub! exp object[- capture] {
 	| normal_object
@@ -63,7 +63,7 @@ exp object_simplification {
 	|? "#" set_props![isConstant]
 	|> identifier_dynamic
 	| {
-		|> args:function_arguments
+		|> args:function_parameters
 		
 		onBack {
 			log.error("Incorrect object property. The inline function definition requires a body block '{}'.")

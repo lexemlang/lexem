@@ -8,7 +8,7 @@
 
 let (ws, identifier, check_keyword) = import("root:commons")
 let fn_exp = import("expressions")
-let (function_arguments) = import("root:literals/functions")
+let (function_parameters) = import("root:literals/functions")
 let (variable_declaration) = import("statements/variable_declarations")
 let (conditional) = import("statements/conditionals")
 let (selective) = import("statements/selective")
@@ -55,7 +55,7 @@ pub! exp block {
 
 exp function_statement {
 	|> check_keyword("fun") ws? name:identifier
-	|? ws? args:function_arguments
+	|? ws? args:function_parameters
 
 	onBack {
 		log.error("Incorrect function statement. It is required a body block '{}'.")
@@ -72,7 +72,7 @@ exp function_statement {
 exp expression_statement {
 	|> check_keyword("exp") ws? name:identifier
 	|? ws? props:property_style_object_block
-	|? ws? args:function_arguments
+	|? ws? args:function_parameters
 
 	onBack {
 		log.error("Incorrect expression statement. It is required a body block '{}'.")
@@ -92,7 +92,7 @@ exp expression_statement {
 exp filter_statement {
 	|> check_keyword("filter") ws? name:identifier
 	|? ws? props:property_style_object_block
-	|? ws? args:function_arguments
+	|? ws? args:function_parameters
 
 	onBack {
 		log.error("Incorrect filter statement. It is required a body block '{}'.")

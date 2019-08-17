@@ -12,7 +12,7 @@ let fn_stmt = import("root:functional/statement")
 
 pub! exp function {
 	|> "fun" ws?
-	|? args:function_arguments ws?
+	|? args:function_parameters ws?
 
 	onBack {
 		log.error("Incorrect literal function. It is required a body block '{}'.")
@@ -26,7 +26,7 @@ pub! exp function {
     global.lexem.block = keep
 }
 
-pub! exp function_arguments {
+pub! exp function_parameters {
 	|> "(" ws?
 
 	var prev = false
@@ -36,7 +36,7 @@ pub! exp function_arguments {
             |> ws? "," ws?
 	    }
 
-	    |> function_arguments_element
+	    |> function_parameters_element
 
 		prev = true
 	}
@@ -46,7 +46,21 @@ pub! exp function_arguments {
 		if(prev) {
 			|> ws? "," ws?
 		}
-		|> ".."
+		|> ".." !"@"
+		
+		onBack {
+			log.error("Incorrect arguments. An identifier was expected after the spread operator '..'.")
+		}
+
+		|> spread:identifier
+	}
+
+    -- Named spread element
+	|? {
+		if(prev) {
+			|> ws? "," ws?
+		}
+		|> "..@"
 		
 		onBack {
 			log.error("Incorrect arguments. An identifier was expected after the spread operator '..'.")
@@ -62,7 +76,7 @@ pub! exp function_arguments {
 	|> ws? ("," ws?)? ")"	-- trailing comma
 }
 
-exp function_arguments_element {
+exp function_parameters_element {
 	|> key:identifier
 	|? ws? "=" {
 		onBack {

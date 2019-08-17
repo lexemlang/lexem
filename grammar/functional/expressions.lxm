@@ -121,21 +121,43 @@ exp access_indexer {
 }
 
 exp function_call {
-	|> "(" ws?
+	|> "("
 
     var prev = false
 
-    |? function_call_first_element \(prev = true) {
-        for *+ {
-            |> ws? "," ws?
-            |> function_call_middle_element
-        }
+    -- Positional arguments
+    for *+ {
+        |> ws?
+
+        if(prev) {
+			|> "," ws?
+		}
+
+        |> positional:function_call_positional_argument
+
+        prev = true
     }
 
-    -- Spread element
-	|? {
-		if(prev) {
-			|> ws? "," ws?
+    -- Named arguments
+    for *+ {
+        |> ws?
+
+        if(prev) {
+			|> "," ws?
+		}
+
+        |> named:function_call_named_argument
+
+        prev = true
+    }
+    
+
+    -- Spread arguments
+    for *+ {
+        |> ws?
+
+        if(prev) {
+			|> "," ws?
 		}
 		|> ".."
 		
@@ -157,12 +179,11 @@ exp function_call {
 	|? function_call_expression_properties
 }
 
-exp function_call_first_element {
-	| function_call_middle_element
-    | fn_exp.expression
+exp function_call_positional_argument {
+    |> fn_exp.expression ([fixed]: ws? "," | ws? ")")
 }
 
-exp function_call_middle_element {
+exp function_call_named_argument {
 	|> identifier_dynamic ws? ":"
 
     onBack {

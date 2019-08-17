@@ -425,10 +425,10 @@ Represents an object with the ability to execute _functional_ code.
   |`fun name(params){body}`|Named function definition. It can only be used as a statement.|
 
 ```lexem
-let function = fun(arg0: value0, arg1: value1, ..rest) {}
+let function = fun(arg0 = value0, arg1 = value1, ..positionalRest, ..@positionalRest) {}
 ```
 
-Arguments are a list of key-value pairs separated with commas (`,`).
+The params is a list of key-default value pairs separated with commas (`,`), optionally ended with an spread parameter (`..`) to hold other positional arguments and .
 
 ## Expression type
 
