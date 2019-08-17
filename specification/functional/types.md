@@ -28,6 +28,7 @@
   - [Function type](#function-type)
   - [Expression type](#expression-type)
   - [Filter type](#filter-type)
+  - [Node type](#node-type)
 
 # Types, prototypes and literals
 
@@ -420,8 +421,8 @@ Represents an object with the ability to execute _functional_ code.
 
   | Literal | Meaning |
   |:-------:|:--------|
-  |`fun(args){body}`|Anonymous function definition.|
-  |`fun name(args){body}`|Named function definition. It can only be used as a statement.|
+  |`fun(params){body}`|Anonymous function definition.|
+  |`fun name(params){body}`|Named function definition. It can only be used as a statement.|
 
 ```lexem
 let function = fun(arg0: value0, arg1: value1, ..rest) {}
@@ -439,7 +440,7 @@ Represents an object with the ability to execute _functional_ and _descriptive_ 
 
   | Literal | Meaning |
   |:-------:|:--------|
-  |`exp name[props](args){body}`|Named expression definition. It can be only used as a statement.|
+  |`exp name[props](params){body}`|Named expression definition. It can be only used as a statement.|
 
 > **Note**: see [descriptive expressions](../descriptive/expressions.md) section to know more information about expressions.
 
@@ -453,6 +454,14 @@ Represents an object with the ability to execute _functional_ and _descriptive_ 
 
   | Literal | Meaning |
   |:-------:|:--------|
-  |`filter name[props](args){body}`|Named filter definition. It can be only used as a statement.|
+  |`filter name[props](params){body}`|Named filter definition. It can be only used as a statement.|
 
 > **Note**: see [filter](../descriptive/filters.md) section to know more information about expressions.
+
+## Node type
+
+Represents an node in the result tree. They are created by _expressions_ and _filters_ so they have no literals.
+
+- Type: `Expression`
+- Prototype: `Expression.prototype`.
+- Literals: none.
