@@ -177,13 +177,13 @@ This operators have the maximum priority of all of the operators. Moreover, to c
 ||`%`|`Integer`, `Float`| Reminder of integer division. |
 |Additive|`+`|`Integer`, `Float`| Addition. |
 ||`-`|`Integer`, `Float`| Subtraction. |
-|Shift|`>>`|`BitArray`| Shifts the bits n positions to right. |
-||`<<`|`BitArray`| Shifts the bits n positions to left. |
-||`/>`|`BitArray`| Rotates the bits n positions to right. |
-||`</`|`BitArray`| Rotates the bits n positions to left. |
-|Logic|`&`|`BitArray`, `Logic`| Logic AND bit a bit. |
-||`\|`|`BitArray`, `Logic`| Logic OR bit a bit. |
-||`^`|`BitArray`, `Logic`| Logic XOR bit a bit. |
+|Shift|`>>`|`BitList`| Shifts the bits n positions to right. |
+||`<<`|`BitList`| Shifts the bits n positions to left. |
+||`/>`|`BitList`| Rotates the bits n positions to right. |
+||`</`|`BitList`| Rotates the bits n positions to left. |
+|Logic|`&`|`BitList`, `Logic`| Logic AND bit a bit. |
+||`\|`|`BitList`, `Logic`| Logic OR bit a bit. |
+||`^`|`BitList`, `Logic`| Logic XOR bit a bit. |
 
 Categories are ordered from high to less priority. Moreover, operators in the same category have the same priority.
 
@@ -197,8 +197,8 @@ This operators are binary operators that works differently whether they are alon
 ||`<`|`Integer`, `Float`| Lower than. |
 ||`>=`|`Integer`, `Float`| Greater or equal than. |
 ||`<=`|`Integer`, `Float`| Lower or equal than. |
-||`==`|`Integer`, `Float`| Equal than. |
-||`!=`|`Integer`, `Float`| Different of. |
+||`==`|`any`| Equal than. |
+||`!=`|`any`| Different of. |
 ||`===`|`any`| Identity. Check that both operands are the same object comparing the reference. For primitives it is the same as `==`. |
 ||`!==`|`any`| No-identity. Check that both operands are different objects comparing the reference. For primitives it is the same as `!=`. |
 |Conditional|`and`|`any`| Evaluates the left operand and returns it if it is `falsity`, otherwise returns the right operand. |
@@ -253,13 +253,13 @@ a xor b xor c
 ||`%=`|`Integer`, `Float`|
 |Additive|`+=`|`Integer`, `Float`|
 ||`-=`|`Integer`, `Float`|
-|Shift|`>>=`|`BitArray`|
-||`<<=`|`BitArray`|
-||`/>=`|`BitArray`|
-||`</=`|`BitArray`|
-|Logic|`&=`|`BitArray`, `Logic`|
-||`|=`|`BitArray`, `Logic`|
-||`^=`|`BitArray`, `Logic`|
+|Shift|`>>=`|`BitList`|
+||`<<=`|`BitList`|
+||`/>=`|`BitList`|
+||`</=`|`BitList`|
+|Logic|`&=`|`BitList`, `Logic`|
+||`|=`|`BitList`, `Logic`|
+||`^=`|`BitList`, `Logic`|
 |Conditional|`and=`|`Any`|
 ||`or=`|`Any`|
 ||`xor=`|`Any`|
