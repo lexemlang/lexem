@@ -4,12 +4,7 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.newFrom(...values: List<Any>) -> Set`](#newfromvalues-listany---set)
-    - [Parameters](#parameters)
-    - [Examples](#examples)
   - [`.join(...sets: List<Set>) -> Set`](#joinsets-listset---set)
-    - [Parameters](#parameters-1)
-    - [Errors](#errors)
-    - [Examples](#examples-1)
 - [Properties](#properties)
   - [`.prototype -> Object`](#prototype---object)
 

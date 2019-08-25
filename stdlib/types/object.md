@@ -4,13 +4,7 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.newFrom(prototype: Object) -> Object`](#newfromprototype-object---object)
-    - [Parameters](#parameters)
-    - [Errors](#errors)
-    - [Examples](#examples)
   - [`.assign(target: Object, ...sources: List<Object>) -> Object`](#assigntarget-object-sources-listobject---object)
-    - [Parameters](#parameters-1)
-    - [Errors](#errors-1)
-    - [Examples](#examples-1)
 - [Properties](#properties)
   - [`.prototype -> Object`](#prototype---object)
 

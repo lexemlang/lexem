@@ -4,9 +4,6 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.assign(target: Map, ...sources: List<Map>) -> Map`](#assigntarget-map-sources-listmap---map)
-    - [Parameters](#parameters)
-    - [Errors](#errors)
-    - [Examples](#examples)
 - [Properties](#properties)
   - [`.prototype -> Object`](#prototype---object)
 

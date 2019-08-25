@@ -4,18 +4,9 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.is(type: Object) -> Logic`](#istype-object---logic)
-    - [Parameters](#parameters)
-    - [Errors](#errors)
-    - [Examples](#examples)
   - [`.isAny(...types: List<Object>) -> Object | Nil`](#isanytypes-listobject---object--nil)
-    - [Parameters](#parameters-1)
-    - [Errors](#errors-1)
-    - [Examples](#examples-1)
 - [Operators](#operators)
   - [`.add(right: String) -> String`](#addright-string---string)
-    - [Parameters](#parameters-2)
-    - [Errors](#errors-2)
-    - [Examples](#examples-2)
 
 # Methods
 

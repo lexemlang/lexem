@@ -4,8 +4,6 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.toString() -> String`](#tostring---string)
-    - [Errors](#errors)
-    - [Examples](#examples)
 
 # Methods
 

@@ -2,6 +2,9 @@
 # Table of contents
 
 - [Table of contents](#table-of-contents)
+- [Methods](#methods)
+  - [`.parameters() -> Objects`](#parameters---objects)
+  - [`.wrap(...arguments: List<Any>, ...namedArguments: Object) -> Function`](#wraparguments-listany-namedarguments-object---function)
 
 # Methods
 
