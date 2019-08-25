@@ -27,7 +27,7 @@ The indexers get elements inside another elements using the following syntax:
 element[index]
 ```
 
-TIndexers can access to different values depending on the element over it is used:
+Indexers can access to different values depending on the element over it is used:
 
 | Element type | Accepts | Meaning |
 |:------------:|:-------:|:--------|

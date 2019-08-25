@@ -30,6 +30,7 @@ To know more about Lexem see one the following sections:
 - The [specification](specification/README.md) of Lexem.
 - The Lexem's self-defined [grammar](grammar/README.md).
 - The [do it yourself](diy/README.md) section to learn how to implement a compiler and/or and interpreter.
+- The [standard library](stdlib/README.md) of Lexem.
 
 ## Contributing
 
