@@ -4,14 +4,9 @@
 - [Table of contents](#table-of-contents)
 - [Functional expressions](#functional-expressions)
   - [Indexers](#indexers)
-    - [Slices](#slices)
   - [Accesses](#accesses)
   - [Function calls](#function-calls)
   - [Operators](#operators)
-    - [Unitary operators](#unitary-operators)
-    - [Binary operators](#binary-operators)
-    - [Chained binary operators](#chained-binary-operators)
-    - [Assignments](#assignments)
 
 # Functional expressions
 
@@ -229,16 +224,16 @@ a or  b or  c
 a xor b xor c
 ```
 
-| a | b | c | and | or  | xor |
-|:-:|:-:|:-:|:---:|:---:|:---:|
-| F | F | F |  a  |  c  |  c  |
-| F | F | T |  a  |  c  |  c  |
-| F | T | F |  a  |  b  |b(c) |
-| F | T | T |  a  |  b  |F(c) |
-| T | F | F |  b  |  a  |a(c) |
-| T | F | T |  b  |  a  |F(c) |
-| T | T | F |  c  |  a  |F(b) |
-| T | T | T |  c  |  a  |F(b) |
+| a | b | c | and | or  |   xor  |
+|:-:|:-:|:-:|:---:|:---:|:------:|
+| F | F | F |  a  |  c  |    c   |
+| F | F | T |  a  |  c  |    c   |
+| F | T | F |  a  |  b  |  b(c)  |
+| F | T | T |  a  |  b  | Nil(c) |
+| T | F | F |  b  |  a  |  a(c)  |
+| T | F | T |  b  |  a  | Nil(c) |
+| T | T | F |  c  |  a  | Nil(b) |
+| T | T | T |  c  |  a  | Nil(b) |
 
 `F` means falsity and `T` means truthy. `x(y)` means that the returned value is `x` and that the expression has been analyzed until the `y` operand, so the rest operands after that have been skipped.
 

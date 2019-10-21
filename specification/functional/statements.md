@@ -1,29 +1,14 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Statements](#statements)
   - [Blocks of code](#blocks-of-code)
-    - [Inside expressions](#inside-expressions)
-    - [Control statements](#control-statements)
   - [Variable declaration](#variable-declaration)
-    - [Re-declarations](#re-declarations)
-    - [Assigns](#assigns)
-    - [Destructuring](#destructuring)
-      - [Lists](#lists)
-      - [Objects](#objects)
-      - [Mixing variables and constants](#mixing-variables-and-constants)
   - [Truth and falsity](#truth-and-falsity)
   - [Conditional statements](#conditional-statements)
-    - [Conditional expressions](#conditional-expressions)
   - [Selective statements](#selective-statements)
-    - [Control statements](#control-statements-1)
   - [Loop statements](#loop-statements)
-    - [Infinite loops](#infinite-loops)
-    - [Conditional loops](#conditional-loops)
-    - [Iterator loops](#iterator-loops)
-    - [Control statements](#control-statements-2)
-    - [Finalization](#finalization)
   - [Return values](#return-values)
 
 # Statements
@@ -247,7 +232,7 @@ The `when` statements works evaluating the condition against each of the options
 
 The allowed patterns are:
 
-- `expression conditional {body}`: compares `when`'s condition with the result of the expression. If they match, the conditional is executed and if it also matches then the body is executed. The conditional is optional.
+- `expression conditional {body}`: compares `when`'s condition with the result of the expression. If they match, the conditional is executed and if it is ok, then the body is executed. The conditional is optional.
 
     ```lexem
     let num = 4
@@ -310,9 +295,7 @@ To control the execution of `when` statements, there are the following statement
 | Statement | Meaning |
 |:---------:|:--------|
 |`exit`|Stops the flow control statement immediately above.|
-|`exit expression`|Stops the flow control statement immediately above returning a value.|
 |`exit'tag`|Stops the execution of the specified `when`.|
-|`exit'tag expression`|Stops the execution of the specified `when` returning a value.|
 
 ## Loop statements
 
@@ -391,12 +374,10 @@ Every loop accepts a tag to identify it with the objective of control its execut
 | Statement | Meaning |
 |:---------:|:--------|
 |`exit`|Stops the flow control statement immediately above.|
-|`exit expression`|Stops the flow control statement immediately above returning a value.|
 |`next`|Stops the current iteration and continues with the next iteration of the loop statement immediately above.|
 |`redo`|Restarts the current iteration of the loop statement immediately above.|
 |`restart`|Restarts from the beginning the whole loop statement immediately above.|
 |`exit'tag`|Stops the execution of the specified loop.|
-|`exit'tag expression`|Stops the execution of the specified loop returning a value.|
 |`next'tag`|Stops the current iteration and continues with the next iteration of the specified loop.|
 |`redo'tag`|Restarts the current iteration of the specified loop.|
 |`restart'tag`|Restarts from the beginning the specified loop.|

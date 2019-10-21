@@ -8,22 +8,11 @@
   - [Integer type](#integer-type)
   - [Float type](#float-type)
   - [String type](#string-type)
-    - [Escapes](#escapes)
-    - [Dynamic escape](#dynamic-escape)
   - [Interval type](#interval-type)
-    - [Internal rules](#internal-rules)
-    - [Escapes](#escapes-1)
-    - [Dynamic escape](#dynamic-escape-1)
-      - [Sub-intervals](#sub-intervals)
   - [BitList type](#bitlist-type)
-    - [Dynamic escape](#dynamic-escape-2)
   - [List type](#list-type)
   - [Set type](#set-type)
   - [Object type](#object-type)
-    - [Complex property names](#complex-property-names)
-    - [Constant properties](#constant-properties)
-    - [Simplifications (syntactic sugar)](#simplifications-syntactic-sugar)
-    - [Property-style object definition](#property-style-object-definition)
   - [Map types](#map-types)
   - [Function type](#function-type)
   - [Expression type](#expression-type)
@@ -124,8 +113,6 @@ Escapes are used to represent characters that don't have a visual representation
 |:------:|:--------|
 | `\u{<num>}` | Specifies an Unicode point using an integer literal. Default is hexadecimal so its prefix is optional but decimal numbers require it. |
 | `\uHHHHHH` | Specifies an Unicode point using six hexadecimal characters. |
-| `\p{<num>}` | Specifies a 32-bit point using an integer literal. Default is hexadecimal so its prefix is optional but decimal numbers require it. |
-| `\pHHHHHHHH` | Specifies a 32-bit point using eight hexadecimal characters. |
 | `\t` | Horizontal Tab (`HT`): Unicode(`00000009`) |
 | `\n` | Line Feed(`LF`): Unicode(`0000000A`) |
 | `\r` | Carriage Return (`CR`): Unicode(`0000000D`) |

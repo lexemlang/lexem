@@ -1,18 +1,13 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Lexemes](#lexemes)
   - [Groups](#groups)
   - [Quantifiers](#quantifiers)
   - [Quantified groups](#quantified-groups)
   - [Filter](#filter)
-    - [Name](#name)
-    - [Properties](#properties)
-    - [Methods](#methods)
   - [Additions](#additions)
-    - [Name](#name-1)
-    - [Properties](#properties-1)
   - [Accesses](#accesses)
   - [Executor (Embed functional code)](#executor-embed-functional-code)
   - [Continuation](#continuation)
@@ -75,7 +70,7 @@ On the other hand, to check a property use one of the following rules:
 .!property                   -- the property must not exist
 .property[condition]         -- the property must exist and the condition must match using the 'it' alias
 .property[alias: condition]  -- the property must exist and the condition must match using the specified alias
-.(prop1, prop2)              -- any of the properties
+.(prop1, prop2)              -- any of the properties (they can be any of the patterns but without the dot '.')
 ```
 
 Also, there is a set of reserved property keys:

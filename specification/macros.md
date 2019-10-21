@@ -1,10 +1,9 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Macros](#macros)
   - [check_props!](#check_props)
-  - [logic_line!](#logic_line)
   - [line!](#line)
   - [file!](#file)
   - [directory!](#directory)
@@ -39,30 +38,6 @@ Is equivalent to:
 
 -- As lexeme.
 |> \(? node.properties.active == true)
-```
-
-## logic_line!
-
-| As functional expression | As statement | As lexeme |
-|:------------------------:|:------------:|:---------:|
-| Yes                      | No           | No        |
-
-Returns an `Object` with the line numbers in which it appears inside the current file.
-
-For example:
-
-```lexem
-1. let x = logic_line!
-2. let y = logic_line! +
-3. x *
-4. y
-```
-
-Is equivalent to:
-
-```lexem
-let x = {from: 1, to: 1}
-let y = {from: 2, to: 4}
 ```
 
 ## line!
