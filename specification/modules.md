@@ -1,12 +1,10 @@
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Lexem modules](#lexem-modules)
   - [Contexts](#contexts)
   - [Imports](#imports)
-    - [Github files imports](#github-files-imports)
   - [Exports](#exports)
-    - [`pub` modifier](#pub-modifier)
 
 # Lexem modules
 
@@ -67,23 +65,7 @@ Just remember to use the url to get the raw value of the file, not the web, i.e.
 
 ## Exports
 
-To import a module it is necessary that the module has previously exported its public components. The `exports` object must be filled with all elements that are public. For example:
-
-```lexem
--- A variable
-let x = 3
-
--- A function
-fun funName() {}
-
--- The export
-var exports = {
-    x,
-    funName,
-}
-```
-
-But also it can be created at the beginning and progressively filled during the initialization of each element:
+To import a module it is necessary that the module has previously exported its public components. The `exports` object is automatically created by Lexem but must be progressively filled with all elements that are public. For example:
 
 ```lexem
 -- The export (can be omitted)
@@ -98,24 +80,22 @@ fun funName() {}
 export.funName = funName
 ```
 
-The `export` variable initialization can be omitted due to Lexem creates it with a default plain object (`{}`).
-
 ### `pub` modifier
 
 The latter is a common and useful pattern, so there is a modifier for statements that allows to simplify its writing:
 
 ```lexem
 -- A variable
-pub var x = 3
+pub! var x = 3
 
 -- A constant
-pub let y = "value"
+pub! let y = "value"
 
 -- A function
-pub fun funName() {}
+pub! fun funName() {}
 
 -- An expression
-pub exp expName() {}
+pub! exp expName() {}
 ```
 
-This code is interpreted like the previous section and can be used with a variable (`var`), a constant(`let`), a function (`fun`) or an expression (`exp`) statement declaration.
+This code is interpreted like the previous section and can be used with a variable (`var`), a constant(`let`), a function (`fun`), a filter (`filter`) or an expression (`exp`) statement declaration.
