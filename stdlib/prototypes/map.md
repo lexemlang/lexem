@@ -4,6 +4,8 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.size()`](#size)
+  - [`.freeze()`](#freeze)
+  - [`.isFrozen() -> Logic`](#isfrozen---logic)
   - [`.every(fn: Function) -> Logic`](#everyfn-function---logic)
   - [`.filter(fn: Function) -> Map`](#filterfn-function---map)
   - [`.forEach(fn: Function)`](#foreachfn-function)
@@ -27,8 +29,8 @@
   - [`.logicOr(right: Map) -> Map`](#logicorright-map---map)
   - [`.logicXor(right: Map) -> Map`](#logicxorright-map---map)
 - [Accesses](#accesses)
-  - [`.index(key: Any) -> Any`](#indexkey-any---any)
-  - [`.index(key: Any, value: Any) -> Any`](#indexkey-any-value-any---any)
+  - [`[key: Any] -> Any`](#key-any---any)
+  - [`[key: Any] = value: Any -> Any`](#key-any--value-any---any)
 
 # Methods
 
@@ -50,6 +52,48 @@ map.size()
 let map = [1, 2, 3]
 
 log(map.size())    -- 3
+```
+
+## `.freeze()`
+
+Makes the map constant so it can't be extended, shrinked or modified.
+
+```lxm
+map.freeze()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Map`.
+
+### Examples
+
+```lxm
+let map = {}
+
+map.freeze()
+
+log(map)     -- #{}
+```
+
+## `.isFrozen() -> Logic`
+
+Whether the map is constant or not.
+
+```lxm
+map.isFrozen()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Map`.
+
+### Examples
+
+```lxm
+let map = #{}
+
+log(map.isFrozen())  -- true
 ```
 
 ## `.every(fn: Function) -> Logic`
@@ -600,7 +644,7 @@ log(left ^ right)           -- map!{1: "a", true: 4.5} Implicit calling
 
 # Accesses
 
-## `.index(key: Any) -> Any`
+## `[key: Any] -> Any`
 
 Returns the value of the `key` or `nil` if the key does not exist.
 
@@ -626,9 +670,9 @@ log(map[1])     -- "a"
 log(map[2])     -- 4
 ```
 
-## `.index(key: Any, value: Any) -> Any`
+## `[key: Any] = value: Any -> Any`
 
-Assigns `value` to `key` and returns `value`. If the kye does not exist. it is added.
+Assigns `value` to `key` and returns `value`. If the key does not exist. it is added.
 
 ```lxm
 map[key] = value

@@ -4,6 +4,8 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.size()`](#size)
+  - [`.freeze()`](#freeze)
+  - [`.isFrozen() -> Logic`](#isfrozen---logic)
   - [`.every(fn: Function) -> Logic`](#everyfn-function---logic)
   - [`.filter(fn: Function) -> Set`](#filterfn-function---set)
   - [`.forEach(fn: Function)`](#foreachfn-function)
@@ -44,6 +46,48 @@ set.size()
 let set = set![1, 2, 3]
 
 log(set.size())   -- 3
+```
+
+## `.freeze()`
+
+Makes the set constant so it can't be extended, shrinked or modified.
+
+```lxm
+set.freeze()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Set`.
+
+### Examples
+
+```lxm
+let set = set![]
+
+set.freeze()
+
+log(set)        -- set!#[]
+```
+
+## `.isFrozen() -> Logic`
+
+Whether the set is constant or not.
+
+```lxm
+set.isFrozen()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Set`.
+
+### Examples
+
+```lxm
+let set = set!#[]
+
+log(set.isFrozen())     -- true
 ```
 
 ## `.every(fn: Function) -> Logic`

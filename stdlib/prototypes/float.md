@@ -11,7 +11,7 @@
   - [`.toString(radix: Integer) -> String`](#tostringradix-integer---string)
 - [Operators](#operators)
   - [`.negate() -> Float`](#negate---float)
-  - [`.affirmate() -> Integer`](#affirmate---integer)
+  - [`.affirm() -> Integer`](#affirm---integer)
   - [`.multiply(right: Integer | Float) -> Float`](#multiplyright-integer--float---float)
   - [`.divide(right: Integer | Float) -> Float`](#divideright-integer--float---float)
   - [`.intDivide(right: Integer | Float) -> Integer`](#intdivideright-integer--float---integer)
@@ -191,12 +191,12 @@ log(value.negate()) -- -3.0
 log(-value)         -- -3.0 Implicit calling
 ```
 
-## `.affirmate() -> Integer`
+## `.affirm() -> Integer`
 
 Returns the negation of the `this` value, i.e `+this`.
 
 ```lxm
-integer.affirmate()
+integer.affirm()
 ```
 
 ### Errors
@@ -208,7 +208,7 @@ integer.affirmate()
 ```lxm
 let value = 3
 
-log(value.affirmate())  -- 3
+log(value.affirm())  -- 3
 log(+value)             -- 3 Implicit calling
 ```
 

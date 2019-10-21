@@ -16,8 +16,8 @@
   - [`.containsAnyOwnProperties(...properties: List<String>)`](#containsanyownpropertiesproperties-liststring)
   - [`.containsAllOwnProperties(...properties: List<String>)`](#containsallownpropertiesproperties-liststring)
 - [Accesses](#accesses)
-  - [`.index(property: String) -> Any`](#indexproperty-string---any)
-  - [`.index(property: String, value: Any) -> Any`](#indexproperty-string-value-any---any)
+  - [`[property: String] -> Any`](#property-string---any)
+  - [`[property: String] = value: Any -> Any`](#property-string--value-any---any)
 
 # Methods
 
@@ -289,7 +289,7 @@ log(object.containsAllOwnProperties("b", "g"))     -- false
 
 # Accesses
 
-## `.index(property: String) -> Any`
+## `[property: String] -> Any`
 
 Returns the value of the property called `property` or `nil` if the property does not exist. 
 
@@ -317,7 +317,7 @@ log(object["b"])  -- 2
 log(object["c"])  -- nil
 ```
 
-## `.index(property: String, value: Any) -> Any`
+## `[property: String] = value: Any -> Any`
 
 Assigns `value` to the property called `property` and returns `value`. When `property` does not exist, it is added.
 

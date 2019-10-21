@@ -4,6 +4,8 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.size()`](#size)
+  - [`.freeze()`](#freeze)
+  - [`.isFrozen() -> Logic`](#isfrozen---logic)
   - [`.every(fn: Function) -> Logic`](#everyfn-function---logic)
   - [`.filter(fn: Function) -> List`](#filterfn-function---list)
   - [`.forEach(fn: Function)`](#foreachfn-function)
@@ -38,8 +40,8 @@
   - [`.slice(from: Integer, count: Integer) -> List<Any>`](#slicefrom-integer-count-integer---listany)
   - [`.sort()`](#sort)
 - [Accesses](#accesses)
-  - [`.index(index: Integer) -> Any`](#indexindex-integer---any)
-  - [`.index(index: Integer, value: Any) -> Any`](#indexindex-integer-value-any---any)
+  - [`[index: Integer] -> Any`](#index-integer---any)
+  - [`[index: Integer] = value: Any -> Any`](#index-integer--value-any---any)
 
 # Methods
 
@@ -61,6 +63,48 @@ list.size()
 let list = [1, 2, 3]
 
 log(list.size())    -- 3
+```
+
+## `.freeze()`
+
+Makes the list constant so it can't be extended, shrinked or modified.
+
+```lxm
+list.freeze()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
+
+### Examples
+
+```lxm
+let list = []
+
+list.freeze()
+
+log(list)       -- #[]
+```
+
+## `.isFrozen() -> Logic`
+
+Whether the list is constant or not.
+
+```lxm
+list.isFrozen()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
+
+### Examples
+
+```lxm
+let list = #[]
+
+log(list.isFrozen())    -- true
 ```
 
 ## `.every(fn: Function) -> Logic`
@@ -933,7 +977,7 @@ log(list)   -- [true, false, 1, 2, 3, "A", "b", [], {}]
 
 # Accesses
 
-## `.index(index: Integer) -> Any`
+## `[index: Integer] -> Any`
 
 Returns the value in the cell at `index` or `nil` if the cell does not exist. When `index` is negative, it starts from the end of the list.
 
@@ -964,7 +1008,7 @@ log(list[1])    -- 2
 log(list[2])    -- nil
 ```
 
-## `.index(index: Integer, value: Any) -> Any`
+## `[index: Integer] = value: Any -> Any`
 
 Assigns `value` to the cell at `index` and returns `value`. When `index` is negative, it starts from the end of the list.
 

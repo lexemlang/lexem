@@ -30,7 +30,7 @@
 - [Operators](#operators)
   - [`.add(right: Any) -> String`](#addright-any---string)
 - [Accesses](#accesses)
-  - [`.index(index: Integer) -> Any`](#indexindex-integer---any)
+  - [`[index: Integer] -> String`](#index-integer---string)
 
 # Methods
 
@@ -685,7 +685,7 @@ log(left + right)       -- 4 Implicit calling
 
 # Accesses
 
-## `.index(index: Integer) -> Any`
+## `[index: Integer] -> String`
 
 Returns the character at the specified position.
 
@@ -700,6 +700,7 @@ string[index]
 ### Errors
 
 - **`BadArgumentError`**: when the type of `index` is not an `Integer`.
+- **`IndexOutOfBounds`**: when the `index` greater than the last valid index.
 - **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `String`.
 
 ### Examples
@@ -707,9 +708,9 @@ string[index]
 ```lxm
 let string = "test"
 
-log(string[nil])  -- BadArgumentError
-log(string[0])  -- "t"
-log(string[1])  -- "e"
-log(string[2])  -- "s"
-log(string[3])  -- "t"
+log(string[nil])    -- BadArgumentError
+log(string[0])      -- "t"
+log(string[1])      -- "e"
+log(string[2])      -- "s"
+log(string[3])      -- "t"
 ```
