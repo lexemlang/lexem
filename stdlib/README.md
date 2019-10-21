@@ -14,6 +14,7 @@ The standard library can be accessed from any context and its content is divided
 
 Every valid type of Lexem has a global object (i.e. the Type) that holds global methods and properties of that type.
 
+- [Any](types/any.md): any type
 - [Nil](types/nil.md)
 - [Logic](types/logic.md)
 - [Integer](types/integer.md)
@@ -34,7 +35,7 @@ Every valid type of Lexem has a global object (i.e. the Type) that holds global 
 
 The objects that contains common properties and methods for every instance of a type. Somewhat like a class-static data. They are accessed throught the types.
 
-- [Any](prototypes/any.md): the root prototype from which all objects inherits direct or indirectly.
+- [Any.prototype](prototypes/any.md): the root prototype from which all objects inherits direct or indirectly.
 - [Nil.prototype](prototypes/nil.md)
 - [Logic.prototype](prototypes/logic.md)
 - [Integer.prototype](prototypes/integer.md)
@@ -56,3 +57,4 @@ The objects that contains common properties and methods for every instance of a 
 The rest of built-in elements of Lexem are packed in different global objects.
 
 - [Math](globals/math.md)
+- [Analyzer](globals/analyzer.md)
