@@ -6,7 +6,7 @@
 --    Access lexemes of the descriptive core.
 --------------------------
 
-let (ws_no_eol) = import("root:commons")
+let (ws_no_eol, ws) = import("root:commons")
 let fn_exp = import("root:functional/expressions")
 let (property_style_object_block) = import("root:literals/object")
 
@@ -14,7 +14,7 @@ pub! exp access {
     set_props![- negated]
     |? "!" set_props![negated]
     |> expression:fn_exp.left_expression
-    |? ws_no_eol? "->" ws_no_eol? {
+    |? ws_no_eol? "->" ws? {
         onBack {
             log.error("An access was expected after the next token '->'.")
         }

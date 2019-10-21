@@ -11,16 +11,19 @@ let fn_exp = import("../expressions")
 
 
 pub! exp control[- capture] {
-    | exit:control_with_expression("exit")
+    | exit:control_without_expression("exit")
     | next:control_without_expression("next")
     | redo:control_without_expression("redo")
     | restart:control_without_expression("restart")
-    | return:return_stmt
+    | return:control_with_expression("return", withTag = false)
 }
 
-exp control_with_expression(token) {
+exp control_with_expression(token, withTag) {
     |> check_keyword(token)
-    |? "'" tag:identifier
+
+    if(withTag) {
+        |? "'" tag:identifier
+    }
 
     onBack {
         log.error("An expression is required for the '\(token)' control statement.")
@@ -32,14 +35,4 @@ exp control_with_expression(token) {
 exp control_without_expression(token) {
     |> check_keyword(token)
     |? "'" tag:identifier
-}
-
-exp return_stmt {
-    |> check_keyword("return")
-
-    onBack {
-        log.error("An expression is required for the return control statement.")
-    }
-
-    |> ws? expression:fn_exp.expression
 }

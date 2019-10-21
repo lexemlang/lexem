@@ -51,15 +51,15 @@ exp lexem {
     | fn_exp.macro_backtrack
     | {
         |? data_capturing ws_no_eol?
-        | block
         | text
         | bin_sequence
-        | anchor
-        | semantic_re_naming? group
+        | block
+        | anchors
         | quantified_group
         | executor
-        | semantic_re_naming? access
         | global.lexem.block
+        | semantic_re_naming? group
+        | semantic_re_naming? access
         |? quantifier
     }
     | continuation

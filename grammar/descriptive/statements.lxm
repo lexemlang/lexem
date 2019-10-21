@@ -21,25 +21,32 @@ pub! exp statement[- capture] {
     | global.lexem.pattern
     | onBack_block
     | loops.quantified
+    | set_props_macro
     | stmt_block
 }
 
 exp onBack_block {
-    |> gen.keyword("onBack") ws? block
+    |> gen.keyword("onBack") ws?
+    
+    onBack {
+        log.error("'onBack' requires a block.")
+    }
+    
+    |> global.lexem.block
 }
 
-pub! exp block(props![- backtrack]) {
-    |> "{"
-    |? "'" tag:identifier
 
-    for *+ do {
-        |? ws?
-        |> statement
-    }
+
+------------------------
+--  Macro statements  --
+------------------------
+
+pub! exp set_props_macro {
+    |> "set_props!"
 
     onBack {
-        log.error("Incorrect block. The close bracket '}' is required.")
+        log.error("'set_props!' macro requires a block started with '['.")
     }
 
-    |> ws? "}"
+    |> block:property_style_object_block
 }

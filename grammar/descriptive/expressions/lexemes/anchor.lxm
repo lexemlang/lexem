@@ -6,7 +6,7 @@
 --    Anchor lexemes of the descriptive core.
 --------------------------
 
-let (ws_simple) = import("root:commons")
+let (ws) = import("root:commons")
 let fn_exp = import("root:functional/expressions")
 let (string) = import("root:literals/string")
 let (interval) = import("root:literals/interval")
@@ -22,26 +22,27 @@ exp relative_anchor {
 
     | "^^" set_props![text start]
     | "$$" set_props![text - start]
-    | "^" set_props![start]
-    | "$" set_props![- start]
-
-    onBack {
-        log.error("The open parenthesis '(' of the anchor group or an abbreviation is required here.")
-    }
-
-    | "(" {
-        for *+ {
-            |? ws_simple?
-            |> relative_anchor_element
-        }
+    | {
+        | "^" set_props![start]
+        | "$" set_props![- start]
 
         onBack {
-            log.error("The close parenthesis ')' is required to close the anchor group.")
+            log.error("The open parenthesis '(' of the anchor group or an abbreviation is required here.")
         }
 
-        |> ws_simple? ")"
+        | "(" ws? {
+            for *+ {
+                |> relative_anchor_element ws?
+            }
+
+            onBack {
+                log.error("The close parenthesis ')' is required to close the anchor group.")
+            }
+
+            |> ")"
+        }
+        | set_props![line]
     }
-    | set_props![line]
 }
 
 exp relative_anchor_element {
@@ -55,24 +56,17 @@ exp absolute_anchor {
     set_props![- negated]
     |? "!" set_props![negated]
 
-    |> "&"
-
-    onBack {
-        log.error("The open parenthesis '(' of the anchor group is required.")
-    }
-
-    |> "("
+    |> "&(" ws?
 
     for *+ {
-        |? ws_simple?
-        |> absolute_anchor_element
+        |> absolute_anchor_element ws?
     }
 
     onBack {
         log.error("The close parenthesis ')' is required to close the anchor group.")
     }
 
-    |> ws? ")"
+    |> ")"
 }
 
 exp absolute_anchor_element {

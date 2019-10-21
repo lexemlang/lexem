@@ -167,29 +167,26 @@ exp escape_character {
 
 
 exp escape_point {
-	| "\\u" set_props![isUnicode]
-	| "\\p" set_props![- isUnicode]
-
-	let name = if node.properties.isUnicode {"Unicode"} else {"Point"}
+	| "\\u"
 
 	| {
 		|> "{" ws_no_eol?
 
         onBack {
-            log.error("The \(name) escape requires the value of the point.")
+            log.error("The Unicode escape requires the value of the point.")
         }
 
         |> value:integer_number_hex_default
 
         onBack {
-            log.error("The \(name) escape requires the close bracket.")
+            log.error("The Unicode escape requires the close bracket.")
         }
 
         |> ws_no_eol? "}"
 	}
 	| {
 		onBack {
-			log.error("The \(name) escape requires the value of the point.")
+			log.error("The Unicode escape requires the value of the point.")
 		}
 
 		|> value:integer_number_hex_default

@@ -37,7 +37,22 @@ pub! exp group {
 }
 
 exp header {
-	|+ quantifier
-    |+ identifier
-    |+ property_style_object_block
+    let prev = false
+	|+ quantifier \(prev = true)
+    |+ {
+        if prev {
+            |> ws?
+        }
+
+        |> identifier
+
+        prev = true
+    }
+    |+ {
+        if prev {
+            |> ws?
+        }
+        
+        |> property_style_object_block
+    }
 }

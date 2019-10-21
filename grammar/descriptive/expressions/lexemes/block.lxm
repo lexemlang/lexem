@@ -13,6 +13,7 @@ let (property_postfix) = import("text"))
 pub! exp block {
     set_props![- negated]
     |? "!" set_props![negated]
+    | unicode_interval_abbr
     | interval
 
     |? property_postfix

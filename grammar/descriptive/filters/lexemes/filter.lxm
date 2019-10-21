@@ -61,10 +61,10 @@ exp name {
 
         repeat i for ++ {
             if i > 0 {
-                |> ws? "," ws?
+                |> "," ws?
             }
 
-            |> identifier
+            |> identifier ws?
         }
 
         onBack {
@@ -108,8 +108,7 @@ exp property_no_dot {
 
         |> ")"
     }
-    | "@"? identifier
-    |? property_alias_block
+    | "@"? identifier property_alias_block?
 }
 
 exp property_alias_block {
@@ -141,10 +140,10 @@ exp method {
     }
 
     |> identifier
-    |? method_alias_block
+    |? method_arguments
 }
 
-exp method_alias_block {
+exp method_arguments {
     |> "(" ws?
 
     |? identifier ws? ":" ws?
