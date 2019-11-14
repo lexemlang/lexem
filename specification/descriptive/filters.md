@@ -1,11 +1,10 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Filters](#filters)
   - [Parameters](#parameters)
   - [Properties](#properties)
-    - [Built-in properties](#built-in-properties)
   - [Body](#body)
   - [Nodes](#nodes)
 
@@ -71,15 +70,13 @@ There are a group of built-in properties that filters use to change their behavi
 |:--------:|:--------|
 | `capture` | Captures the filter, i.e. the filter generates a node in its parent node. |
 | `children` | Allows to keep its child nodes. If `capture` is `false` and this is `true`, children will hang directly from the parent of this node. |
-| `backtrack` | Specifies if the backtracking should enter to the filter to look for another option. |
-| `error` | Specifies if an error is thrown inside the expression, it should start the backtracking instead of finishing the analysis. |
-| `reverse` | Tells the analyzer to capture the input in the normal way (left to right) or in the reverse one (right to left) from the current position. |
+| `backtrack` | Specifies whether the backtracking should enter to the filter to look for another option. |
 | `consume` | Specifies whether the filter should consume the nodes or just ends where it begins. |
 
 The properties are automatically set to the following values if they are not overwritten in the call or by an explicit default value:
 
 ```lexem
-[capture children consume - backtrack error reverse]
+[capture children consume - backtrack]
 ```
 
 ## Body

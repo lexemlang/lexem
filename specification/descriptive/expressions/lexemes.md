@@ -1,30 +1,21 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Lexemes](#lexemes)
   - [Literal texts](#literal-texts)
   - [Literal binary sequence](#literal-binary-sequence)
   - [Character blocks](#character-blocks)
   - [Groups](#groups)
-    - [Header](#header)
-      - [Alternation type](#alternation-type)
-      - [Properties](#properties)
-  - [Quantifiers](#quantifiers)
-    - [Greedy quantifiers](#greedy-quantifiers)
-    - [Lazy quantifiers](#lazy-quantifiers)
   - [Quantified groups](#quantified-groups)
   - [Anchors](#anchors)
-    - [Relative anchors](#relative-anchors)
-    - [Absolute anchors](#absolute-anchors)
   - [Property modifier](#property-modifier)
   - [Accesses](#accesses)
-    - [Re-parsing](#re-parsing)
-    - [Filtering](#filtering)
   - [Executor (Embed functional code)](#executor-embed-functional-code)
   - [Continuation](#continuation)
+- [Modifiers](#modifiers)
+  - [Quantifiers](#quantifiers)
   - [Data capturing](#data-capturing)
-  - [Semantic re-naming](#semantic-re-naming)
 
 # Lexemes
 
@@ -130,84 +121,19 @@ There are a group of built-in properties that groups use to change their behavio
 
 | Property | Meaning |
 |:--------:|:--------|
-| `capture` | Makes the group catchable, i.e. the group generates a node with its content in its parent. |
+| `capture` | Makes the group catchable, i.e. the group generates a node with its content in its parent. The group cannot be capture without a name. |
 | `property` | Generates a property in the parent node with the name of the group whose value is the captured content of the group. If this property receives a `String` instead of a `Logic`, the generated property will be named with that value. |
 | `children` | Allows to keep its child nodes. If `capture` is `false` and this is `true`, children will hang directly from the parent of this node. |
 | `insensible` | Tells the capturing lexemes whether to interpret uppercase and lowercase as the same. |
 | `backtrack` | Specifies whether the backtracking should enter to the group to look for another option. |
-| `error` | If an error is thrown inside the expression, specifies whether it should start the backtracking instead of finishing the analysis. |
 | `reverse` | Tells the analyzer to capture the input in the normal way (left to right) or in the reverse one (right to left) from the current position. |
 | `consume` | Specifies whether the expression should consume the input or just ends where it begins. |
 
 The properties are automatically set to the following values if they are not overwritten:
 
 ```lexem
-[children backtrack consume - capture property insensible error reverse]
+[children backtrack consume - capture property insensible reverse]
 ```
-
-## Quantifiers
-
-Quantifiers are not self-sufficient lexemes but modifiers for others. Like loops, quantifiers repeat a group of lexemes to match them a fixed number of times.
-
-```lexem
-lexeme{min, max}
-```
-
-There are a few simplifications to write quantifiers:
-
-- If the maximum is omitted (`{min}`), the quantifier will match exactly `min` times.
-- If the maximum is omitted but the comma is still written (`{min,}`), the quantifier will match at least `min` times.
-- If everything is written (`{min, max}`), the quantifier will match between `min` and `max` times. Both included.
-
-Moreover, there are two kind of behaviours for quantifiers, _greedy_ and _lazy_ and a modification of both called _atomic_ in which the backtracking can't enter to them once the flow has exit.
-
-### Greedy quantifiers
-
-They will try to match as many times as they can before continuing the analysis.
-
-| Rule | Syntax | Meaning |
-|:----:|:------:|:--------|
-| Interval | `{n}` | See the explanation above. |
-| Interval | `{n,}` | See the explanation above. |
-| Interval | `{n,m}` | See the explanation above. |
-| Optional | `?` | It is an alias for `{0,1}` |
-| Zero or more | `*` | It is an alias for `{0,}` |
-| At least one | `+` | It is an alias for `{1,}` |
-
-In cases when the quantifier should be atomic use:
-
-| Rule | Syntax |
-|:----:|:------:|
-| Interval | `{n}+` |
-| Interval | `{n,}+` |
-| Interval | `{n,m}+` |
-| Optional | `?+` |
-| Zero or more | `*+` |
-| At least one | `++` |
-
-### Lazy quantifiers
-
-They will try to match the least times they can before continuing the analysis.
-
-| Rule | Syntax | Meaning |
-|:----:|:------:|:--------|
-| Interval | `{n}?` | See the explanation above. |
-| Interval | `{n,}?` | See the explanation above. |
-| Interval | `{n,m}?` | See the explanation above. |
-| Optional | `??` | It is an alias for `{0,1}?` |
-| Zero or more | `*?` | It is an alias for `{0,}?` |
-| At least one | `+?` | It is an alias for `{1,}?` |
-
-In cases when the quantifier should be atomic use:
-
-| Rule | Syntax |
-|:----:|:------:|
-| Interval | `{n}*` |
-| Interval | `{n,}*` |
-| Interval | `{n,m}*` |
-| Optional | `?*` |
-| Zero or more | `**` |
-| At least one | `+*` |
 
 ## Quantified groups
 
@@ -218,7 +144,7 @@ Due to that, the quantifier group acts like if it has an inner quantifier that c
 ```lexem
 @(option1 | option2 |)          -- min auto, max auto
 @({} option1 | option2 |)       -- min auto, max auto
-@({x} option1 | option2 |)      -- min set, max auto
+@({x} option1 | option2 |)      -- min set, max set
 @({x,} option1 | option2 |)     -- min set, max auto
 @({x,y} option1 | option2 |)    -- min set, max set
 @({,y} option1 | option2 |)     -- min auto, max set
@@ -349,7 +275,8 @@ access -> !expression(arg1: val1, arg2: val2):[properties]
 
 The negation tells the analyzer it is required that the access does _NOT_ match to continue with the normal flow.
 
-> **Note**: you can chain any number of accesses but they cannot be set after a filter.
+> **Note**: you can chain any number of filters and re-parsings.
+> **Note**: requires that every access but the last one returns a `Node`, i.e. the expression captures.
 
 ### Filtering
 
@@ -367,7 +294,7 @@ The three elements of the accesses are:
 - **Arguments**: dynamic values passed to the calling expression.
 - **Properties**: the properties that are passed to the called expression. This field (`:[properties]`) is optional.
 
-> **Note**: you can chain any number of filters but always after all accesses.
+> **Note**: you can chain any number of filters and re-parsings.
 
 ## Executor (Embed functional code)
 
@@ -396,32 +323,90 @@ Allows to continue the current pattern on the next line. Really it is not a lexe
 a2
 ```
 
+# Modifiers
+
+The modifiers are lexemes that require other non-modifier lexemes to be applied to them.
+
+## Quantifiers
+
+Quantifiers are not self-sufficient lexemes but modifiers for others. Like loops, quantifiers repeat a group of lexemes to match them a fixed number of times.
+
+```lexem
+lexeme{min, max}
+```
+
+There are a few simplifications to write quantifiers:
+
+- If the maximum is omitted (`{min}`), the quantifier will match exactly `min` times.
+- If the maximum is omitted but the comma is still written (`{min,}`), the quantifier will match at least `min` times.
+- If everything is written (`{min, max}`), the quantifier will match between `min` and `max` times. Both included.
+
+Moreover, there are two kind of behaviours for quantifiers, _greedy_ and _lazy_ and a modification of both called _atomic_ in which the backtracking can't enter to them once the flow has exit.
+
+### Greedy quantifiers
+
+They will try to match as many times as they can before continuing the analysis.
+
+| Rule | Syntax | Meaning |
+|:----:|:------:|:--------|
+| Interval | `{n}` | See the explanation above. |
+| Interval | `{n,}` | See the explanation above. |
+| Interval | `{n,m}` | See the explanation above. |
+| Optional | `?` | It is an alias for `{0,1}` |
+| Zero or more | `*` | It is an alias for `{0,}` |
+| At least one | `+` | It is an alias for `{1,}` |
+
+In cases when the quantifier should be atomic use:
+
+| Rule | Syntax |
+|:----:|:------:|
+| Interval | `{n}+` |
+| Interval | `{n,}+` |
+| Interval | `{n,m}+` |
+| Optional | `?+` |
+| Zero or more | `*+` |
+| At least one | `++` |
+
+### Lazy quantifiers
+
+They will try to match the least times they can before continuing the analysis.
+
+| Rule | Syntax | Meaning |
+|:----:|:------:|:--------|
+| Interval | `{n}?` | See the explanation above. |
+| Interval | `{n,}?` | See the explanation above. |
+| Interval | `{n,m}?` | See the explanation above. |
+| Optional | `??` | It is an alias for `{0,1}?` |
+| Zero or more | `*?` | It is an alias for `{0,}?` |
+| At least one | `+?` | It is an alias for `{1,}?` |
+
+In cases when the quantifier should be atomic use:
+
+| Rule | Syntax |
+|:----:|:------:|
+| Interval | `{n}*` |
+| Interval | `{n,}*` |
+| Interval | `{n,m}*` |
+| Optional | `?*` |
+| Zero or more | `**` |
+| At least one | `+*` |
+
 ## Data capturing
 
-It consist of giving a name to a node associating it with a semantic meaning in the semantic tree.
+It is like a variable assigment for the resulting value of a lexeme.
 
 ```lexem
 name = lexeme
 ```
 
-It acts as a suffix for any lexeme implying that if the lexeme is captured, its content will be stored inside a variable called `name`.
-In case of any lexeme that creates a node (e.g. accesses, capturing groups, etc.), `name` has an object as value with the following structure:
+The stored value is different depending on the lexeme captured. Only is applicable to the following:
 
-```lexem
-{
-    content: STRING,    -- The content captured by the lexeme.
-    node: NODE,         -- The node generated by the lexeme.
-}
-```
+- **Literal texts**: a `String` with the captured text.
+- **Literal binary sequence**: a `BitList` with the captured binary sequence.
+- **Character blocks**: a `String` with the captured character.
+- **Groups**: the `Node` captured by the _group_, the list of `Node`s if the _group_ does not capture itself but captures any child or `Nil` otherwise.
+- **Quantified groups**: a `String` with the captured text.
+- **Accesses**: the value returned by the _access_. In case of an expression or filter it captures the same as a _group_.
+- **Executor (Embed functional code)**: the value of the last expression in the _executor_.
 
-Moreover, if the lexeme captures once, `name` holds the value but if it captures more, the variable will contain a list of values.
-
-## Semantic re-naming
-
-It consist of giving a new name to a node to improve the semantic meaning of the result tree of nodes.
-
-```lexem
-name:lexeme
-```
-
-It acts as a prefix for the _access_ and _group_ lexemes that capture a node.
+> **Note**: if the lexeme is quatified, a list with all the results are stored.

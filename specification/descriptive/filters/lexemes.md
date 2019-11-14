@@ -4,15 +4,15 @@
 - [Table of contents](#table-of-contents)
 - [Lexemes](#lexemes)
   - [Groups](#groups)
-  - [Quantifiers](#quantifiers)
   - [Quantified groups](#quantified-groups)
   - [Filter](#filter)
   - [Additions](#additions)
   - [Accesses](#accesses)
   - [Executor (Embed functional code)](#executor-embed-functional-code)
   - [Continuation](#continuation)
+- [Modifiers](#modifiers)
+  - [Quantifiers](#quantifiers)
   - [Data-capturing](#data-capturing)
-  - [Semantic re-naming](#semantic-re-naming)
 
 # Lexemes
 
@@ -24,10 +24,6 @@ There are two types of lexemes, those that define what content should be capture
 
 This lexeme is the same as in expressions. See [Groups](../expressions/lexemes.md#Groups) for more details.
 
-## Quantifiers
-
-This lexeme is the same as in expressions. See [Quantifiers](../expressions/lexemes.md#Quantifiers) for more details.
-
 ## Quantified groups
 
 This lexeme is the same as in expressions. See [Quantifiers](../expressions/lexemes.md#Quantified-groups) for more details.
@@ -37,7 +33,7 @@ This lexeme is the same as in expressions. See [Quantifiers](../expressions/lexe
 These lexemes captures child nodes that match the specified selector.
 
 ```lexem
-!@( selector )
+!-( selector )
 ```
 
 The negation tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow.
@@ -45,7 +41,7 @@ The negation tells the analyzer it is required that the lexeme does _NOT_ match 
 The selector is composed by different sections. For example, a fully defined selector is:
 
 ```lexem
-!@( name .property1 .property2 :method1(...) :method2(...) )
+!-( name .property1 .property2 :method1(...) :method2(...) )
 ```
 
 ### Name
@@ -110,13 +106,13 @@ The default name to access the contextual value in all methods is `it`.
 Using similar selectors as _Filter_, this node generates a new child node at the current position.
 
 ```lexem
-+@( selector )
++( selector )
 ```
 
 The selector is composed by different sections. For example, a fully defined selector is:
 
 ```lexem
-@( name .property )
++( name .property )
 ```
 
 ### Name
@@ -151,16 +147,20 @@ The negation tells the analyzer it is required that the access does _NOT_ match 
 
 ## Executor (Embed functional code)
 
-This lexeme is the same as in expressions. See [Executor](../expressions/lexemes.md#Executor-Embed-functional-code) for more details.
+This lexeme is the same as in expressions. See [Executor](../expressions/lexemes.md#executor-embed-functional-code) for more details.
 
 ## Continuation
 
-This lexeme is the same as in expressions. See [Continuation](../expressions/lexemes.md#Continuation) for more details.
+This lexeme is the same as in expressions. See [Continuation](../expressions/lexemes.md#continuation) for more details.
+
+# Modifiers
+
+The modifiers are lexemes that require other non-modifier lexemes to be applied to them.
+
+## Quantifiers
+
+This lexeme is the same as in expressions. See [Quantifiers](../expressions/lexemes.md#Quantifiers) for more details.
 
 ## Data-capturing
 
-This lexeme is the same as in expressions. See [Data capturing](../expressions/lexemes.md#Data-capturing) for more details.
-
-## Semantic re-naming
-
-This lexeme is the same as in expressions. See [Semantic re-naming](../expressions/lexemes.md#Semantic-re-naming) for more details.
+This lexeme is the same as in expressions. See [Data capturing](../expressions/lexemes.md#data-capturing) for more details.

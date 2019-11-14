@@ -447,7 +447,7 @@ Represents an object with the ability to execute _functional_ and _descriptive_ 
 
 ## Node type
 
-Represents an node in the result tree. They are created by _expressions_ and _filters_ so they have no literals.
+Represents a node in the result tree. They are created by _expressions_ and _filters_ so they have no literals.
 
 - Type: `Expression`
 - Prototype: `Expression.prototype`.

@@ -84,16 +84,14 @@ There are a group of built-in properties that expressions use to change their be
 | `children` | Allows to keep its child nodes. If `capture` is `false` and this is `true`, children will hang directly from the parent of this node. |
 | `property` | Generates a property in the parent node with the name of the expression whose value is the captured content of the expression. If this property receives a `String` instead of a `Logic`, the generated property will be named with that value. |
 | `insensible` | Tells the capturing lexemes whether to interpret uppercase and lowercase as the same. |
-| `backtrack` | Specifies if the backtracking should enter to the expression to look for another option.|
-| `error` | Specifies if an error is thrown inside the expression, it should start the backtracking instead of finishing the analysis.|
+| `backtrack` | Specifies whether the backtracking should enter to the expression to look for another option.|
 | `reverse` | Tells the analyzer to capture the input in the normal way (left to right) or in the reverse one (right to left) from the current position. |
-| `consume` | Specifies if the expression should consume the input or just ends where it begins. |
-| `over` | This properSpecifies if the expression should consume the input or just ends where it begins. |
+| `consume` | Specifies whether the expression should consume the input or just ends where it begins. |
 
 The properties are automatically set to the following values if they are not overwritten in the call or by an explicit default value:
 
 ```lexem
-[capture children consume - property insensible backtrack error reverse]
+[capture children consume - property insensible backtrack reverse]
 ```
 
 There is also another property that makes the expression to be executed over the content already captured by a node called `over`.
@@ -171,7 +169,7 @@ This is a pattern that joins to a union and requires that only one of the patter
 | unionName > lexemes
 ```
 
-The union section in optional (`unionName >`).
+The union section is optional (`unionName >`).
 
 It is used to capture two or more options alternatively, i.e. choosing just one of them, for example:
 
@@ -226,7 +224,7 @@ The same as the _Alternative pattern_, this joins a union and requires that at l
 |+ unionName > lexemes
 ```
 
-The union section in optional (`unionName >`).
+The union section is optional (`unionName >`).
 
 It is used to capture optionally a set of options but ensuring that at least one of them is capture, for example:
 
@@ -279,7 +277,7 @@ It is a pattern that joins to a union and requires that just only one of the pat
 |* unionName > lexemes
 ```
 
-The union section in optional (`unionName >`).
+The union section is optional (`unionName >`).
 
 It is used to capture optionally just one of the patterns of the union, for example:
 
@@ -333,7 +331,7 @@ It is a pattern with union that requires that at least the number of the pattern
 |{} unionName > lexemes
 ```
 
-The union section in optional (`unionName >`).
+The union section is optional (`unionName >`).
 
 It is used to explicitly set the minimum and maximum number of patterns of the union, for example:
 
@@ -357,26 +355,55 @@ Moreover, the fist syntax is masters while the second is the for slaves, so ther
     |{x,y}  -- Master 2
     ```
 
-- A master pattern with union followed by one or more patterns, at any position of the code, with the same union name belong to the same union.
+- A master pattern with union followed by one or more patterns, at any position of the code, with the same union name belong to the same union, only if they have the same quantifier.
 
     ```lexem
     |{x,y}a>    -- Master a
     |> {
         |{}a>   -- Slave  a.1
     }
-    |{}a>       -- Slave  a.2
+    |{x,y}a>    -- Slave  a.2
+    |{w,r}a>    -- Error because the quantifier bound does not match.
     ```
 
 - Take into account that patterns with named unions can't be joined to anonymous patterns:
 
     ```lexem
     |{x,y}a>    -- Master a
-    |{}         -- Master 1
-    |{}         -- Slave  1.1
-    |{x,y}a>    -- Slave  a.1
-    |{x,y}a>    -- Slave  a.2
-    |{}         -- Master 2
+    |{}         -- Error because it has no master.
+    |{}a>       -- Slave  a.1
+    |{}a>       -- Slave  a.2
+    |{}         -- Error because it has no master.
     ```
+
+- Finally, a slave quantified pattern can join to any other type of pattern with union because they are just abbreviations for master quantified patterns, but only using an union, not directly:
+
+    ```lexem
+    |           -- Master Alternative a
+    |{}         -- Error because it has no master.
+    |x>         -- Master Alternative x
+    |{}x>       -- Slave x.1
+    ```
+
+#### Masters first
+
+Because slave quantified patterns do not define the bounds of their unions, they cannot be set before the master.
+
+```lexem
+|{}a>           -- Error because there is no union by the 'a' name.
+|{x,y}a>        -- Master a
+```
+
+But also, avoid to introduce the master inside other patters because if they do not match, the master will not be executed:
+
+```lexem
+|? {
+    |{x,y}a>    -- Master a
+}
+|{}a>           -- Slave  a.1 or error if the master is not executed.
+```
+
+In these cases, set the bounds of the quantifier to all patterns that possibly can be in this type of situation.
 
 ## Nodes
 
