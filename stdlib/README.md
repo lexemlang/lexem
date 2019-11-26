@@ -58,3 +58,4 @@ The rest of built-in elements of Lexem are packed in different global objects.
 
 - [Math](globals/math.md)
 - [Analyzer](globals/analyzer.md)
+- [Debug](globals/debug.md)
