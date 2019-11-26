@@ -33,7 +33,7 @@ This lexeme is the same as in expressions. See [Quantifiers](../expressions/lexe
 These lexemes captures child nodes that match the specified selector.
 
 ```lexem
-!-( selector )
+!$( selector )
 ```
 
 The negation tells the analyzer it is required that the lexeme does _NOT_ match to continue with the normal flow.
@@ -41,7 +41,7 @@ The negation tells the analyzer it is required that the lexeme does _NOT_ match 
 The selector is composed by different sections. For example, a fully defined selector is:
 
 ```lexem
-!-( name .property1 .property2 :method1(...) :method2(...) )
+!$( name .property1 .property2 :method1(...) :method2(...) )
 ```
 
 ### Name
@@ -75,7 +75,6 @@ Also, there is a set of reserved property keys:
 - `@content`: allows to perform complex checks over the content of the node.
 - `@start`: allows to perform complex checks over the start of the content.
 - `@end`: allows to perform complex checks over the end of the content.
-- `@node`: allow to perform complex checks over the node itself.
 
 > **Note**: this section is optional.
 
@@ -83,17 +82,20 @@ Also, there is a set of reserved property keys:
 
 Finally, the methods provide a way to define complex checks over different elements of the node.
 
-- `:root`: it is the root of the tree i.e. has not a parent.
+- `:root`: whether it is the root of the tree i.e. it has not a parent.
 - `:empty`: the node must not have any child.
-- `:child-size(size: condition)`: the number of children of the node must match the condition.
 - `:first-child`: the node position inside the child list of its parent must be the first.
 - `:last-child`: the node position inside the child list of its parent must be the last.
-- `:nth-child(nth: condition)`: the node position inside the child list of its parent must match the condition.
-- `:nth-last-child(nth: condition)`: the node position inside the child list of its parent must match the condition.
-- `:parent(selector)`:  it has a parent and match the selector.
+- `:nth-child[nth: condition]`: the node position inside the child list of its parent must match the condition.
+- `:child-count[size: condition]`: the number of children of the node must match the condition.
+- `:parent(selector)`: it has a parent and match the selector.
+- `:parent[it: condition]`: it has a parent and match the condition.
 - `:all-children(selector)`: all children of the node must match the selector.
+- `:all-children[it: condition]`: all children of the node must match the condition.
 - `:any-child(selector)`: at least one child of the node must match the selector.
-- `:node(it: condition)`: allow to perform complex checks over the node.
+- `:any-child[it: condition]`: at least one child of the node must match the condition.
+- `:node(selector)`: allow to perform complex checks over the node.
+- `:node[it: condition]`: allow to perform complex checks over the node.
 
 There is also a negated version of each one, just put a `!` between `:` and the name, e.g. `:!root()`
 
@@ -106,13 +108,13 @@ The default name to access the contextual value in all methods is `it`.
 Using similar selectors as _Filter_, this node generates a new child node at the current position.
 
 ```lexem
-+( selector )
+$+( selector )
 ```
 
 The selector is composed by different sections. For example, a fully defined selector is:
 
 ```lexem
-+( name .property )
+$+( name .property )
 ```
 
 ### Name
@@ -122,6 +124,8 @@ Sets the name of the node.
 ```lexem
 name
 ```
+
+> **Note**: the name is always required.
 
 ### Properties
 
