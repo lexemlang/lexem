@@ -121,13 +121,13 @@ There are a group of built-in properties that groups use to change their behavio
 
 | Property | Meaning |
 |:--------:|:--------|
-| `capture` | Makes the group catchable, i.e. the group generates a node with its content in its parent. The group cannot be capture without a name. |
+| `capture` | Makes the group capturable, i.e. the group generates a node with its content in its parent. The group cannot be capture without a name. |
 | `property` | Generates a property in the parent node with the name of the group whose value is the captured content of the group. If this property receives a `String` instead of a `Logic`, the generated property will be named with that value. |
 | `children` | Allows to keep its child nodes. If `capture` is `false` and this is `true`, children will hang directly from the parent of this node. |
 | `insensible` | Tells the capturing lexemes whether to interpret uppercase and lowercase as the same. |
 | `backtrack` | Specifies whether the backtracking should enter to the group to look for another option. |
 | `reverse` | Tells the analyzer to capture the input in the normal way (left to right) or in the reverse one (right to left) from the current position. |
-| `consume` | Specifies whether the expression should consume the input or just ends where it begins. |
+| `consume` | Specifies whether the group should consume the input or just ends where it begins. |
 
 The properties are automatically set to the following values if they are not overwritten:
 
@@ -216,6 +216,8 @@ Moreover, there are a few abbreviations due to they are commonly used:
 | `!$` | `!$(text line)` | End of line (negated). |
 | `!^^` | `!^(text)` | Start of whole input (negated). |
 | `!$$` | `!$(text)` | Enf of whole input (negated). |
+
+> **Note**: relative anchors are affected by the direccion of the analysis.
 
 ### Absolute anchors
 

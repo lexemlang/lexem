@@ -10,8 +10,8 @@
 
 # Filters
 
-A filter is an element like an expression or a function that a performs an analysis over the result tree.
-They receive a previously generated node and catch those child nodes that match the specified selectors, also manually adding new nodes.
+A filter is an statement, like an expression or a function, that performs an analysis over the result tree.
+They receive a previously generated node and catch those children that match the specified selectors, also manually adding new nodes.
 
 A filter is composed by:
 
@@ -30,7 +30,7 @@ An example of fully defined filter statement is the following:
 -- Header
 filter filterName[properties](parameters) {
     -- Body
-    |> @(*)
+    |> $(name)
 }
 ```
 
@@ -54,6 +54,8 @@ filter(param1: true, param2: "x") { }
 filter() { }
 ```
 
+The parameter called `node2Filter` is compulsory to specify which node the filter is applied to.
+
 > **Note**: if there is no parameters, the whole block can be omitted, including the parenthesis `()`.
 
 ## Properties
@@ -68,15 +70,15 @@ There are a group of built-in properties that filters use to change their behavi
 
 | Property | Meaning |
 |:--------:|:--------|
-| `capture` | Captures the filter, i.e. the filter generates a node in its parent node. |
+| `capture` | Keeps the node in the parent. |
 | `children` | Allows to keep its child nodes. If `capture` is `false` and this is `true`, children will hang directly from the parent of this node. |
 | `backtrack` | Specifies whether the backtracking should enter to the filter to look for another option. |
-| `consume` | Specifies whether the filter should consume the nodes or just ends where it begins. |
+| `reverse` | Tells the analyzer to capture the nodes in the normal way (left to right) or in the reverse one (right to left) from the current position. |
 
 The properties are automatically set to the following values if they are not overwritten in the call or by an explicit default value:
 
 ```lexem
-[capture children consume - backtrack]
+[capture children - backtrack reverse]
 ```
 
 ## Body
