@@ -131,7 +131,7 @@ Finally, it is necessary to mention two variables that are set by default inside
   container.function(this: 3, this: container)
   ```
 
-2. All arguments are accesible inside the function throught the variable `arguments`.
+2. All arguments are accessible inside the function through the variable `arguments`.
 
 ```lexem
 let function = fun(){}

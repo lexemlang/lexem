@@ -195,7 +195,7 @@ if condition {body}
 unless condition {body}
 ```
 
-The `if` variant executes its body when the truthfulness of its condition results in `true` while the `unless` variant requieres a `false`. In fact,  `unless` conditions are equivalent to `if` conditions as long as they are negated: `unless == !if`.
+The `if` variant executes its body when the truthfulness of its condition results in `true` while the `unless` variant requires a `false`. In fact,  `unless` conditions are equivalent to `if` conditions as long as they are negated: `unless == !if`.
 
 Parenthesis in the conditions are optional and only used to improve readability.
 
@@ -386,7 +386,7 @@ Every loop accepts a tag to identify it with the objective of control its execut
 
 All loops can have finalization blocks that are executed only if its condition is satisfied:
 
-- `last` block: it is executed as the last iteratior only if the loop exits normally i.e. without using an `exit` statement but only after executing at least one time.
+- `last` block: it is executed as the last iterator only if the loop exits normally i.e. without using an `exit` statement but only after executing at least one time.
 - `else` block: it is executed only if the loop fails before executing once its body.
 
 For example:

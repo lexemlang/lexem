@@ -685,7 +685,7 @@ log(Math.sinh(1.5))    -- 2.1292794550948173
 
 ## `.sqrt(number: Integer | Float) -> Float | Nil`
 
-Returns the square root of the specified number. If the number is negative, the funtion returns `nil`.
+Returns the square root of the specified number. If the number is negative, the function returns `nil`.
 
 ```lxm
 Math.sqrt(number)

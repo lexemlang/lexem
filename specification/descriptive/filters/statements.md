@@ -1,7 +1,7 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Filter statements](#filter-statements)
 
 # Filter statements

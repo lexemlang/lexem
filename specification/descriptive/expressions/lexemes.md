@@ -121,7 +121,7 @@ There are a group of built-in properties that groups use to change their behavio
 
 | Property | Meaning |
 |:--------:|:--------|
-| `capture` | Makes the group capturable, i.e. the group generates a node with its content in its parent. The group cannot be capture without a name. |
+| `capture` | Makes the group catchable, i.e. the group generates a node with its content in its parent. The group cannot be capture without a name. |
 | `property` | Generates a property in the parent node with the name of the group whose value is the captured content of the group. If this property receives a `String` instead of a `Logic`, the generated property will be named with that value. |
 | `children` | Allows to keep its child nodes. If `capture` is `false` and this is `true`, children will hang directly from the parent of this node. |
 | `insensible` | Tells the capturing lexemes whether to interpret uppercase and lowercase as the same. |
@@ -217,7 +217,7 @@ Moreover, there are a few abbreviations due to they are commonly used:
 | `!^^` | `!^(text)` | Start of whole input (negated). |
 | `!$$` | `!$(text)` | Enf of whole input (negated). |
 
-> **Note**: relative anchors are affected by the direccion of the analysis.
+> **Note**: relative anchors are affected by the direction of the analysis.
 
 ### Absolute anchors
 
@@ -239,7 +239,7 @@ The allowed elements are:
 
 ## Property modifier
 
-This node is really a macro so it can be used in functional code as well. Its functionality consist on change fastly the properties of the current node.
+This node is really a macro so it can be used in functional code as well. Its functionality consist on changing easily the properties of the current node.
 
 ```lexem
 set_props![...]
@@ -411,4 +411,4 @@ The stored value is different depending on the lexeme captured. Only is applicab
 - **Accesses**: the value returned by the _access_. In case of an expression or filter it captures the same as a _group_.
 - **Executor (Embed functional code)**: the value of the last expression in the _executor_.
 
-> **Note**: if the lexeme is quatified, a list with all the results are stored.
+> **Note**: if the lexeme is quantified, a list with all the results are stored.

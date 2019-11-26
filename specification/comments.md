@@ -1,6 +1,6 @@
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Comments](#comments)
 
 # Comments

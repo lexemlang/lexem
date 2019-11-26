@@ -1,15 +1,8 @@
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Do it yourself](#do-it-yourself)
   - [Lexem analyzer](#lexem-analyzer)
-    - [Parser](#parser)
-    - [Memory definition](#memory-definition)
-    - [Garbage collector](#garbage-collector)
-      - [Temporal garbage](#temporal-garbage)
-      - [Spatial garbage](#spatial-garbage)
-    - [Backtracking system](#backtracking-system)
-    - [Analysis](#analysis)
 
 # Do it yourself
 
@@ -17,7 +10,7 @@ This series of documents explain how to implement an analyzer for the Lexem lang
 
 ## Lexem analyzer
 
-A Lexem analyzer parses the Lexem code and interpretes it. You can implement your own Lexem interpreter if you need to embed it in your project, but if you have internet connection or you want to manually compile, you can use the REPL and API of [lexemlang.org](https://lexemlang.org).
+A Lexem analyzer parses the Lexem code and interprets it. You can implement your own Lexem interpreter if you need to embed it in your project, but if you have internet connection or you want to manually compile, you can use the REPL and API of [lexemlang.org](https://lexemlang.org).
 
 If you still require to embed it in your project, follow these steps:
 

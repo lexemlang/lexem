@@ -56,7 +56,7 @@ log(map.size())    -- 3
 
 ## `.freeze()`
 
-Makes the map constant so it can't be extended, shrinked or modified.
+Makes the map constant so it can't be extended, shrank or modified.
 
 ```lxm
 map.freeze()

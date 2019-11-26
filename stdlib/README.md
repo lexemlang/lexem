@@ -1,14 +1,14 @@
 # Table of contents
 
 - [Table of contents](#table-of-contents)
-- [Lexem's standar library](#lexems-standar-library)
+- [Lexem's standard library](#lexems-standard-library)
   - [Types](#types)
   - [Prototypes](#prototypes)
   - [Global objects](#global-objects)
 
-# Lexem's standar library
+# Lexem's standard library
 
-The standard library can be accessed from any context and its content is divided in thre big sections:
+The standard library can be accessed from any context and its content is divided in three big sections:
 
 ## Types
 
@@ -33,7 +33,7 @@ Every valid type of Lexem has a global object (i.e. the Type) that holds global 
 
 ## Prototypes
 
-The objects that contains common properties and methods for every instance of a type. Somewhat like a class-static data. They are accessed throught the types.
+The objects that contains common properties and methods for every instance of a type. Somewhat like a class-static data. They are accessed through the types.
 
 - [Any.prototype](prototypes/any.md): the root prototype from which all objects inherits direct or indirectly.
 - [Nil.prototype](prototypes/nil.md)

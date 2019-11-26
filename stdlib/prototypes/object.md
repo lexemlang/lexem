@@ -23,7 +23,7 @@
 
 ## `.freeze()`
 
-Makes the object constant so it can't be extended, shrinked or modified.
+Makes the object constant so it can't be extended, shrank or modified.
 
 ```lxm
 object.freeze()

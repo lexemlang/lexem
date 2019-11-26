@@ -1,19 +1,11 @@
 
 # Table of contents
 
-- [Index](#index)
+- [Table of contents](#table-of-contents)
 - [Descriptive expressions](#descriptive-expressions)
   - [Parameters](#parameters)
   - [Properties](#properties)
-    - [Built-in properties](#built-in-properties)
   - [Body](#body)
-    - [Static pattern](#static-pattern)
-    - [Optional pattern](#optional-pattern)
-    - [Negative pattern](#negative-pattern)
-    - [Alternative pattern](#alternative-pattern)
-    - [Additive pattern](#additive-pattern)
-    - [Selective pattern](#selective-pattern)
-    - [Quantified pattern](#quantified-pattern)
   - [Nodes](#nodes)
 
 # Descriptive expressions

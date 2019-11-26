@@ -181,7 +181,7 @@ log(value.startsWithAny("tc", "xx"))    -- false
 
 ## `.containsAny(...substrings: List<String>) -> Logic`
 
-Returns a value indicating whether the string constains any of the specified substrings.
+Returns a value indicating whether the string contains any of the specified substrings.
 
 ```lxm
 string.containsAny(substring1, ..., substringN)
@@ -207,7 +207,7 @@ log(value.containsAny("ct", "xx"))  -- false
 
 ## `.containsAll(...substrings: List<String>) -> Logic`
 
-Returns a value indicating whether the string constains all the specified substrings.
+Returns a value indicating whether the string contains all the specified substrings.
 
 ```lxm
 string.containsAll(substring1, ..., substringN)
@@ -285,7 +285,7 @@ log(value.lastIndexOf("ct"))    -- nil
 
 ## `.padStart(length: Integer, padString: String = " ") -> String`
 
-Returns the current string if its length is lower or equal than `length`, or the current string preceeded by as many `padString` as necessary to reach the specified length.
+Returns the current string if its length is lower or equal than `length`, or the current string preceded by as many `padString` as necessary to reach the specified length.
 
 ```lxm
 string.padStart(length)
@@ -317,7 +317,7 @@ log(value.padStart(7, ""))        -- BadArgumentError
 
 ## `.padEnd(length: Integer, padString: String = " ") -> String`
 
-Returns the current string if its length is lower or equal than `length`, or the current string postceeded by as many `padString` as necessary to reach the specified length.
+Returns the current string if its length is lower or equal than `length`, or the current string followed by as many `padString` as necessary to reach the specified length.
 
 ```lxm
 string.padEnd(length)
@@ -409,7 +409,7 @@ log(value.repeat(-1, ", "))   -- BadArgumentError
 
 ## `.replace(original: String, replace: String) -> String`
 
-Returns the current string with all the ocurrencies of the `original` replaced by `replace`.
+Returns the current string with all the occurrences of the `original` replaced by `replace`.
 
 ```lxm
 string.replace(original, replace)
@@ -439,7 +439,7 @@ log(value.replace(nil, ", "))   -- BadArgumentError
 
 ## `.replace(original: String, replace: String, insensible: Logic) -> String`
 
-Returns the current string with all the ocurrencies of the `original` replaced by `replace`.
+Returns the current string with all the occurrences of the `original` replaced by `replace`.
 
 ```lxm
 string.replace(original, replace)
@@ -449,7 +449,7 @@ string.replace(original, replace)
 
 - **`original`**: the string to replace.
 - **`replace`**: the string that will replace the original.
-- **`insensible`**: whether to treat uppercased and lowercased characters indistinctively.
+- **`insensible`**: whether to treat uppercase and lowercase characters indistinctly.
 
 ### Errors
 
@@ -498,7 +498,7 @@ log(value.slice(nil))   -- BadArgumentError
 
 ## `.slice(from: String, count: String) -> String`
 
-Returns the substring of the current string that starts at `from` and ends at most in the following `count` charateres. If `from` is greater than the size of the current string, the function returns an empty string, i.e. `""`.
+Returns the substring of the current string that starts at `from` and ends at most in the following `count` characters. If `from` is greater than the size of the current string, the function returns an empty string, i.e. `""`.
 
 ```lxm
 string.slice(from, count)
@@ -556,7 +556,7 @@ log(value.split(","))    -- ["this", " is", " a", " test"]
 
 ## `.toLowerCase() -> String`
 
-Returns the string with all its characters lowercased.
+Returns the string with all its characters lowercase.
 
 ```lxm
 string.toLowerCase()
@@ -576,7 +576,7 @@ log(value.toLowerCase())    -- "this is a test"
 
 ## `.toUpperCase() -> String`
 
-Returns the string with all its characters uppercased.
+Returns the string with all its characters uppercase.
 
 ```lxm
 string.toUpperCase()

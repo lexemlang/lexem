@@ -52,7 +52,7 @@ For example:
 
 ```lexem
 ...
-25. let line = line!
+1.  let line = line!
 ...
 ```
 

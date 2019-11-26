@@ -67,7 +67,7 @@ log(list.size())    -- 3
 
 ## `.freeze()`
 
-Makes the list constant so it can't be extended, shrinked or modified.
+Makes the list constant so it can't be extended, shrank or modified.
 
 ```lxm
 list.freeze()
@@ -565,7 +565,7 @@ log(list.toString())    -- "[1, 2, 3]"
 
 ## `.joinToString() -> String`
 
-Return a `String` resulted from concating all the string representation of every cell in the list.
+Return a `String` resulted from concatenating all the string representation of every cell in the list.
 
 ```lxm
 list.joinToString()
@@ -585,7 +585,7 @@ log(list.joinToString())    -- "123"
 
 ## `.joinToString(separator: String) -> String`
 
-Return a `String` resulted from concating all the string representation of every cell in the list separate by `separator`.
+Return a `String` resulted from concatenating all the string representation of every cell in the list separate by `separator`.
 
 ```lxm
 list.joinToString(fn)
@@ -1023,7 +1023,7 @@ list[index] = value
 ### Errors
 
 - **`BadArgumentError`**: when the type of `index` is not an `Integer`.
-- **`OutOfBoundsError`**: when the specifid cell is out of bounds of the list.
+- **`OutOfBoundsError`**: when the specified cell is out of bounds of the list.
 - **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
 
 ### Examples

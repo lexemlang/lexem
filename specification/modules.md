@@ -53,7 +53,7 @@ import("https://github.com/lexemlang/")
 
 ### Github files imports
 
-Due to Github is one of the biggest open-source community, Lexem has implemented in its core the ability to get a file from github easily using the following sintax:
+Due to Github is one of the biggest open-source community, Lexem has implemented in its core the ability to get a file from github easily using the following syntax:
 
 ```lexem
 import("github:user/repo/path/to/file")         -- from master

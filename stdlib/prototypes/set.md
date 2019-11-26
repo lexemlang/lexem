@@ -50,7 +50,7 @@ log(set.size())   -- 3
 
 ## `.freeze()`
 
-Makes the set constant so it can't be extended, shrinked or modified.
+Makes the set constant so it can't be extended, shrank or modified.
 
 ```lxm
 set.freeze()
