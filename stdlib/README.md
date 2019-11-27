@@ -59,3 +59,5 @@ The rest of built-in elements of Lexem are packed in different global objects.
 - [Math](globals/math.md)
 - [Analyzer](globals/analyzer.md)
 - [Debug](globals/debug.md)
+- **Globals**: an empty object to share data across the whole code.
+- **import**: the function that imports another _lexem_ file. See [Module imports](../specification/modules.md#imports) to get more information.
