@@ -9,10 +9,10 @@
 
 ## `.toString() -> String`
 
-Returns a `String` representing the logic value.
+Returns a `String` representing the `nil` value.
 
 ```lxm
-logic.toString()
+nil.toString()
 ```
 
 ### Errors
