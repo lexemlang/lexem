@@ -4,7 +4,7 @@
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
   - [`.join(...values: List<Any>) -> String`](#joinvalues-listany---string)
-  - [`.join(separator:String, ...values: List<Any>) -> String`](#joinseparatorstring-values-listany---string)
+  - [`.joinBy(separator:String, ...values: List<Any>) -> String`](#joinbyseparatorstring-values-listany---string)
   - [`.fromUnicodePoints(...charCodes: List<Integer>) -> String`](#fromunicodepointscharcodes-listinteger---string)
 - [Properties](#properties)
   - [`.prototype -> Object`](#prototype---object)
@@ -30,12 +30,12 @@ log(String.join(1, nil, true))     -- "1niltrue"
 log(String.join())                 -- ""
 ```
 
-## `.join(separator:String, ...values: List<Any>) -> String`
+## `.joinBy(separator:String, ...values: List<Any>) -> String`
 
 Returns a `String` that results from join every string representation of the specified objects separating them by `separator`.
 
 ```lxm
-String.join(separator = value, value1, ..., valueN)
+String.joinBy(separator = value, value1, ..., valueN)
 ```
 
 > **WARN**: it must be called with `separator` as named argument to not confuse with the other overloading of the function.
@@ -52,9 +52,9 @@ String.join(separator = value, value1, ..., valueN)
 ### Examples
 
 ```lxm
-log(String.join(separator = ",", 1, nil, true))    -- "1,nil,true"
-log(String.join(separator = ","))                  -- ""
-log(String.join(separator = nil))                  -- BadArgumentError
+log(String.joinBy(separator = ",", 1, nil, true))   -- "1,nil,true"
+log(String.joinBy(separator = ","))                 -- ""
+log(String.joinBy(separator = nil))                 -- BadArgumentError
 ```
 
 ## `.fromUnicodePoints(...charCodes: List<Integer>) -> String`
