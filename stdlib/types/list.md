@@ -26,7 +26,7 @@ List.new(size, value)
 
 ### Errors
 
-- **`BadArgumentError`**: when the type of `size` is not an `Integer`.
+- **`BadArgumentError`**: when the type of `size` is not an `Integer` or is lower than 0.
 
 ### Examples
 
