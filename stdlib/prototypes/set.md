@@ -45,7 +45,7 @@ set.size()
 ```lxm
 let set = set![1, 2, 3]
 
-log(set.size())   -- 3
+Debug.log(set.size())   -- 3
 ```
 
 ## `.freeze()`
@@ -67,7 +67,7 @@ let set = set![]
 
 set.freeze()
 
-log(set)        -- set!#[]
+Debug.log(set)        -- set!#[]
 ```
 
 ## `.isFrozen() -> Logic`
@@ -87,7 +87,7 @@ set.isFrozen()
 ```lxm
 let set = set!#[]
 
-log(set.isFrozen())     -- true
+Debug.log(set.isFrozen())     -- true
 ```
 
 ## `.every(fn: Function) -> Logic`
@@ -115,8 +115,8 @@ let set = set![1, 2, 3]
 fun gt0(value) { return value > 0 }
 fun gt2(value) { return value > 2 }
 
-log(set.every(gt0)) -- true
-log(set.every(gt2)) -- false
+Debug.log(set.every(gt0)) -- true
+Debug.log(set.every(gt2)) -- false
 ```
 
 ## `.filter(fn: Function) -> Set`
@@ -144,8 +144,8 @@ let set = set![1, 2, 3]
 fun gt2(value) { return value > 2 }
 fun falseFn(value) { return false }
 
-log(set.filter(gt2))     -- set![3]
-log(set.filter(falseFn)) -- set![]
+Debug.log(set.filter(gt2))     -- set![3]
+Debug.log(set.filter(falseFn)) -- set![]
 ```
 
 ## `.forEach(fn: Function)`
@@ -175,7 +175,7 @@ fun add(value) { count + value }
 
 set.forEach(add)
 
-log(count)    -- 6
+Debug.log(count)    -- 6
 ```
 
 ## `.find(fn: Function) -> Any | Nil`
@@ -203,8 +203,8 @@ let set = set![1, 2, 3]
 fun gt1(value) { return value > 1 }
 fun gt5(value) { return value > 5 }
 
-log(set.find(gt1))  -- 2
-log(set.find(gt5))  -- nil
+Debug.log(set.find(gt1))  -- 2
+Debug.log(set.find(gt5))  -- nil
 ```
 
 ## `.containsAny(...values: List<Any>) -> Logic`
@@ -228,9 +228,9 @@ set.containsAny(value1, ..., valueN)
 ```lxm
 let set = set![1, 2, 3]
 
-log(set.containsAny(1, 7, 9))   -- true
-log(set.containsAny(-4, 5))     -- false
-log(set.containsAny())          -- false
+Debug.log(set.containsAny(1, 7, 9))   -- true
+Debug.log(set.containsAny(-4, 5))     -- false
+Debug.log(set.containsAny())          -- false
 ```
 
 ## `.containsAll(...values: List<Any>) -> Logic`
@@ -254,9 +254,9 @@ set.containsAll(value1, ..., valueN)
 ```lxm
 let set = set![1, 2, 3]
 
-log(set.containsAll(1, 3))    -- true
-log(set.containsAll(1, 5))    -- false
-log(set.containsAll())        -- true
+Debug.log(set.containsAll(1, 3))    -- true
+Debug.log(set.containsAll(1, 5))    -- false
+Debug.log(set.containsAll())        -- true
 ```
 
 ## `.map(fn: Function) -> Set`
@@ -283,7 +283,7 @@ let set = set![1, 2, 3]
 
 fun add10(value) { return value + 10 }
 
-log(set.map(add10))   -- set![11, 12, 13]
+Debug.log(set.map(add10))   -- set![11, 12, 13]
 ```
 
 ## `.reduce(default: Any, fn: Function) -> Any`
@@ -311,8 +311,8 @@ let set = set![1, 2, 3]
 
 fun add(accumulation, value) { return accumulation + value }
 
-log(set.reduce(0, add))     -- 6
-log(set.reduce(10, add))    -- 16
+Debug.log(set.reduce(0, add))     -- 6
+Debug.log(set.reduce(10, add))    -- 16
 ```
 
 ## `.any(fn: Function) -> Logic`
@@ -340,8 +340,8 @@ let set = set![1, 2, 3]
 fun gt2(value) { return value > 2 }
 fun gt5(value) { return value > 5 }
 
-log(set.any(gt2)) -- true
-log(set.any(gt5)) -- false
+Debug.log(set.any(gt2)) -- true
+Debug.log(set.any(gt5)) -- false
 ```
 
 ## `.add(...values: List<Any>)`
@@ -366,10 +366,10 @@ set.add(value1, ..., valueN)
 let set = set![1, 2, 3]
 
 set.add(1, 5)
-log(set)    -- set![1, 2, 3, 5]
+Debug.log(set)    -- set![1, 2, 3, 5]
 
 set.add()
-log(set)    -- set![1, 2, 3, 5]
+Debug.log(set)    -- set![1, 2, 3, 5]
 ```
 
 ## `.remove(...values: List<Any>)`
@@ -394,10 +394,10 @@ set.remove(value1, ..., valueN)
 let set = set![1, 2, 3]
 
 set.remove(1, 5)
-log(set)    -- set![2, 3]
+Debug.log(set)    -- set![2, 3]
 
 set.remove()
-log(set)    -- set![2, 3]
+Debug.log(set)    -- set![2, 3]
 ```
 
 ## `.toList() -> List`
@@ -417,7 +417,7 @@ set.toList()
 ```lxm
 let set = set![1, 2, 3]
 
-log(set.toList())    -- [1, 2, 3]
+Debug.log(set.toList())    -- [1, 2, 3]
 ```
 
 ## `.toString() -> String`
@@ -437,7 +437,7 @@ set.toString()
 ```lxm
 let set = set![1, 2, 3]
 
-log(set.toString())    -- "set![1, 2, 3]"
+Debug.log(set.toString())    -- "set![1, 2, 3]"
 ```
 
 # Operators
@@ -465,9 +465,9 @@ set.add(right)
 let left = set![1, 2, 3, 4, 5]
 let right = set![2, 4, 6, 8]
 
-log(left.add(right))        -- set![1, 2, 3, 4, 5, 6, 8]
-log(left.add(nil))          -- BadArgumentError
-log(left + right)           -- set![1, 2, 3, 4, 5, 6, 8] Implicit calling
+Debug.log(left.add(right))        -- set![1, 2, 3, 4, 5, 6, 8]
+Debug.log(left.add(nil))          -- BadArgumentError
+Debug.log(left + right)           -- set![1, 2, 3, 4, 5, 6, 8] Implicit calling
 ```
 
 ## `.sub(right: Set) -> Set`
@@ -493,9 +493,9 @@ set.sub(right)
 let left = set![1, 2, 3, 4, 5]
 let right = set![2, 4, 6, 8]
 
-log(left.sub(right))    -- set![1, 3, 5]
-log(left.sub(nil))      -- BadArgumentError
-log(left - right)       -- set![1, 3, 5] Implicit calling
+Debug.log(left.sub(right))    -- set![1, 3, 5]
+Debug.log(left.sub(nil))      -- BadArgumentError
+Debug.log(left - right)       -- set![1, 3, 5] Implicit calling
 ```
 
 ## `.logicAnd(right: Set) -> Set`
@@ -521,9 +521,9 @@ set.logicAnd(right)
 let left = set![1, 2, 3, 4, 5]
 let right = set![2, 4, 6, 8]
 
-log(left.logicAnd(right))   -- set![2, 4]
-log(left.logicAnd(nil))     -- BadArgumentError
-log(left & right)           -- set![2, 4] Implicit calling
+Debug.log(left.logicAnd(right))   -- set![2, 4]
+Debug.log(left.logicAnd(nil))     -- BadArgumentError
+Debug.log(left & right)           -- set![2, 4] Implicit calling
 ```
 
 ## `.logicOr(right: Set) -> Set`
@@ -549,9 +549,9 @@ set.logicOr(right)
 let left = set![1, 2, 3, 4, 5]
 let right = set![2, 4, 6, 8]
 
-log(left.logicOr(right))    -- set![1, 2, 3, 4, 5, 6, 8]
-log(left.logicOr(nil))      -- BadArgumentError
-log(left | right)           -- set![1, 2, 3, 4, 5, 6, 8] Implicit calling
+Debug.log(left.logicOr(right))    -- set![1, 2, 3, 4, 5, 6, 8]
+Debug.log(left.logicOr(nil))      -- BadArgumentError
+Debug.log(left | right)           -- set![1, 2, 3, 4, 5, 6, 8] Implicit calling
 ```
 
 ## `.logicXor(right: Set) -> Set`
@@ -577,7 +577,7 @@ set.logicXor(right)
 let left = set![1, 2, 3, 4, 5]
 let right = set![2, 4, 6, 8]
 
-log(left.logicXor(right))   -- set![1, 3, 5, 6, 8]
-log(left.logicXor(nil))     -- BadArgumentError
-log(left ^ right)           -- set![1, 3, 5, 6, 8] Implicit calling
+Debug.log(left.logicXor(right))   -- set![1, 3, 5, 6, 8]
+Debug.log(left.logicXor(nil))     -- BadArgumentError
+Debug.log(left ^ right)           -- set![1, 3, 5, 6, 8] Implicit calling
 ```

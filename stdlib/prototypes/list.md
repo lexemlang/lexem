@@ -62,7 +62,7 @@ list.size()
 ```lxm
 let list = [1, 2, 3]
 
-log(list.size())    -- 3
+Debug.log(list.size())    -- 3
 ```
 
 ## `.freeze()`
@@ -84,7 +84,7 @@ let list = []
 
 list.freeze()
 
-log(list)       -- #[]
+Debug.log(list)       -- #[]
 ```
 
 ## `.isFrozen() -> Logic`
@@ -104,7 +104,7 @@ list.isFrozen()
 ```lxm
 let list = #[]
 
-log(list.isFrozen())    -- true
+Debug.log(list.isFrozen())    -- true
 ```
 
 ## `.every(fn: Function) -> Logic`
@@ -132,8 +132,8 @@ let list = [1, 2, 3]
 fun gt0(value, index) { return value > 0 }
 fun gt2(value, index) { return value > 2 }
 
-log(list.every(gt0))    -- true
-log(list.every(gt2))    -- false
+Debug.log(list.every(gt0))    -- true
+Debug.log(list.every(gt2))    -- false
 ```
 
 ## `.filter(fn: Function) -> List`
@@ -161,8 +161,8 @@ let list = [1, 2, 3]
 fun gt2(value, index) { return value > 2 }
 fun falseFn(value, index) { return false }
 
-log(list.filter(gt2))       -- [3]
-log(list.filter(falseFn))   -- []
+Debug.log(list.filter(gt2))       -- [3]
+Debug.log(list.filter(falseFn))   -- []
 ```
 
 ## `.forEach(fn: Function)`
@@ -192,7 +192,7 @@ fun add(value, index) { count + value }
 
 list.forEach(add)
 
-log(count)    -- 6
+Debug.log(count)    -- 6
 ```
 
 ## `.find(fn: Function) -> {index: Integer, value: Any} | Nil`
@@ -220,8 +220,8 @@ let list = [1, 2, 3]
 fun gt1(value, index) { return value > 1 }
 fun gt5(value, index) { return value > 5 }
 
-log(list.find(gt1))  -- {index: 1, value: 2}
-log(list.find(gt5))  -- nil
+Debug.log(list.find(gt1))  -- {index: 1, value: 2}
+Debug.log(list.find(gt5))  -- nil
 ```
 
 ## `.findLast(fn: Function) -> {index: Integer, value: Any} | Nil`
@@ -249,8 +249,8 @@ let list = [1, 2, 3, 5]
 fun gt1(value, index) { return value > 1 }
 fun gt5(value, index) { return value > 5 }
 
-log(list.findLast(gt1))  -- {index: 3, value: 5}
-log(list.findLast(gt5))  -- nil
+Debug.log(list.findLast(gt1))  -- {index: 3, value: 5}
+Debug.log(list.findLast(gt5))  -- nil
 ```
 
 ## `.indexOf(value: Any) -> Integer | Nil`
@@ -274,8 +274,8 @@ list.indexOf(value)
 ```lxm
 let list = [1, 2, 3, 2]
 
-log(list.indexOf(2))  -- 1
-log(list.indexOf(6))  -- nil
+Debug.log(list.indexOf(2))  -- 1
+Debug.log(list.indexOf(6))  -- nil
 ```
 
 ## `.lastIndexOf(value: Any) -> Integer | Nil`
@@ -299,8 +299,8 @@ list.lastIndexOf(value)
 ```lxm
 let list = [1, 2, 3, 2]
 
-log(list.lastIndexOf(2))  -- 3
-log(list.lastIndexOf(6))  -- nil
+Debug.log(list.lastIndexOf(2))  -- 3
+Debug.log(list.lastIndexOf(6))  -- nil
 ```
 
 ## `.containsAny(...values: List<Any>) -> Logic`
@@ -324,9 +324,9 @@ list.containsAny(value1, ..., valueN)
 ```lxm
 let list = [1, 2, 3]
 
-log(list.containsAny(1, 7, 9))   -- true
-log(list.containsAny(-4, 5))     -- false
-log(list.containsAny())          -- false
+Debug.log(list.containsAny(1, 7, 9))   -- true
+Debug.log(list.containsAny(-4, 5))     -- false
+Debug.log(list.containsAny())          -- false
 ```
 
 ## `.containsAll(...values: List<Any>) -> Logic`
@@ -350,9 +350,9 @@ list.containsAll(value1, ..., valueN)
 ```lxm
 let list = [1, 2, 3]
 
-log(list.containsAll(1, 3))    -- true
-log(list.containsAll(1, 5))    -- false
-log(list.containsAll())        -- true
+Debug.log(list.containsAll(1, 3))    -- true
+Debug.log(list.containsAll(1, 5))    -- false
+Debug.log(list.containsAll())        -- true
 ```
 
 ## `.map(fn: Function) -> List`
@@ -379,7 +379,7 @@ let list = [1, 2, 3]
 
 fun add10(value, index) { return value + 10 }
 
-log(list.map(add10))   -- [11, 12, 13]
+Debug.log(list.map(add10))   -- [11, 12, 13]
 ```
 
 ## `.reduce(default: Any, fn: Function) -> Any`
@@ -407,8 +407,8 @@ let list = [1, 2, 3]
 
 fun add(accumulation, value, index) { return accumulation + value }
 
-log(list.reduce(0, add))     -- 6
-log(list.reduce(10, add))    -- 16
+Debug.log(list.reduce(0, add))     -- 6
+Debug.log(list.reduce(10, add))    -- 16
 ```
 
 ## `.any(fn: Function) -> Logic`
@@ -436,8 +436,8 @@ let list = [1, 2, 3]
 fun gt2(value, index) { return value > 2 }
 fun gt5(value, index) { return value > 5 }
 
-log(list.any(gt2)) -- true
-log(list.any(gt5)) -- false
+Debug.log(list.any(gt2)) -- true
+Debug.log(list.any(gt5)) -- false
 ```
 
 ## `.remove(...values: List<Any>)`
@@ -462,10 +462,10 @@ list.remove(value1, ..., valueN)
 let list = [1, 2, 3, 1]
 
 list.remove(1, 5)
-log(list)   -- [2, 3]
+Debug.log(list)   -- [2, 3]
 
 list.remove()
-log(list)   -- [2, 3]
+Debug.log(list)   -- [2, 3]
 ```
 
 ## `.removeAt(at: Integer)`
@@ -492,7 +492,7 @@ let list = [1, 2, 3, 4, 5]
 
 list.removeAt(1)
 
-log(list)   -- [1, 3, 4, 5]
+Debug.log(list)   -- [1, 3, 4, 5]
 ```
 
 ## `.removeAt(at: Integer, count: Integer)`
@@ -520,7 +520,7 @@ let list = [1, 2, 3, 4, 5]
 
 list.removeAt(1, 3)
 
-log(list)   -- [1, 5]
+Debug.log(list)   -- [1, 5]
 ```
 
 ## `.toList() -> List`
@@ -540,7 +540,7 @@ list.toList()
 ```lxm
 let list = [1, 2, 3]
 
-log(list.toList())    -- [1, 2, 3]
+Debug.log(list.toList())    -- [1, 2, 3]
 ```
 
 ## `.toString() -> String`
@@ -560,7 +560,7 @@ list.toString()
 ```lxm
 let list = [1, 2, 3]
 
-log(list.toString())    -- "[1, 2, 3]"
+Debug.log(list.toString())    -- "[1, 2, 3]"
 ```
 
 ## `.joinToString() -> String`
@@ -580,7 +580,7 @@ list.joinToString()
 ```lxm
 let list = [1, 2, 3]
 
-log(list.joinToString())    -- "123"
+Debug.log(list.joinToString())    -- "123"
 ```
 
 ## `.joinToString(separator: String) -> String`
@@ -605,8 +605,8 @@ list.joinToString(fn)
 ```lxm
 let list = [1, 2, 3]
 
-log(list.joinToString(",")) -- "1,2,3"
-log(list.joinToString("--")) -- "1--2--3"
+Debug.log(list.joinToString(",")) -- "1,2,3"
+Debug.log(list.joinToString("--")) -- "1--2--3"
 ```
 
 ## `.copyWithin(target: List, at: Integer, from: Integer)`
@@ -636,8 +636,8 @@ let target = [10, 11, 12]
 
 list.copyWithin(target, 2, 1)
 
-log(list)     -- [1, 2, 3, 4, 5]
-log(target)   -- [10, 11, 2, 3, 4, 5]
+Debug.log(list)     -- [1, 2, 3, 4, 5]
+Debug.log(target)   -- [10, 11, 2, 3, 4, 5]
 ```
 
 ## `.copyWithin(target: List, at: Integer, from: Integer, count: Integer)`
@@ -668,8 +668,8 @@ let target = [10, 11, 12]
 
 list.copyWithin(target, 2, 1, 3)
 
-log(list)     -- [1, 2, 3, 4, 5]
-log(target)   -- [10, 11, 2, 3, 4]
+Debug.log(list)     -- [1, 2, 3, 4, 5]
+Debug.log(target)   -- [10, 11, 2, 3, 4]
 ```
 
 ## `.push(...values: List<Any>)`
@@ -694,10 +694,10 @@ list.push(value1, ..., valueN)
 let list = [1, 2, 3]
 
 list.push(1, 5)
-log(list)    -- [1, 2, 3, 1, 5]
+Debug.log(list)    -- [1, 2, 3, 1, 5]
 
 list.push()
-log(list)    -- [1, 2, 3, 1, 5]
+Debug.log(list)    -- [1, 2, 3, 1, 5]
 ```
 
 ## `.pop() -> Any`
@@ -717,8 +717,8 @@ list.pop()
 ```lxm
 let list = [1, 2, 3]
 
-log(list.pop())   -- 3
-log(list)         -- [1, 2]
+Debug.log(list.pop())   -- 3
+Debug.log(list)         -- [1, 2]
 ```
 
 ## `.pop(count: Integer) -> List<Any>`
@@ -743,8 +743,8 @@ list.pop(count)
 ```lxm
 let list = [1, 2, 3]
 
-log(list.pop(2))  -- [3, 2]
-log(list)         -- [1]
+Debug.log(list.pop(2))  -- [3, 2]
+Debug.log(list)         -- [1]
 ```
 
 ## `.unshift(...values: List<Any>)`
@@ -769,10 +769,10 @@ list.unshift(value1, ..., valueN)
 let list = [1, 2, 3]
 
 list.unshift(1, 5)
-log(list)    -- [1, 5, 1, 2, 3]
+Debug.log(list)    -- [1, 5, 1, 2, 3]
 
 list.unshift()
-log(list)    -- [1, 5, 1, 2, 3]
+Debug.log(list)    -- [1, 5, 1, 2, 3]
 ```
 
 ## `.shift() -> Any`
@@ -792,8 +792,8 @@ list.shift()
 ```lxm
 let list = [1, 2, 3]
 
-log(list.shift())   -- 1
-log(list)           -- [2, 3]
+Debug.log(list.shift())   -- 1
+Debug.log(list)           -- [2, 3]
 ```
 
 ## `.shift(count: Integer) -> List<Any>`
@@ -818,8 +818,8 @@ list.shift(count)
 ```lxm
 let list = [1, 2, 3]
 
-log(list.shift(2))  -- [1, 2]
-log(list)           -- [3]
+Debug.log(list.shift(2))  -- [1, 2]
+Debug.log(list)           -- [3]
 ```
 
 ## `.insert(at: Integer, ...values: List<Any>)`
@@ -846,10 +846,10 @@ list.insert(at, value1, ..., valueN)
 let list = [1, 2, 3]
 
 list.insert(1, 5, 6, 7)
-log(list)    -- [1, 5, 6, 7, 2, 3]
+Debug.log(list)    -- [1, 5, 6, 7, 2, 3]
 
 list.insert(4)
-log(list)    -- [1, 5, 6, 7, 2, 3]
+Debug.log(list)    -- [1, 5, 6, 7, 2, 3]
 ```
 
 ## `.replace(at: Integer, count: Integer, ...values: List<Any>)`
@@ -877,7 +877,7 @@ list.replace(at, count, value1, ..., valueN)
 let list = [1, 2, 3]
 
 list.replace(1, 1, 5, 6, 7)
-log(list)    -- [1, 5, 6, 7, 3]
+Debug.log(list)    -- [1, 5, 6, 7, 3]
 ```
 
 ## `.reverse()`
@@ -899,7 +899,7 @@ let list = [1, 2, 3]
 
 list.reverse()
 
-log(list)   -- [3, 2, 1]
+Debug.log(list)   -- [3, 2, 1]
 ```
 
 ## `.slice(from: Integer) -> List<Any>`
@@ -924,7 +924,7 @@ list.slice(from)
 ```lxm
 let list = [1, 2, 3, 4, 5]
 
-log(list.slice(3))   -- [4, 5]
+Debug.log(list.slice(3))   -- [4, 5]
 ```
 
 ## `.slice(from: Integer, count: Integer) -> List<Any>`
@@ -950,7 +950,7 @@ list.slice(from, count)
 ```lxm
 let list = [1, 2, 3, 4, 5]
 
-log(list.slice(1, 3))   -- [2, 3, 4]
+Debug.log(list.slice(1, 3))   -- [2, 3, 4]
 ```
 
 ## `.sort()`
@@ -972,7 +972,7 @@ let list = [3, false, 1, "b", 2, [], {}, true,  "A"]
 
 list.sort()
 
-log(list)   -- [true, false, 1, 2, 3, "A", "b", [], {}]
+Debug.log(list)   -- [true, false, 1, 2, 3, "A", "b", [], {}]
 ```
 
 # Accesses
@@ -999,13 +999,13 @@ list[index]
 ```lxm
 let list = [1, 2]
 
-log(list[nil])  -- BadArgumentError
-log(list[-3])   -- nil
-log(list[-2])   -- 1
-log(list[-1])   -- 2
-log(list[0])    -- 1
-log(list[1])    -- 2
-log(list[2])    -- nil
+Debug.log(list[nil])  -- BadArgumentError
+Debug.log(list[-3])   -- nil
+Debug.log(list[-2])   -- 1
+Debug.log(list[-1])   -- 2
+Debug.log(list[0])    -- 1
+Debug.log(list[1])    -- 2
+Debug.log(list[2])    -- nil
 ```
 
 ## `[index: Integer] = value: Any -> Any`

@@ -37,9 +37,9 @@ let source2 = map!{c: 5, d: 6}
 
 Map.assign(target, source1, source2)
 
-log(target)     -- map!{a: 1, b: 3, c: 5, d: 6}
-log(source1)    -- map!{b: 3, c: 4}
-log(source2)    -- map!{c: 5, d: 6}
+Debug.log(target)     -- map!{a: 1, b: 3, c: 5, d: 6}
+Debug.log(source1)    -- map!{b: 3, c: 4}
+Debug.log(source2)    -- map!{c: 5, d: 6}
 ```
 
 # Properties

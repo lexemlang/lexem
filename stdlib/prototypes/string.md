@@ -51,7 +51,7 @@ string.length()
 ```lxm
 let value = "test"
 
-log(value.length())   -- 4
+Debug.log(value.length())   -- 4
 ```
 
 ## `.toString() -> String`
@@ -71,8 +71,8 @@ string.toString()
 ```lxm
 let value = "test"
 
-log(value.toString())               -- "test"
-log(value.toString() === value)     -- true
+Debug.log(value.toString())               -- "test"
+Debug.log(value.toString() === value)     -- true
 ```
 
 ## `.charsAt(...indexes: List<Integer | Interval>) -> String`
@@ -97,7 +97,7 @@ string.charsAt(index1, ..., indexN)
 ```lxm
 let value = "this is a test"
 
-log(value.charsAt(itv![0..3], 8))   -- "testa"
+Debug.log(value.charsAt(itv![0..3], 8))   -- "testa"
 ```
 
 ## `.charUnicodePointAt(...indexes: List<Integer | Interval>) -> List<Int>`
@@ -122,7 +122,7 @@ string.charUTF8At(index1, ..., indexN)
 ```lxm
 let value = "this is a test"
 
-log(value.charUTF8At(itv![0..3], 8))   -- [0x74, 0x68, 0x69, 0x73, 0x61]
+Debug.log(value.charUTF8At(itv![0..3], 8))   -- [0x74, 0x68, 0x69, 0x73, 0x61]
 ```
 
 ## `.endsWithAny(...suffixes: List<String>) -> Logic`
@@ -147,9 +147,9 @@ string.endsWithAny(suffix1, ..., suffixN)
 ```lxm
 let value = "this is a test"
 
-log(value.endsWithAny("test", "s"))     -- true
-log(value.endsWithAny("cc", "st"))      -- true
-log(value.endsWithAny("tc", "xx"))      -- false
+Debug.log(value.endsWithAny("test", "s"))     -- true
+Debug.log(value.endsWithAny("cc", "st"))      -- true
+Debug.log(value.endsWithAny("tc", "xx"))      -- false
 ```
 
 ## `.startsWithAny(...prefixes: List<String>) -> Logic`
@@ -174,9 +174,9 @@ string.startsWithAny(prefix1, ..., prefixN)
 ```lxm
 let value = "this is a test"
 
-log(value.startsWithAny("this", "s"))   -- true
-log(value.startsWithAny("cc", "th"))    -- true
-log(value.startsWithAny("tc", "xx"))    -- false
+Debug.log(value.startsWithAny("this", "s"))   -- true
+Debug.log(value.startsWithAny("cc", "th"))    -- true
+Debug.log(value.startsWithAny("tc", "xx"))    -- false
 ```
 
 ## `.containsAny(...substrings: List<String>) -> Logic`
@@ -201,8 +201,8 @@ string.containsAny(substring1, ..., substringN)
 ```lxm
 let value = "this is a test"
 
-log(value.containsAny("is", "s"))   -- true
-log(value.containsAny("ct", "xx"))  -- false
+Debug.log(value.containsAny("is", "s"))   -- true
+Debug.log(value.containsAny("ct", "xx"))  -- false
 ```
 
 ## `.containsAll(...substrings: List<String>) -> Logic`
@@ -227,8 +227,8 @@ string.containsAll(substring1, ..., substringN)
 ```lxm
 let value = "this is a test"
 
-log(value.containsAll("is", "s"))   -- true
-log(value.containsAll("ct", "xx"))  -- false
+Debug.log(value.containsAll("is", "s"))   -- true
+Debug.log(value.containsAll("ct", "xx"))  -- false
 ```
 
 ## `.indexOf(substring: String) -> Integer | Nil`
@@ -253,8 +253,8 @@ string.indexOf(substring)
 ```lxm
 let value = "this is a test and it is cool"
 
-log(value.indexOf("is"))    -- 5
-log(value.indexOf("ct"))    -- nil
+Debug.log(value.indexOf("is"))    -- 5
+Debug.log(value.indexOf("ct"))    -- nil
 ```
 
 ## `.lastIndexOf(substring: String) -> Integer | Nil`
@@ -279,8 +279,8 @@ string.lastIndexOf(substring)
 ```lxm
 let value = "this is a test and it is cool"
 
-log(value.lastIndexOf("is"))    -- 22
-log(value.lastIndexOf("ct"))    -- nil
+Debug.log(value.lastIndexOf("is"))    -- 22
+Debug.log(value.lastIndexOf("ct"))    -- nil
 ```
 
 ## `.padStart(length: Integer, padString: String = " ") -> String`
@@ -310,9 +310,9 @@ string.padStart(length, padString)
 ```lxm
 let value = "test"
 
-log(value.padStart(7))            -- "   test"
-log(value.padStart(7, "12345"))   -- "123test"
-log(value.padStart(7, ""))        -- BadArgumentError
+Debug.log(value.padStart(7))            -- "   test"
+Debug.log(value.padStart(7, "12345"))   -- "123test"
+Debug.log(value.padStart(7, ""))        -- BadArgumentError
 ```
 
 ## `.padEnd(length: Integer, padString: String = " ") -> String`
@@ -342,9 +342,9 @@ string.padEnd(length, padString)
 ```lxm
 let value = "test"
 
-log(value.padEnd(7))            -- "test   "
-log(value.padEnd(7, "12345"))   -- "test123"
-log(value.padEnd(7, ""))        -- BadArgumentError
+Debug.log(value.padEnd(7))            -- "test   "
+Debug.log(value.padEnd(7, "12345"))   -- "test123"
+Debug.log(value.padEnd(7, ""))        -- BadArgumentError
 ```
 
 ## `.repeat(count: Integer) -> String`
@@ -369,10 +369,10 @@ string.repeat(count)
 ```lxm
 let value = "test"
 
-log(value.repeat(0))    -- ""
-log(value.repeat(1))    -- "test"
-log(value.repeat(3))    -- "testtesttest"
-log(value.repeat(-1))   -- BadArgumentError
+Debug.log(value.repeat(0))    -- ""
+Debug.log(value.repeat(1))    -- "test"
+Debug.log(value.repeat(3))    -- "testtesttest"
+Debug.log(value.repeat(-1))   -- BadArgumentError
 ```
 
 ## `.repeat(count: Integer, separator: String) -> String`
@@ -401,10 +401,10 @@ string.repeat(count, separator)
 ```lxm
 let value = "test"
 
-log(value.repeat(0, ", "))    -- ""
-log(value.repeat(1, ", "))    -- "test"
-log(value.repeat(3, ", "))    -- "test, test, test"
-log(value.repeat(-1, ", "))   -- BadArgumentError
+Debug.log(value.repeat(0, ", "))    -- ""
+Debug.log(value.repeat(1, ", "))    -- "test"
+Debug.log(value.repeat(3, ", "))    -- "test, test, test"
+Debug.log(value.repeat(-1, ", "))   -- BadArgumentError
 ```
 
 ## `.replace(original: String, replace: String) -> String`
@@ -432,9 +432,9 @@ string.replace(original, replace)
 ```lxm
 let value = "aa bb cc dd"
 
-log(value.replace("bb", "xx"))  -- "aa xx cc dd"
-log(value.replace("ll", "xx"))  -- "aa bb cc dd"
-log(value.replace(nil, ", "))   -- BadArgumentError
+Debug.log(value.replace("bb", "xx"))  -- "aa xx cc dd"
+Debug.log(value.replace("ll", "xx"))  -- "aa bb cc dd"
+Debug.log(value.replace(nil, ", "))   -- BadArgumentError
 ```
 
 ## `.replace(original: String, replace: String, insensible: Logic) -> String`
@@ -464,9 +464,9 @@ string.replace(original, replace)
 ```lxm
 let value = "aA Bb CC dd"
 
-log(value.replace("bb", "XX", true))    -- "aA XX CC dd"
-log(value.replace("cC", "xx", false))   -- "aA Bb CC dd"
-log(value.replace(nil, ", "))           -- BadArgumentError
+Debug.log(value.replace("bb", "XX", true))    -- "aA XX CC dd"
+Debug.log(value.replace("cC", "xx", false))   -- "aA Bb CC dd"
+Debug.log(value.replace(nil, ", "))           -- BadArgumentError
 ```
 
 ## `.slice(from: String) -> String`
@@ -491,9 +491,9 @@ string.slice(from)
 ```lxm
 let value = "this is a test"
 
-log(value.slice(5))     -- "is a test"
-log(value.slice(20))    -- ""
-log(value.slice(nil))   -- BadArgumentError
+Debug.log(value.slice(5))     -- "is a test"
+Debug.log(value.slice(20))    -- ""
+Debug.log(value.slice(nil))   -- BadArgumentError
 ```
 
 ## `.slice(from: String, count: String) -> String`
@@ -523,10 +523,10 @@ string.slice(from, count)
 ```lxm
 let value = "this is a test"
 
-log(value.slice(5, 4))        -- "is a"
-log(value.slice(10, 10))      -- "test"
-log(value.slice(20, 10))      -- ""
-log(value.slice(nil, ""))     -- BadArgumentError
+Debug.log(value.slice(5, 4))        -- "is a"
+Debug.log(value.slice(10, 10))      -- "test"
+Debug.log(value.slice(20, 10))      -- ""
+Debug.log(value.slice(nil, ""))     -- BadArgumentError
 ```
 
 ## `.split(substring: String) -> List<String>`
@@ -551,7 +551,7 @@ string.split(substring)
 ```lxm
 let value = "this, is, a, test"
 
-log(value.split(","))    -- ["this", " is", " a", " test"]
+Debug.log(value.split(","))    -- ["this", " is", " a", " test"]
 ```
 
 ## `.toLowerCase() -> String`
@@ -571,7 +571,7 @@ string.toLowerCase()
 ```lxm
 let value = "This IS a TeSt"
 
-log(value.toLowerCase())    -- "this is a test"
+Debug.log(value.toLowerCase())    -- "this is a test"
 ```
 
 ## `.toUpperCase() -> String`
@@ -591,7 +591,7 @@ string.toUpperCase()
 ```lxm
 let value = "This IS a TeSt"
 
-log(value.toUpperCase())    -- "THIS IS A TEST"
+Debug.log(value.toUpperCase())    -- "THIS IS A TEST"
 ```
 
 ## `.trimStart() -> String`
@@ -611,7 +611,7 @@ string.trimStart()
 ```lxm
 let value = "   this is a test   "
 
-log(value.trimStart())    -- "this is a test   "
+Debug.log(value.trimStart())    -- "this is a test   "
 ```
 
 ## `.trimEnd() -> String`
@@ -631,7 +631,7 @@ string.trimEnd()
 ```lxm
 let value = "   this is a test   "
 
-log(value.trimEnd())    -- "   this is a test"
+Debug.log(value.trimEnd())    -- "   this is a test"
 ```
 
 ## `.trim() -> String`
@@ -651,7 +651,7 @@ string.trim()
 ```lxm
 let value = "   this is a test   "
 
-log(value.trim())    -- "this is a test"
+Debug.log(value.trim())    -- "this is a test"
 ```
 
 # Operators
@@ -678,9 +678,9 @@ string.add(right)
 let left = "test "
 let right = 4
 
-log(left.add(right))    -- 4
-log(left.add(nil))      -- BadArgumentError
-log(left + right)       -- 4 Implicit calling
+Debug.log(left.add(right))    -- 4
+Debug.log(left.add(nil))      -- BadArgumentError
+Debug.log(left + right)       -- 4 Implicit calling
 ```
 
 # Accesses
@@ -708,9 +708,9 @@ string[index]
 ```lxm
 let string = "test"
 
-log(string[nil])    -- BadArgumentError
-log(string[0])      -- "t"
-log(string[1])      -- "e"
-log(string[2])      -- "s"
-log(string[3])      -- "t"
+Debug.log(string[nil])    -- BadArgumentError
+Debug.log(string[0])      -- "t"
+Debug.log(string[1])      -- "e"
+Debug.log(string[2])      -- "s"
+Debug.log(string[3])      -- "t"
 ```

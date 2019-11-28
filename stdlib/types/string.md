@@ -26,8 +26,8 @@ String.join(value1, ..., valueN)
 ### Examples
 
 ```lxm
-log(String.join(1, nil, true))     -- "1niltrue"
-log(String.join())                 -- ""
+Debug.log(String.join(1, nil, true))     -- "1niltrue"
+Debug.log(String.join())                 -- ""
 ```
 
 ## `.joinBy(separator:String, ...values: List<Any>) -> String`
@@ -52,9 +52,9 @@ String.joinBy(separator = value, value1, ..., valueN)
 ### Examples
 
 ```lxm
-log(String.joinBy(separator = ",", 1, nil, true))   -- "1,nil,true"
-log(String.joinBy(separator = ","))                 -- ""
-log(String.joinBy(separator = nil))                 -- BadArgumentError
+Debug.log(String.joinBy(separator = ",", 1, nil, true))   -- "1,nil,true"
+Debug.log(String.joinBy(separator = ","))                 -- ""
+Debug.log(String.joinBy(separator = nil))                 -- BadArgumentError
 ```
 
 ## `.fromUnicodePoints(...charCodes: List<Integer>) -> String`
@@ -76,8 +76,8 @@ String.fromUnicodePoints(charCode1, ..., charCodeN)
 ### Examples
 
 ```lxm
-log(String.fromUnicodePoints(0x74, 0x68, 0x69, 0x73, 0x61))    -- "thisa"
-log(String.fromUnicodePoints(nil))                             -- BadArgumentError
+Debug.log(String.fromUnicodePoints(0x74, 0x68, 0x69, 0x73, 0x61))    -- "thisa"
+Debug.log(String.fromUnicodePoints(nil))                             -- BadArgumentError
 ```
 
 # Properties

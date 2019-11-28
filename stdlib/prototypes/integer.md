@@ -34,7 +34,7 @@ integer.toString()
 ```lxm
 let num = 450
 
-log(num.toString())     -- "450"
+Debug.log(num.toString())     -- "450"
 ```
 
 ## `.toString(radix: Integer) -> String`
@@ -59,11 +59,11 @@ integer.toString(radix)
 ```lxm
 let num = 21
 
-log(num.toString())     -- BadArgumentError
-log(num.toString(2))    -- "10101"
-log(num.toString(8))    -- "25"
-log(num.toString(10))   -- "21"
-log(num.toString(16))   -- "15"
+Debug.log(num.toString())     -- BadArgumentError
+Debug.log(num.toString(2))    -- "10101"
+Debug.log(num.toString(8))    -- "25"
+Debug.log(num.toString(10))   -- "21"
+Debug.log(num.toString(16))   -- "15"
 ```
 
 # Operators
@@ -85,8 +85,8 @@ integer.negate()
 ```lxm
 let value = 3
 
-log(value.negate()) -- -3
-log(-value)         -- -3 Implicit calling
+Debug.log(value.negate()) -- -3
+Debug.log(-value)         -- -3 Implicit calling
 ```
 
 ## `.affirm() -> Integer`
@@ -106,8 +106,8 @@ integer.affirm()
 ```lxm
 let value = 3
 
-log(value.affirm())  -- 3
-log(+value)             -- 3 Implicit calling
+Debug.log(value.affirm())  -- 3
+Debug.log(+value)             -- 3 Implicit calling
 ```
 
 ## `.multiply(right: Integer | Float) -> Integer | Float`
@@ -134,10 +134,10 @@ let left = 3
 let rightInt = 4
 let rightFloat = 5.2
 
-log(left.multiply(rightInt))    -- 12
-log(left.multiply(rightFloat))  -- 15.6
-log(left.multiply(nil))         -- BadArgumentError
-log(left * rightInt)            -- 12 Implicit calling
+Debug.log(left.multiply(rightInt))    -- 12
+Debug.log(left.multiply(rightFloat))  -- 15.6
+Debug.log(left.multiply(nil))         -- BadArgumentError
+Debug.log(left * rightInt)            -- 12 Implicit calling
 ```
 
 ## `.divide(right: Integer | Float) -> Integer | Float`
@@ -164,10 +164,10 @@ let left = 3
 let rightInt = 2
 let rightFloat = 1.5
 
-log(left.divide(rightInt))    -- 1
-log(left.divide(rightFloat))  -- 2.0
-log(left.divide(nil))         -- BadArgumentError
-log(left / rightInt)          -- 1 Implicit calling
+Debug.log(left.divide(rightInt))    -- 1
+Debug.log(left.divide(rightFloat))  -- 2.0
+Debug.log(left.divide(nil))         -- BadArgumentError
+Debug.log(left / rightInt)          -- 1 Implicit calling
 ```
 
 ## `.intDivide(right: Integer | Float) -> Integer`
@@ -194,10 +194,10 @@ let left = 3
 let rightInt = 2
 let rightFloat = 1.5
 
-log(left.intDivide(rightInt))   -- 1
-log(left.intDivide(rightFloat)) -- 2
-log(left.intDivide(nil))        -- BadArgumentError
-log(left // rightInt)           -- 1 Implicit calling
+Debug.log(left.intDivide(rightInt))   -- 1
+Debug.log(left.intDivide(rightFloat)) -- 2
+Debug.log(left.intDivide(nil))        -- BadArgumentError
+Debug.log(left // rightInt)           -- 1 Implicit calling
 ```
 
 ## `.reminder(right: Integer | Float) -> Integer | Float`
@@ -224,10 +224,10 @@ let left = 3.0
 let rightInt = 2
 let rightFloat = 1.4
 
-log(left.reminder(rightInt))   -- 1
-log(left.reminder(rightFloat)) -- 0.2
-log(left.reminder(nil))        -- BadArgumentError
-log(left % rightInt)           -- 1 Implicit calling
+Debug.log(left.reminder(rightInt))   -- 1
+Debug.log(left.reminder(rightFloat)) -- 0.2
+Debug.log(left.reminder(nil))        -- BadArgumentError
+Debug.log(left % rightInt)           -- 1 Implicit calling
 ```
 
 ## `.add(right: Integer | Float) -> Integer | Float`
@@ -254,10 +254,10 @@ let left = 3
 let rightInt = 4
 let rightFloat = 5.2
 
-log(left.add(rightInt))   -- 7
-log(left.add(rightFloat)) -- 8.2
-log(left.add(nil))        -- BadArgumentError
-log(left + rightInt)      -- 7 Implicit calling
+Debug.log(left.add(rightInt))   -- 7
+Debug.log(left.add(rightFloat)) -- 8.2
+Debug.log(left.add(nil))        -- BadArgumentError
+Debug.log(left + rightInt)      -- 7 Implicit calling
 ```
 
 ## `.sub(right: Integer | Float) -> Integer | Float`
@@ -284,8 +284,8 @@ let left = 3
 let rightInt = 2
 let rightFloat = 5.2
 
-log(left.sub(rightInt))   -- 1
-log(left.sub(rightFloat)) -- -2.2
-log(left.sub(nil))        -- BadArgumentError
-log(left - rightInt)      -- 1 Implicit calling
+Debug.log(left.sub(rightInt))   -- 1
+Debug.log(left.sub(rightFloat)) -- -2.2
+Debug.log(left.sub(nil))        -- BadArgumentError
+Debug.log(left - rightInt)      -- 1 Implicit calling
 ```

@@ -31,8 +31,8 @@ List.new(size, value)
 ### Examples
 
 ```lxm
-log(List.new(2, 44))        -- [44, 44]
-log(List.new(3, false))     -- [false, false, false]
+Debug.log(List.new(2, 44))        -- [44, 44]
+Debug.log(List.new(3, false))     -- [false, false, false]
 ```
 
 ## `.newFrom(...values: List<Any>) -> List`
@@ -50,7 +50,7 @@ List.newFrom(value1, ..., valueN)
 ### Examples
 
 ```lxm
-log(List.newFrom(3, false))     -- [3, false]
+Debug.log(List.newFrom(3, false))     -- [3, false]
 ```
 
 ## `.concat(...lists: List<List>) -> List`
@@ -72,7 +72,7 @@ List.concat(list1, ..., listN)
 ### Examples
 
 ```lxm
-log(List.concat([2, 3.5], [true, "test"]))    -- [2, 3.5, true, "test"]
+Debug.log(List.concat([2, 3.5], [true, "test"]))    -- [2, 3.5, true, "test"]
 ```
 
 # Properties

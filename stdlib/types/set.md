@@ -25,7 +25,7 @@ Set.newFrom(value1, ..., valueN)
 ### Examples
 
 ```lxm
-log(Set.newFrom(3, false, 3))  -- set![3, false]
+Debug.log(Set.newFrom(3, false, 3))  -- set![3, false]
 ```
 
 ## `.join(...sets: List<Set>) -> Set`
@@ -47,7 +47,7 @@ Set.join(set1, ..., setN)
 ### Examples
 
 ```lxm
-log(Set.join(set![2, 3.5], set![true, "test"]))     -- set![2, 3.5, true, "test"]
+Debug.log(Set.join(set![2, 3.5], set![true, "test"]))     -- set![2, 3.5, true, "test"]
 ```
 
 # Properties

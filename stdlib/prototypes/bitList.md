@@ -44,9 +44,9 @@ bitlist.toRadix(radix)
 ```lxm
 let value = 0b"1000"
 
-log(value.toString(2))      -- "0b\"1000\""
-log(value.toString(8))      -- "0o\"40\""
-log(value.toString(16))     -- "0x\"8\""
+Debug.log(value.toString(2))      -- "0b\"1000\""
+Debug.log(value.toString(8))      -- "0o\"40\""
+Debug.log(value.toString(16))     -- "0x\"8\""
 ```
 
 ## `.toString() -> String`
@@ -68,9 +68,9 @@ let valueBin = 0b"01"
 let valueOct = 0o"36"
 let valueHex = 0x"F2"
 
-log(valueBin.toString())   -- "0b\"01\""
-log(valueOct.toString())   -- "0o\"36\""
-log(valueHex.toString())   -- "0x\"F2\""
+Debug.log(valueBin.toString())   -- "0b\"01\""
+Debug.log(valueOct.toString())   -- "0o\"36\""
+Debug.log(valueHex.toString())   -- "0x\"F2\""
 ```
 
 # Operators
@@ -92,8 +92,8 @@ bitlist.bitwiseNegation()
 ```lxm
 let value = 0b"1001"
 
-log(value.bitwiseNegation())    -- 0b"0110"
-log(~value)                     -- 0b"0110" Implicit calling
+Debug.log(value.bitwiseNegation())    -- 0b"0110"
+Debug.log(~value)                     -- 0b"0110" Implicit calling
 ```
 
 ## `.logicAnd(right: Logic) -> BitList`
@@ -119,9 +119,9 @@ bitlist.logicAnd(right)
 let left = 0b"1001"
 let right = true
 
-log(left.logicAnd(right))   -- 0b"1001"
-log(left.logicAnd(nil))     -- BadArgumentError
-log(left & right)           -- 0b"1001" Implicit calling
+Debug.log(left.logicAnd(right))   -- 0b"1001"
+Debug.log(left.logicAnd(nil))     -- BadArgumentError
+Debug.log(left & right)           -- 0b"1001" Implicit calling
 ```
 
 ## `.logicAnd(right: BitList) -> BitList`
@@ -147,9 +147,9 @@ bitlist.logicAnd(right)
 let left =  0b"1001"
 let right = 0b"110011"
 
-log(left.logicAnd(right))   -- 0b"100000"
-log(left.logicAnd(nil))     -- BadArgumentError
-log(left & right)           -- 0b"100000" Implicit calling
+Debug.log(left.logicAnd(right))   -- 0b"100000"
+Debug.log(left.logicAnd(nil))     -- BadArgumentError
+Debug.log(left & right)           -- 0b"100000" Implicit calling
 ```
 
 ## `.logicOr(right: Logic) -> BitList`
@@ -175,9 +175,9 @@ bitlist.logicOr(right)
 let left = 0b"1001"
 let right = true
 
-log(left.logicOr(right))    -- 0b"1111"
-log(left.logicOr(nil))      -- BadArgumentError
-log(left | right)           -- 0b"1111" Implicit calling
+Debug.log(left.logicOr(right))    -- 0b"1111"
+Debug.log(left.logicOr(nil))      -- BadArgumentError
+Debug.log(left | right)           -- 0b"1111" Implicit calling
 ```
 
 ## `.logicOr(right: BitList) -> BitList`
@@ -203,9 +203,9 @@ bitlist.logicOr(right)
 let left =  0b"1001"
 let right = 0b"110011"
 
-log(left.logicOr(right))    -- 0b"110111"
-log(left.logicOr(nil))      -- BadArgumentError
-log(left | right)           -- 0b"110111" Implicit calling
+Debug.log(left.logicOr(right))    -- 0b"110111"
+Debug.log(left.logicOr(nil))      -- BadArgumentError
+Debug.log(left | right)           -- 0b"110111" Implicit calling
 ```
 
 ## `.logicXor(right: Logic) -> BitList`
@@ -231,9 +231,9 @@ bitlist.logicXor(right)
 let left = 0b"1001"
 let right = true
 
-log(left.logicXor(right))   -- 0b"0110"
-log(left.logicXor(nil))     -- BadArgumentError
-log(left ^ right)           -- 0b"0110" Implicit calling
+Debug.log(left.logicXor(right))   -- 0b"0110"
+Debug.log(left.logicXor(nil))     -- BadArgumentError
+Debug.log(left ^ right)           -- 0b"0110" Implicit calling
 ```
 
 ## `.logicXor(right: BitList) -> BitList`
@@ -259,9 +259,9 @@ bitlist.logicXor(right)
 let left = 0b"1001"
 let right = 0b"110011"
 
-log(left.logicXor(right))   -- 0b"010111"
-log(left.logicXor(nil))     -- BadArgumentError
-log(left ^ right)           -- 0b"010111" Implicit calling
+Debug.log(left.logicXor(right))   -- 0b"010111"
+Debug.log(left.logicXor(nil))     -- BadArgumentError
+Debug.log(left ^ right)           -- 0b"010111" Implicit calling
 ```
 
 ## `.leftShift(right: Integer) -> BitList`
@@ -286,9 +286,9 @@ bitlist.leftShift(right)
 ```lxm
 let left = 0b"1001"
 
-log(left.leftShift(2))      -- 0b"100100"
-log(left.leftShift(nil))    -- BadArgumentError
-log(left << 2)              -- 0b"100100" Implicit calling
+Debug.log(left.leftShift(2))      -- 0b"100100"
+Debug.log(left.leftShift(nil))    -- BadArgumentError
+Debug.log(left << 2)              -- 0b"100100" Implicit calling
 ```
 
 ## `.rightShift(right: Integer) -> BitList`
@@ -313,9 +313,9 @@ bitlist.rightShift(right)
 ```lxm
 let left = 0b"1001"
 
-log(left.rightShift(2))     -- 0b"10"
-log(left.rightShift(nil))   -- BadArgumentError
-log(left >> 2)              -- 0b"10" Implicit calling
+Debug.log(left.rightShift(2))     -- 0b"10"
+Debug.log(left.rightShift(nil))   -- BadArgumentError
+Debug.log(left >> 2)              -- 0b"10" Implicit calling
 ```
 
 ## `.leftRotate(right: Integer) -> BitList`
@@ -340,9 +340,9 @@ bitlist.leftRotate(right)
 ```lxm
 let left = 0b"111000"
 
-log(left.leftRotate(2))     -- 0b"100011"
-log(left.leftRotate(nil))   -- BadArgumentError
-log(left << 2)              -- 0b"100011" Implicit calling
+Debug.log(left.leftRotate(2))     -- 0b"100011"
+Debug.log(left.leftRotate(nil))   -- BadArgumentError
+Debug.log(left << 2)              -- 0b"100011" Implicit calling
 ```
 
 ## `.rightRotate(right: Integer) -> BitList`
@@ -367,9 +367,9 @@ bitlist.rightRotate(right)
 ```lxm
 let left = 0b"111000"
 
-log(left.rightRotate(2))    -- 0b"001110"
-log(left.rightRotate(nil))  -- BadArgumentError
-log(left >> 2)              -- 0b"001110" Implicit calling
+Debug.log(left.rightRotate(2))    -- 0b"001110"
+Debug.log(left.rightRotate(nil))  -- BadArgumentError
+Debug.log(left >> 2)              -- 0b"001110" Implicit calling
 ```
 
 # Accesses
@@ -397,9 +397,9 @@ bitlist[index]
 ```lxm
 let bitlist = 0b"1100"
 
-log(bitlist[nil])   -- BadArgumentError
-log(bitlist[0])     -- true
-log(bitlist[1])     -- true
-log(bitlist[2])     -- false
-log(bitlist[3])     -- false
+Debug.log(bitlist[nil])   -- BadArgumentError
+Debug.log(bitlist[0])     -- true
+Debug.log(bitlist[1])     -- true
+Debug.log(bitlist[2])     -- false
+Debug.log(bitlist[3])     -- false
 ```

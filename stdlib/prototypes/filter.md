@@ -25,7 +25,7 @@ filter.parameters()
 ```lxm
 filter test(a, b, c, ...d, ...@e) {}
 
-log(num.parameters())  -- #{params: set!["a", "b", "c"], spread: "d", namedSpread: "e"}
+Debug.log(num.parameters())  -- #{params: set!["a", "b", "c"], spread: "d", namedSpread: "e"}
 ```
 
 ## `.wrap(...arguments: List<Any>, ...namedArguments: Object) -> Function`
@@ -44,9 +44,9 @@ filter.wrap(thisValue, argument1, ..., argumentN, namedArgument1 = value, ..., n
 
 ```lxm
 filter test(a, b) {
-    log("a: ", a)
-    log("b: ", b)
-    log("this: ", this)
+    Debug.log("a: ", a)
+    Debug.log("b: ", b)
+    Debug.log("this: ", this)
 }
 
 val wrapper = test.wrap("I'm a", b = "I'm b", this = "I'm this")

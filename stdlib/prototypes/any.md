@@ -84,7 +84,7 @@ any.add(right)
 let left = 7
 let right = " kingdoms"
 
-log(left.add(right))    -- "7 kingdoms"
-log(left.add(nil))      -- BadArgumentError
-log(left + right)       -- "7 kingdoms" Implicit calling
+Debug.log(left.add(right))    -- "7 kingdoms"
+Debug.log(left.add(nil))      -- BadArgumentError
+Debug.log(left + right)       -- "7 kingdoms" Implicit calling
 ```

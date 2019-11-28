@@ -33,8 +33,8 @@ let prototype = {b: "prototype"}
 let currentObj = Object.newFrom(prototype)
 currentObj.a = "current"
 
-log(currentObj)     -- {a: "current"}
-log(currentObj.b)   -- "prototype"
+Debug.log(currentObj)     -- {a: "current"}
+Debug.log(currentObj.b)   -- "prototype"
 ```
 
 ## `.assign(target: Object, ...sources: List<Object>) -> Object`
@@ -65,9 +65,9 @@ let source2 = {c: 5, d: 6}
 
 Object.assign(target, source1, source2)
 
-log(target)     -- {a: 1, b: 3, c: 5, d: 6}
-log(source1)    -- {b: 3, c: 4}
-log(source2)    -- {c: 5, d: 6}
+Debug.log(target)     -- {a: 1, b: 3, c: 5, d: 6}
+Debug.log(source1)    -- {b: 3, c: 4}
+Debug.log(source2)    -- {c: 5, d: 6}
 ```
 
 # Properties

@@ -24,5 +24,5 @@ nil.toString()
 ```lxm
 let value = nil
 
-log(value.toString())   -- "nil"
+Debug.log(value.toString())   -- "nil"
 ```

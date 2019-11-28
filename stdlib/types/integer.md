@@ -31,12 +31,12 @@ Integer.parse(value)
 ### Examples
 
 ```lxm
-log(Integer.parse("0b10101"))   -- 21
-log(Integer.parse("0o25"))      -- 21
-log(Integer.parse("0d21"))      -- 21
-log(Integer.parse("0x15"))      -- 21
-log(Integer.parse("21"))        -- 21
-log(Integer.parse(nil))         -- BadArgumentError
+Debug.log(Integer.parse("0b10101"))   -- 21
+Debug.log(Integer.parse("0o25"))      -- 21
+Debug.log(Integer.parse("0d21"))      -- 21
+Debug.log(Integer.parse("0x15"))      -- 21
+Debug.log(Integer.parse("21"))        -- 21
+Debug.log(Integer.parse(nil))         -- BadArgumentError
 ```
 
 ## `.parse(value: String, radix: Integer) -> Integer | Nil`
@@ -61,11 +61,11 @@ Integer.parse(value, radix)
 ### Examples
 
 ```lxm
-log(Integer.parse("10101", 2))  -- 21
-log(Integer.parse("25", 8))     -- 21
-log(Integer.parse("21", 10))    -- 21
-log(Integer.parse("15", 16))    -- 21
-log(Integer.parse(nil))         -- BadArgumentError
+Debug.log(Integer.parse("10101", 2))  -- 21
+Debug.log(Integer.parse("25", 8))     -- 21
+Debug.log(Integer.parse("21", 10))    -- 21
+Debug.log(Integer.parse("15", 16))    -- 21
+Debug.log(Integer.parse(nil))         -- BadArgumentError
 ```
 
 # Properties

@@ -38,7 +38,7 @@ float.integerPart()
 ```lxm
 let num = 450.73
 
-log(num.integerPart())  -- 450
+Debug.log(num.integerPart())  -- 450
 ```
 
 ## `.decimalPart() -> Float`
@@ -58,7 +58,7 @@ float.decimalPart()
 ```lxm
 let num = 450.73
 
-log(num.decimalPart())  -- 0.73
+Debug.log(num.decimalPart())  -- 0.73
 ```
 
 ## `.toExponential(precision: Integer?) -> String`
@@ -85,10 +85,10 @@ float.toExponential(precision)
 ```lxm
 let num = 450.7
 
-log(num.toExponential())    -- 4.507e+2
-log(num.toExponential(0))   -- 5e+2
-log(num.toExponential(1))   -- 4.5e+2
-log(num.toExponential(-1))  -- BadArgumentError
+Debug.log(num.toExponential())    -- 4.507e+2
+Debug.log(num.toExponential(0))   -- 5e+2
+Debug.log(num.toExponential(1))   -- 4.5e+2
+Debug.log(num.toExponential(-1))  -- BadArgumentError
 ```
 
 ## `.toFixed(precision: Integer) -> String`
@@ -113,10 +113,10 @@ float.toFixed(precision)
 ```lxm
 let num = 450.73
 
-log(num.toFixed())      -- BadArgumentError
-log(num.toFixed(0))     -- 451
-log(num.toFixed(1))     -- 450.7
-log(num.toFixed(-1))    -- BadArgumentError
+Debug.log(num.toFixed())      -- BadArgumentError
+Debug.log(num.toFixed(0))     -- 451
+Debug.log(num.toFixed(1))     -- 450.7
+Debug.log(num.toFixed(-1))    -- BadArgumentError
 ```
 
 ## `.toString() -> String`
@@ -136,7 +136,7 @@ float.toString()
 ```lxm
 let num = 450.73
 
-log(num.toString())     -- "450.73"
+Debug.log(num.toString())     -- "450.73"
 ```
 
 ## `.toString(radix: Integer) -> String`
@@ -161,11 +161,11 @@ float.toString(radix)
 ```lxm
 let num = 21.125
 
-log(num.toString())     -- BadArgumentError
-log(num.toString(2))    -- "10101.001"
-log(num.toString(8))    -- "25.1"
-log(num.toString(10))   -- "21.125"
-log(num.toString(16))   -- "15.2"
+Debug.log(num.toString())     -- BadArgumentError
+Debug.log(num.toString(2))    -- "10101.001"
+Debug.log(num.toString(8))    -- "25.1"
+Debug.log(num.toString(10))   -- "21.125"
+Debug.log(num.toString(16))   -- "15.2"
 ```
 
 # Operators
@@ -187,8 +187,8 @@ float.negate()
 ```lxm
 let value = 3.0
 
-log(value.negate()) -- -3.0
-log(-value)         -- -3.0 Implicit calling
+Debug.log(value.negate()) -- -3.0
+Debug.log(-value)         -- -3.0 Implicit calling
 ```
 
 ## `.affirm() -> Integer`
@@ -208,8 +208,8 @@ integer.affirm()
 ```lxm
 let value = 3
 
-log(value.affirm())  -- 3
-log(+value)             -- 3 Implicit calling
+Debug.log(value.affirm())  -- 3
+Debug.log(+value)             -- 3 Implicit calling
 ```
 
 ## `.multiply(right: Integer | Float) -> Float`
@@ -236,10 +236,10 @@ let left = 3.0
 let rightInt = 4
 let rightFloat = 5.2
 
-log(left.multiply(rightInt))    -- 12.0
-log(left.multiply(rightFloat))  -- 15.6
-log(left.multiply(nil))         -- BadArgumentError
-log(left * rightInt)            -- 12.0 Implicit calling
+Debug.log(left.multiply(rightInt))    -- 12.0
+Debug.log(left.multiply(rightFloat))  -- 15.6
+Debug.log(left.multiply(nil))         -- BadArgumentError
+Debug.log(left * rightInt)            -- 12.0 Implicit calling
 ```
 
 ## `.divide(right: Integer | Float) -> Float`
@@ -266,10 +266,10 @@ let left = 3.0
 let rightInt = 2
 let rightFloat = 1.5
 
-log(left.divide(rightInt))    -- 1.5
-log(left.divide(rightFloat))  -- 2.0
-log(left.divide(nil))         -- BadArgumentError
-log(left / rightInt)          -- 1.5 Implicit calling
+Debug.log(left.divide(rightInt))    -- 1.5
+Debug.log(left.divide(rightFloat))  -- 2.0
+Debug.log(left.divide(nil))         -- BadArgumentError
+Debug.log(left / rightInt)          -- 1.5 Implicit calling
 ```
 
 ## `.intDivide(right: Integer | Float) -> Integer`
@@ -296,10 +296,10 @@ let left = 3.0
 let rightInt = 2
 let rightFloat = 1.5
 
-log(left.intDivide(rightInt))   -- 1
-log(left.intDivide(rightFloat)) -- 2
-log(left.intDivide(nil))        -- BadArgumentError
-log(left // rightInt)           -- 1 Implicit calling
+Debug.log(left.intDivide(rightInt))   -- 1
+Debug.log(left.intDivide(rightFloat)) -- 2
+Debug.log(left.intDivide(nil))        -- BadArgumentError
+Debug.log(left // rightInt)           -- 1 Implicit calling
 ```
 
 ## `.reminder(right: Integer | Float) -> Float`
@@ -326,10 +326,10 @@ let left = 3.0
 let rightInt = 2
 let rightFloat = 1.4
 
-log(left.reminder(rightInt))   -- 1.0
-log(left.reminder(rightFloat)) -- 0.2
-log(left.reminder(nil))        -- BadArgumentError
-log(left % rightInt)           -- 1.0 Implicit calling
+Debug.log(left.reminder(rightInt))   -- 1.0
+Debug.log(left.reminder(rightFloat)) -- 0.2
+Debug.log(left.reminder(nil))        -- BadArgumentError
+Debug.log(left % rightInt)           -- 1.0 Implicit calling
 ```
 
 ## `.add(right: Integer | Float) -> Float`
@@ -356,10 +356,10 @@ let left = 3.0
 let rightInt = 4
 let rightFloat = 5.2
 
-log(left.add(rightInt))   -- 7.0
-log(left.add(rightFloat)) -- 8.2
-log(left.add(nil))        -- BadArgumentError
-log(left + rightInt)      -- 7.0 Implicit calling
+Debug.log(left.add(rightInt))   -- 7.0
+Debug.log(left.add(rightFloat)) -- 8.2
+Debug.log(left.add(nil))        -- BadArgumentError
+Debug.log(left + rightInt)      -- 7.0 Implicit calling
 ```
 
 ## `.sub(right: Integer | Float) -> Float`
@@ -386,8 +386,8 @@ let left = 3.0
 let rightInt = 2
 let rightFloat = 5.2
 
-log(left.sub(rightInt))   -- 1.0
-log(left.sub(rightFloat)) -- -2.2
-log(left.sub(nil))        -- BadArgumentError
-log(left - rightInt)      -- 1.0 Implicit calling
+Debug.log(left.sub(rightInt))   -- 1.0
+Debug.log(left.sub(rightFloat)) -- -2.2
+Debug.log(left.sub(nil))        -- BadArgumentError
+Debug.log(left - rightInt)      -- 1.0 Implicit calling
 ```

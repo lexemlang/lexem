@@ -105,7 +105,7 @@ Finally, it is necessary to mention two variables that are set by default inside
 
   ```lexem
   let function = fun(){
-    log(this)
+    Debug.log(this)
   }
   function()  -- this == nil
 

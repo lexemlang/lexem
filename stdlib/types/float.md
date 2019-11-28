@@ -35,12 +35,12 @@ Float.parse(value)
 ### Examples
 
 ```lxm
-log(Float.parse("0b10101.001"))   -- 21.125
-log(Float.parse("0o25.1"))        -- 21.125
-log(Float.parse("0d21.125"))      -- 21.125
-log(Float.parse("0x15.2"))        -- 21.125
-log(Float.parse("21.125"))        -- 21.125
-log(Float.parse(nil))             -- BadArgumentError
+Debug.log(Float.parse("0b10101.001"))   -- 21.125
+Debug.log(Float.parse("0o25.1"))        -- 21.125
+Debug.log(Float.parse("0d21.125"))      -- 21.125
+Debug.log(Float.parse("0x15.2"))        -- 21.125
+Debug.log(Float.parse("21.125"))        -- 21.125
+Debug.log(Float.parse(nil))             -- BadArgumentError
 ```
 
 ## `.parse(value: String, radix: Integer) -> Float | Nil`
@@ -65,11 +65,11 @@ Float.parse(value, radix)
 ### Examples
 
 ```lxm
-log(Float.parse("10101.001", 2))  -- 21.125
-log(Float.parse("25.1", 8))       -- 21.125
-log(Float.parse("21.125", 10))    -- 21.125
-log(Float.parse("15.2", 16))      -- 21.125
-log(Float.parse(nil))             -- BadArgumentError
+Debug.log(Float.parse("10101.001", 2))  -- 21.125
+Debug.log(Float.parse("25.1", 8))       -- 21.125
+Debug.log(Float.parse("21.125", 10))    -- 21.125
+Debug.log(Float.parse("15.2", 16))      -- 21.125
+Debug.log(Float.parse(nil))             -- BadArgumentError
 ```
 
 ## `.epsilonEquals(left: Float | Integer, right: Float | Integer) -> Logic`
@@ -92,9 +92,9 @@ Float.epsilonEquals(value, radix)
 ### Examples
 
 ```lxm
-log(Float.epsilonEquals(2.1, 3))                  -- false
-log(Float.epsilonEquals(2, 2 + Float.Empsilon))   -- true
-log(Float.epsilonEquals(nil, ""))                 -- BadArgumentError
+Debug.log(Float.epsilonEquals(2.1, 3))                  -- false
+Debug.log(Float.epsilonEquals(2, 2 + Float.Empsilon))   -- true
+Debug.log(Float.epsilonEquals(nil, ""))                 -- BadArgumentError
 ```
 
 # Properties

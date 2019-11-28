@@ -69,8 +69,8 @@ Math.abs(number)
 ### Examples
 
 ```lxm
-log(Math.abs(4))        -- 4
-log(Math.abs(-1.5))     -- 1.5
+Debug.log(Math.abs(4))        -- 4
+Debug.log(Math.abs(-1.5))     -- 1.5
 ```
 
 ## `.acos(number: Integer | Float) -> Float | Nil`
@@ -92,9 +92,9 @@ Math.acos(number)
 ### Examples
 
 ```lxm
-log(Math.acos(-2))      -- nil
-log(Math.acos(0))       -- 1.5707963267948966
-log(Math.acos(0.5))     -- 1.0471975511965979
+Debug.log(Math.acos(-2))      -- nil
+Debug.log(Math.acos(0))       -- 1.5707963267948966
+Debug.log(Math.acos(0.5))     -- 1.0471975511965979
 ```
 
 ## `.acosh(number: Integer | Float) -> Float | Nil`
@@ -116,9 +116,9 @@ Math.acosh(number)
 ### Examples
 
 ```lxm
-log(Math.acosh())       -- nil
-log(Math.acosh(1))      -- 0.0
-log(Math.acosh(1.5))    -- 0.9624236501192069
+Debug.log(Math.acosh())       -- nil
+Debug.log(Math.acosh(1))      -- 0.0
+Debug.log(Math.acosh(1.5))    -- 0.9624236501192069
 ```
 
 ## `.asin(number: Integer | Float) -> Float | Nil`
@@ -140,9 +140,9 @@ Math.asin(number)
 ### Examples
 
 ```lxm
-log(Math.asin(0))       -- 0.0
-log(Math.asin(0.5))     -- 0.5235987755982989
-log(Math.asin(2))       -- nil
+Debug.log(Math.asin(0))       -- 0.0
+Debug.log(Math.asin(0.5))     -- 0.5235987755982989
+Debug.log(Math.asin(2))       -- nil
 ```
 
 ## `.asinh(number: Integer | Float) -> Float`
@@ -164,8 +164,8 @@ Math.asinh(number)
 ### Examples
 
 ```lxm
-log(Math.asinh(1))       -- 0.881373587019543
-log(Math.asinh(1.5))     -- 1.1947632172871094
+Debug.log(Math.asinh(1))       -- 0.881373587019543
+Debug.log(Math.asinh(1.5))     -- 1.1947632172871094
 ```
 
 ## `.atan(number: Integer | Float) -> Float`
@@ -187,8 +187,8 @@ Math.atan(number)
 ### Examples
 
 ```lxm
-log(Math.atan(0))       -- 0.0
-log(Math.atan(0.5))     -- 0.4636476090008061
+Debug.log(Math.atan(0))       -- 0.0
+Debug.log(Math.atan(0.5))     -- 0.4636476090008061
 ```
 
 ## `.atanh(number: Integer | Float) -> Float | Nil`
@@ -210,9 +210,9 @@ Math.atanh(number)
 ### Examples
 
 ```lxm
-log(Math.atanh(0))       -- 0.0
-log(Math.atanh(0.5))     -- 0.5493061443340548
-log(Math.atanh(2))       -- nil
+Debug.log(Math.atanh(0))       -- 0.0
+Debug.log(Math.atanh(0.5))     -- 0.5493061443340548
+Debug.log(Math.atanh(2))       -- nil
 ```
 
 ## `.atan2(x: Integer | Float, y: Integer | Float) -> Float`
@@ -237,8 +237,8 @@ Math.atan2(x, y)
 ### Examples
 
 ```lxm
-log(Math.atan2(90, 15))     -- 1.4056476493802699
-log(Math.atan2(15, 90))     -- 0.16514867741462683
+Debug.log(Math.atan2(90, 15))     -- 1.4056476493802699
+Debug.log(Math.atan2(15, 90))     -- 0.16514867741462683
 ```
 
 ## `.cbrt(number: Integer | Float) -> Float`
@@ -260,9 +260,9 @@ Math.cbrt(number)
 ### Examples
 
 ```lxm
-log(Math.cbrt(1))       -- 1.0
-log(Math.cbrt(3))       -- 1.4422495703074083
-log(Math.cbrt(9))       -- 2.080083823051904
+Debug.log(Math.cbrt(1))       -- 1.0
+Debug.log(Math.cbrt(3))       -- 1.4422495703074083
+Debug.log(Math.cbrt(9))       -- 2.080083823051904
 ```
 
 ## `.ceil(number: Integer | Float) -> Integer`
@@ -284,8 +284,8 @@ Math.ceil(number)
 ### Examples
 
 ```lxm
-log(Math.ceil(1))       -- 1
-log(Math.ceil(-3.4))    -- -3
+Debug.log(Math.ceil(1))       -- 1
+Debug.log(Math.ceil(-3.4))    -- -3
 ```
 
 ## `.clz32(number: Integer) -> Integer`
@@ -307,8 +307,8 @@ Math.clz32(number)
 ### Examples
 
 ```lxm
-log(Math.clz32(1))      -- 31
-log(Math.clz32(-3))     -- 0
+Debug.log(Math.clz32(1))      -- 31
+Debug.log(Math.clz32(-3))     -- 0
 ```
 
 ## `.cos(number: Integer | Float) -> Float`
@@ -330,8 +330,8 @@ Math.cos(number)
 ### Examples
 
 ```lxm
-log(Math.cos(0))       -- 1.0
-log(Math.cos(0.5))     -- 0.8775825618903728
+Debug.log(Math.cos(0))       -- 1.0
+Debug.log(Math.cos(0.5))     -- 0.8775825618903728
 ```
 
 ## `.cosh(number: Integer | Float) -> Float`
@@ -353,8 +353,8 @@ Math.cosh(number)
 ### Examples
 
 ```lxm
-log(Math.cosh(1))      -- 1.5430806348152437
-log(Math.cosh(1.5))    -- 2.352409615243247
+Debug.log(Math.cosh(1))      -- 1.5430806348152437
+Debug.log(Math.cosh(1.5))    -- 2.352409615243247
 ```
 
 ## `.exp(number: Integer | Float) -> Float`
@@ -376,8 +376,8 @@ Math.exp(number)
 ### Examples
 
 ```lxm
-log(Math.exp(1))      -- 2.718281828459045
-log(Math.exp(1.5))    -- 4.4816890703380645
+Debug.log(Math.exp(1))      -- 2.718281828459045
+Debug.log(Math.exp(1.5))    -- 4.4816890703380645
 ```
 
 ## `.floor(number: Integer | Float) -> Integer`
@@ -399,8 +399,8 @@ Math.floor(number)
 ### Examples
 
 ```lxm
-log(Math.floor(1))       -- 1
-log(Math.floor(-3.4))     -- -4
+Debug.log(Math.floor(1))       -- 1
+Debug.log(Math.floor(-3.4))     -- -4
 ```
 
 ## `.hypot(...numbers: List<Integer | Float>) -> Float`
@@ -422,8 +422,8 @@ Math.hypot(number1, ..., numberN)
 ### Examples
 
 ```lxm
-log(Math.hypot())               -- 0
-log(Math.hypot(1, 3.4, -6))     -- 6.968500556073739
+Debug.log(Math.hypot())               -- 0
+Debug.log(Math.hypot(1, 3.4, -6))     -- 6.968500556073739
 ```
 
 ## `.ln(number: Integer | Float) -> Float`
@@ -445,9 +445,9 @@ Math.ln(number)
 ### Examples
 
 ```lxm
-log(Math.ln(Math.E))    -- 1
-log(Math.ln(1.5))       -- 0.4054651081081644
-log(Math.ln(1))         -- 0.0
+Debug.log(Math.ln(Math.E))    -- 1
+Debug.log(Math.ln(1.5))       -- 0.4054651081081644
+Debug.log(Math.ln(1))         -- 0.0
 ```
 
 ## `.log10(number: Integer | Float) -> Float`
@@ -469,9 +469,9 @@ Math.log10(number)
 ### Examples
 
 ```lxm
-log(Math.log10(10))     -- 1
-log(Math.log10(1.5))    -- 0.17609125905568124
-log(Math.log10(1))      -- 0.0
+Debug.log(Math.log10(10))     -- 1
+Debug.log(Math.log10(1.5))    -- 0.17609125905568124
+Debug.log(Math.log10(1))      -- 0.0
 ```
 
 ## `.log2(number: Integer | Float) -> Float`
@@ -493,9 +493,9 @@ Math.log2(number)
 ### Examples
 
 ```lxm
-log(Math.log2(2))       -- 1
-log(Math.log2(1.5))     -- 0.5849625007211562
-log(Math.log2(1))       -- 0.0
+Debug.log(Math.log2(2))       -- 1
+Debug.log(Math.log2(1.5))     -- 0.5849625007211562
+Debug.log(Math.log2(1))       -- 0.0
 ```
 
 ## `.max(...numbers: List<Integer | Float>) -> Float`
@@ -517,8 +517,8 @@ Math.max(number1, ..., numberN)
 ### Examples
 
 ```lxm
-log(Math.max())             -- BadArgumentError
-log(Math.max(1, 3.4, -6))   -- 3.4
+Debug.log(Math.max())             -- BadArgumentError
+Debug.log(Math.max(1, 3.4, -6))   -- 3.4
 ```
 
 ## `.min(...numbers: List<Integer | Float>) -> Float`
@@ -540,8 +540,8 @@ Math.min(number1, ..., numberN)
 ### Examples
 
 ```lxm
-log(Math.min())             -- BadArgumentError
-log(Math.min(1, 3.4, -6))   -- -6
+Debug.log(Math.min())             -- BadArgumentError
+Debug.log(Math.min(1, 3.4, -6))   -- -6
 ```
 
 ## `.pow(base: Integer | Float, exponent: Integer | Float) -> Float | Nil`
@@ -566,8 +566,8 @@ Math.pow(base, exponent)
 ### Examples
 
 ```lxm
-log(Math.pow(7, 3))     -- 342.0
-log(Math.pow(4, 0.5))   -- 2.0
+Debug.log(Math.pow(7, 3))     -- 342.0
+Debug.log(Math.pow(4, 0.5))   -- 2.0
 ```
 
 ## `.random() -> Float`
@@ -581,8 +581,8 @@ Math.random()
 ### Examples
 
 ```lxm
-log(Math.random())      -- 0.8695149573936003
-log(Math.random())      -- 0.4788946299878538
+Debug.log(Math.random())      -- 0.8695149573936003
+Debug.log(Math.random())      -- 0.4788946299878538
 ```
 
 ## `.round(number: Integer | Float) -> Integer`
@@ -604,9 +604,9 @@ Math.round(number)
 ### Examples
 
 ```lxm
-log(Math.round(1))      -- 1
-log(Math.round(-3.4))   -- -3
-log(Math.round(2.7))    -- 3
+Debug.log(Math.round(1))      -- 1
+Debug.log(Math.round(-3.4))   -- -3
+Debug.log(Math.round(2.7))    -- 3
 ```
 
 ## `.sign(number: Integer | Float) -> Integer`
@@ -632,9 +632,9 @@ Math.sign(number)
 ### Examples
 
 ```lxm
-log(Math.sign(-34))     -- -1
-log(Math.sign(0))       -- 0
-log(Math.sign(14.4))    -- 1
+Debug.log(Math.sign(-34))     -- -1
+Debug.log(Math.sign(0))       -- 0
+Debug.log(Math.sign(14.4))    -- 1
 ```
 
 ## `.sin(number: Integer | Float) -> Float`
@@ -656,8 +656,8 @@ Math.sin(number)
 ### Examples
 
 ```lxm
-log(Math.sin(0))       -- 0.0
-log(Math.sin(0.5))     -- 0.479425538604203
+Debug.log(Math.sin(0))       -- 0.0
+Debug.log(Math.sin(0.5))     -- 0.479425538604203
 ```
 
 ## `.sinh(number: Integer | Float) -> Float`
@@ -679,8 +679,8 @@ Math.sinh(number)
 ### Examples
 
 ```lxm
-log(Math.sinh(1))      -- 1.1752011936438014
-log(Math.sinh(1.5))    -- 2.1292794550948173
+Debug.log(Math.sinh(1))      -- 1.1752011936438014
+Debug.log(Math.sinh(1.5))    -- 2.1292794550948173
 ```
 
 ## `.sqrt(number: Integer | Float) -> Float | Nil`
@@ -702,10 +702,10 @@ Math.sqrt(number)
 ### Examples
 
 ```lxm
-log(Math.sqrt(0))       -- 0.0
-log(Math.sqrt(3))       -- 1.7320508075688772
-log(Math.sqrt(9))       -- 3.0
-log(Math.sqrt(-1))       -- nil
+Debug.log(Math.sqrt(0))       -- 0.0
+Debug.log(Math.sqrt(3))       -- 1.7320508075688772
+Debug.log(Math.sqrt(9))       -- 3.0
+Debug.log(Math.sqrt(-1))       -- nil
 ```
 
 ## `.tan(number: Integer | Float) -> Float`
@@ -727,8 +727,8 @@ Math.tan(number)
 ### Examples
 
 ```lxm
-log(Math.tan(0))       -- 0.0
-log(Math.tan(0.5))     -- 0.5463024898437905
+Debug.log(Math.tan(0))       -- 0.0
+Debug.log(Math.tan(0.5))     -- 0.5463024898437905
 ```
 
 ## `.tanh(number: Integer | Float) -> Float`
@@ -750,8 +750,8 @@ Math.tanh(number)
 ### Examples
 
 ```lxm
-log(Math.tanh(1))      -- 0.7615941559557649
-log(Math.tanh(1.5))    -- 0.9051482536448664
+Debug.log(Math.tanh(1))      -- 0.7615941559557649
+Debug.log(Math.tanh(1.5))    -- 0.9051482536448664
 ```
 
 ## `.trunc(number: Integer | Float) -> Integer`
@@ -773,8 +773,8 @@ Math.trunc(number)
 ### Examples
 
 ```lxm
-log(Math.trunc(1))      -- 1
-log(Math.trunc(-3.4))   -- -3
+Debug.log(Math.trunc(1))      -- 1
+Debug.log(Math.trunc(-3.4))   -- -3
 ```
 
 # Properties

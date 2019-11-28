@@ -51,7 +51,7 @@ map.size()
 ```lxm
 let map = [1, 2, 3]
 
-log(map.size())    -- 3
+Debug.log(map.size())    -- 3
 ```
 
 ## `.freeze()`
@@ -73,7 +73,7 @@ let map = {}
 
 map.freeze()
 
-log(map)     -- #{}
+Debug.log(map)     -- #{}
 ```
 
 ## `.isFrozen() -> Logic`
@@ -93,7 +93,7 @@ map.isFrozen()
 ```lxm
 let map = #{}
 
-log(map.isFrozen())  -- true
+Debug.log(map.isFrozen())  -- true
 ```
 
 ## `.every(fn: Function) -> Logic`
@@ -121,8 +121,8 @@ let map = map!{"a": 1, "b": 2}
 fun gt0(value, key) { return value > 0 }
 fun gt2(value, key) { return value > 2 }
 
-log(map.every(gt0))    -- true
-log(map.every(gt2))    -- false
+Debug.log(map.every(gt0))    -- true
+Debug.log(map.every(gt2))    -- false
 ```
 
 ## `.filter(fn: Function) -> Map`
@@ -150,8 +150,8 @@ let map = map!{"a": 1, "b": 2}
 fun gt1(value, key) { return value > 1 }
 fun falseFn(value, key) { return false }
 
-log(map.filter(gt1))       -- map!{"b": 2}
-log(map.filter(falseFn))   -- map!{}
+Debug.log(map.filter(gt1))       -- map!{"b": 2}
+Debug.log(map.filter(falseFn))   -- map!{}
 ```
 
 ## `.forEach(fn: Function)`
@@ -181,7 +181,7 @@ fun add(value, key) { count + value }
 
 map.forEach(add)
 
-log(count)    -- 3
+Debug.log(count)    -- 3
 ```
 
 ## `.containsAnyKey(...values: List<Any>) -> Logic`
@@ -205,9 +205,9 @@ map.containsAnyKey(value1, ..., valueN)
 ```lxm
 let map = map!{"a": 1, "b": 2}
 
-log(map.containsAnyKey("a", "c"))   -- true
-log(map.containsAnyKey("d"))        -- false
-log(map.containsAnyKey())           -- false
+Debug.log(map.containsAnyKey("a", "c"))   -- true
+Debug.log(map.containsAnyKey("d"))        -- false
+Debug.log(map.containsAnyKey())           -- false
 ```
 
 ## `.containsAllKeys(...values: List<Any>) -> Logic`
@@ -231,9 +231,9 @@ map.containsAllKeys(value1, ..., valueN)
 ```lxm
 let map = map!{"a": 1, "b": 2}
 
-log(map.containsAllKeys("a", "b"))  -- true
-log(map.containsAllKeys("a", "c"))  -- false
-log(map.containsAllKeys())          -- true
+Debug.log(map.containsAllKeys("a", "b"))  -- true
+Debug.log(map.containsAllKeys("a", "c"))  -- false
+Debug.log(map.containsAllKeys())          -- true
 ```
 
 ## `.map(fn: Function) -> Map`
@@ -260,7 +260,7 @@ let map = map!{"a": 1, "b": 2}
 
 fun add10(value, key) { return value + 10 }
 
-log(map.map(add10))   -- [11, 12, 13]
+Debug.log(map.map(add10))   -- [11, 12, 13]
 ```
 
 ## `.reduce(default: Any, fn: Function) -> Any`
@@ -288,8 +288,8 @@ let map = map!{"a": 1, "b": 2}
 
 fun add(accumulation, value, key) { return accumulation + value }
 
-log(map.reduce(0, add))     -- 3
-log(map.reduce(10, add))    -- 13
+Debug.log(map.reduce(0, add))     -- 3
+Debug.log(map.reduce(10, add))    -- 13
 ```
 
 ## `.any(fn: Function) -> Logic`
@@ -317,8 +317,8 @@ let map = map!{"a": 1, "b": 2}
 fun gt1(value, key) { return value > 1 }
 fun gt5(value, key) { return value > 5 }
 
-log(map.any(gt1)) -- true
-log(map.any(gt5)) -- false
+Debug.log(map.any(gt1)) -- true
+Debug.log(map.any(gt5)) -- false
 ```
 
 ## `.add(key: Any, value: Any)`
@@ -344,10 +344,10 @@ map.remove(key, value)
 let map = map!{"a": 1, "b": 2}
 
 map.add("a", 5)
-log(list)   -- map!{"a": 5, "b": 2}
+Debug.log(list)   -- map!{"a": 5, "b": 2}
 å
 map.add(5, 6)
-log(list)   -- map!{"a": 1, "b": 2, 5: 6}
+Debug.log(list)   -- map!{"a": 1, "b": 2, 5: 6}
 ```
 
 ## `.remove(...keys: List<Any>)`
@@ -372,10 +372,10 @@ map.remove(value1, ..., valueN)
 let map = map!{"a": 1, "b": 2}
 
 map.remove("a")
-log(list)   -- map!{"b": 2}
+Debug.log(list)   -- map!{"b": 2}
 
 map.remove()
-log(list)   -- map!{"b": 2}
+Debug.log(list)   -- map!{"b": 2}
 ```
 
 ## `.toList() -> List`
@@ -395,7 +395,7 @@ map.toList()
 ```lxm
 let map = map!{"a": 1, "b": 2}
 
-log(map.toList())   -- [{key: "a", value: 1}, {key: "b", value: 2}]
+Debug.log(map.toList())   -- [{key: "a", value: 1}, {key: "b", value: 2}]
 ```
 
 ## `.toObject() -> Object`
@@ -415,7 +415,7 @@ map.toObject()
 ```lxm
 let map = map!{"a": 1, "b": 2, true: 3, 5: 6}
 
-log(map.toObject())   -- {a: 1, b: 2}
+Debug.log(map.toObject())   -- {a: 1, b: 2}
 ```
 
 ## `.keys() -> List`
@@ -435,7 +435,7 @@ map.keys()
 ```lxm
 let map = map!{"a": 1, "b": 2}
 
-log(map.keys())   -- ["a", "b"]
+Debug.log(map.keys())   -- ["a", "b"]
 ```
 
 ## `.values() -> List`
@@ -455,7 +455,7 @@ map.values()
 ```lxm
 let map = map!{"a": 1, "b": 2}
 
-log(map.values())   -- [1, 2]
+Debug.log(map.values())   -- [1, 2]
 ```
 
 ## `.toString() -> String`
@@ -475,7 +475,7 @@ map.toString()
 ```lxm
 let map = map!{"a": 1, "b": 2}
 
-log(map.toString())    -- "map!{\"a\": 1, \"b\": 2}"
+Debug.log(map.toString())    -- "map!{\"a\": 1, \"b\": 2}"
 ```
 
 ## `.clear()`
@@ -497,7 +497,7 @@ let map = map!{"a": 1, "b": 2}
 
 map.clear()
 
-log(map)    -- map!{}
+Debug.log(map)    -- map!{}
 ```
 
 # Operators
@@ -525,9 +525,9 @@ map.add(right)
 let left = map!{1: "a", "b": 2}
 let right = map!{"b": 5, true: 4.5}
 
-log(left.add(right))        -- map!{1: "a", "b": 5, true: 4,5}
-log(left.add(nil))          -- BadArgumentError
-log(left + right)           -- map!{1: "a", "b": 5, true: 4,5} Implicit calling
+Debug.log(left.add(right))        -- map!{1: "a", "b": 5, true: 4,5}
+Debug.log(left.add(nil))          -- BadArgumentError
+Debug.log(left + right)           -- map!{1: "a", "b": 5, true: 4,5} Implicit calling
 ```
 
 ## `.sub(right: Map) -> Map`
@@ -553,9 +553,9 @@ map.sub(right)
 let left = map!{1: "a", "b": 2}
 let right = map!{"b": 5, true: 4.5}
 
-log(left.sub(right))    -- map!{1: "a"}
-log(left.sub(nil))      -- BadArgumentError
-log(left - right)       -- map!{1: "a"} Implicit calling
+Debug.log(left.sub(right))    -- map!{1: "a"}
+Debug.log(left.sub(nil))      -- BadArgumentError
+Debug.log(left - right)       -- map!{1: "a"} Implicit calling
 ```
 
 ## `.logicAnd(right: Map) -> Map`
@@ -581,9 +581,9 @@ map.logicAnd(right)
 let left = map!{1: "a", "b": 2}
 let right = map!{"b": 5, true: 4.5}
 
-log(left.logicAnd(right))   -- map!{"b": 5}
-log(left.logicAnd(nil))     -- BadArgumentError
-log(left & right)           -- map!{"b": 5} Implicit calling
+Debug.log(left.logicAnd(right))   -- map!{"b": 5}
+Debug.log(left.logicAnd(nil))     -- BadArgumentError
+Debug.log(left & right)           -- map!{"b": 5} Implicit calling
 ```
 
 ## `.logicOr(right: Map) -> Map`
@@ -609,9 +609,9 @@ map.logicOr(right)
 let left = map!{1: "a", "b": 2}
 let right = map!{"b": 5, true: 4.5}
 
-log(left.logicOr(right))    -- map!{1: "a", "b": 5, true: 4,5}
-log(left.logicOr(nil))      -- BadArgumentError
-log(left | right)           -- map!{1: "a", "b": 5, true: 4,5} Implicit calling
+Debug.log(left.logicOr(right))    -- map!{1: "a", "b": 5, true: 4,5}
+Debug.log(left.logicOr(nil))      -- BadArgumentError
+Debug.log(left | right)           -- map!{1: "a", "b": 5, true: 4,5} Implicit calling
 ```
 
 ## `.logicXor(right: Map) -> Map`
@@ -637,9 +637,9 @@ map.logicXor(right)
 let left = map!{1: "a", "b": 2}
 let right = map!{"b": 5, true: 4.5}
 
-log(left.logicXor(right))   -- map!{1: "a", true: 4.5}
-log(left.logicXor(nil))     -- BadArgumentError
-log(left ^ right)           -- map!{1: "a", true: 4.5} Implicit calling
+Debug.log(left.logicXor(right))   -- map!{1: "a", true: 4.5}
+Debug.log(left.logicXor(nil))     -- BadArgumentError
+Debug.log(left ^ right)           -- map!{1: "a", true: 4.5} Implicit calling
 ```
 
 # Accesses
@@ -665,9 +665,9 @@ map[index]
 ```lxm
 let map = map!{1: "a", 2: 4}
 
-log(map[nil])   -- nil
-log(map[1])     -- "a"
-log(map[2])     -- 4
+Debug.log(map[nil])   -- nil
+Debug.log(map[1])     -- "a"
+Debug.log(map[2])     -- 4
 ```
 
 ## `[key: Any] = value: Any -> Any`
@@ -691,9 +691,9 @@ map[key] = value
 ```lxm
 let map = map!{1: "a", 2: 4}
 
-log(map[nil])   -- nil
-log(map[1])     -- "a"
-log(map[2])     -- 4
+Debug.log(map[nil])   -- nil
+Debug.log(map[1])     -- "a"
+Debug.log(map[2])     -- 4
 
 map[1] = 3      -- map = map!{1: 3, 2: 4}
 map[3] = 4      -- map = map!{1: 3, 2: 4, 3: 4}

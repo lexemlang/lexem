@@ -22,5 +22,5 @@ logic.toString()
 ### Examples
 
 ```lxm
-log(node.toString())   -- "[name, childs: 3, properties: 5]"
+Debug.log(node.toString())   -- "[name, childs: 3, properties: 5]"
 ```

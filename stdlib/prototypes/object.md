@@ -40,7 +40,7 @@ let object = {}
 
 object.freeze()
 
-log(object)     -- #{}
+Debug.log(object)     -- #{}
 ```
 
 ## `.isFrozen() -> Logic`
@@ -60,7 +60,7 @@ object.isFrozen()
 ```lxm
 let object = #{}
 
-log(object.isFrozen())  -- true
+Debug.log(object.isFrozen())  -- true
 ```
 
 ## `.not() -> Logic`
@@ -103,7 +103,7 @@ let object = {a: 1, b: 2, c: 3}
 
 object.freezeProperties("a", "b")
 
-log(object)     -- {#a: 1, #b: 2, c: 3}
+Debug.log(object)     -- {#a: 1, #b: 2, c: 3}
 ```
 
 ## `.freezeAllProperties()`
@@ -125,7 +125,7 @@ let object = {a: 1, b: 2, c: 3}
 
 object.freezeAllProperties()
 
-log(object)     -- {#a: 1, #b: 2, #c: 3}
+Debug.log(object)     -- {#a: 1, #b: 2, #c: 3}
 ```
 
 ## `.removeProperties(...properties: List<String>)`
@@ -152,7 +152,7 @@ let object = {a: 1, b: 2, c: 3}
 
 object.removeProperties("a", "b")
 
-log(object)     -- {c: 3}
+Debug.log(object)     -- {c: 3}
 ```
 
 ## `.getOwnPropertyKeys() -> List<String>`
@@ -172,7 +172,7 @@ object.getOwnPropertyKeys()
 ```lxm
 let object = {a: 1, b: 2, c: 3}
 
-log(object.getOwnPropertyKeys())    -- ["a", "b", "c"]
+Debug.log(object.getOwnPropertyKeys())    -- ["a", "b", "c"]
 ```
 
 ## `.getOwnPropertyValues() -> List<Any>`
@@ -192,7 +192,7 @@ object.getOwnPropertyValues()
 ```lxm
 let object = {a: 1, b: 2, c: 3}
 
-log(object.getOwnPropertyValues())    -- [1, 2, 3]
+Debug.log(object.getOwnPropertyValues())    -- [1, 2, 3]
 ```
 
 ## `.getOwnProperties() -> List<{key:String, value:Any}>`
@@ -212,7 +212,7 @@ object.getOwnProperties()
 ```lxm
 let object = {a: 1, b: 2}
 
-log(object.getOwnProperties())    -- [{key: "a", value: 1}, {key: "b", value: 2}]
+Debug.log(object.getOwnProperties())    -- [{key: "a", value: 1}, {key: "b", value: 2}]
 ```
 
 ## `.ownPropertiesToMap() -> Map<String, Any>`
@@ -232,7 +232,7 @@ object.ownPropertiesToMap()
 ```lxm
 let object = {a: 1, b: 2, c: 3}
 
-log(object.ownPropertiesToMap())    -- @{a: 1, b: 2, c: 3}
+Debug.log(object.ownPropertiesToMap())    -- @{a: 1, b: 2, c: 3}
 ```
 
 ## `.containsAnyOwnProperties(...properties: List<String>)`
@@ -257,8 +257,8 @@ object.containsAnyOwnProperties(propName1, ..., propNameN)
 ```lxm
 let object = {a: 1, b: 2, c: 3}
 
-log(object.containsAnyOwnProperties("a", "l"))     -- true
-log(object.containsAnyOwnProperties("f", "g"))     -- false
+Debug.log(object.containsAnyOwnProperties("a", "l"))     -- true
+Debug.log(object.containsAnyOwnProperties("f", "g"))     -- false
 ```
 
 ## `.containsAllOwnProperties(...properties: List<String>)`
@@ -283,8 +283,8 @@ object.containsAllOwnProperties(propName1, ..., propNameN)
 ```lxm
 let object = {a: 1, b: 2, c: 3}
 
-log(object.containsAllOwnProperties("a", "b"))     -- true
-log(object.containsAllOwnProperties("b", "g"))     -- false
+Debug.log(object.containsAllOwnProperties("a", "b"))     -- true
+Debug.log(object.containsAllOwnProperties("b", "g"))     -- false
 ```
 
 # Accesses
@@ -311,10 +311,10 @@ object[index]
 ```lxm
 let object = {a: 1, b: 2}
 
-log(object[nil])  -- BadArgumentError
-log(object["a"])  -- 1
-log(object["b"])  -- 2
-log(object["c"])  -- nil
+Debug.log(object[nil])  -- BadArgumentError
+Debug.log(object["a"])  -- 1
+Debug.log(object["b"])  -- 2
+Debug.log(object["c"])  -- nil
 ```
 
 ## `[property: String] = value: Any -> Any`

@@ -32,7 +32,7 @@ logic.toString()
 ```lxm
 let value = true
 
-log(value.toString())   -- "true"
+Debug.log(value.toString())   -- "true"
 ```
 
 # Operators
@@ -54,8 +54,8 @@ logic.not()
 ```lxm
 let value = false
 
-log(value.not())    -- true
-log(!value)         -- true Implicit calling
+Debug.log(value.not())    -- true
+Debug.log(!value)         -- false Implicit calling
 ```
 
 ## `.logicAnd(right: Logic) -> Logic`
@@ -81,9 +81,9 @@ logic.logicAnd(right)
 let left = false
 let right = true
 
-log(left.logicAnd(right))   -- false
-log(left.logicAnd(nil))     -- BadArgumentError
-log(left & right)           -- false Implicit calling
+Debug.log(left.logicAnd(right))   -- false
+Debug.log(left.logicAnd(nil))     -- BadArgumentError
+Debug.log(left & right)           -- false Implicit calling
 ```
 
 ## `.logicAnd(right: BitList) -> BitList`
@@ -109,9 +109,9 @@ bitlist.logicAnd(right)
 let left = true
 let right = 0b"1001"
 
-log(left.logicAnd(right))   -- 0b"1001"
-log(left.logicAnd(nil))     -- BadArgumentError
-log(left & right)           -- 0b"1001" Implicit calling
+Debug.log(left.logicAnd(right))   -- 0b"1001"
+Debug.log(left.logicAnd(nil))     -- BadArgumentError
+Debug.log(left & right)           -- 0b"1001" Implicit calling
 ```
 
 ## `.logicOr(right: Logic) -> Logic`
@@ -137,9 +137,9 @@ logic.logicOr(right)
 let left = false
 let right = true
 
-log(left.logicOr(right))    -- true
-log(left.logicOr(nil))      -- BadArgumentError
-log(left | right)           -- true Implicit calling
+Debug.log(left.logicOr(right))    -- true
+Debug.log(left.logicOr(nil))      -- BadArgumentError
+Debug.log(left | right)           -- true Implicit calling
 ```
 
 ## `.logicOr(right: BitList) -> BitList`
@@ -165,9 +165,9 @@ bitlist.logicOr(right)
 let left = true
 let right = 0b"1001"
 
-log(left.logicOr(right))    -- 0b"1111"
-log(left.logicOr(nil))      -- BadArgumentError
-log(left | right)           -- 0b"1111" Implicit calling
+Debug.log(left.logicOr(right))    -- 0b"1111"
+Debug.log(left.logicOr(nil))      -- BadArgumentError
+Debug.log(left | right)           -- 0b"1111" Implicit calling
 ```
 
 ## `.logicXor(right: Logic) -> Logic`
@@ -193,9 +193,9 @@ logic.logicXor(right)
 let left = false
 let right = true
 
-log(left.logicXor(right))   -- true
-log(left.logicXor(nil))     -- BadArgumentError
-log(left ^ right)           -- true Implicit calling
+Debug.log(left.logicXor(right))   -- true
+Debug.log(left.logicXor(nil))     -- BadArgumentError
+Debug.log(left ^ right)           -- true Implicit calling
 ```
 
 ## `.logicXor(right: BitList) -> BitList`
@@ -221,7 +221,7 @@ bitlist.logicXor(right)
 let left = true
 let right = 0b"1001"
 
-log(left.logicXor(right))   -- 0b"0110"
-log(left.logicXor(nil))     -- BadArgumentError
-log(left ^ right)           -- 0b"0110" Implicit calling
+Debug.log(left.logicXor(right))   -- 0b"0110"
+Debug.log(left.logicXor(nil))     -- BadArgumentError
+Debug.log(left ^ right)           -- 0b"0110" Implicit calling
 ```
