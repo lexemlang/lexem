@@ -6,6 +6,7 @@
   - [`.is(type: Object) -> Logic`](#istype-object---logic)
   - [`.isAny(...types: List<Object>) -> Object | Nil`](#isanytypes-listobject---object--nil)
 - [Operators](#operators)
+  - [`.not() -> Logic`](#not---logic)
   - [`.add(right: String) -> String`](#addright-string---string)
 
 # Methods
@@ -61,6 +62,23 @@ object.isAny(Object, List)  -- nil
 ```
 
 # Operators
+
+## `.not() -> Logic`
+
+Returns the logical negation of the `this` value, i.e `!this`.
+
+```lxm
+any.not()
+```
+
+### Examples
+
+```lxm
+let value = {a: 3}
+
+Debug.log(value.not())    -- true
+Debug.log(!value)         -- false (Implicit calling)
+```
 
 ## `.add(right: String) -> String`
 
