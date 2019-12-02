@@ -3,30 +3,9 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.parameters() -> Objects`](#parameters---objects)
   - [`.wrap(...arguments: List<Any>, ...namedArguments: Object) -> Function`](#wraparguments-listany-namedarguments-object---function)
 
 # Methods
-
-## `.parameters() -> Objects`
-
-Returns an `Object` that contains the names of the parameters of the filter.
-
-```lxm
-filter.parameters()
-```
-
-### Errors
-
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Filter`.
-
-### Examples
-
-```lxm
-filter test(a, b, c, ...d, ...@e) {}
-
-Debug.log(num.parameters())  -- #{params: set!["a", "b", "c"], spread: "d", namedSpread: "e"}
-```
 
 ## `.wrap(...arguments: List<Any>, ...namedArguments: Object) -> Function`
 
