@@ -6,7 +6,7 @@
   - [`.length() -> Integer`](#length---integer)
   - [`.toString() -> String`](#tostring---string)
   - [`.charsAt(...indexes: List<Integer | Interval>) -> String`](#charsatindexes-listinteger--interval---string)
-  - [`.charUnicodePointAt(...indexes: List<Integer | Interval>) -> List<Int>`](#charunicodepointatindexes-listinteger--interval---listint)
+  - [`.unicodePointsAt(...indexes: List<Integer | Interval>) -> List<Int>`](#unicodepointsatindexes-listinteger--interval---listint)
   - [`.endsWithAny(...suffixes: List<String>) -> Logic`](#endswithanysuffixes-liststring---logic)
   - [`.startsWithAny(...prefixes: List<String>) -> Logic`](#startswithanyprefixes-liststring---logic)
   - [`.containsAny(...substrings: List<String>) -> Logic`](#containsanysubstrings-liststring---logic)
@@ -19,11 +19,11 @@
   - [`.repeat(count: Integer, separator: String) -> String`](#repeatcount-integer-separator-string---string)
   - [`.replace(original: String, replace: String) -> String`](#replaceoriginal-string-replace-string---string)
   - [`.replace(original: String, replace: String, insensible: Logic) -> String`](#replaceoriginal-string-replace-string-insensible-logic---string)
-  - [`.slice(from: String) -> String`](#slicefrom-string---string)
-  - [`.slice(from: String, count: String) -> String`](#slicefrom-string-count-string---string)
+  - [`.slice(from: Integer) -> String`](#slicefrom-integer---string)
+  - [`.slice(from: Integer, count: Integer) -> String`](#slicefrom-integer-count-integer---string)
   - [`.split(substring: String) -> List<String>`](#splitsubstring-string---liststring)
-  - [`.toLowerCase() -> String`](#tolowercase---string)
-  - [`.toUpperCase() -> String`](#touppercase---string)
+  - [`.toLowercase() -> String`](#tolowercase---string)
+  - [`.toUppercase() -> String`](#touppercase---string)
   - [`.trimStart() -> String`](#trimstart---string)
   - [`.trimEnd() -> String`](#trimend---string)
   - [`.trim() -> String`](#trim---string)
@@ -100,12 +100,12 @@ let value = "this is a test"
 Debug.log(value.charsAt(itv![0..3], 8))   -- "testa"
 ```
 
-## `.charUnicodePointAt(...indexes: List<Integer | Interval>) -> List<Int>`
+## `.unicodePointsAt(...indexes: List<Integer | Interval>) -> List<Int>`
 
-Returns the _UTF-32_ encoded characters at the specified positions.
+Returns the _UTF-32_ encoded characters at the specified positions. When an index does not exist, it is ignored.
 
 ```lxm
-string.charUTF8At(index1, ..., indexN)
+string.unicodePointsAt(index1, ..., indexN)
 ```
 
 ### Parameters
@@ -122,7 +122,7 @@ string.charUTF8At(index1, ..., indexN)
 ```lxm
 let value = "this is a test"
 
-Debug.log(value.charUTF8At(itv![0..3], 8))   -- [0x74, 0x68, 0x69, 0x73, 0x61]
+Debug.log(value.unicodePointsAt(itv![0..3], 8))   -- [0x74, 0x68, 0x69, 0x73, 0x61]
 ```
 
 ## `.endsWithAny(...suffixes: List<String>) -> Logic`
@@ -469,7 +469,7 @@ Debug.log(value.replace("cC", "xx", false))   -- "aA Bb CC dd"
 Debug.log(value.replace(nil, ", "))           -- BadArgumentError
 ```
 
-## `.slice(from: String) -> String`
+## `.slice(from: Integer) -> String`
 
 Returns the substring of the current string that starts at `from` and finishes at the end of the current string. If `from` is greater than the size of the current string, the function returns an empty string, i.e. `""`.
 
@@ -496,7 +496,7 @@ Debug.log(value.slice(20))    -- ""
 Debug.log(value.slice(nil))   -- BadArgumentError
 ```
 
-## `.slice(from: String, count: String) -> String`
+## `.slice(from: Integer, count: Integer) -> String`
 
 Returns the substring of the current string that starts at `from` and ends at most in the following `count` characters. If `from` is greater than the size of the current string, the function returns an empty string, i.e. `""`.
 
@@ -554,12 +554,12 @@ let value = "this, is, a, test"
 Debug.log(value.split(","))    -- ["this", " is", " a", " test"]
 ```
 
-## `.toLowerCase() -> String`
+## `.toLowercase() -> String`
 
 Returns the string with all its characters lowercase.
 
 ```lxm
-string.toLowerCase()
+string.toLowercase()
 ```
 
 ### Errors
@@ -571,15 +571,15 @@ string.toLowerCase()
 ```lxm
 let value = "This IS a TeSt"
 
-Debug.log(value.toLowerCase())    -- "this is a test"
+Debug.log(value.toLowercase())    -- "this is a test"
 ```
 
-## `.toUpperCase() -> String`
+## `.toUppercase() -> String`
 
 Returns the string with all its characters uppercase.
 
 ```lxm
-string.toUpperCase()
+string.toUppercase()
 ```
 
 ### Errors
@@ -591,7 +591,7 @@ string.toUpperCase()
 ```lxm
 let value = "This IS a TeSt"
 
-Debug.log(value.toUpperCase())    -- "THIS IS A TEST"
+Debug.log(value.toUppercase())    -- "THIS IS A TEST"
 ```
 
 ## `.trimStart() -> String`

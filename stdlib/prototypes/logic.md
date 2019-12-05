@@ -55,7 +55,7 @@ logic.not()
 let value = false
 
 Debug.log(value.not())    -- true
-Debug.log(!value)         -- false Implicit calling
+Debug.log(!value)         -- true Implicit calling
 ```
 
 ## `.logicAnd(right: Logic) -> Logic`
@@ -101,7 +101,7 @@ bitlist.logicAnd(right)
 ### Errors
 
 - **`BadArgumentError`**: when the type of `right` is incorrect.
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `BitList`.
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Logic`.
 
 ### Examples
 
@@ -157,7 +157,7 @@ bitlist.logicOr(right)
 ### Errors
 
 - **`BadArgumentError`**: when the type of `right` is incorrect.
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `BitList`.
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Logic`.
 
 ### Examples
 
@@ -213,7 +213,7 @@ bitlist.logicXor(right)
 ### Errors
 
 - **`BadArgumentError`**: when the type of `right` is incorrect.
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `BitList`.
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Logic`.
 
 ### Examples
 
