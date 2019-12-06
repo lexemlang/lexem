@@ -256,16 +256,16 @@ bitlist.leftShift(right)
 ### Examples
 
 ```lxm
-let left = 0b"1001"
+let left = 0b"100111"
 
-Debug.log(left.leftShift(2))      -- 0b"100100"
+Debug.log(left.leftShift(2))      -- 0b"011100"
 Debug.log(left.leftShift(nil))    -- BadArgumentError
-Debug.log(left << 2)              -- 0b"100100" Implicit calling
+Debug.log(left << 2)              -- 0b"011100" Implicit calling
 ```
 
 ## `.rightShift(right: Integer) -> BitList`
 
-Returns the current bitlist with all its bits moved `right` bits to the right, removing those bits that do not fit inside anymore.
+Returns the current bitlist with all its bits moved `right` bits to the right applying 0s at the start.
 
 ```lxm
 bitlist.rightShift(right)
@@ -283,11 +283,11 @@ bitlist.rightShift(right)
 ### Examples
 
 ```lxm
-let left = 0b"1001"
+let left = 0b"100111"
 
-Debug.log(left.rightShift(2))     -- 0b"10"
+Debug.log(left.rightShift(2))     -- 0b"001001"
 Debug.log(left.rightShift(nil))   -- BadArgumentError
-Debug.log(left >> 2)              -- 0b"10" Implicit calling
+Debug.log(left >> 2)              -- 0b"001001" Implicit calling
 ```
 
 ## `.leftRotate(right: Integer) -> BitList`
