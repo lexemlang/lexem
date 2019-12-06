@@ -3,12 +3,12 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.size()`](#size)
-  - [`.freeze()`](#freeze)
+  - [`.size() -> Integer`](#size---integer)
+  - [`.freeze() -> Nil`](#freeze---nil)
   - [`.isFrozen() -> Logic`](#isfrozen---logic)
   - [`.every(fn: Function) -> Logic`](#everyfn-function---logic)
   - [`.filter(fn: Function) -> List`](#filterfn-function---list)
-  - [`.forEach(fn: Function)`](#foreachfn-function)
+  - [`.forEach(fn: Function) -> Nil`](#foreachfn-function---nil)
   - [`.find(fn: Function) -> {index: Integer, value: Any} | Nil`](#findfn-function---index-integer-value-any--nil)
   - [`.findLast(fn: Function) -> {index: Integer, value: Any} | Nil`](#findlastfn-function---index-integer-value-any--nil)
   - [`.indexOf(value: Any) -> Integer | Nil`](#indexofvalue-any---integer--nil)
@@ -18,34 +18,32 @@
   - [`.map(fn: Function) -> List`](#mapfn-function---list)
   - [`.reduce(default: Any, fn: Function) -> Any`](#reducedefault-any-fn-function---any)
   - [`.any(fn: Function) -> Logic`](#anyfn-function---logic)
-  - [`.remove(...values: List<Any>)`](#removevalues-listany)
-  - [`.removeAt(at: Integer)`](#removeatat-integer)
-  - [`.removeAt(at: Integer, count: Integer)`](#removeatat-integer-count-integer)
-  - [`.toList() -> List`](#tolist---list)
+  - [`.remove(...values: List<Any>) -> Nil`](#removevalues-listany---nil)
+  - [`.removeAt(at: Integer) -> Nil`](#removeatat-integer---nil)
+  - [`.removeAt(at: Integer, count: Integer) -> Nil`](#removeatat-integer-count-integer---nil)
   - [`.toString() -> String`](#tostring---string)
   - [`.joinToString() -> String`](#jointostring---string)
   - [`.joinToString(separator: String) -> String`](#jointostringseparator-string---string)
-  - [`.copyWithin(target: List, at: Integer, from: Integer)`](#copywithintarget-list-at-integer-from-integer)
-  - [`.copyWithin(target: List, at: Integer, from: Integer, count: Integer)`](#copywithintarget-list-at-integer-from-integer-count-integer)
-  - [`.push(...values: List<Any>)`](#pushvalues-listany)
+  - [`.copyWithin(target: List, at: Integer, from: Integer) -> Nil`](#copywithintarget-list-at-integer-from-integer---nil)
+  - [`.copyWithin(target: List, at: Integer, from: Integer, count: Integer) -> Nil`](#copywithintarget-list-at-integer-from-integer-count-integer---nil)
+  - [`.push(...values: List<Any>) -> Nil`](#pushvalues-listany---nil)
   - [`.pop() -> Any`](#pop---any)
   - [`.pop(count: Integer) -> List<Any>`](#popcount-integer---listany)
-  - [`.unshift(...values: List<Any>)`](#unshiftvalues-listany)
+  - [`.unshift(...values: List<Any>) -> Nil`](#unshiftvalues-listany---nil)
   - [`.shift() -> Any`](#shift---any)
   - [`.shift(count: Integer) -> List<Any>`](#shiftcount-integer---listany)
-  - [`.insert(at: Integer, ...values: List<Any>)`](#insertat-integer-values-listany)
-  - [`.replace(at: Integer, count: Integer, ...values: List<Any>)`](#replaceat-integer-count-integer-values-listany)
-  - [`.reverse()`](#reverse)
+  - [`.insert(at: Integer, ...values: List<Any>) -> Nil`](#insertat-integer-values-listany---nil)
+  - [`.replace(at: Integer, count: Integer, ...values: List<Any>) -> Nil`](#replaceat-integer-count-integer-values-listany---nil)
+  - [`.reverse() -> Nil`](#reverse---nil)
   - [`.slice(from: Integer) -> List<Any>`](#slicefrom-integer---listany)
   - [`.slice(from: Integer, count: Integer) -> List<Any>`](#slicefrom-integer-count-integer---listany)
-  - [`.sort()`](#sort)
 - [Accesses](#accesses)
   - [`[index: Integer] -> Any`](#index-integer---any)
   - [`[index: Integer] = value: Any -> Any`](#index-integer--value-any---any)
 
 # Methods
 
-## `.size()`
+## `.size() -> Integer`
 
 Returns the number of elements in the current list.
 
@@ -65,7 +63,7 @@ let list = [1, 2, 3]
 Debug.log(list.size())    -- 3
 ```
 
-## `.freeze()`
+## `.freeze() -> Nil`
 
 Makes the list constant so it can't be extended, shrank or modified.
 
@@ -165,7 +163,7 @@ Debug.log(list.filter(gt2))       -- [3]
 Debug.log(list.filter(falseFn))   -- []
 ```
 
-## `.forEach(fn: Function)`
+## `.forEach(fn: Function) -> Nil`
 
 Executes a function once per element in the current list.
 
@@ -440,7 +438,7 @@ Debug.log(list.any(gt2)) -- true
 Debug.log(list.any(gt5)) -- false
 ```
 
-## `.remove(...values: List<Any>)`
+## `.remove(...values: List<Any>) -> Nil`
 
 Remove some values from the current list. If any value is repeated, all the copies are removed.
 
@@ -468,7 +466,7 @@ list.remove()
 Debug.log(list)   -- [2, 3]
 ```
 
-## `.removeAt(at: Integer)`
+## `.removeAt(at: Integer) -> Nil`
 
 Remove the element at the specified position.
 
@@ -482,7 +480,7 @@ list.removeAt(at)
 
 ### Errors
 
-- **`BadArgumentError`**: when the type of `at` is not an `Integer`.
+- **`BadArgumentError`**: when the type of `at` is not a positive `Integer`.
 - **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
 
 ### Examples
@@ -495,7 +493,7 @@ list.removeAt(1)
 Debug.log(list)   -- [1, 3, 4, 5]
 ```
 
-## `.removeAt(at: Integer, count: Integer)`
+## `.removeAt(at: Integer, count: Integer) -> Nil`
 
 Remove `count` elements from the current list starting from `at`.
 
@@ -521,26 +519,6 @@ let list = [1, 2, 3, 4, 5]
 list.removeAt(1, 3)
 
 Debug.log(list)   -- [1, 5]
-```
-
-## `.toList() -> List`
-
-Transforms the current list into a `List`. The order is not guaranteed.
-
-```lxm
-list.toList()
-```
-
-### Errors
-
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
-
-### Examples
-
-```lxm
-let list = [1, 2, 3]
-
-Debug.log(list.toList())    -- [1, 2, 3]
 ```
 
 ## `.toString() -> String`
@@ -609,7 +587,7 @@ Debug.log(list.joinToString(",")) -- "1,2,3"
 Debug.log(list.joinToString("--")) -- "1--2--3"
 ```
 
-## `.copyWithin(target: List, at: Integer, from: Integer)`
+## `.copyWithin(target: List, at: Integer, from: Integer) -> Nil`
 
 Copy all the elements of the current list from `from` into `target` starting at `at`.
 
@@ -640,7 +618,7 @@ Debug.log(list)     -- [1, 2, 3, 4, 5]
 Debug.log(target)   -- [10, 11, 2, 3, 4, 5]
 ```
 
-## `.copyWithin(target: List, at: Integer, from: Integer, count: Integer)`
+## `.copyWithin(target: List, at: Integer, from: Integer, count: Integer) -> Nil`
 
 Copy `count` elements from `from` of the current list into `target` starting at `at`.
 
@@ -672,7 +650,7 @@ Debug.log(list)     -- [1, 2, 3, 4, 5]
 Debug.log(target)   -- [10, 11, 2, 3, 4]
 ```
 
-## `.push(...values: List<Any>)`
+## `.push(...values: List<Any>) -> Nil`
 
 Add new values at the end of the current list.
 
@@ -719,6 +697,10 @@ let list = [1, 2, 3]
 
 Debug.log(list.pop())   -- 3
 Debug.log(list)         -- [1, 2]
+Debug.log(list.pop())   -- 2
+Debug.log(list.pop())   -- 1
+Debug.log(list)         -- []
+Debug.log(list.pop())   -- Nil
 ```
 
 ## `.pop(count: Integer) -> List<Any>`
@@ -735,7 +717,7 @@ list.pop(count)
 
 ### Errors
 
-- **`BadArgumentError`**: when the type of `count` is not an `Integer`.
+- **`BadArgumentError`**: when the type of `count` is not a positive `Integer`.
 - **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
 
 ### Examples
@@ -745,9 +727,12 @@ let list = [1, 2, 3]
 
 Debug.log(list.pop(2))  -- [3, 2]
 Debug.log(list)         -- [1]
+Debug.log(list.pop(2))  -- [1]
+Debug.log(list)         -- []
+Debug.log(list.pop(2))  -- []
 ```
 
-## `.unshift(...values: List<Any>)`
+## `.unshift(...values: List<Any>) -> Nil`
 
 Add new values at the beginning of the current list.
 
@@ -822,7 +807,7 @@ Debug.log(list.shift(2))  -- [1, 2]
 Debug.log(list)           -- [3]
 ```
 
-## `.insert(at: Integer, ...values: List<Any>)`
+## `.insert(at: Integer, ...values: List<Any>) -> Nil`
 
 Add new values at the specified position.
 
@@ -837,7 +822,7 @@ list.insert(at, value1, ..., valueN)
 
 ### Errors
 
-- **`BadArgumentError`**: when the type of `at` is not an `Integer`.
+- **`BadArgumentError`**: when the type of `at` is not a positive `Integer`.
 - **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
 
 ### Examples
@@ -850,9 +835,11 @@ Debug.log(list)    -- [1, 5, 6, 7, 2, 3]
 
 list.insert(4)
 Debug.log(list)    -- [1, 5, 6, 7, 2, 3]
+list.insert(20, 55)
+Debug.log(list)    -- [1, 5, 6, 7, 2, 3, 55]
 ```
 
-## `.replace(at: Integer, count: Integer, ...values: List<Any>)`
+## `.replace(at: Integer, count: Integer, ...values: List<Any>) -> Nil`
 
 Replace `count` elements of the current list at `at` for the specified values.
 
@@ -880,7 +867,7 @@ list.replace(1, 1, 5, 6, 7)
 Debug.log(list)    -- [1, 5, 6, 7, 3]
 ```
 
-## `.reverse()`
+## `.reverse() -> Nil`
 
 Reverse the current list.
 
@@ -951,28 +938,6 @@ list.slice(from, count)
 let list = [1, 2, 3, 4, 5]
 
 Debug.log(list.slice(1, 3))   -- [2, 3, 4]
-```
-
-## `.sort()`
-
-Sorts the current list.
-
-```lxm
-list.sort()
-```
-
-### Errors
-
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
-
-### Examples
-
-```lxm
-let list = [3, false, 1, "b", 2, [], {}, true,  "A"]
-
-list.sort()
-
-Debug.log(list)   -- [true, false, 1, 2, 3, "A", "b", [], {}]
 ```
 
 # Accesses
