@@ -3,25 +3,24 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.freeze()`](#freeze)
+  - [`.freeze() -> Nil`](#freeze---nil)
   - [`.isFrozen() -> Logic`](#isfrozen---logic)
-  - [`.not() -> Logic`](#not---logic)
-  - [`.freezeProperties(...properties: List<String>)`](#freezepropertiesproperties-liststring)
-  - [`.freezeAllProperties()`](#freezeallproperties)
-  - [`.removeProperties(...properties: List<String>)`](#removepropertiesproperties-liststring)
+  - [`.freezeProperties(...properties: List<String>) -> Nil`](#freezepropertiesproperties-liststring---nil)
+  - [`.freezeAllProperties() -> Nil`](#freezeallproperties---nil)
+  - [`.removeProperties(...properties: List<String>) -> Nil`](#removepropertiesproperties-liststring---nil)
   - [`.getOwnPropertyKeys() -> List<String>`](#getownpropertykeys---liststring)
   - [`.getOwnPropertyValues() -> List<Any>`](#getownpropertyvalues---listany)
   - [`.getOwnProperties() -> List<{key:String, value:Any}>`](#getownproperties---listkeystring-valueany)
   - [`.ownPropertiesToMap() -> Map<String, Any>`](#ownpropertiestomap---mapstring-any)
-  - [`.containsAnyOwnProperties(...properties: List<String>)`](#containsanyownpropertiesproperties-liststring)
-  - [`.containsAllOwnProperties(...properties: List<String>)`](#containsallownpropertiesproperties-liststring)
+  - [`.containsAnyOwnProperties(...properties: List<String>) -> Logic`](#containsanyownpropertiesproperties-liststring---logic)
+  - [`.containsAllOwnProperties(...properties: List<String>) -> Logic`](#containsallownpropertiesproperties-liststring---logic)
 - [Accesses](#accesses)
   - [`[property: String] -> Any`](#property-string---any)
   - [`[property: String] = value: Any -> Any`](#property-string--value-any---any)
 
 # Methods
 
-## `.freeze()`
+## `.freeze() -> Nil`
 
 Makes the object constant so it can't be extended, shrank or modified.
 
@@ -63,23 +62,7 @@ let object = #{}
 Debug.log(object.isFrozen())  -- true
 ```
 
-## `.not() -> Logic`
-
-Returns `true` if the object is falsey (i.e. `nil`), otherwise returns `false`.
-
-```lxm
-object.not()
-```
-
-### Examples
-
-```lxm
-let object = #{}
-
-if(object) {}   -- Equivalent to: if(object.not() === false) {}  
-```
-
-## `.freezeProperties(...properties: List<String>)`
+## `.freezeProperties(...properties: List<String>) -> Nil`
 
 Makes every specified property constant. If any of the specified properties do not exist, they are ignored.
 
@@ -106,7 +89,7 @@ object.freezeProperties("a", "b")
 Debug.log(object)     -- {#a: 1, #b: 2, c: 3}
 ```
 
-## `.freezeAllProperties()`
+## `.freezeAllProperties() -> Nil`
 
 Makes all the properties of the object constant.
 
@@ -128,7 +111,7 @@ object.freezeAllProperties()
 Debug.log(object)     -- {#a: 1, #b: 2, #c: 3}
 ```
 
-## `.removeProperties(...properties: List<String>)`
+## `.removeProperties(...properties: List<String>) -> Nil`
 
 Removes all specified properties from the object. If any of the specified properties do not exist, they are ignored.
 
@@ -235,7 +218,7 @@ let object = {a: 1, b: 2, c: 3}
 Debug.log(object.ownPropertiesToMap())    -- @{a: 1, b: 2, c: 3}
 ```
 
-## `.containsAnyOwnProperties(...properties: List<String>)`
+## `.containsAnyOwnProperties(...properties: List<String>) -> Logic`
 
 Returns whether the object contains any of the specified properties.
 
@@ -261,7 +244,7 @@ Debug.log(object.containsAnyOwnProperties("a", "l"))     -- true
 Debug.log(object.containsAnyOwnProperties("f", "g"))     -- false
 ```
 
-## `.containsAllOwnProperties(...properties: List<String>)`
+## `.containsAllOwnProperties(...properties: List<String>) -> Logic`
 
 Returns whether the object contains all the specified properties.
 

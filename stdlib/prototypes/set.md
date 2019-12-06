@@ -3,20 +3,20 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.size()`](#size)
-  - [`.freeze()`](#freeze)
+  - [`.size() -> Integer`](#size---integer)
+  - [`.freeze() -> Nil`](#freeze---nil)
   - [`.isFrozen() -> Logic`](#isfrozen---logic)
   - [`.every(fn: Function) -> Logic`](#everyfn-function---logic)
   - [`.filter(fn: Function) -> Set`](#filterfn-function---set)
-  - [`.forEach(fn: Function)`](#foreachfn-function)
+  - [`.forEach(fn: Function) -> Nil`](#foreachfn-function---nil)
   - [`.find(fn: Function) -> Any | Nil`](#findfn-function---any-nil)
   - [`.containsAny(...values: List<Any>) -> Logic`](#containsanyvalues-listany---logic)
   - [`.containsAll(...values: List<Any>) -> Logic`](#containsallvalues-listany---logic)
   - [`.map(fn: Function) -> Set`](#mapfn-function---set)
   - [`.reduce(default: Any, fn: Function) -> Any`](#reducedefault-any-fn-function---any)
   - [`.any(fn: Function) -> Logic`](#anyfn-function---logic)
-  - [`.add(...values: List<Any>)`](#addvalues-listany)
-  - [`.remove(...values: List<Any>)`](#removevalues-listany)
+  - [`.put(...values: List<Any>) -> Nil`](#putvalues-listany---nil)
+  - [`.remove(...values: List<Any>) -> Nil`](#removevalues-listany---nil)
   - [`.toList() -> List`](#tolist---list)
   - [`.toString() -> String`](#tostring---string)
 - [Operators](#operators)
@@ -28,7 +28,7 @@
 
 # Methods
 
-## `.size()`
+## `.size() -> Integer`
 
 Returns the number of elements in the current set.
 
@@ -48,7 +48,7 @@ let set = set![1, 2, 3]
 Debug.log(set.size())   -- 3
 ```
 
-## `.freeze()`
+## `.freeze() -> Nil`
 
 Makes the set constant so it can't be extended, shrank or modified.
 
@@ -148,7 +148,7 @@ Debug.log(set.filter(gt2))     -- set![3]
 Debug.log(set.filter(falseFn)) -- set![]
 ```
 
-## `.forEach(fn: Function)`
+## `.forEach(fn: Function) -> Nil`
 
 Executes a function once per element in the current set.
 
@@ -344,12 +344,12 @@ Debug.log(set.any(gt2)) -- true
 Debug.log(set.any(gt5)) -- false
 ```
 
-## `.add(...values: List<Any>)`
+## `.put(...values: List<Any>) -> Nil`
 
 Add new values to the current set.
 
 ```lxm
-set.add(value1, ..., valueN)
+set.put(value1, ..., valueN)
 ```
 
 ### Parameters
@@ -365,14 +365,14 @@ set.add(value1, ..., valueN)
 ```lxm
 let set = set![1, 2, 3]
 
-set.add(1, 5)
+set.put(1, 5)
 Debug.log(set)    -- set![1, 2, 3, 5]
 
-set.add()
+set.put()
 Debug.log(set)    -- set![1, 2, 3, 5]
 ```
 
-## `.remove(...values: List<Any>)`
+## `.remove(...values: List<Any>) -> Nil`
 
 Remove some values from the current set.
 

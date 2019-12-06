@@ -3,19 +3,19 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.size()`](#size)
-  - [`.freeze()`](#freeze)
+  - [`.size() -> Integer`](#size---integer)
+  - [`.freeze() -> Nil`](#freeze---nil)
   - [`.isFrozen() -> Logic`](#isfrozen---logic)
   - [`.every(fn: Function) -> Logic`](#everyfn-function---logic)
   - [`.filter(fn: Function) -> Map`](#filterfn-function---map)
-  - [`.forEach(fn: Function)`](#foreachfn-function)
+  - [`.forEach(fn: Function) -> Nil`](#foreachfn-function---nil)
   - [`.containsAnyKey(...values: List<Any>) -> Logic`](#containsanykeyvalues-listany---logic)
   - [`.containsAllKeys(...values: List<Any>) -> Logic`](#containsallkeysvalues-listany---logic)
   - [`.map(fn: Function) -> Map`](#mapfn-function---map)
   - [`.reduce(default: Any, fn: Function) -> Any`](#reducedefault-any-fn-function---any)
   - [`.any(fn: Function) -> Logic`](#anyfn-function---logic)
-  - [`.add(key: Any, value: Any)`](#addkey-any-value-any)
-  - [`.remove(...keys: List<Any>)`](#removekeys-listany)
+  - [`.put(key: Any, value: Any) -> Nil`](#putkey-any-value-any---nil)
+  - [`.remove(...keys: List<Any>) -> Nil`](#removekeys-listany---nil)
   - [`.toList() -> List`](#tolist---list)
   - [`.toObject() -> Object`](#toobject---object)
   - [`.keys() -> List`](#keys---list)
@@ -34,7 +34,7 @@
 
 # Methods
 
-## `.size()`
+## `.size() -> Integer`
 
 Returns the number of elements in the current map.
 
@@ -54,7 +54,7 @@ let map = [1, 2, 3]
 Debug.log(map.size())    -- 3
 ```
 
-## `.freeze()`
+## `.freeze() -> Nil`
 
 Makes the map constant so it can't be extended, shrank or modified.
 
@@ -154,7 +154,7 @@ Debug.log(map.filter(gt1))       -- map!{"b": 2}
 Debug.log(map.filter(falseFn))   -- map!{}
 ```
 
-## `.forEach(fn: Function)`
+## `.forEach(fn: Function) -> Nil`
 
 Executes a function once per element in the current map.
 
@@ -321,12 +321,12 @@ Debug.log(map.any(gt1)) -- true
 Debug.log(map.any(gt5)) -- false
 ```
 
-## `.add(key: Any, value: Any)`
+## `.put(key: Any, value: Any) -> Nil`
 
 Adds a key-value in the current map.
 
 ```lxm
-map.remove(key, value)
+map.put(key, value)
 ```
 
 ### Parameters
@@ -343,14 +343,14 @@ map.remove(key, value)
 ```lxm
 let map = map!{"a": 1, "b": 2}
 
-map.add("a", 5)
+map.put("a", 5)
 Debug.log(list)   -- map!{"a": 5, "b": 2}
 å
-map.add(5, 6)
+map.put(5, 6)
 Debug.log(list)   -- map!{"a": 1, "b": 2, 5: 6}
 ```
 
-## `.remove(...keys: List<Any>)`
+## `.remove(...keys: List<Any>) -> Nil`
 
 Remove some keys from the current map.
 
