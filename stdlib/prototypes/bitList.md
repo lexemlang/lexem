@@ -3,7 +3,6 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.toString(radix: Integer) -> value: String`](#tostringradix-integer---value-string)
   - [`.toString() -> String`](#tostring---string)
 - [Operators](#operators)
   - [`.bitwiseNegation() -> BitList`](#bitwisenegation---bitlist)
@@ -22,36 +21,9 @@
 
 # Methods
 
-## `.toString(radix: Integer) -> value: String`
-
-Returns the `String` representation of the binary list value in the specified radix `radix`.
-
-```lxm
-bitlist.toRadix(radix)
-```
-
-### Parameters
-
-- **`radix`**: the radix of the resulting number. Only valid: 2, 8 or 16.
-
-### Errors
-
-- **`BadArgumentError`**: when `radix` is not one of 2, 8 or 16.
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `BitList`.
-
-### Examples
-
-```lxm
-let value = 0b"1000"
-
-Debug.log(value.toString(2))      -- "0b\"1000\""
-Debug.log(value.toString(8))      -- "0o\"40\""
-Debug.log(value.toString(16))     -- "0x\"8\""
-```
-
 ## `.toString() -> String`
 
-Returns a `String` representing the binary list value.
+Returns a `String` representing the binary list value in the most appropiate radix depending on its length in bits.
 
 ```lxm
 bitlist.toString()
