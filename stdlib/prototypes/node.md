@@ -3,14 +3,14 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.toString() -> String`](#tostring---string)
+  - [.toString() -&gt; String](#tostring--gt-string)
 - [Properties](#properties)
-  - [`.name -> String`](#name---string)
-  - [`.from -> Integer`](#from---integer)
-  - [`.to -> Integer | Nil`](#to---integer-nil)
-  - [`.parent -> Node | Nil`](#parent---node-nil)
-  - [`.children -> List<Node>`](#children---listnode)
-  - [`.properties -> Object`](#properties---object)
+  - [.name -&gt; String](#name--gt-string)
+  - [.from -&gt; Integer](#from--gt-integer)
+  - [.to -&gt; Integer | Nil](#to--gt-integer-nil)
+  - [.parent -&gt; Node | Nil](#parent--gt-node-nil)
+  - [.children -&gt; List&lt;Node&gt;](#children--gt-listltnodegt)
+  - [.properties -&gt; Object](#properties--gt-object)
 
 # Methods
 

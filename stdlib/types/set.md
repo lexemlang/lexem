@@ -3,10 +3,10 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.newFrom(...values: List<Any>) -> Set`](#newfromvalues-listany---set)
-  - [`.join(...sets: List<Set>) -> Set`](#joinsets-listset---set)
+  - [.newFrom(...values: List&lt;Any&gt;) -&gt; Set](#newfromvalues-listltanygt--gt-set)
+  - [.join(...sets: List&lt;Set&gt;) -&gt; Set](#joinsets-listltsetgt--gt-set)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
 
 # Methods
 

@@ -3,9 +3,9 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.assign(target: Map, ...sources: List<Map>) -> Map`](#assigntarget-map-sources-listmap---map)
+  - [.assign(target: Map, ...sources: List&lt;Map&gt;) -&gt; Map](#assigntarget-map-sources-listltmapgt--gt-map)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
 
 # Methods
 

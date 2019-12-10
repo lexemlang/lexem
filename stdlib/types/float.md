@@ -3,16 +3,16 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.parse(value: String) -> Float | Nil`](#parsevalue-string---float--nil)
-  - [`.parse(value: String, radix: Integer) -> Float | Nil`](#parsevalue-string-radix-integer---float--nil)
-  - [`.epsilonEquals(left: Float | Integer, right: Float | Integer) -> Logic`](#epsilonequalsleft-float-integer-right-float-integer---logic)
+  - [.parse(value: String) -&gt; Float | Nil](#parsevalue-string--gt-float--nil)
+  - [.parse(value: String, radix: Integer) -&gt; Float | Nil](#parsevalue-string-radix-integer--gt-float--nil)
+  - [.epsilonEquals(left: Float | Integer, right: Float | Integer) -&gt; Logic](#epsilonequalsleft-float-integer-right-float-integer--gt-logic)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
-  - [`.Infinity -> Object`](#infinity---object)
-  - [`.Epsilon -> Object`](#epsilon---object)
-  - [`.MinValue -> Object`](#minvalue---object)
-  - [`.MinPositiveValue -> Object`](#minpositivevalue---object)
-  - [`.MaxValue -> Object`](#maxvalue---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
+  - [.Infinity -&gt; Object](#infinity--gt-object)
+  - [.Epsilon -&gt; Object](#epsilon--gt-object)
+  - [.MinValue -&gt; Object](#minvalue--gt-object)
+  - [.MinPositiveValue -&gt; Object](#minpositivevalue--gt-object)
+  - [.MaxValue -&gt; Object](#maxvalue--gt-object)
 
 # Methods
 

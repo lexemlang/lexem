@@ -3,11 +3,11 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.join(...values: List<Any>) -> String`](#joinvalues-listany---string)
-  - [`.joinBy(separator:String, ...values: List<Any>) -> String`](#joinbyseparatorstring-values-listany---string)
-  - [`.fromUnicodePoints(...charCodes: List<Integer>) -> String`](#fromunicodepointscharcodes-listinteger---string)
+  - [.join(...values: List&lt;Any&gt;) -&gt; String](#joinvalues-listltanygt--gt-string)
+  - [.joinBy(separator:String, ...values: List&lt;Any&gt;) -&gt; String](#joinbyseparatorstring-values-listltanygt--gt-string)
+  - [.fromUnicodePoints(...charCodes: List&lt;Integer&gt;) -&gt; String](#fromunicodepointscharcodes-listltintegergt--gt-string)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
 
 # Methods
 

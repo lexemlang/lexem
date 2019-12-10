@@ -3,7 +3,7 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.wrap(...arguments: List<Any>, ...namedArguments: Object) -> Function`](#wraparguments-listany-namedarguments-object---function)
+  - [.wrap(...arguments: List&lt;Any&gt;, ...namedArguments: Object) -&gt; Function](#wraparguments-listltanygt-namedarguments-object--gt-function)
 
 # Methods
 

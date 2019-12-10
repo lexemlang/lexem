@@ -3,11 +3,11 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.is(type: Object) -> Logic`](#istype-object---logic)
-  - [`.isAny(...types: List<Object>) -> Object | Nil`](#isanytypes-listobject---object--nil)
+  - [.is(type: Object) -&gt; Logic](#istype-object--gt-logic)
+  - [.isAny(...types: List&lt;Object&gt;) -&gt; Object | Nil](#isanytypes-listltobjectgt--gt-object--nil)
 - [Operators](#operators)
-  - [`.not() -> Logic`](#not---logic)
-  - [`.add(right: String) -> String`](#addright-string---string)
+  - [.not() -&gt; Logic](#not--gt-logic)
+  - [.add(right: String) -&gt; String](#addright-string--gt-string)
 
 # Methods
 

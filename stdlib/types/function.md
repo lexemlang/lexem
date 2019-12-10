@@ -3,7 +3,7 @@
 
 - [Table of contents](#table-of-contents)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
 
 # Properties
 

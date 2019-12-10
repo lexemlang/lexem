@@ -3,34 +3,34 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.size() -> Integer`](#size---integer)
-  - [`.freeze() -> Nil`](#freeze---nil)
-  - [`.isFrozen() -> Logic`](#isfrozen---logic)
-  - [`.every(fn: Function) -> Logic`](#everyfn-function---logic)
-  - [`.filter(fn: Function) -> Map`](#filterfn-function---map)
-  - [`.forEach(fn: Function) -> Nil`](#foreachfn-function---nil)
-  - [`.containsAnyKey(...values: List<Any>) -> Logic`](#containsanykeyvalues-listany---logic)
-  - [`.containsAllKeys(...values: List<Any>) -> Logic`](#containsallkeysvalues-listany---logic)
-  - [`.map(fn: Function) -> Map`](#mapfn-function---map)
-  - [`.reduce(default: Any, fn: Function) -> Any`](#reducedefault-any-fn-function---any)
-  - [`.any(fn: Function) -> Logic`](#anyfn-function---logic)
-  - [`.put(key: Any, value: Any) -> Nil`](#putkey-any-value-any---nil)
-  - [`.remove(...keys: List<Any>) -> Nil`](#removekeys-listany---nil)
-  - [`.toList() -> List`](#tolist---list)
-  - [`.toObject() -> Object`](#toobject---object)
-  - [`.keys() -> List`](#keys---list)
-  - [`.values() -> List`](#values---list)
-  - [`.toString() -> String`](#tostring---string)
-  - [`.clear()`](#clear)
+  - [.size() -&gt; Integer](#size--gt-integer)
+  - [.freeze() -&gt; Nil](#freeze--gt-nil)
+  - [.isFrozen() -&gt; Logic](#isfrozen--gt-logic)
+  - [.every(fn: Function) -&gt; Logic](#everyfn-function--gt-logic)
+  - [.filter(fn: Function) -&gt; Map](#filterfn-function--gt-map)
+  - [.forEach(fn: Function) -&gt; Nil](#foreachfn-function--gt-nil)
+  - [.containsAnyKey(...values: List&lt;Any&gt;) -&gt; Logic](#containsanykeyvalues-listltanygt--gt-logic)
+  - [.containsAllKeys(...values: List&lt;Any&gt;) -&gt; Logic](#containsallkeysvalues-listltanygt--gt-logic)
+  - [.map(fn: Function) -&gt; Map](#mapfn-function--gt-map)
+  - [.reduce(default: Any, fn: Function) -&gt; Any](#reducedefault-any-fn-function--gt-any)
+  - [.any(fn: Function) -&gt; Logic](#anyfn-function--gt-logic)
+  - [.put(key: Any, value: Any) -&gt; Nil](#putkey-any-value-any--gt-nil)
+  - [.remove(...keys: List&lt;Any&gt;) -&gt; Nil](#removekeys-listltanygt--gt-nil)
+  - [.toList() -&gt; List](#tolist--gt-list)
+  - [.toObject() -&gt; Object](#toobject--gt-object)
+  - [.keys() -&gt; List](#keys--gt-list)
+  - [.values() -&gt; List](#values--gt-list)
+  - [.toString() -&gt; String](#tostring--gt-string)
+  - [.clear() -&gt; Nil](#clear--gt-nil)
 - [Operators](#operators)
-  - [`.add(right: Map) -> Map`](#addright-map---map)
-  - [`.sub(right: Map) -> Map`](#subright-map---map)
-  - [`.logicAnd(right: Map) -> Map`](#logicandright-map---map)
-  - [`.logicOr(right: Map) -> Map`](#logicorright-map---map)
-  - [`.logicXor(right: Map) -> Map`](#logicxorright-map---map)
+  - [.add(right: Map) -&gt; Map](#addright-map--gt-map)
+  - [.sub(right: Map) -&gt; Map](#subright-map--gt-map)
+  - [.logicAnd(right: Map) -&gt; Map](#logicandright-map--gt-map)
+  - [.logicOr(right: Map) -&gt; Map](#logicorright-map--gt-map)
+  - [.logicXor(right: Map) -&gt; Map](#logicxorright-map--gt-map)
 - [Accesses](#accesses)
-  - [`[key: Any] -> Any`](#key-any---any)
-  - [`[key: Any] = value: Any -> Any`](#key-any--value-any---any)
+  - [[key: Any] -&gt; Any](#key-any--gt-any)
+  - [[key: Any] = value: Any -&gt; Any](#key-any--value-any--gt-any)
 
 # Methods
 
@@ -478,7 +478,7 @@ let map = map!{"a": 1, "b": 2}
 Debug.log(map.toString())    -- "map!{\"a\": 1, \"b\": 2}"
 ```
 
-## `.clear()`
+## `.clear() -> Nil`
 
 Removes all elements from the map.
 
@@ -504,7 +504,7 @@ Debug.log(map)    -- map!{}
 
 ## `.add(right: Map) -> Map`
 
-Returns a new `Map` with the values in both sets. The values of `right` has precedence when keys are present in both.
+Returns a new `Map` with the values in both sets. The values of `right` have more precedence when keys are present in both.
 
 ```lxm
 map.add(right)
@@ -588,7 +588,7 @@ Debug.log(left & right)           -- map!{"b": 5} Implicit calling
 
 ## `.logicOr(right: Map) -> Map`
 
-Returns a new `Map` with the values in both sets. The values of `right` has precedence when keys are present in both.
+Returns a new `Map` with the values in both sets. The values of `right` has more precedence when keys are present in both.
 
 ```lxm
 map.logicOr(right)

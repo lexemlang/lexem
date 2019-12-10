@@ -3,17 +3,17 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.toString() -> String`](#tostring---string)
-  - [`.isEmpty() -> Logic`](#isempty---logic)
-  - [`.pointCount() -> Integer`](#pointcount---integer)
-  - [`.unicodeNot() -> Logic`](#unicodenot---logic)
+  - [.toString() -&gt; String](#tostring--gt-string)
+  - [.isEmpty() -&gt; Logic](#isempty--gt-logic)
+  - [.pointCount() -&gt; Integer](#pointcount--gt-integer)
+  - [.unicodeNot() -&gt; Logic](#unicodenot--gt-logic)
 - [Operators](#operators)
-  - [`.not() -> Logic`](#not---logic)
-  - [`.add(right: Integer | Interval) -> Interval`](#addright-integer--interval---interval)
-  - [`.sub(right: Integer | Interval) -> Interval`](#subright-integer--interval---interval)
-  - [`.logicAnd(right: Integer | Interval) -> Interval`](#logicandright-integer--interval---interval)
-  - [`.logicOr(right: Integer | Interval) -> Interval`](#logicorright-integer--interval---interval)
-  - [`.logicXor(right: Integer | Interval) -> Interval`](#logicxorright-integer--interval---interval)
+  - [.not() -&gt; Logic](#not--gt-logic)
+  - [.add(right: Integer | Interval) -&gt; Interval](#addright-integer--interval--gt-interval)
+  - [.sub(right: Integer | Interval) -&gt; Interval](#subright-integer--interval--gt-interval)
+  - [.logicAnd(right: Integer | Interval) -&gt; Interval](#logicandright-integer--interval--gt-interval)
+  - [.logicOr(right: Integer | Interval) -&gt; Interval](#logicorright-integer--interval--gt-interval)
+  - [.logicXor(right: Integer | Interval) -&gt; Interval](#logicxorright-integer--interval--gt-interval)
 
 # Methods
 

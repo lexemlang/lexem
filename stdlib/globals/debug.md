@@ -3,10 +3,10 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.pause()`](#pause)
-  - [`.log(message: Any)`](#logmessage-any)
-  - [`.log(message: Any, tag:String)`](#logmessage-any-tagstring)
-  - [`.throw(message: String)`](#throwmessage-string)
+  - [.pause()](#pause)
+  - [.log(message: Any)](#logmessage-any)
+  - [.log(message: Any, tag:String)](#logmessage-any-tagstring)
+  - [.throw(message: String)](#throwmessage-string)
 
 # Methods
 

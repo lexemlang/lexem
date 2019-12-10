@@ -3,7 +3,7 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.toString() -> String`](#tostring---string)
+  - [.toString() -&gt; String](#tostring--gt-string)
 
 # Methods
 

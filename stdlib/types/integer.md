@@ -3,12 +3,12 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.parse(value: String) -> Integer | Nil`](#parsevalue-string---integer--nil)
-  - [`.parse(value: String, radix: Integer) -> Integer | Nil`](#parsevalue-string-radix-integer---integer--nil)
+  - [.parse(value: String) -&gt; Integer | Nil](#parsevalue-string--gt-integer--nil)
+  - [.parse(value: String, radix: Integer) -&gt; Integer | Nil](#parsevalue-string-radix-integer--gt-integer--nil)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
-  - [`.MaxValue -> Object`](#maxvalue---object)
-  - [`.MinValue -> Object`](#minvalue---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
+  - [.MaxValue -&gt; Object](#maxvalue--gt-object)
+  - [.MinValue -&gt; Object](#minvalue--gt-object)
 
 # Methods
 

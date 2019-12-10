@@ -3,11 +3,11 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.new(size: Integer, value: Any) -> List`](#newsize-integer-value-any---list)
-  - [`.newFrom(...values: List<Any>) -> List`](#newfromvalues-listany---list)
-  - [`.concat(...lists: List<List>) -> List`](#concatlists-listlist---list)
+  - [.new(size: Integer, value: Any) -&gt; List](#newsize-integer-value-any--gt-list)
+  - [.newFrom(...values: List&lt;Any&gt;) -&gt; List](#newfromvalues-listltanygt--gt-list)
+  - [.concat(...lists: List&lt;List&gt;) -&gt; List](#concatlists-listltlistgt--gt-list)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
 
 # Methods
 

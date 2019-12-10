@@ -3,10 +3,10 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.newFrom(prototype: Object) -> Object`](#newfromprototype-object---object)
-  - [`.assign(target: Object, ...sources: List<Object>) -> Object`](#assigntarget-object-sources-listobject---object)
+  - [.newFrom(prototype: Object) -&gt; Object](#newfromprototype-object--gt-object)
+  - [.assign(target: Object, ...sources: List&lt;Object&gt;) -&gt; Object](#assigntarget-object-sources-listltobjectgt--gt-object)
 - [Properties](#properties)
-  - [`.prototype -> Object`](#prototype---object)
+  - [.prototype -&gt; Object](#prototype--gt-object)
 
 # Methods
 

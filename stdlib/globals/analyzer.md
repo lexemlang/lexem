@@ -3,7 +3,7 @@
 
 - [Table of contents](#table-of-contents)
 - [Properties](#properties)
-  - [`.rootNode -> LxmNode`](#rootnode---lxmnode)
+  - [.rootNode -&gt; LxmNode](#rootnode--gt-lxmnode)
 
 # Properties
 

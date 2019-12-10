@@ -3,15 +3,15 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.toString() -> String`](#tostring---string)
+  - [.toString() -&gt; String](#tostring--gt-string)
 - [Operators](#operators)
-  - [`.not() -> Logic`](#not---logic)
-  - [`.logicAnd(right: Logic) -> Logic`](#logicandright-logic---logic)
-  - [`.logicAnd(right: BitList) -> BitList`](#logicandright-bitlist---bitlist)
-  - [`.logicOr(right: Logic) -> Logic`](#logicorright-logic---logic)
-  - [`.logicOr(right: BitList) -> BitList`](#logicorright-bitlist---bitlist)
-  - [`.logicXor(right: Logic) -> Logic`](#logicxorright-logic---logic)
-  - [`.logicXor(right: BitList) -> BitList`](#logicxorright-bitlist---bitlist)
+  - [.not() -&gt; Logic](#not--gt-logic)
+  - [.logicAnd(right: Logic) -&gt; Logic](#logicandright-logic--gt-logic)
+  - [.logicAnd(right: BitList) -&gt; BitList](#logicandright-bitlist--gt-bitlist)
+  - [.logicOr(right: Logic) -&gt; Logic](#logicorright-logic--gt-logic)
+  - [.logicOr(right: BitList) -&gt; BitList](#logicorright-bitlist--gt-bitlist)
+  - [.logicXor(right: Logic) -&gt; Logic](#logicxorright-logic--gt-logic)
+  - [.logicXor(right: BitList) -&gt; BitList](#logicxorright-bitlist--gt-bitlist)
 
 # Methods
 

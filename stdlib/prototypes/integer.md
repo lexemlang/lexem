@@ -3,17 +3,17 @@
 
 - [Table of contents](#table-of-contents)
 - [Methods](#methods)
-  - [`.toString() -> String`](#tostring---string)
-  - [`.toString(radix: Integer) -> String`](#tostringradix-integer---string)
+  - [.toString() -&gt; String](#tostring--gt-string)
+  - [.toString(radix: Integer) -&gt; String](#tostringradix-integer--gt-string)
 - [Operators](#operators)
-  - [`.negate() -> Integer`](#negate---integer)
-  - [`.affirm() -> Integer`](#affirm---integer)
-  - [`.multiply(right: Integer | Float) -> Integer | Float`](#multiplyright-integer--float---integer-float)
-  - [`.divide(right: Integer | Float) -> Integer | Float`](#divideright-integer--float---integer-float)
-  - [`.intDivide(right: Integer | Float) -> Integer`](#intdivideright-integer--float---integer)
-  - [`.reminder(right: Integer | Float) -> Integer | Float`](#reminderright-integer--float---integer-float)
-  - [`.add(right: Integer | Float) -> Integer | Float`](#addright-integer--float---integer-float)
-  - [`.sub(right: Integer | Float) -> Integer | Float`](#subright-integer--float---integer-float)
+  - [.negate() -&gt; Integer](#negate--gt-integer)
+  - [.affirm() -&gt; Integer](#affirm--gt-integer)
+  - [.multiply(right: Integer | Float) -&gt; Integer | Float](#multiplyright-integer--float--gt-integer-float)
+  - [.divide(right: Integer | Float) -&gt; Integer | Float](#divideright-integer--float--gt-integer-float)
+  - [.intDivide(right: Integer | Float) -&gt; Integer](#intdivideright-integer--float--gt-integer)
+  - [.reminder(right: Integer | Float) -&gt; Integer | Float](#reminderright-integer--float--gt-integer-float)
+  - [.add(right: Integer | Float) -&gt; Integer | Float](#addright-integer--float--gt-integer-float)
+  - [.sub(right: Integer | Float) -&gt; Integer | Float](#subright-integer--float--gt-integer-float)
 
 # Methods
 
