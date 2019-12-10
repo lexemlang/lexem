@@ -14,6 +14,7 @@
   - [.ownPropertiesToMap() -&gt; Map&lt;String, Any&gt;](#ownpropertiestomap--gt-mapltstring-anygt)
   - [.containsAnyOwnProperties(...properties: List&lt;String&gt;) -&gt; Logic](#containsanyownpropertiesproperties-listltstringgt--gt-logic)
   - [.containsAllOwnProperties(...properties: List&lt;String&gt;) -&gt; Logic](#containsallownpropertiesproperties-listltstringgt--gt-logic)
+  - [.toMap() -&gt; Map](#tomap--gt-map)
 - [Accesses](#accesses)
   - [[property: String] -&gt; Any](#property-string--gt-any)
   - [[property: String] = value: Any -&gt; Any](#property-string--value-any--gt-any)
@@ -270,11 +271,31 @@ Debug.log(object.containsAllOwnProperties("a", "b"))     -- true
 Debug.log(object.containsAllOwnProperties("b", "g"))     -- false
 ```
 
+## `.toMap() -> Map`
+
+Transforms the current object into a `Map`.
+
+```lxm
+object.toObject()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not an `Object`.
+
+### Examples
+
+```lxm
+let object = {a: 1, b: 2, c: 3}
+
+Debug.log(object.toObject())   -- map!{"a": 1, "b": 2, "c": 3}
+```
+
 # Accesses
 
 ## `[property: String] -> Any`
 
-Returns the value of the property called `property` or `nil` if the property does not exist. 
+Returns the value of the property called `property` or `nil` if the property does not exist.
 
 ```lxm
 object[index]
