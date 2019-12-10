@@ -19,6 +19,7 @@
   - [.remove(...values: List&lt;Any&gt;) -&gt; Nil](#removevalues-listltanygt--gt-nil)
   - [.toList() -&gt; List](#tolist--gt-list)
   - [.toString() -&gt; String](#tostring--gt-string)
+  - [.clear() -&gt; Nil](#clear--gt-nil)
 - [Operators](#operators)
   - [.add(right: Set) -&gt; Set](#addright-set--gt-set)
   - [.sub(right: Set) -&gt; Set](#subright-set--gt-set)
@@ -438,6 +439,28 @@ set.toString()
 let set = set![1, 2, 3]
 
 Debug.log(set.toString())    -- "set![1, 2, 3]"
+```
+
+## `.clear() -> Nil`
+
+Removes all elements from the set.
+
+```lxm
+set.clear()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Set`.
+
+### Examples
+
+```lxm
+let set = set![1, 2, 3]
+
+set.clear()
+
+Debug.log(set)    -- set![]
 ```
 
 # Operators

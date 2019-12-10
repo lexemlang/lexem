@@ -37,6 +37,7 @@
   - [.reverse() -&gt; Nil](#reverse--gt-nil)
   - [.slice(from: Integer) -&gt; List&lt;Any&gt;](#slicefrom-integer--gt-listltanygt)
   - [.slice(from: Integer, count: Integer) -&gt; List&lt;Any&gt;](#slicefrom-integer-count-integer--gt-listltanygt)
+  - [.clear() -&gt; Nil](#clear--gt-nil)
 - [Accesses](#accesses)
   - [[index: Integer] -&gt; Any](#index-integer--gt-any)
   - [[index: Integer] = value: Any -&gt; Any](#index-integer--value-any--gt-any)
@@ -938,6 +939,28 @@ list.slice(from, count)
 let list = [1, 2, 3, 4, 5]
 
 Debug.log(list.slice(1, 3))   -- [2, 3, 4]
+```
+
+## `.clear() -> Nil`
+
+Removes all elements from the list.
+
+```lxm
+list.clear()
+```
+
+### Errors
+
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `List`.
+
+### Examples
+
+```lxm
+let list = [1, 2, 3]
+
+list.clear()
+
+Debug.log(list)     -- []
 ```
 
 # Accesses
