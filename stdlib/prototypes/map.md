@@ -260,7 +260,7 @@ let map = map!{"a": 1, "b": 2}
 
 fun add10(value, key) { return value + 10 }
 
-Debug.log(map.map(add10))   -- [11, 12, 13]
+Debug.log(map.map(add10))   -- map!{"a": 11, "b": 12}
 ```
 
 ## `.reduce(default: Any, fn: Function) -> Any`
