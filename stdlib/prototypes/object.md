@@ -5,6 +5,7 @@
 - [Methods](#methods)
   - [.freeze() -&gt; Nil](#freeze--gt-nil)
   - [.isFrozen() -&gt; Logic](#isfrozen--gt-logic)
+  - [.isPropertyFrozen(property: String) -&gt; Logic](#ispropertyfrozenproperty-string--gt-logic)
   - [.freezeProperties(...properties: List&lt;String&gt;) -&gt; Nil](#freezepropertiesproperties-listltstringgt--gt-nil)
   - [.freezeAllProperties() -&gt; Nil](#freezeallproperties--gt-nil)
   - [.removeProperties(...properties: List&lt;String&gt;) -&gt; Nil](#removepropertiesproperties-listltstringgt--gt-nil)
@@ -12,7 +13,7 @@
   - [.getOwnPropertyValues() -&gt; List&lt;Any&gt;](#getownpropertyvalues--gt-listltanygt)
   - [.getOwnProperties() -&gt; List&lt;{key:String, value:Any}&gt;](#getownproperties--gt-listltkeystring-valueanygt)
   - [.ownPropertiesToMap() -&gt; Map&lt;String, Any&gt;](#ownpropertiestomap--gt-mapltstring-anygt)
-  - [.containsAnyOwnProperties(...properties: List&lt;String&gt;) -&gt; Logic](#containsanyownpropertiesproperties-listltstringgt--gt-logic)
+  - [.containsAnyOwnProperty(...properties: List&lt;String&gt;) -&gt; Logic](#containsanyownpropertyproperties-listltstringgt--gt-logic)
   - [.containsAllOwnProperties(...properties: List&lt;String&gt;) -&gt; Logic](#containsallownpropertiesproperties-listltstringgt--gt-logic)
 - [Accesses](#accesses)
   - [[property: String] -&gt; Any](#property-string--gt-any)
@@ -60,6 +61,28 @@ object.isFrozen()
 let object = #{}
 
 Debug.log(object.isFrozen())  -- true
+```
+
+## `.isPropertyFrozen(property: String) -> Logic`
+
+Whether the object property is constant or not.
+
+```lxm
+object.isPropertyFrozen(property)
+```
+
+### Errors
+
+- **`BadArgumentError`**: when the type of `property` is not a `String`.
+- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not an `Object`.
+
+### Examples
+
+```lxm
+let object = {#test: 3}
+
+Debug.log(object.isPropertyFrozen("test"))  -- true
+Debug.log(object.isFrozen("a"))             -- false
 ```
 
 ## `.freezeProperties(...properties: List<String>) -> Nil`
@@ -218,12 +241,12 @@ let object = {a: 1, b: 2, c: 3}
 Debug.log(object.ownPropertiesToMap())    -- @{a: 1, b: 2, c: 3}
 ```
 
-## `.containsAnyOwnProperties(...properties: List<String>) -> Logic`
+## `.containsAnyOwnProperty(...properties: List<String>) -> Logic`
 
 Returns whether the object contains any of the specified properties.
 
 ```lxm
-object.containsAnyOwnProperties(propName1, ..., propNameN)
+object.containsAnyOwnProperty(propName1, ..., propNameN)
 ```
 
 ### Parameters
@@ -240,8 +263,8 @@ object.containsAnyOwnProperties(propName1, ..., propNameN)
 ```lxm
 let object = {a: 1, b: 2, c: 3}
 
-Debug.log(object.containsAnyOwnProperties("a", "l"))     -- true
-Debug.log(object.containsAnyOwnProperties("f", "g"))     -- false
+Debug.log(object.containsAnyOwnProperty("a", "l"))     -- true
+Debug.log(object.containsAnyOwnProperty("f", "g"))     -- false
 ```
 
 ## `.containsAllOwnProperties(...properties: List<String>) -> Logic`
