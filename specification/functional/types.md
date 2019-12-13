@@ -415,7 +415,23 @@ Represents an object with the ability to execute _functional_ code.
 let function = fun(arg0 = value0, arg1 = value1, ..positionalRest, ..@positionalRest) {}
 ```
 
-The params is a list of key-default value pairs separated with commas (`,`), optionally ended with an spread parameter (`..`) to hold other positional arguments and .
+The params is a list of key-default value pairs separated with commas (`,`), optionally ended with a spread parameter (`..`) to hold other positional arguments and a named spread parameter (`..@`) to hold other named arguments.
+
+### Lambdas
+
+There is a common pattern called `lambda` in witch the functions only have one statement inside that is a `return` and an expression:
+
+```lxm
+fun name() {
+    return value
+}
+```
+
+Therefore a syntactic sugar is offered to simplify the writing of this pattern, being both examples equivalent:
+
+```lxm
+fun name() = value
+```
 
 ## Expression type
 
@@ -430,6 +446,22 @@ Represents an object with the ability to execute _functional_ and _descriptive_ 
   |`exp name[props](params){body}`|Named expression definition. It can be only used as a statement.|
 
 > **Note**: see [descriptive expressions](../descriptive/expressions.md) section to know more information about expressions.
+
+### Lambdas
+
+Expression have a custom `lambda` pattern similar to the function's one but in this case it subsitutes a single static pattern (`|>`):
+
+```lxm
+exp name() {
+    |> lexemes
+}
+```
+
+By:
+
+```lxm
+exp name() = lexemes
+```
 
 ## Filter type
 
@@ -452,3 +484,7 @@ Represents a node in the result tree. They are created by _expressions_ and _fil
 - Type: `Expression`
 - Prototype: `Expression.prototype`.
 - Literals: none.
+
+### Lambdas
+
+The Filter lambads are equal to the Expressions lambas.
