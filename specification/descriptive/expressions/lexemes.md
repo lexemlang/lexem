@@ -265,6 +265,12 @@ The two elements of the accesses are:
 - **Arguments**: dynamic values passed to the calling expression.
 - **Properties**: the properties that are passed to the calling expression. This field (`:[properties]`) is optional.
 
+Finally whenever the expression returns a `Function`, `Expression` or `Filter` and no arguments neither properties are required, it can be written as:
+
+```lexem
+!expression
+```
+
 ### Re-parsing
 
 There are situations in which it is necessary to capture a generic syntax and then re-parse it again to analyze in deep its meaning.
