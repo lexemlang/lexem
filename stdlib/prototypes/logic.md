@@ -7,11 +7,8 @@
 - [Operators](#operators)
   - [.not() -&gt; Logic](#not--gt-logic)
   - [.logicAnd(right: Logic) -&gt; Logic](#logicandright-logic--gt-logic)
-  - [.logicAnd(right: BitList) -&gt; BitList](#logicandright-bitlist--gt-bitlist)
   - [.logicOr(right: Logic) -&gt; Logic](#logicorright-logic--gt-logic)
-  - [.logicOr(right: BitList) -&gt; BitList](#logicorright-bitlist--gt-bitlist)
   - [.logicXor(right: Logic) -&gt; Logic](#logicxorright-logic--gt-logic)
-  - [.logicXor(right: BitList) -&gt; BitList](#logicxorright-bitlist--gt-bitlist)
 
 # Methods
 
@@ -86,34 +83,6 @@ Debug.log(left.logicAnd(nil))     -- BadArgumentError
 Debug.log(left & right)           -- false Implicit calling
 ```
 
-## `.logicAnd(right: BitList) -> BitList`
-
-Returns the result of applying the *and* operator between every bit of `right` and the `this` value, i.e `this & right`.
-
-```lxm
-bitlist.logicAnd(right)
-```
-
-### Parameters
-
-- **`right`**: the right operand.
-
-### Errors
-
-- **`BadArgumentError`**: when the type of `right` is incorrect.
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Logic`.
-
-### Examples
-
-```lxm
-let left = true
-let right = 0b"1001"
-
-Debug.log(left.logicAnd(right))   -- 0b"1001"
-Debug.log(left.logicAnd(nil))     -- BadArgumentError
-Debug.log(left & right)           -- 0b"1001" Implicit calling
-```
-
 ## `.logicOr(right: Logic) -> Logic`
 
 Returns the result of applying the *or* operator between the `this` and `right` values, i.e `this | right`.
@@ -142,34 +111,6 @@ Debug.log(left.logicOr(nil))      -- BadArgumentError
 Debug.log(left | right)           -- true Implicit calling
 ```
 
-## `.logicOr(right: BitList) -> BitList`
-
-Returns the result of applying the *or* operator between every bit of `right` and the `this` value, i.e `this | right`.
-
-```lxm
-bitlist.logicOr(right)
-```
-
-### Parameters
-
-- **`right`**: the right operand.
-
-### Errors
-
-- **`BadArgumentError`**: when the type of `right` is incorrect.
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Logic`.
-
-### Examples
-
-```lxm
-let left = true
-let right = 0b"1001"
-
-Debug.log(left.logicOr(right))    -- 0b"1111"
-Debug.log(left.logicOr(nil))      -- BadArgumentError
-Debug.log(left | right)           -- 0b"1111" Implicit calling
-```
-
 ## `.logicXor(right: Logic) -> Logic`
 
 Returns the result of applying the *xor* operator between the `this` and `right` values, i.e `this ^ right`.
@@ -196,32 +137,4 @@ let right = true
 Debug.log(left.logicXor(right))   -- true
 Debug.log(left.logicXor(nil))     -- BadArgumentError
 Debug.log(left ^ right)           -- true Implicit calling
-```
-
-## `.logicXor(right: BitList) -> BitList`
-
-Returns the result of applying the *xor* operator between every bit of `right` and the `this` value, i.e `this ^ right`.
-
-```lxm
-bitlist.logicXor(right)
-```
-
-### Parameters
-
-- **`right`**: the right operand.
-
-### Errors
-
-- **`BadArgumentError`**: when the type of `right` is incorrect.
-- **`BadThisArgumentTypeError`**: when this function is invoked on a value that is not a `Logic`.
-
-### Examples
-
-```lxm
-let left = true
-let right = 0b"1001"
-
-Debug.log(left.logicXor(right))   -- 0b"0110"
-Debug.log(left.logicXor(nil))     -- BadArgumentError
-Debug.log(left ^ right)           -- 0b"0110" Implicit calling
 ```
